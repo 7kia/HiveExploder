@@ -1,4 +1,5 @@
 //#include "MainMenuScene.h"
+#include "../Classes/Config.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "MainMenuScene.h"
@@ -33,8 +34,21 @@ bool MainMenu::init()
         return false;
     }
     
-		Size visibleSize = Director::getInstance()->getVisibleSize();
-		Point origin = Director::getInstance()->getVisibleOrigin();
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point origin = Director::getInstance()->getVisibleOrigin();
+
+
+	// TODO : desing
+	auto menuTitle = MenuItemImage::create(MAIN_MENU_GAME_TITLE,
+											MAIN_MENU_GAME_TITLE);
+	auto playItem = MenuItemImage::create(MAIN_MENU_PLAY_BUTTON,
+										MAIN_MENU_PLAY_BUTTON_CLICK,
+										CC_CALLBACK_1(MainMenu::GoToGameScene, this));
+
+	auto menu = Menu::create(menuTitle, playItem, NULL);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	this->addChild(menu);
+	//////////////////
 
     return true;
 }

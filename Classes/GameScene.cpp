@@ -1,3 +1,4 @@
+#include "../Classes/Config.h"
 #include "GameScene.h"
 #include "PauseScene.h"
 #include "GameOverScene.h"
@@ -32,6 +33,20 @@ bool GameScreen::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
+
+	// TODO : design
+	auto pauseItem = MenuItemImage::create(GAME_SCREEN_PAUSE_BUTTON,
+											GAME_SCREEN_PAUSE_BUTTON_CLICK,
+										CC_CALLBACK_1(GameScreen::GoToGameOverScene, this));
+
+	pauseItem->setPosition(Point(pauseItem->getContentSize().width - (pauseItem->getContentSize().width / 4) + origin.x,
+						visibleSize.height - pauseItem->getContentSize().height + (pauseItem->getContentSize().width / 4) + origin.y));
+
+	auto menu = Menu::create(pauseItem, NULL);
+	menu->setPosition(Point::ZERO);
+	this->addChild(menu);
+	////////////////////////
+
     return true;
 }
 

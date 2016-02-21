@@ -1,3 +1,4 @@
+#include "../Classes/Config.h"
 #include "GameOverScene.h"
 #include "GameScene.h"
 #include "MainMenuScene.h"
@@ -32,6 +33,25 @@ bool GameOver::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
+	/////////////////////
+	// TODO : design
+	auto menuTitle = MenuItemImage::create(GAMEOVER_SCREEN_MENU_TITLE,
+											GAMEOVER_SCREEN_MENU_TITLE);
+
+	auto retryItem = MenuItemImage::create(GAMEOVER_RETRY_BUTTON,
+											GAMEOVER_RETRY_BUTTON_CLICK,
+											CC_CALLBACK_1(GameOver::GoToGameScene, this));
+
+	auto mainMenuItem = MenuItemImage::create(GAMEOVER_MENU_BUTTON,
+												GAMEOVER_MENU_BUTTON_CLICK,
+												CC_CALLBACK_1(GameOver::GoToMainMenuScene, this));
+
+	auto menu = Menu::create(menuTitle, retryItem, mainMenuItem, NULL);
+
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	this->addChild(menu);
+	///////////////////////
+
     return true;
 }
 
