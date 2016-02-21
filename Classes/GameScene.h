@@ -17,6 +17,14 @@ public:
     
     void GoToPauseScene(Ref *pSender);
     void GoToGameOverScene(Ref *pSender);
+    
+    void update(float dt);
+    
+    
+    //std::vector<cocos2d::Sprite *> asteroids;
+    
+    cocos2d::Sprite *backgroundSpriteArray[2];
+    cocos2d::Sprite *playerSprite;
 };
 
 #endif // __GAME_SCENE_H__

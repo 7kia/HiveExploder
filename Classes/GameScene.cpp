@@ -39,12 +39,32 @@ bool GameScreen::init()
 											Buttons::PAUSE_BUTTON_CLICK,
 											CC_CALLBACK_1(GameScreen::GoToGameOverScene, this));
 
-	pauseItem->setPosition(Point(pauseItem->getContentSize().width - (pauseItem->getContentSize().width / 4) + origin.x,
+	//- (pauseItem->getContentSize().width / 4)
+	pauseItem->setPosition(Point(pauseItem->getContentSize().width / 2  + origin.x,
 						visibleSize.height - pauseItem->getContentSize().height + (pauseItem->getContentSize().width / 4) + origin.y));
 
 	auto menu = Menu::create(pauseItem, NULL);
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+    menu->setPosition(Point::ZERO);
 	this->addChild(menu);
+	/////////
+	for (int i = 0; i < 2; i++)
+	{
+		backgroundSpriteArray[i] = Sprite::create(GameSceneTexture::BACKGROUND);
+		backgroundSpriteArray[i]->setPosition(Point((visibleSize.width / 2), (-1 * visibleSize.height * i) + (visibleSize.height / 2)));
+		this->addChild(backgroundSpriteArray[i], -2);
+	}
+
+	playerSprite = Sprite::create(GameSceneTexture::SPACE_POD);
+	playerSprite->setPosition(Point(visibleSize.width / 2, pauseItem->getPosition().y
+								- (pauseItem->getContentSize().height / 2)
+								- (playerSprite->getContentSize().height / 2)));
+
+	this->addChild(playerSprite, -1);
+
+	this->scheduleUpdate();
+
+//	this->schedule(schedule_selector(GameScreen::spawnAsteroid), 1.0);
+
 	////////////////////////
 
     return true;
@@ -54,7 +74,7 @@ void GameScreen::GoToPauseScene(cocos2d::Ref *pSender)
 {
     auto scene = PauseMenu::createScene();
     
-	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
+	Director::getInstance()->pushScene(scene);
 }
 
 void GameScreen::GoToGameOverScene(cocos2d::Ref *pSender)
@@ -62,4 +82,25 @@ void GameScreen::GoToGameOverScene(cocos2d::Ref *pSender)
     auto scene = GameOver::createScene();
     
 	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
+}
+
+
+void GameScreen::update(float dt)
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point origin = Director::getInstance()->getVisibleOrigin();
+
+	for (int i = 0; i < 2; i++)
+	{
+		if (backgroundSpriteArray[i]->getPosition().y >= visibleSize.height + (visibleSize.height / 2) - 1)
+		{
+			backgroundSpriteArray[i]->setPosition(Point((visibleSize.width / 2) + origin.x, (-1 * visibleSize.height) + (visibleSize.height / 2)));
+		}
+	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		backgroundSpriteArray[i]->setPosition(Point(backgroundSpriteArray[i]->getPosition().x, backgroundSpriteArray[i]->getPosition().y + (0.75 * visibleSize.height * dt)));
+	}
+
 }

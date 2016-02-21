@@ -55,6 +55,12 @@ bool GameOver::init()
 
 	this->addChild(menuTitle);
 	this->addChild(menu);
+
+
+	auto backgroundSprite = Sprite::create(GameoverTexture::BACKGROUND);
+	backgroundSprite->setPosition(Point((visibleSize.width / 2) + origin.x, (visibleSize.height / 2) + origin.y));
+	this->addChild(backgroundSprite, -1);
+
 	///////////////////////
 
     return true;
