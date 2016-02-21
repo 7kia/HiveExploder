@@ -74,10 +74,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 		}
 		else if (960 == screenSize.width || 960 == screenSize.height) // retina iPhone (4 and 4S)
 		{
-			resDirOrders.push_back("iphonehd");
+			//resDirOrders.push_back("iphonehd");
 			resDirOrders.push_back("iphone");
 
-			glview->setDesignResolutionSize(640 , 960 , ResolutionPolicy::NO_BORDER);
+			glview->setDesignResolutionSize(640 , 960 , ResolutionPolicy::NO_BORDER);// TODO : IMAGE redesign
 		}
 		else // non retina iPhone and Android devices
 		{

@@ -35,20 +35,25 @@ bool GameOver::init()
     
 	/////////////////////
 	// TODO : design
-	auto menuTitle = MenuItemImage::create(GAMEOVER_SCREEN_MENU_TITLE,
-											GAMEOVER_SCREEN_MENU_TITLE);
+	auto menuTitle = MenuItemImage::create(GameoverTexture::MENU_TITLE,
+											GameoverTexture::MENU_TITLE);
 
-	auto retryItem = MenuItemImage::create(GAMEOVER_RETRY_BUTTON,
-											GAMEOVER_RETRY_BUTTON_CLICK,
+	auto retryItem = MenuItemImage::create(Buttons::RETRY_BUTTON,
+											Buttons::RETRY_BUTTON_CLICK,
 											CC_CALLBACK_1(GameOver::GoToGameScene, this));
 
-	auto mainMenuItem = MenuItemImage::create(GAMEOVER_MENU_BUTTON,
-												GAMEOVER_MENU_BUTTON_CLICK,
+	auto mainMenuItem = MenuItemImage::create(Buttons::MENU_BUTTON,
+												Buttons::MENU_BUTTON_CLICK,
 												CC_CALLBACK_1(GameOver::GoToMainMenuScene, this));
 
-	auto menu = Menu::create(menuTitle, retryItem, mainMenuItem, NULL);
+	auto menu = Menu::create(retryItem, mainMenuItem, NULL);
 
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	menuTitle->setPosition(visibleSize.width / 2, visibleSize.height * (1.4f));// TODO : set position
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
+	//menu->setPosition(
+
+
+	this->addChild(menuTitle);
 	this->addChild(menu);
 	///////////////////////
 

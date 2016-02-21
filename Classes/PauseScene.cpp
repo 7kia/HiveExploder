@@ -34,16 +34,16 @@ bool PauseMenu::init()
     Point origin = Director::getInstance()->getVisibleOrigin();
     
 	// TODO : design
-	auto resumeItem = MenuItemImage::create(PAUSE_SCREEN_RESUME_BUTTON,
-											PAUSE_SCREEN_RESUME_BUTTON_CLICK,
+	auto resumeItem = MenuItemImage::create(Buttons::RESUME_BUTTON,
+											Buttons::RESUME_BUTTON_CLICK,
 											CC_CALLBACK_1(PauseMenu::Resume, this));
 
-	auto retryItem = MenuItemImage::create(PAUSE_SCREEN_RERTY_BUTTON,
-											PAUSE_SCREEN_RESUME_BUTTON_CLICK,
+	auto retryItem = MenuItemImage::create(Buttons::RETRY_BUTTON,
+											Buttons::RETRY_BUTTON_CLICK,
 											CC_CALLBACK_1(PauseMenu::Retry, this));
 
-	auto mainMenuItem = MenuItemImage::create(PAUSE_SCREEN_MENU_BUTTON,
-												PAUSE_SCREEN_MENU_BUTTON_CLICK,
+	auto mainMenuItem = MenuItemImage::create(Buttons::MENU_BUTTON,
+											Buttons::MENU_BUTTON_CLICK,
 											CC_CALLBACK_1(PauseMenu::GoToMainMenuScene, this));
 
 	auto menu = Menu::create(resumeItem, retryItem, mainMenuItem, NULL);

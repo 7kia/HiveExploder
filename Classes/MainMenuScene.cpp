@@ -39,10 +39,10 @@ bool MainMenu::init()
 
 
 	// TODO : desing
-	auto menuTitle = MenuItemImage::create(MAIN_MENU_GAME_TITLE,
-											MAIN_MENU_GAME_TITLE);
-	auto playItem = MenuItemImage::create(MAIN_MENU_PLAY_BUTTON,
-										MAIN_MENU_PLAY_BUTTON_CLICK,
+	auto menuTitle = MenuItemImage::create(MainMenuTexture::GAME_TITLE,
+											MainMenuTexture::GAME_TITLE);
+	auto playItem = MenuItemImage::create(Buttons::PLAY_BUTTON,
+										Buttons::PLAY_BUTTON_CLICK,
 										CC_CALLBACK_1(MainMenu::GoToGameScene, this));
 
 	auto menu = Menu::create(menuTitle, playItem, NULL);

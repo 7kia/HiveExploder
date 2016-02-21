@@ -35,15 +35,15 @@ bool GameScreen::init()
     
 
 	// TODO : design
-	auto pauseItem = MenuItemImage::create(GAME_SCREEN_PAUSE_BUTTON,
-											GAME_SCREEN_PAUSE_BUTTON_CLICK,
-										CC_CALLBACK_1(GameScreen::GoToGameOverScene, this));
+	auto pauseItem = MenuItemImage::create(Buttons::PAUSE_BUTTON,
+											Buttons::PAUSE_BUTTON_CLICK,
+											CC_CALLBACK_1(GameScreen::GoToGameOverScene, this));
 
 	pauseItem->setPosition(Point(pauseItem->getContentSize().width - (pauseItem->getContentSize().width / 4) + origin.x,
 						visibleSize.height - pauseItem->getContentSize().height + (pauseItem->getContentSize().width / 4) + origin.y));
 
 	auto menu = Menu::create(pauseItem, NULL);
-	menu->setPosition(Point::ZERO);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
 	this->addChild(menu);
 	////////////////////////
 
