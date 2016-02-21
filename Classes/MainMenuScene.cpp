@@ -58,5 +58,5 @@ void MainMenu::GoToGameScene(cocos2d::Ref *pSender)
 {
 	auto scene = GameScreen::createScene();
 
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }

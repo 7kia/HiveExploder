@@ -54,12 +54,12 @@ void GameScreen::GoToPauseScene(cocos2d::Ref *pSender)
 {
     auto scene = PauseMenu::createScene();
     
-    Director::getInstance()->pushScene(scene);
+	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
 }
 
 void GameScreen::GoToGameOverScene(cocos2d::Ref *pSender)
 {
     auto scene = GameOver::createScene();
     
-    Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
 }
