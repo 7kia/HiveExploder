@@ -54,21 +54,56 @@ bool GameScreen::init()
 		this->addChild(backgroundSpriteArray[i], -2);
 	}
 
-	playerSprite = Sprite::create(GameSceneTexture::SPACE_POD);
+	playerSprite = Sprite::create(GameSceneTexture::MARINE, Rect(0, 0, 40, 40));
 	playerSprite->setPosition(Point(visibleSize.width / 2, pauseItem->getPosition().y
 								- (pauseItem->getContentSize().height / 2)
 								- (playerSprite->getContentSize().height / 2)));
-
+	
 	this->addChild(playerSprite, -1);
 
 	this->scheduleUpdate();
 
 //	this->schedule(schedule_selector(GameScreen::spawnAsteroid), 1.0);
+	////
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->setSwallowTouches(true);
+
+	listener->onTouchBegan = CC_CALLBACK_2(GameScreen::onTouchBegan, this);
+	listener->onTouchMoved = CC_CALLBACK_2(GameScreen::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(GameScreen::onTouchEnded, this);
+	listener->onTouchCancelled = CC_CALLBACK_2(GameScreen::onTouchCancelled, this);
+
+	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 
 	////////////////////////
 
     return true;
 }
+
+
+bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	isTouching = true;
+	touchPosition = touch->getLocation();
+
+	return true;
+}
+
+void GameScreen::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	// not used for this game
+}
+
+void GameScreen::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	isTouching = false;
+}
+
+void GameScreen::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	onTouchEnded(touch, event);
+}
+
 
 void GameScreen::GoToPauseScene(cocos2d::Ref *pSender)
 {
@@ -103,4 +138,33 @@ void GameScreen::update(float dt)
 		backgroundSpriteArray[i]->setPosition(Point(backgroundSpriteArray[i]->getPosition().x, backgroundSpriteArray[i]->getPosition().y + (0.75 * visibleSize.height * dt)));
 	}
 
+	///////////////////////
+	// check if the screen is being touched
+	if (true == isTouching)
+	{
+		// check which half of the screen is being touched
+		if (touchPosition.x < visibleSize.width / 2)
+		{
+			// move the space pod left
+			playerSprite->setPositionX(playerSprite->getPosition().x - (0.50 * visibleSize.width * dt));
+
+			// check to prevent the space pod from going off the screen (left side)
+			if (playerSprite->getPosition().x <= 0 + (playerSprite->getContentSize().width / 2))
+			{
+				playerSprite->setPositionX(playerSprite->getContentSize().width / 2);
+			}
+		}
+		else
+		{
+			// move the space pod right
+			playerSprite->setPositionX(playerSprite->getPosition().x + (0.50 * visibleSize.width * dt));
+
+			// check to prevent the space pod from going off the screen (right side)
+			if (playerSprite->getPosition().x >= visibleSize.width - (playerSprite->getContentSize().width / 2))
+			{
+				playerSprite->setPositionX(visibleSize.width - (playerSprite->getContentSize().width / 2));
+			}
+		}
+	}
+	///////////////////////
 }

@@ -20,7 +20,13 @@ public:
     
     void update(float dt);
     
-    
+	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event);
+	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event);
+	void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event);
+	void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event);
+
+	bool isTouching = false;
+	cocos2d::Vec2 touchPosition = cocos2d::Vec2(0.f, 0.f);
     //std::vector<cocos2d::Sprite *> asteroids;
     
     cocos2d::Sprite *backgroundSpriteArray[2];
