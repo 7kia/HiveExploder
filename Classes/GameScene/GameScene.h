@@ -2,6 +2,25 @@
 #define __GAME_SCENE_H__
 
 #include "cocos2d.h"
+#include "Config.h"
+namespace GameSceneTexture
+{
+	static const std::string PATH_TEXTURE = "GameScene\\";
+	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
+
+	static const std::string MARINE = PATH_TEXTURE + "Marine.png";// TODO : replace
+
+}
+
+namespace MoveCircleParametrs
+{
+	static const std::string PATH_TEXTURE = "GameScene\\";
+
+	static const std::string MOVE_CIRCLE = PATH_TEXTURE + "MoveCircle.png";
+	static const float RADIUS_MOVE_CIRCLE = 30.f;
+	static const float RADIUS_ATTACK_CIRCLE = 20.f;
+}
+
 
 class GameScreen : public cocos2d::Layer
 {
@@ -29,8 +48,15 @@ public:
 	cocos2d::Vec2 touchPosition = cocos2d::Vec2(0.f, 0.f);
     //std::vector<cocos2d::Sprite *> asteroids;
     
-    cocos2d::Sprite *backgroundSpriteArray[2];
     cocos2d::Sprite *playerSprite;
+private:
+	// CreateGameScene.cpp
+	void CreateMenu();
+	void CreateMoveCircle();
+	void CreateListener();
+	void CreatePlayer();
+
+
 };
 
 #endif // __GAME_SCENE_H__

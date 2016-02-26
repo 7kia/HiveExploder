@@ -1,17 +1,16 @@
-#include "../Classes/Config.h"
-#include "GameOverScene.h"
-#include "GameScene.h"
-#include "MainMenuScene.h"
+#include "PauseScene.h"
+#include "GameScene/GameScene.h"
+#include "MainMenuScene/MainMenuScene.h"
 
 USING_NS_CC;
 
-Scene* GameOver::createScene()
+Scene* PauseMenu::createScene()
 {
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
     // 'layer' is an autorelease object
-    auto layer = GameOver::create();
+    auto layer = PauseMenu::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -21,7 +20,7 @@ Scene* GameOver::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool GameOver::init()
+bool PauseMenu::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -33,49 +32,49 @@ bool GameOver::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
-	/////////////////////
 	// TODO : design
-	auto menuTitle = MenuItemImage::create(GameoverTexture::MENU_TITLE,
-											GameoverTexture::MENU_TITLE);
+	auto resumeItem = MenuItemImage::create(Buttons::RESUME_BUTTON,
+											Buttons::RESUME_BUTTON_CLICK,
+											CC_CALLBACK_1(PauseMenu::Resume, this));
 
 	auto retryItem = MenuItemImage::create(Buttons::RETRY_BUTTON,
 											Buttons::RETRY_BUTTON_CLICK,
-											CC_CALLBACK_1(GameOver::GoToGameScene, this));
+											CC_CALLBACK_1(PauseMenu::Retry, this));
 
 	auto mainMenuItem = MenuItemImage::create(Buttons::MENU_BUTTON,
-												Buttons::MENU_BUTTON_CLICK,
-												CC_CALLBACK_1(GameOver::GoToMainMenuScene, this));
+											Buttons::MENU_BUTTON_CLICK,
+											CC_CALLBACK_1(PauseMenu::GoToMainMenuScene, this));
 
-	auto menu = Menu::create(retryItem, mainMenuItem, NULL);
-
-	menuTitle->setPosition(visibleSize.width / 2, visibleSize.height * (1.4f));// TODO : set position
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
-	//menu->setPosition(
-
-
-	this->addChild(menuTitle);
+	auto menu = Menu::create(resumeItem, retryItem, mainMenuItem, NULL);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
 	this->addChild(menu);
-
-
-	auto backgroundSprite = Sprite::create(GameoverTexture::BACKGROUND);
+	/////
+	auto backgroundSprite = Sprite::create(PauseSceneTexture::BACKGROUND);
 	backgroundSprite->setPosition(Point((visibleSize.width / 2) + origin.x, (visibleSize.height / 2) + origin.y));
 	this->addChild(backgroundSprite, -1);
 
-	///////////////////////
+	/////////////////
 
     return true;
 }
 
-void GameOver::GoToGameScene(cocos2d::Ref *pSender)
+void PauseMenu::Resume(cocos2d::Ref *pSender)
 {
-    auto scene = GameScreen::createScene();
-    
-	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+    Director::getInstance()->popScene();
 }
 
-void GameOver::GoToMainMenuScene(cocos2d::Ref *pSender)
+void PauseMenu::GoToMainMenuScene(cocos2d::Ref *pSender)
 {
     auto scene = MainMenu::createScene();
     
+    Director::getInstance()->popScene();
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+}
+
+void PauseMenu::Retry(cocos2d::Ref *pSender)
+{
+    auto scene = GameScreen::createScene();
+    
+    Director::getInstance()->popScene();
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
 }

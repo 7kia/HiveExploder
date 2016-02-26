@@ -1,9 +1,8 @@
 //#include "MainMenuScene.h"
-#include "../Classes/Config.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "MainMenuScene.h"
-#include "GameScene.h"
+#include "GameScene/GameScene.h"
 
 USING_NS_CC;
 

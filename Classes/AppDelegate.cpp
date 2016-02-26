@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "MainMenuScene.h"
+#include "MainMenuScene/MainMenuScene.h"
 
 USING_NS_CC;
 
@@ -27,7 +27,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("CocosProject1-1", Rect(0, 0, 960, 640));
+        glview = GLViewImpl::createWithRect("CocosProject1-1", Rect(0, 0, WIDTH_WINDOW, HEIGHT_WINDOW));
         director->setOpenGLView(glview);
     }
 
