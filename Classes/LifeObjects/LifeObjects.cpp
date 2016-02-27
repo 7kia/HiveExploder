@@ -38,13 +38,20 @@ void LifeObject::GetCoordinateForView(GLView &view) const
 	assert(false);// TODO : not work
 }
 
-void LifeObject::Update(float dt)
-{
-}
 
 void LifeObject::SetVelocity(Vec2 setVelocity)
 {
 	velocity = setVelocity;
+}
+
+cocos2d::Sprite* LifeObject::GetSprite()
+{
+	return visual.GetSprite();
+}
+
+void LifeObject::SetSprite(cocos2d::Sprite * setSprite)
+{
+	visual.SetSprite(setSprite);
 }
 
 void LifeObject::SetVelocity(float vx , float vy)
@@ -77,6 +84,11 @@ void LifeObject::SetDirectionLook(const Direction setDirection)
 void LifeObject::SetPosition(Vec2 pos)
 {
 	visual.SetPosition(pos);
+}
+
+void LifeObject::SetPosition(float x, float y)
+{
+	visual.SetPosition(x, y);
 }
 
 float LifeObject::GetPosition(CVisual::IDCoordinate id) const// TODo : collision

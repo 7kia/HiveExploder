@@ -1,6 +1,3 @@
-#ifndef VISUAL_H
-#define VISUAL_H
-
 #pragma once
 
 // TODO : delete if will not need
@@ -27,14 +24,15 @@ public:
 		Y
 	};
 	void SetPosition(cocos2d::Vec2 pos);
+	void SetPosition(float x, float y);
 	float GetPosition(IDCoordinate id) const;
 	cocos2d::Vec2 GetPosition() const;
 	void Move(cocos2d::Vec2 shiftVector);
 
 	//void draw(sf::RenderWindow &window);
+	cocos2d::Sprite* GetSprite();
+	void SetSprite(cocos2d::Sprite* setSprite);
 
-private:
+public:// TODO : will do private
 	cocos2d::Sprite* sprite;
 };
-
-#endif

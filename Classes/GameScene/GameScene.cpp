@@ -1,4 +1,3 @@
-#include "../Classes/Config.h"
 #include "GameScene.h"
 #include "PauseScene/PauseScene.h"
 #include "GameOverScene/GameOverScene.h"
@@ -33,7 +32,9 @@ bool GameScreen::init()
     
     //Size visibleSize = Director::getInstance()->getVisibleSize();
     //Point origin = Director::getInstance()->getVisibleOrigin();
-    
+	CreateCashes();
+	CreateTypesLifeObjects();
+
 	CreateMenu();
 	CreateMoveCircle();
 	CreatePlayer();

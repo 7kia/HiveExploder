@@ -1,7 +1,6 @@
 #ifndef __GAME_SCENE_H__
 #define __GAME_SCENE_H__
 
-#include "cocos2d.h"
 #include "Config.h"
 #include "ManageCircle.h"
 #include "../LifeObjects/LifeObjects.h"
@@ -12,6 +11,24 @@ namespace GameSceneTexture// TODO : redesign
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 
 	static const std::string MANAGE_CIRCLE = PATH_TEXTURE + "MoveCircle.png";
+
+	//namespace TypePlayer// TODO : redesign
+	//{
+	static const cocos2d::Rect MARINE_RECT(0, 0, 40, 40);
+		static const std::string MARINE = "Marine.png";
+	//}
+
+	//namespace TypeZergling// TODO : redesign
+	//{
+		static const cocos2d::Rect ZERGLING_RECT(0, 0, 40, 40);
+		static const std::string ZERGLING = "Zergling.png";
+	//}
+
+	//namespace TypeHydralisk// TODO : redesign
+	//{
+		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 40, 40);
+		static const std::string HYDRALISK = "Hydralisk.png";
+	//}
 
 }
 
@@ -45,7 +62,9 @@ public:
     cocos2d::Sprite *playerSprite;
 private:
 	// CreateGameScene.cpp
+	void CreateCashes();
 	void CreateTypesLifeObjects();
+
 	void CreateMenu();
 	void CreateMoveCircle();
 	void CreateListener();
@@ -53,8 +72,11 @@ private:
 	// UpdateGameScene.cpp
 	void UpdateManageCircle();
 private:
+	size_t ID_PLAYER = 0;
 	ManageCircle manageCirlce;
+	
 	TypeLifeObject typesLifeObjects[TypeLifeObject::AmountIDs];
+	LifeObject lifeObjects[0];
 
 };
 

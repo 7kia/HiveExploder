@@ -29,6 +29,11 @@ void CVisual::SetPosition(cocos2d::Vec2 pos)
 	sprite->setPosition(pos);
 }
 
+void CVisual::SetPosition(float x, float y)
+{
+	sprite->setPosition(x, y);
+}
+
 float CVisual::GetPosition(IDCoordinate id) const
 {
 	switch (id) {
@@ -53,4 +58,14 @@ void CVisual::Move(cocos2d::Vec2 shiftVector)
 	currentPos += shiftVector;
 
 	sprite->setPosition(currentPos);
+}
+
+cocos2d::Sprite* CVisual::GetSprite()
+{
+	return sprite;
+}
+
+void CVisual::SetSprite(Sprite* setSprite)
+{
+	sprite = setSprite;
 }

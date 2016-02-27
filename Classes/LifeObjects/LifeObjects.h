@@ -32,16 +32,22 @@ public:
 	/////////////////////////////
 	// MoveLifeobject.cpp
 	void SetPosition(cocos2d::Vec2 pos);
+	void SetPosition(float x, float y);
+
 
 	float GetPosition(CVisual::IDCoordinate id) const;
 	cocos2d::Vec2 GetPosition() const;
 
 	void GetCoordinateForView(cocos2d::GLView & view) const;
-	void SetVelocity(cocos2d::Vec2 setVelocity);
+
+	cocos2d::Sprite* GetSprite();
+	void SetSprite(cocos2d::Sprite* setSprite);
 	/////////////////////////////
+public:
+	CVisual						visual;
 private:
 	TypeLifeObject				*type;
-	CVisual						visual;
+
 	cocos2d::Vec2				velocity;
 
 	Direction direction;
