@@ -2,6 +2,11 @@
 
 using namespace cocos2d;
 
+void GameScreen::CreateTypesLifeObjects()
+{
+typesLifeObjects[TypeLifeObject::Player].SetTexture()
+}
+
 void GameScreen::CreateMenu()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -47,7 +52,7 @@ void GameScreen::CreatePlayer()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	playerSprite = Sprite::create(GameSceneTexture::MARINE, Rect(0, 0, 40, 40));// TODO : replace on const
+	playerSprite = Sprite::create(TypePlayer::TEXTURE_NAME, Rect(0, 0, 40, 40));// TODO : replace on const
 	playerSprite->setPositionX(visibleSize.width / 2);
 	playerSprite->setPositionY(visibleSize.height - playerSprite->getContentSize().height + origin.y);
 

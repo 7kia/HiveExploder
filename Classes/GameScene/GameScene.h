@@ -4,13 +4,13 @@
 #include "cocos2d.h"
 #include "Config.h"
 #include "ManageCircle.h"
+#include "../LifeObjects/LifeObjects.h"
 
-namespace GameSceneTexture
+namespace GameSceneTexture// TODO : redesign
 {
 	static const std::string PATH_TEXTURE = "GameScene\\";
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 
-	static const std::string MARINE = PATH_TEXTURE + "Marine.png";// TODO : replace
 	static const std::string MANAGE_CIRCLE = PATH_TEXTURE + "MoveCircle.png";
 
 }
@@ -45,6 +45,7 @@ public:
     cocos2d::Sprite *playerSprite;
 private:
 	// CreateGameScene.cpp
+	void CreateTypesLifeObjects();
 	void CreateMenu();
 	void CreateMoveCircle();
 	void CreateListener();
@@ -53,6 +54,7 @@ private:
 	void UpdateManageCircle();
 private:
 	ManageCircle manageCirlce;
+	TypeLifeObject typesLifeObjects[TypeLifeObject::AmountIDs];
 
 };
 
