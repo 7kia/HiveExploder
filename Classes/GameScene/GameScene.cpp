@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "PauseScene/PauseScene.h"
 #include "GameOverScene/GameOverScene.h"
+#include "VictoryrScene/VictoryScene.h"
 
 USING_NS_CC;
 
@@ -30,12 +31,9 @@ bool GameScreen::init()
         return false;
     }
     
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
+    //Size visibleSize = Director::getInstance()->getVisibleSize();
+    //Point origin = Director::getInstance()->getVisibleOrigin();
     
-
-	// TODO : design
-	
 	CreateMenu();
 	CreateMoveCircle();
 	CreatePlayer();
@@ -85,5 +83,13 @@ void GameScreen::GoToGameOverScene(cocos2d::Ref *pSender)
 {
     auto scene = GameOver::createScene();
     
+	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
+}
+
+
+void GameScreen::GoToVictoryScene(cocos2d::Ref *pSender)
+{
+	auto scene = Victory::createScene();
+
 	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
 }

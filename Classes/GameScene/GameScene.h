@@ -3,24 +3,17 @@
 
 #include "cocos2d.h"
 #include "Config.h"
+#include "ManageCircle.h"
+
 namespace GameSceneTexture
 {
 	static const std::string PATH_TEXTURE = "GameScene\\";
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 
 	static const std::string MARINE = PATH_TEXTURE + "Marine.png";// TODO : replace
+	static const std::string MANAGE_CIRCLE = PATH_TEXTURE + "MoveCircle.png";
 
 }
-
-namespace MoveCircleParametrs
-{
-	static const std::string PATH_TEXTURE = "GameScene\\";
-
-	static const std::string MOVE_CIRCLE = PATH_TEXTURE + "MoveCircle.png";
-	static const float RADIUS_MOVE_CIRCLE = 30.f;
-	static const float RADIUS_ATTACK_CIRCLE = 20.f;
-}
-
 
 class GameScreen : public cocos2d::Layer
 {
@@ -36,6 +29,7 @@ public:
     
     void GoToPauseScene(Ref *pSender);
     void GoToGameOverScene(Ref *pSender);
+	void GoToVictoryScene(cocos2d::Ref * pSender);
     
     void update(float dt);
     
@@ -55,7 +49,10 @@ private:
 	void CreateMoveCircle();
 	void CreateListener();
 	void CreatePlayer();
-
+	// UpdateGameScene.cpp
+	void UpdateManageCircle();
+private:
+	ManageCircle manageCirlce;
 
 };
 

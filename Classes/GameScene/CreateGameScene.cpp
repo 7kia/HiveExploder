@@ -18,19 +18,15 @@ void GameScreen::CreateMenu()
 	menu->setPosition(Point::ZERO);
 
 	this->addChild(menu);
-
 }
 
 void GameScreen::CreateMoveCircle()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Point origin = Director::getInstance()->getVisibleOrigin();
+	manageCirlce.SetSprite(Sprite::create(GameSceneTexture::MANAGE_CIRCLE));
 
-	auto moveCircle = Sprite::create(MoveCircleParametrs::MOVE_CIRCLE);
-	moveCircle->setPositionX(visibleSize.width / 2 + origin.x);
-	moveCircle->setPositionY((MoveCircleParametrs::RADIUS_MOVE_CIRCLE + MoveCircleParametrs::RADIUS_ATTACK_CIRCLE) + origin.y);
+	UpdateManageCircle();
 
-	this->addChild(moveCircle);
+	this->addChild(manageCirlce.GetSprite(), 1);
 }
 
 void GameScreen::CreateListener()
