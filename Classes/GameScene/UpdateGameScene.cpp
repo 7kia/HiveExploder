@@ -20,7 +20,7 @@ void GameScreen::update(float dt)
 				playerSprite->setPositionX(playerSprite->getPosition().x + (0.50 * visibleSize.width * dt));
 
 				// check to prevent the space pod from going off the screen (right side)
-				if (playerSprite->getPosition().x >= visibleSize.width - (playerSprite->getContentSize().width / 2))
+				if (lifeObjects[0].GetPosition().x >= visibleSize.width - (lifeObjects[0].GetSprite()->getContentSize().width / 2))
 				{
 					playerSprite->setPositionX(visibleSize.width - (playerSprite->getContentSize().width / 2));
 				}
@@ -29,14 +29,18 @@ void GameScreen::update(float dt)
 		case ManageCircle::Action::Move:
 			
 				// move the space pod left
-				playerSprite->setPositionX(playerSprite->getPosition().x - (0.50 * visibleSize.width * dt));
+				//playerSprite->setPositionX(playerSprite->getPosition().x - (0.50 * visibleSize.width * dt));
+				lifeObjects[0].Move(manageCirlce.GetDirection());
 
 
-				// check to prevent the space pod from going off the screen (left side)
+				/*
+								// check to prevent the space pod from going off the screen (left side)
 				if (playerSprite->getPosition().x <= 0 + (playerSprite->getContentSize().width / 2))
 				{
 					playerSprite->setPositionX(playerSprite->getContentSize().width / 2);
 				}
+				*/
+
 			
 			break;
 		default:

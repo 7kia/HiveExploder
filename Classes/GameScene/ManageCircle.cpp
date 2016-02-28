@@ -5,20 +5,24 @@ using namespace cocos2d;
 ManageCircle::Action ManageCircle::GetAction(cocos2d::Vec2 position)
 {
 	Vec2 posCircle = sprite->getPosition();
-	//posCircle += Vec2(RADIUS_CIRCLE, RADIUS_CIRCLE);
 
 	float distanse = posCircle.getDistance(position);
 
 	if (distanse < RADIUS_MOVE_CIRCLE)
 	{
+		direction = position - posCircle;
+		direction.normalize();
 		return Action::Move;
 	}
 	else if (distanse < (RADIUS_MOVE_CIRCLE + RADIUS_ATTACK_CIRCLE))
 	{
+		direction = position - posCircle;
+		direction.normalize();
 		return Action::Attack;
 	}
 	else
 	{
+		direction = { 0.f, 0.f };
 		return Action::None;
 	}
 }
@@ -51,4 +55,9 @@ void ManageCircle::SetPosition(cocos2d::Vec2 pos)
 float ManageCircle::GetRadius()
 {
 	return RADIUS_CIRCLE;
+}
+
+cocos2d::Vec2 ManageCircle::GetDirection()
+{
+	return direction;
 }

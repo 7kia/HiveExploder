@@ -28,6 +28,8 @@ public:
 	void SetPositionY(float y);
 	void SetPosition(cocos2d::Vec2 pos);
 	float GetRadius();
+	cocos2d::Vec2 GetDirection();
 private:
 	cocos2d::Sprite *sprite;
+	cocos2d::Vec2 direction = { 0.f, 0.f };
 };
