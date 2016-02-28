@@ -68,7 +68,9 @@ private:
 	void CreateMenu();
 	void CreateMoveCircle();
 	void CreateListener();
+
 	void CreatePlayer();
+	void CreateEnemys();
 	// UpdateGameScene.cpp
 	void UpdateManageCircle();
 private:

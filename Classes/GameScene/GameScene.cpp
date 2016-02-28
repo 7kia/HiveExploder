@@ -37,7 +37,9 @@ bool GameScreen::init()
 
 	CreateMenu();
 	CreateMoveCircle();
+
 	CreatePlayer();
+	CreateEnemys();
 
 	this->scheduleUpdate();
 
@@ -60,7 +62,7 @@ bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
 
 void GameScreen::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event)
 {
-	// not used for this game
+	touchPosition = touch->getLocation();
 }
 
 void GameScreen::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event)

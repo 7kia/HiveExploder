@@ -9,12 +9,18 @@ void GameScreen::CreateCashes()
 
 void GameScreen::CreateTypesLifeObjects()
 {
-	auto texture = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
-																		+ GameSceneTexture::MARINE);
-	typesLifeObjects[TypeLifeObject::Player].SetTexture(texture);
+	auto textureMarine = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
+																			+ GameSceneTexture::MARINE);
+	typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneTexture::MARINE_RECT);
 	typesLifeObjects[TypeLifeObject::Player].SetVelocity(150.f);
-
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	auto textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
+																			+ GameSceneTexture::ZERGLING);
+	typesLifeObjects[TypeLifeObject::Zergling].SetTexture(textureZergling);
+	typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneTexture::ZERGLING_RECT);
+	typesLifeObjects[TypeLifeObject::Zergling].SetVelocity(150.f);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 void GameScreen::CreateMenu()
@@ -65,9 +71,24 @@ void GameScreen::CreatePlayer()
 	auto sprite = Sprite::create();
 	lifeObjects[0].SetSprite(sprite);
 	lifeObjects[0].SetType(typesLifeObjects[TypeLifeObject::Player]);
-	lifeObjects[0].SetPosition(visibleSize.width / 2,
-								visibleSize.height + origin.y);
+	lifeObjects[0].SetPosition(visibleSize.width / 2 + origin.x,
+								visibleSize.height / 2 + origin.y);
 
 
 	this->addChild(lifeObjects[0].GetSprite(), -1);
+}
+
+void GameScreen::CreateEnemys()
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point origin = Director::getInstance()->getVisibleOrigin();
+
+	auto sprite = Sprite::create();
+	lifeObjects[1].SetSprite(sprite);
+	lifeObjects[1].SetType(typesLifeObjects[TypeLifeObject::Zergling]);
+	lifeObjects[1].SetPosition(visibleSize.width / 2 + origin.x,
+		visibleSize.height + origin.y);
+
+
+	this->addChild(lifeObjects[1].GetSprite(), -1);
 }
