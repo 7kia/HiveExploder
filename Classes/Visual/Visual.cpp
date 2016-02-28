@@ -2,8 +2,6 @@
 
 using namespace cocos2d;
 
-
-
 void CVisual::SetTexture(cocos2d::Texture2D* texture)
 {
 	sprite->setTexture(texture);
@@ -34,17 +32,14 @@ void CVisual::SetPosition(float x, float y)
 	sprite->setPosition(x, y);
 }
 
-float CVisual::GetPosition(IDCoordinate id) const
+float CVisual::GetPositionX() const
 {
-	switch (id) {
-	case CVisual::IDCoordinate::X:
-		return sprite->getPosition().x;
-	case CVisual::IDCoordinate::Y:
-		return sprite->getPosition().y;
-	default:
-		break;
-	}
+	return sprite->getPosition().x;
+}
 
+float CVisual::GetPositionY() const
+{
+	return sprite->getPosition().y;
 }
 
 cocos2d::Vec2 CVisual::GetPosition() const

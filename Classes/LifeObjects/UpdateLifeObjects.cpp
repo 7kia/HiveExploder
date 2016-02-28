@@ -1,11 +1,18 @@
 #include "LifeObjects.h"
 
-void LifeObject::Update(float dt)
+using namespace cocos2d;
+
+void CLifeObject::Update(float dt)
 {
 	UpdatePosition(dt);
 }
 
-void LifeObject::UpdatePosition(float dt)
+void CLifeObject::UpdatePosition(float dt)
 {
-	visual.Move(velocity * dt);
+	Vec2 resultVector = direction;
+
+	resultVector *= velocity;
+	resultVector *= dt;
+
+	visual.Move(resultVector);
 }

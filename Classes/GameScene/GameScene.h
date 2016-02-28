@@ -76,7 +76,7 @@ private:
 	ManageCircle manageCirlce;
 	
 	TypeLifeObject typesLifeObjects[TypeLifeObject::AmountIDs];
-	LifeObject lifeObjects[0];
+	CLifeObject lifeObjects[2];
 
 };
 

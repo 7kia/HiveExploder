@@ -2,108 +2,35 @@
 
 using namespace cocos2d;
 
-LifeObject::LifeObject()
+CLifeObject::CLifeObject()
 {
 }
 
-LifeObject::~LifeObject()
+CLifeObject::~CLifeObject()
 {
 }
 
-void LifeObject::SetType(TypeLifeObject & setType)
+void CLifeObject::SetType(TypeLifeObject & setType)
 {
 	type = &setType;
+
 	visual.SetTexture(type->GetTexture());
 	visual.SetTextureRect(type->GetRectangle());
+
+	SetVelocity(type->GetVelocity());
 }
 
-void LifeObject::Move(float dt)
-{
-	Vec2 resultVector = velocity;
-	resultVector.x *= dt;
-	resultVector.y *= dt;
-
-	visual.Move(resultVector);
-}
-
-void LifeObject::Move(cocos2d::Vec2 shiftVector)
-{
-	visual.Move(shiftVector);
-}
-
-void LifeObject::GetCoordinateForView(GLView &view) const
-{
-	//view.setViewPortInPoints(visual.GetPosition(), view.getVisibleSize());
-	//view.set
-	assert(false);// TODO : not work
-}
-
-
-void LifeObject::SetVelocity(Vec2 setVelocity)
-{
-	velocity = setVelocity;
-}
-
-cocos2d::Sprite* LifeObject::GetSprite()
+cocos2d::Sprite* CLifeObject::GetSprite()
 {
 	return visual.GetSprite();
 }
 
-void LifeObject::SetSprite(cocos2d::Sprite * setSprite)
+void CLifeObject::SetSprite(cocos2d::Sprite * setSprite)
 {
 	visual.SetSprite(setSprite);
 }
 
-void LifeObject::SetVelocity(float vx , float vy)
-{
-	velocity.x = vx;
-	velocity.y = vy;
-}
-
-Vec2 LifeObject::GetVelocity() const
-{
-	return velocity;
-}
-
-
-bool LifeObject::GetStateDeath() const
+bool CLifeObject::GetStateDeath() const
 {
 	return isDeath;
-}
-
-Direction LifeObject::GetDirectionLook() const
-{
-	return direction;
-}
-
-void LifeObject::SetDirectionLook(const Direction setDirection)
-{
-	direction = setDirection;
-}
-
-void LifeObject::SetPosition(Vec2 pos)
-{
-	visual.SetPosition(pos);
-}
-
-void LifeObject::SetPosition(float x, float y)
-{
-	visual.SetPosition(x, y);
-}
-
-float LifeObject::GetPosition(CVisual::IDCoordinate id) const// TODo : collision
-{
-	switch (id) {
-	case CVisual::IDCoordinate::X:
-		return visual.GetPosition(CVisual::IDCoordinate::X);
-	case CVisual::IDCoordinate::Y:
-		return visual.GetPosition(CVisual::IDCoordinate::Y);
-	default:
-		break;
-	}
-}
-
-Vec2 LifeObject::GetPosition() const
-{
-	return visual.GetPosition();// TODO : collision
 }

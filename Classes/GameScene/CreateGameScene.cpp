@@ -13,7 +13,7 @@ void GameScreen::CreateTypesLifeObjects()
 																		+ GameSceneTexture::MARINE);
 	typesLifeObjects[TypeLifeObject::Player].SetTexture(texture);
 	typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneTexture::MARINE_RECT);
-
+	typesLifeObjects[TypeLifeObject::Player].SetVelocity(150.f);
 
 }
 

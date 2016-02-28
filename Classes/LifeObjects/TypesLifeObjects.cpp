@@ -21,3 +21,13 @@ cocos2d::Rect TypeLifeObject::GetRectangle() const
 {
 	return rectangle;
 }
+
+void TypeLifeObject::SetVelocity(float setVelocity)
+{
+	velocity = setVelocity;
+}
+
+float TypeLifeObject::GetVelocity() const
+{
+	return velocity;
+}

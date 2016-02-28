@@ -9,27 +9,21 @@
 class CVisual
 {
 public:
-	void SetTexture(cocos2d::Texture2D* texture);
-	void SetTextureRect(cocos2d::Rect rectangle);
-	cocos2d::Rect GetGlobalBounds() const;
+	void			SetTexture(cocos2d::Texture2D* texture);
+	void			SetTextureRect(cocos2d::Rect rectangle);
+	cocos2d::Rect	GetGlobalBounds() const;
+	void			SetOrigin(cocos2d::Vec2 setOrigin);
 
-	void SetOrigin(cocos2d::Vec2 setOrigin);
+	void			Move(cocos2d::Vec2 shiftVector);
 
-	// For compute middle sprite
-	//const cocos2d::Vec2 computeMiddle(cocos2d::Rect rectangle);
+	void			SetPosition(cocos2d::Vec2 pos);
+	void			SetPosition(float x, float y);
 
-	enum class IDCoordinate
-	{
-		X,
-		Y
-	};
-	void SetPosition(cocos2d::Vec2 pos);
-	void SetPosition(float x, float y);
-	float GetPosition(IDCoordinate id) const;
-	cocos2d::Vec2 GetPosition() const;
-	void Move(cocos2d::Vec2 shiftVector);
+	float			GetPositionX() const;
+	float			GetPositionY() const;
+	cocos2d::Vec2	GetPosition() const;
+	
 
-	//void draw(sf::RenderWindow &window);
 	cocos2d::Sprite* GetSprite();
 	void SetSprite(cocos2d::Sprite* setSprite);
 
