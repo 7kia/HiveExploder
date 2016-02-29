@@ -5,4 +5,14 @@
 
 #include "CMovement.h"
 
+class CDynamicFeature
+{
+public:
+	void SetValue(int setValue);
+	void AddToValue(int summand);
+
+	int GetValue();
+private:
+	int value;
+};
 #endif

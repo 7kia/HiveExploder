@@ -7,17 +7,18 @@ USING_NS_CC;
 
 Scene* GameScreen::createScene()
 {
-    // 'scene' is an autorelease object
-    auto scene = Scene::create();
-    
-    // 'layer' is an autorelease object
-    auto layer = GameScreen::create();
+	// 'scene' is an autorelease object
+	auto scene = Scene::createWithPhysics();
 
-    // add layer as a child to scene
-    scene->addChild(layer);
+	// 'layer' is an autorelease object
+	auto layer = GameScreen::create();
+	layer->SetPhysicsWorld(scene->getPhysicsWorld());
 
-    // return the scene
-    return scene;
+	// add layer as a child to scene
+	scene->addChild(layer);
+
+	// return the scene
+	return scene;
 }
 
 // on "init" you need to initialize your instance
@@ -41,6 +42,8 @@ bool GameScreen::init()
 	CreatePlayer();
 	CreateEnemys();
 
+	CreateContactListener();
+
 	this->scheduleUpdate();
 
 	// this->schedule(schedule_selector(GameScreen::spawnAsteroid), 1.0);
@@ -51,6 +54,12 @@ bool GameScreen::init()
     return true;
 }
 
+bool GameScreen::OnContactBegin(PhysicsContact& contact)
+{
+	GoToGameOverScene(this);
+
+	return true;
+}
 
 bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
 {

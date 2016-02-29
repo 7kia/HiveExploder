@@ -31,3 +31,13 @@ float TypeLifeObject::GetVelocity() const
 {
 	return velocity;
 }
+
+void TypeLifeObject::SetHealth(int value)
+{
+	health.SetValue(value);
+}
+
+int TypeLifeObject::GetHealth()
+{
+	return health.GetValue();
+}

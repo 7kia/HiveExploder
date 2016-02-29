@@ -27,9 +27,13 @@ public:
 
 	void					SetVelocity(float setVelocity);
 	float					GetVelocity() const;
+
+	void					SetHealth(int value);
+	int						GetHealth();
 	// TODO : there not enough functional
 private:
 	cocos2d::Texture2D*		texture;
 	cocos2d::Rect			rectangle;
 	float					velocity;
+	CDynamicFeature			health;
 };

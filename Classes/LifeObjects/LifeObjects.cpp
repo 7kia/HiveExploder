@@ -17,7 +17,16 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	visual.SetTexture(type->GetTexture());
 	visual.SetTextureRect(type->GetRectangle());
 
+	auto body = PhysicsBody::createCircle
+		(visual.GetSprite()->getContentSize().width / 2);
+	//body->setContactTestBitmask(true);
+	//body->setDynamic(false);
+	visual.GetSprite()->setPhysicsBody(body);
+
+
 	SetVelocity(type->GetVelocity());
+
+	health.SetValue(type->GetHealth());
 }
 
 cocos2d::Sprite* CLifeObject::GetSprite()

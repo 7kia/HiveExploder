@@ -15,7 +15,9 @@ namespace GameSceneTexture// TODO : redesign
 	//namespace TypePlayer// TODO : redesign
 	//{
 	static const cocos2d::Rect MARINE_RECT(0, 0, 40, 40);
-		static const std::string MARINE = "Marine.png";
+	static const std::string MARINE = "Marine.png";
+	static const std::string MARINE_SHOOT = "Marine_gun_bullet.png";
+
 	//}
 
 	//namespace TypeZergling// TODO : redesign
@@ -55,6 +57,11 @@ public:
 	void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event);
 	void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event);
 
+	/////// XXXXXXXXXXXx
+	void SetPhysicsWorld(cocos2d::PhysicsWorld* world) { m_World = world; m_World->setGravity(cocos2d::Vect(0, 0)); }
+	bool OnContactBegin(cocos2d::PhysicsContact& contact);
+	////// XXXXXXXXXXXX
+
 	bool isTouching = false;
 	cocos2d::Vec2 touchPosition = cocos2d::Vec2(0.f, 0.f);
     //std::vector<cocos2d::Sprite *> asteroids;
@@ -64,6 +71,7 @@ private:
 	// CreateGameScene.cpp
 	void CreateCashes();
 	void CreateTypesLifeObjects();
+	void CreateTypesShoots();
 
 	void CreateMenu();
 	void CreateMoveCircle();
@@ -71,9 +79,12 @@ private:
 
 	void CreatePlayer();
 	void CreateEnemys();
+	void CreateContactListener();// XXXXXX
 	// UpdateGameScene.cpp
 	void UpdateManageCircle();
 private:
+	cocos2d::PhysicsWorld* m_World;
+
 	size_t ID_PLAYER = 0;
 	ManageCircle manageCirlce;
 	

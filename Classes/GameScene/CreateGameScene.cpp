@@ -14,13 +14,25 @@ void GameScreen::CreateTypesLifeObjects()
 	typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneTexture::MARINE_RECT);
 	typesLifeObjects[TypeLifeObject::Player].SetVelocity(150.f);
+
+	typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	auto textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
 																			+ GameSceneTexture::ZERGLING);
 	typesLifeObjects[TypeLifeObject::Zergling].SetTexture(textureZergling);
 	typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneTexture::ZERGLING_RECT);
 	typesLifeObjects[TypeLifeObject::Zergling].SetVelocity(150.f);
+
+	typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+
+void GameScreen::CreateTypesShoots()
+{
+	auto textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
+																					+ GameSceneTexture::MARINE_SHOOT);
+
 }
 
 void GameScreen::CreateMenu()
@@ -87,8 +99,15 @@ void GameScreen::CreateEnemys()
 	lifeObjects[1].SetSprite(sprite);
 	lifeObjects[1].SetType(typesLifeObjects[TypeLifeObject::Zergling]);
 	lifeObjects[1].SetPosition(visibleSize.width / 2 + origin.x,
-		visibleSize.height + origin.y);
+								visibleSize.height / 2 + origin.y + visibleSize.height / 4);
 
 
 	this->addChild(lifeObjects[1].GetSprite(), -1);
+}
+
+void GameScreen::CreateContactListener()
+{
+	auto contactListener = EventListenerPhysicsContact::create();
+	contactListener->onContactBegin = CC_CALLBACK_1(GameScreen::OnContactBegin, this);
+	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 }

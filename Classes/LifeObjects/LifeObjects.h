@@ -50,6 +50,8 @@ public:
 private:
 	TypeLifeObject				*type;
 
+	CDynamicFeature				health;
+
 	bool isDeath = false;// TODO : delete
 };
 
