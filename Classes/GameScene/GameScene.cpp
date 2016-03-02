@@ -35,6 +35,7 @@ bool GameScreen::init()
     //Point origin = Director::getInstance()->getVisibleOrigin();
 	CreateCashes();
 	CreateTypesLifeObjects();
+	CreateTypesShoots();
 
 	CreateMenu();
 	CreateMoveCircle();
@@ -47,6 +48,7 @@ bool GameScreen::init()
 	this->scheduleUpdate();
 
 	// this->schedule(schedule_selector(GameScreen::spawnAsteroid), 1.0);
+	//this->schedule(CC_SCHEDULE_SELECTOR(PhysicsDemoCollisionProcessing::tick), 0.3f);
 
 	CreateListener();
 	////////////////////////
@@ -54,9 +56,9 @@ bool GameScreen::init()
     return true;
 }
 
-bool GameScreen::OnContactBegin(PhysicsContact& contact)
+bool GameScreen::onContactBegin(PhysicsContact& contact)
 {
-	GoToGameOverScene(this);
+	//GoToGameOverScene(this);
 
 	return true;
 }

@@ -17,10 +17,13 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	visual.SetTexture(type->GetTexture());
 	visual.SetTextureRect(type->GetRectangle());
 
+	// TODO : redesign
 	auto body = PhysicsBody::createCircle
 		(visual.GetSprite()->getContentSize().width / 2);
-	//body->setContactTestBitmask(true);
+	body->setCollisionBitmask(1);
+	body->setContactTestBitmask(true);
 	//body->setDynamic(false);
+	//body->setMass(INFINITY);
 	visual.GetSprite()->setPhysicsBody(body);
 
 
@@ -42,4 +45,8 @@ void CLifeObject::SetSprite(cocos2d::Sprite * setSprite)
 bool CLifeObject::GetStateDeath() const
 {
 	return isDeath;
+}
+
+void CLifeObject::Attack()
+{
 }

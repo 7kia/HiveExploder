@@ -12,19 +12,34 @@ void GameScreen::update(float dt)
 	// check if the screen is being touched
 	if (true == isTouching)
 	{
+		/*
+				if (manageCirlce.GetAction(touchPosition) == ManageCircle::Action::Attack)
+		{
+			CShoot addShoot;
+			auto sprite = Sprite::create();
+			addShoot.SetSprite(sprite);
+			///*
+			addShoot.SetType(this->typesShoots[TypeShoot::PlayerShoot]);
+			addShoot.SetStartPlace(this->lifeObjects[0].GetPosition(), this->manageCirlce.GetDirection(),
+				this->lifeObjects[0].GetSprite()->getContentSize());
+
+			shoots.push_back(addShoot);
+			this->addChild(sprite);
+
+		}
+		*/
+
+
 		switch (manageCirlce.GetAction(touchPosition))
 		{
 		case ManageCircle::Action::Attack:
 			
-				// move the space pod right
-				//playerSprite->setPositionX(playerSprite->getPosition().x + (0.50 * visibleSize.width * dt));
+			lifeObjects[0].CreateShoot(this, shoots);
 
-				// check to prevent the space pod from going off the screen (right side)
-				//if (lifeObjects[0].GetPosition().x >= visibleSize.width - (lifeObjects[0].GetSprite()->getContentSize().width / 2))
-				//{
-				//	playerSprite->setPositionX(visibleSize.width - (playerSprite->getContentSize().width / 2));
-				//}
-			
+
+			//*/
+
+
 			break;
 		case ManageCircle::Action::Move:
 			
@@ -85,4 +100,9 @@ void GameScreen::UpdateManageCircle()
 
 	manageCirlce.SetPositionX(visibleSize.width / 2 + origin.x);
 	manageCirlce.SetPositionY(origin.y + manageCirlce.GetRadius());
+}
+
+void GameScreen::AddShoot(const CShoot & addShoot)
+{
+	shoots.push_back(addShoot);
 }

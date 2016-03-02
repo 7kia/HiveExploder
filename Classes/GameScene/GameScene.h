@@ -4,6 +4,7 @@
 #include "Config.h"
 #include "ManageCircle.h"
 #include "../LifeObjects/LifeObjects.h"
+#include "../Shoots/shoot.h"
 
 namespace GameSceneTexture// TODO : redesign
 {
@@ -16,7 +17,11 @@ namespace GameSceneTexture// TODO : redesign
 	//{
 	static const cocos2d::Rect MARINE_RECT(0, 0, 40, 40);
 	static const std::string MARINE = "Marine.png";
+
+	static const cocos2d::Rect MARINE_SHOOT_RECT(0, 0, 49, 10);
 	static const std::string MARINE_SHOOT = "Marine_gun_bullet.png";
+	//
+
 
 	//}
 
@@ -46,50 +51,61 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(GameScreen);
     
-    void GoToPauseScene(Ref *pSender);
-    void GoToGameOverScene(Ref *pSender);
-	void GoToVictoryScene(cocos2d::Ref * pSender);
+    void					GoToPauseScene(Ref *pSender);
+    void					GoToGameOverScene(Ref *pSender);
+	void					GoToVictoryScene(cocos2d::Ref * pSender);
     
-    void update(float dt);
+    void					update(float dt);
     
-	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event);
-	void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event);
-	void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event);
-	void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event);
+	bool					onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event);
+	void					onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event);
+	void					onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event);
+	void					onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event);
+
+	void					AddShoot(const CShoot & addShoot);
 
 	/////// XXXXXXXXXXXx
-	void SetPhysicsWorld(cocos2d::PhysicsWorld* world) { m_World = world; m_World->setGravity(cocos2d::Vect(0, 0)); }
-	bool OnContactBegin(cocos2d::PhysicsContact& contact);
+	void					SetPhysicsWorld(cocos2d::PhysicsWorld* world)
+	{
+		m_World = world; m_World->setGravity(cocos2d::Vect(0, 0)); 
+	}
+	bool					onContactBegin(cocos2d::PhysicsContact& contact);
 	////// XXXXXXXXXXXX
+	// \/
+	// TODO : see need there private
+	//
+public:
+	std::vector<CLifeObject>	lifeObjects;
+	std::vector<CShoot>			shoots;
 
-	bool isTouching = false;
-	cocos2d::Vec2 touchPosition = cocos2d::Vec2(0.f, 0.f);
-    //std::vector<cocos2d::Sprite *> asteroids;
-    
-    cocos2d::Sprite *playerSprite;
+	TypeLifeObject			typesLifeObjects[TypeLifeObject::AmountIDs];
+	TypeShoot				typesShoots[TypeShoot::AmountIDs];
+
+
+	ManageCircle			manageCirlce;
+	// /\
 private:
 	// CreateGameScene.cpp
-	void CreateCashes();
-	void CreateTypesLifeObjects();
-	void CreateTypesShoots();
+	void					CreateCashes();
+	void					CreateTypesLifeObjects();
+	void					CreateTypesShoots();
 
-	void CreateMenu();
-	void CreateMoveCircle();
-	void CreateListener();
+	void					CreateMenu();
+	void					CreateMoveCircle();
+	void					CreateListener();
 
-	void CreatePlayer();
-	void CreateEnemys();
-	void CreateContactListener();// XXXXXX
+	void					CreatePlayer();
+	void					CreateEnemys();
+	void					CreateContactListener();// XXXXXX
 	// UpdateGameScene.cpp
-	void UpdateManageCircle();
+	void					UpdateManageCircle();
 private:
-	cocos2d::PhysicsWorld* m_World;
+	cocos2d::PhysicsWorld*	m_World;
 
-	size_t ID_PLAYER = 0;
-	ManageCircle manageCirlce;
-	
-	TypeLifeObject typesLifeObjects[TypeLifeObject::AmountIDs];
-	CLifeObject lifeObjects[2];
+	size_t					ID_PLAYER = 0;
+
+	bool					isTouching = false;
+	cocos2d::Vec2			touchPosition = cocos2d::Vec2(0.f, 0.f);
 
 };
 

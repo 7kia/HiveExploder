@@ -12,6 +12,7 @@ cocos2d::Texture2D * TypeLifeObject::GetTexture() const
 	return texture;
 }
 
+// TODO : rename SetTextureRect
 void TypeLifeObject::SetTextureRect(cocos2d::Rect setRectangle)
 {
 	rectangle = setRectangle;

@@ -2,6 +2,9 @@
 
 #include "TypesLifeObjects.h"
 
+class GameScreen;
+class CShoot;
+
 // TOOD : CMovement transfer to Behaveour
 class CLifeObject : public CMovement
 {
@@ -45,6 +48,13 @@ public:
 	bool			GetStateDeath() const;
 	/////////////////
 
+	/////////////////
+	// -.cpp
+	// \/ class CWeapon
+	void			CreateShoot(GameScreen *scene, std::vector<CShoot> &shoots);// TODO : transfer to CWeapon
+	/////////////////
+	void			Attack();
+	/////////////////
 public:
 	CVisual						visual;
 private:
@@ -52,6 +62,7 @@ private:
 
 	CDynamicFeature				health;
 
-	bool isDeath = false;// TODO : delete
+	bool isDeath = false;
+	// TODO : delete
 };
 

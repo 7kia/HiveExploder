@@ -1,6 +1,7 @@
 #include "GameScene.h"
 
 using namespace cocos2d;
+using namespace std;
 
 void GameScreen::CreateCashes()
 {
@@ -30,8 +31,16 @@ void GameScreen::CreateTypesLifeObjects()
 
 void GameScreen::CreateTypesShoots()
 {
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	auto textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
 																					+ GameSceneTexture::MARINE_SHOOT);
+
+	typesShoots[TypeShoot::PlayerShoot].SetTexture(textureMarineShoot);
+	typesShoots[TypeShoot::PlayerShoot].SetRect(GameSceneTexture::ZERGLING_RECT);
+	typesShoots[TypeShoot::PlayerShoot].SetVelocity(150.f);
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
 
@@ -80,14 +89,15 @@ void GameScreen::CreatePlayer()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
+	CLifeObject player;
 	auto sprite = Sprite::create();
-	lifeObjects[0].SetSprite(sprite);
-	lifeObjects[0].SetType(typesLifeObjects[TypeLifeObject::Player]);
-	lifeObjects[0].SetPosition(visibleSize.width / 2 + origin.x,
+	player.SetSprite(sprite);
+	player.SetType(typesLifeObjects[TypeLifeObject::Player]);
+	player.SetPosition(visibleSize.width / 2 + origin.x,
 								visibleSize.height / 2 + origin.y);
 
-
-	this->addChild(lifeObjects[0].GetSprite(), -1);
+	lifeObjects.push_back(player);
+	this->addChild(player.GetSprite(), -1);
 }
 
 void GameScreen::CreateEnemys()
@@ -95,19 +105,42 @@ void GameScreen::CreateEnemys()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
+	CLifeObject enemy;
 	auto sprite = Sprite::create();
-	lifeObjects[1].SetSprite(sprite);
-	lifeObjects[1].SetType(typesLifeObjects[TypeLifeObject::Zergling]);
-	lifeObjects[1].SetPosition(visibleSize.width / 2 + origin.x,
+	enemy.SetSprite(sprite);
+	enemy.SetType(typesLifeObjects[TypeLifeObject::Zergling]);
+	enemy.SetPosition(visibleSize.width / 2 + origin.x,
 								visibleSize.height / 2 + origin.y + visibleSize.height / 4);
 
-
-	this->addChild(lifeObjects[1].GetSprite(), -1);
+	lifeObjects.push_back(enemy);
+	this->addChild(enemy.GetSprite(), -1);
 }
 
 void GameScreen::CreateContactListener()
 {
 	auto contactListener = EventListenerPhysicsContact::create();
-	contactListener->onContactBegin = CC_CALLBACK_1(GameScreen::OnContactBegin, this);
+	contactListener->onContactBegin = CC_CALLBACK_1(GameScreen::onContactBegin, this);
 	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 }
+
+
+
+	///*
+void CLifeObject::CreateShoot(GameScreen * scene, vector<CShoot> &shoots)
+{
+
+	CShoot addShoot;
+	auto sprite = Sprite::create();
+	addShoot.SetSprite(sprite);
+
+
+	addShoot.SetType(scene->typesShoots[TypeShoot::PlayerShoot]);
+	addShoot.SetStartPlace(scene->lifeObjects[0].GetPosition(), scene->manageCirlce.GetDirection(),
+							scene->lifeObjects[0].GetSprite()->getContentSize());
+
+	shoots.push_back(addShoot);
+	scene->addChild(sprite);
+
+	
+
+}//*/
