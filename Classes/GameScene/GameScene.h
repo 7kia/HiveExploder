@@ -83,7 +83,7 @@ public:
 
 
 	ManageCircle			manageCirlce;
-	// /\
+	// /\ 
 private:
 	// CreateGameScene.cpp
 	void					CreateCashes();
@@ -99,6 +99,7 @@ private:
 	void					CreateContactListener();// XXXXXX
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
+	void					UpdateShoots(float dt);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 
