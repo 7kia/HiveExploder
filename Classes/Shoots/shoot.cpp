@@ -30,6 +30,12 @@ int CShoot::GetDamage(int id)
 	return damage.GetValue();
 }
 
+void CShoot::SetRotation(Vec2 directionShooter)
+{
+	float rotate = CC_RADIANS_TO_DEGREES(directionShooter.getAngle(VECTOR_VERTICAL_UP));
+	visual.SetRotation(rotate);
+}
+
 cocos2d::Sprite* CShoot::GetSprite()
 {
 	return visual.GetSprite();
@@ -48,4 +54,5 @@ void CShoot::SetStartPlace(Vec2 pos, Vec2 directionShooter,
 	shiftBullet.x *= sizeShooter.width * COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER;
 	shiftBullet.y *= sizeShooter.height * COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER;
 	SetPosition(pos + shiftBullet);
+	SetRotation(directionShooter);
 }

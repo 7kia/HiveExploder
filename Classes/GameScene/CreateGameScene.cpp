@@ -37,7 +37,7 @@ void GameScreen::CreateTypesShoots()
 																					+ GameSceneTexture::MARINE_SHOOT);
 
 	typesShoots[TypeShoot::PlayerShoot].SetTexture(textureMarineShoot);
-	typesShoots[TypeShoot::PlayerShoot].SetRect(GameSceneTexture::ZERGLING_RECT);
+	typesShoots[TypeShoot::PlayerShoot].SetRect(GameSceneTexture::MARINE_SHOOT_RECT);
 	typesShoots[TypeShoot::PlayerShoot].SetVelocity(150.f);
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,8 +126,9 @@ void GameScreen::CreateContactListener()
 
 
 	///*
-void CLifeObject::CreateShoot(GameScreen * scene, vector<CShoot> &shoots)
+void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CShoot> &shoots)
 {
+	direction = directionShoot;
 
 	CShoot addShoot;
 	auto sprite = Sprite::create();
@@ -137,6 +138,7 @@ void CLifeObject::CreateShoot(GameScreen * scene, vector<CShoot> &shoots)
 	addShoot.SetType(scene->typesShoots[TypeShoot::PlayerShoot]);
 	addShoot.SetStartPlace(scene->lifeObjects[0].GetPosition(), scene->manageCirlce.GetDirection(),
 							scene->lifeObjects[0].GetSprite()->getContentSize());
+	addShoot.SetRotation(direction);
 
 	shoots.push_back(addShoot);
 	scene->addChild(sprite);

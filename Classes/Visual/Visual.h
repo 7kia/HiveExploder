@@ -23,6 +23,7 @@ public:
 	float			GetPositionY() const;
 	cocos2d::Vec2	GetPosition() const;
 	
+	void			SetRotation(float rotate);// TODO : LifeObject not use 
 
 	cocos2d::Sprite* GetSprite();
 	void SetSprite(cocos2d::Sprite* setSprite);

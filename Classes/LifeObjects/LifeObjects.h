@@ -51,7 +51,8 @@ public:
 	/////////////////
 	// -.cpp
 	// \/ class CWeapon
-	void			CreateShoot(GameScreen *scene, std::vector<CShoot> &shoots);// TODO : transfer to CWeapon
+	void			CreateShoot(GameScreen *scene, cocos2d::Vec2 directionShoot,
+								std::vector<CShoot> &shoots);// TODO : transfer to CWeapon
 	/////////////////
 	void			Attack();
 	/////////////////

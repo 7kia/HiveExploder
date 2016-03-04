@@ -47,6 +47,11 @@ cocos2d::Vec2 CVisual::GetPosition() const
 	return sprite->getPosition();
 }
 
+void CVisual::SetRotation(float rotate)
+{
+	sprite->setRotation(rotate);
+}
+
 void CVisual::Move(cocos2d::Vec2 shiftVector)
 {
 	Vec2 currentPos = sprite->getPosition();

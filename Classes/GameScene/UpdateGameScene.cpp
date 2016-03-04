@@ -14,11 +14,11 @@ void GameScreen::update(float dt)
 	{
 		switch (manageCirlce.GetAction(touchPosition))
 		{
-		case ManageCircle::Action::Attack:			
-			lifeObjects[0].CreateShoot(this, shoots);
+		case ManageCircle::Action::Attack:	
+			lifeObjects[0].CreateShoot(this, manageCirlce.GetDirection(), shoots);
 			break;
 		case ManageCircle::Action::Move:
-				lifeObjects[0].Move(manageCirlce.GetDirection(), dt);		
+			lifeObjects[0].Move(manageCirlce.GetDirection(), dt);		
 			break;
 		default:
 			break;

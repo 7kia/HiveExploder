@@ -40,6 +40,7 @@ public:
 											cocos2d::Size sizeShooter);
 	int						GetDamage(int id);
 
+	void					SetRotation(cocos2d::Vec2 directionShooter);
 private:
 	TypeShoot				*type;
 	CVisual					visual;
