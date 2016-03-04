@@ -18,7 +18,7 @@ void GameScreen::update(float dt)
 			lifeObjects[0].CreateShoot(this, shoots);
 			break;
 		case ManageCircle::Action::Move:
-				lifeObjects[0].Move(manageCirlce.GetDirection(), dt);		
+			lifeObjects[0].Move(manageCirlce.GetDirection(), dt);		
 			break;
 		default:
 			break;

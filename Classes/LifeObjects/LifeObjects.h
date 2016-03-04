@@ -33,8 +33,8 @@ public:
 	void GetCoordinateForView(cocos2d::GLView & view) const;
 	/////////////////
 
-	cocos2d::Sprite* GetSprite();
-	void SetSprite(cocos2d::Sprite* setSprite);
+	std::shared_ptr<cocos2d::Sprite>  GetSprite();
+	void SetSprite(std::shared_ptr<cocos2d::Sprite>  setSprite);
 	
 
 	/////////////////

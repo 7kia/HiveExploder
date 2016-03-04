@@ -55,12 +55,12 @@ void CVisual::Move(cocos2d::Vec2 shiftVector)
 	sprite->setPosition(currentPos);
 }
 
-cocos2d::Sprite* CVisual::GetSprite()
+std::shared_ptr<cocos2d::Sprite>  CVisual::GetSprite()
 {
 	return sprite;
 }
 
-void CVisual::SetSprite(Sprite* setSprite)
+void CVisual::SetSprite(std::shared_ptr<cocos2d::Sprite> setSprite)
 {
 	sprite = setSprite;
 }

@@ -24,9 +24,9 @@ public:
 	cocos2d::Vec2	GetPosition() const;
 	
 
-	cocos2d::Sprite* GetSprite();
-	void SetSprite(cocos2d::Sprite* setSprite);
+	std::shared_ptr<cocos2d::Sprite>  GetSprite();
+	void SetSprite(std::shared_ptr<cocos2d::Sprite>  setSprite);
 
 public:// TODO : will do private
-	cocos2d::Sprite* sprite;
+	std::shared_ptr<cocos2d::Sprite>  sprite;
 };

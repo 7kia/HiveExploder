@@ -27,12 +27,12 @@ ManageCircle::Action ManageCircle::GetAction(cocos2d::Vec2 position)
 	}
 }
 
-void ManageCircle::SetSprite(Sprite *setSprite)
+void ManageCircle::SetSprite(std::shared_ptr<cocos2d::Sprite> setSprite)
 {
 	sprite = setSprite;
 }
 
-cocos2d::Sprite* ManageCircle::GetSprite()
+std::shared_ptr<cocos2d::Sprite>  ManageCircle::GetSprite()
 {
 	return sprite;
 }

@@ -32,12 +32,12 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	health.SetValue(type->GetHealth());
 }
 
-cocos2d::Sprite* CLifeObject::GetSprite()
+std::shared_ptr<cocos2d::Sprite>  CLifeObject::GetSprite()
 {
 	return visual.GetSprite();
 }
 
-void CLifeObject::SetSprite(cocos2d::Sprite * setSprite)
+void CLifeObject::SetSprite(std::shared_ptr<cocos2d::Sprite>  setSprite)
 {
 	visual.SetSprite(setSprite);
 }

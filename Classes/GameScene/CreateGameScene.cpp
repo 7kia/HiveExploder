@@ -64,11 +64,11 @@ void GameScreen::CreateMenu()
 
 void GameScreen::CreateMoveCircle()
 {
-	manageCirlce.SetSprite(Sprite::create(GameSceneTexture::MANAGE_CIRCLE));
+	manageCirlce.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create(GameSceneTexture::MANAGE_CIRCLE)));
 
 	UpdateManageCircle();
 
-	this->addChild(manageCirlce.GetSprite(), 1);
+	this->addChild(manageCirlce.GetSprite().get(), 1);
 }
 
 void GameScreen::CreateListener()
@@ -90,14 +90,14 @@ void GameScreen::CreatePlayer()
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
 	CLifeObject player;
-	auto sprite = Sprite::create();
-	player.SetSprite(sprite);
+	//auto sprite = ;
+	player.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create()));
 	player.SetType(typesLifeObjects[TypeLifeObject::Player]);
 	player.SetPosition(visibleSize.width / 2 + origin.x,
 								visibleSize.height / 2 + origin.y);
 
 	lifeObjects.push_back(player);
-	this->addChild(player.GetSprite(), -1);
+	this->addChild(player.GetSprite().get(), -1);
 }
 
 void GameScreen::CreateEnemys()
@@ -106,14 +106,14 @@ void GameScreen::CreateEnemys()
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
 	CLifeObject enemy;
-	auto sprite = Sprite::create();
-	enemy.SetSprite(sprite);
+	//auto sprite = Sprite::create();
+	enemy.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create()));
 	enemy.SetType(typesLifeObjects[TypeLifeObject::Zergling]);
 	enemy.SetPosition(visibleSize.width / 2 + origin.x,
 								visibleSize.height / 2 + origin.y + visibleSize.height / 4);
 
 	lifeObjects.push_back(enemy);
-	this->addChild(enemy.GetSprite(), -1);
+	this->addChild(enemy.GetSprite().get(), -1);
 }
 
 void GameScreen::CreateContactListener()
@@ -130,8 +130,8 @@ void CLifeObject::CreateShoot(GameScreen * scene, vector<CShoot> &shoots)
 {
 
 	CShoot addShoot;
-	auto sprite = Sprite::create();
-	addShoot.SetSprite(sprite);
+	//auto sprite = Sprite::create();
+	addShoot.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create()));
 
 
 	addShoot.SetType(scene->typesShoots[TypeShoot::PlayerShoot]);
@@ -139,7 +139,7 @@ void CLifeObject::CreateShoot(GameScreen * scene, vector<CShoot> &shoots)
 							scene->lifeObjects[0].GetSprite()->getContentSize());
 
 	shoots.push_back(addShoot);
-	scene->addChild(sprite);
+	scene->addChild(addShoot.GetSprite().get());
 
 	
 

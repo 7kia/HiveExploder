@@ -30,12 +30,12 @@ int CShoot::GetDamage(int id)
 	return damage.GetValue();
 }
 
-cocos2d::Sprite* CShoot::GetSprite()
+std::shared_ptr<cocos2d::Sprite>  CShoot::GetSprite()
 {
 	return visual.GetSprite();
 }
 
-void CShoot::SetSprite(Sprite * setSprite)
+void CShoot::SetSprite(std::shared_ptr<cocos2d::Sprite> setSprite)
 {
 	visual.SetSprite(setSprite);
 }
