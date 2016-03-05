@@ -1,4 +1,5 @@
 #pragma once
+#include "Collision.h"
 #include "../Visual/Visual.h"
 #include "FeaturesLifeObject.h"
 

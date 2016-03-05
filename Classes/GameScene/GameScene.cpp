@@ -24,15 +24,15 @@ Scene* GameScreen::createScene()
 // on "init" you need to initialize your instance
 bool GameScreen::init()
 {
-    //////////////////////////////
-    // 1. super init first
-    if ( !Layer::init() )
-    {
-        return false;
-    }
-    
-    //Size visibleSize = Director::getInstance()->getVisibleSize();
-    //Point origin = Director::getInstance()->getVisibleOrigin();
+	//////////////////////////////
+	// 1. super init first
+	if (!Layer::init())
+	{
+		return false;
+	}
+
+	//Size visibleSize = Director::getInstance()->getVisibleSize();
+	//Point origin = Director::getInstance()->getVisibleOrigin();
 	CreateCashes();
 	CreateTypesLifeObjects();
 	CreateTypesShoots();
@@ -53,12 +53,50 @@ bool GameScreen::init()
 	CreateListener();
 	////////////////////////
 
-    return true;
+	return true;
 }
 
 bool GameScreen::onContactBegin(PhysicsContact& contact)
 {
 	//GoToGameOverScene(this);
+<<<<<<< dev
+=======
+
+	/*
+		cocos2d::PhysicsShape *firstBody = contact.getShapeA();
+	cocos2d::PhysicsShape *secondBody = contact.getShapeB();
+
+	if ((firstBody->getCollisionBitmask() == Collision::BITMASK_LIFEOBJECT)
+		&&
+		(secondBody->getCollisionBitmask() == Collision::BITMASK_SHOOT)
+		)
+	{
+		//removeChild(firstBody);
+		for (auto &object : lifeObjects)
+		{
+			for (auto &shoot : shoots)
+			{
+				if ((object.GetSprite()->getPhysicsBody()->getShape(0) == secondBody)
+					&&
+					(shoot.GetSprite()->getPhysicsBody()->getShape(0) == firstBody)
+					)
+				{
+					removeChild(object.GetSprite());
+					removeChild(shoot.GetSprite());
+
+					GoToVictoryScene(this);
+					//lifeObjects.erase(object);
+				}
+			}
+		}
+
+
+	}
+
+	*/
+
+
+>>>>>>> local
 
 	return true;
 }

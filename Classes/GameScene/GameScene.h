@@ -62,7 +62,7 @@ public:
 	void					onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event);
 	void					onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event);
 
-	void					AddShoot(const CShoot & addShoot);
+	void					AddShoot(CShoot *const addShoot);
 
 	/////// XXXXXXXXXXXx
 	void					SetPhysicsWorld(cocos2d::PhysicsWorld* world)
@@ -75,8 +75,8 @@ public:
 	// TODO : see need there private
 	//
 public:
-	std::vector<CLifeObject>	lifeObjects;
-	std::vector<CShoot>			shoots;
+	std::vector<CLifeObject*>	lifeObjects;
+	std::vector<CShoot*>			shoots;
 
 	TypeLifeObject			typesLifeObjects[TypeLifeObject::AmountIDs];
 	TypeShoot				typesShoots[TypeShoot::AmountIDs];

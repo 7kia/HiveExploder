@@ -2,6 +2,7 @@
 
 using namespace cocos2d;
 
+<<<<<<< dev
 void CVisual::SetTexture(cocos2d::Texture2D* texture)
 {
 	sprite->setTexture(texture);
@@ -47,11 +48,14 @@ cocos2d::Vec2 CVisual::GetPosition() const
 	return sprite->getPosition();
 }
 
+=======
+>>>>>>> local
 void CVisual::Move(cocos2d::Vec2 shiftVector)
 {
-	Vec2 currentPos = sprite->getPosition();
+	Vec2 currentPos = getPosition();
 	currentPos += shiftVector;
 
+<<<<<<< dev
 	sprite->setPosition(currentPos);
 }
 
@@ -64,3 +68,7 @@ void CVisual::SetSprite(std::shared_ptr<cocos2d::Sprite> setSprite)
 {
 	sprite = setSprite;
 }
+=======
+	setPosition(currentPos);
+}
+>>>>>>> local

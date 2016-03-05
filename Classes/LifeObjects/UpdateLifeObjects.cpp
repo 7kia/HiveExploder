@@ -14,5 +14,5 @@ void CLifeObject::UpdatePosition(float dt)
 	resultVector *= velocity;
 	resultVector *= dt;
 
-	visual.Move(resultVector);
+	CVisual::Move(resultVector);
 }

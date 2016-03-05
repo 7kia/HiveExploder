@@ -14,15 +14,35 @@ void GameScreen::update(float dt)
 	{
 		switch (manageCirlce.GetAction(touchPosition))
 		{
+<<<<<<< dev
 		case ManageCircle::Action::Attack:			
 			lifeObjects[0].CreateShoot(this, shoots);
+=======
+		case ManageCircle::Action::Attack:	
+			if (lifeObjects[0]->timerAttack == 0.f)
+			{
+				lifeObjects[0]->CreateShoot(this, manageCirlce.GetDirection(), shoots);
+			}
+>>>>>>> local
 			break;
 		case ManageCircle::Action::Move:
-			lifeObjects[0].Move(manageCirlce.GetDirection(), dt);		
+			lifeObjects[0]->Move(manageCirlce.GetDirection(), dt);
 			break;
 		default:
 			break;
 		}	
+<<<<<<< dev
+=======
+
+		if (lifeObjects[0]->timerAttack < lifeObjects[0]->timeReload)
+		{
+			lifeObjects[0]->timerAttack += dt;// CWeapon
+		}
+		else
+		{
+			lifeObjects[0]->timerAttack = 0.f;// CWeapon
+		}
+>>>>>>> local
 	}
 }
 
@@ -40,10 +60,14 @@ void GameScreen::UpdateShoots(float dt)
 	size_t index = 0;
 	while (index < shoots.size())
 	{
-		shoots[index].Update(dt);
+		shoots[index]->Update(dt);
 
-		if (shoots[index].GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
+		if (shoots[index]->GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
 		{
+<<<<<<< dev
+=======
+			removeChild(shoots[index]);
+>>>>>>> local
 			shoots.erase(shoots.begin() + index);
 		}
 		else
@@ -53,7 +77,7 @@ void GameScreen::UpdateShoots(float dt)
 	}
 }
 
-void GameScreen::AddShoot(const CShoot & addShoot)
+void GameScreen::AddShoot(CShoot *const addShoot)
 {
 	shoots.push_back(addShoot);
 }
