@@ -6,63 +6,66 @@ class GameScreen;
 class CShoot;
 
 // TOOD : CMovement transfer to Behaveour
-class CLifeObject : public CMovement
+class CLifeObject : public CEntity// public CMovement, public CVisual
 {
 public:
 	// LifeObjects.cpp
 	CLifeObject();
-	~CLifeObject();
+	virtual ~CLifeObject() override;
+
+	//virtual void cleanup() override;
+
+	CREATE_FUNC(CLifeObject);
+	//CLifeObject* create(const std::string& filename) = delete;
+
 	void SetType(TypeLifeObject &setType);
 
-	/////////////////
-	// MoveLifeobject.cpp
-	// \/ class CMovement
-	void			Move(cocos2d::Vec2 shiftVector, float dt);
+	void SetCollision();
 
-	void			SetVelocity(float setVelocity);
-	float			GetVelocity() const;
+	void Move(cocos2d::Vec2 shiftVector, float dt);
 
-	void			SetPosition(cocos2d::Vec2 pos);
-	void			SetPosition(float x, float y);
-	
-	float			GetPositionX() const;
-	float			GetPositionY() const;
-	cocos2d::Vec2	GetPosition() const;
-	// /\
-	
 	void GetCoordinateForView(cocos2d::GLView & view) const;
-	/////////////////
-
-	cocos2d::Sprite* GetSprite();
-	void SetSprite(cocos2d::Sprite* setSprite);
-	
 
 	/////////////////
 	// UpdateLifeObject.cpp
-	void			Update(float dt);
+	void			update(float dt) override;
 	void			UpdatePosition(float dt);
 	/////////////////
 
 	/////////////////
 	// FeaturesLifeObject.cpp
 	bool			GetStateDeath() const;
+
+	void			SetHealth(int value);
+	void			AddHealth(int value);
+	int				GetHealth() ;
+	int				GetDamage() ;
+
 	/////////////////
 
 	/////////////////
 	// -.cpp
 	// \/ class CWeapon
+
 	void			CreateShoot(GameScreen *scene, cocos2d::Vec2 directionShoot,
-								std::vector<CShoot> &shoots);// TODO : transfer to CWeapon
+								std::vector<CShoot*> &shoots);// TODO : transfer to CWeapon
+
 	/////////////////
 	void			Attack();
 	/////////////////
 public:
-	CVisual						visual;
+
+	////////
+	// TODO : transfer to CWeapon
+	float m_timerAttack = 0.f;
+	float m_timeReload = 0.05f;
+	///////
+
 private:
 	TypeLifeObject				*type;
 
 	CDynamicFeature				health;
-
+	CDynamicFeature				m_damage;
 	bool isDeath = false;
 	// TODO : delete
 };

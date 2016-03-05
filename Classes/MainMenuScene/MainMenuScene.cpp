@@ -33,7 +33,7 @@ bool MainMenu::init()
         return false;
     }
     
-	Size visibleSize = Director::getInstance()->getVisibleSize();
+	cocos2d::Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
 
@@ -43,10 +43,15 @@ bool MainMenu::init()
 	auto playItem = MenuItemImage::create(Buttons::PLAY_BUTTON,
 										Buttons::PLAY_BUTTON_CLICK,
 										CC_CALLBACK_1(MainMenu::GoToGameScene, this));
+	playItem->setPosition(Vec2(origin.x + visibleSize.width - playItem->getContentSize().width / 2,
+		origin.y + playItem->getContentSize().height / 2));
+
 
 	auto menu = Menu::create(menuTitle, playItem, NULL);
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
-	this->addChild(menu);
+
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	this->addChild(menu, 1);
+
 	/////
 	auto backgroundSprite = Sprite::create(MainMenuTexture::BACKGROUND);
 	backgroundSprite->setPosition(Point((visibleSize.width / 2) + origin.x, (visibleSize.height / 2) + origin.y));

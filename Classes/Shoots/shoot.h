@@ -1,49 +1,42 @@
 #pragma once
-#include "../LifeObjects/CMovement.h"
+
 #include "TypeShoots.h"
 
 static const float ABOUT_ZERO_VALUE_SPEED_BULLET = 50.f;// if speed less the value shoot delete
-static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 2.f;
+static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 1.1f;
 static const float COEFFECIENT_SLOW_BULLET = 0.01f;
 
+struct CShoot : public CEntity
 
-struct CShoot : public CMovement
 {
 public:
-	
-	void					SetType(TypeShoot &defineType);
-	const TypeShoot&		GetType();
+	CShoot();
+	//CShoot(const CShoot& copy);
+	virtual ~CShoot() override;
 
-	void					Update(float dt);
-	/////////////////
-	// MoveShoot.cpp
-	// \/ class CMovement
-	void					Move(cocos2d::Vec2 shiftVector, float dt);
+	static CShoot* create();
+	//CREATE_FUNC(CShoot);
 
-	void					SetVelocity(float setVelocity);
-	float					GetVelocity() const;
+	//bool init() override;
+	virtual void cleanup() override;
 
-	void					SetPosition(cocos2d::Vec2 pos);
-	void					SetPosition(float x, float y);
+	void								SetType(ShootType &defineType);
+	const ShootType&					GetType();
 
-	float					GetPositionX() const;
-	float					GetPositionY() const;
-	cocos2d::Vec2			GetPosition() const;
-	// /\
-	/////////////////
+	void								update(float dt) override;
 
-	void					SetSprite(cocos2d::Sprite* setSprite);
-	cocos2d::Sprite*		GetSprite();
+	void								CreateCollision();
 
+	void								SetDirection(cocos2d::Vec2 directionShooter);
+	void								SetStartPlace(cocos2d::Vec2 pos, cocos2d::Vec2 directionShooter,
+													cocos2d::Size sizeShooter);
+	int									GetDamage(int id);
 
-	void					SetStartPlace(cocos2d::Vec2 pos, cocos2d::Vec2 directionShooter,
-											cocos2d::Size sizeShooter);
-	int						GetDamage(int id);
+	//int								GetHealth() const;
+	int									GetDamage() ;
 
-	void					SetRotation(cocos2d::Vec2 directionShooter);
 private:
-	TypeShoot				*type;
-	CVisual					visual;
+	std::shared_ptr<ShootType>			m_type;
 
-	CDynamicFeature			damage;
+	CDynamicFeature						m_damage;
 };

@@ -12,17 +12,33 @@ void GameScreen::update(float dt)
 	// check if the screen is being touched
 	if (true == isTouching)
 	{
-		switch (manageCirlce.GetAction(touchPosition))
+		switch (m_manageCirlce.GetAction(touchPosition))
 		{
 		case ManageCircle::Action::Attack:	
-			lifeObjects[0].CreateShoot(this, manageCirlce.GetDirection(), shoots);
+
+			if (m_lifeObjects[0]->m_timerAttack == 0.f)
+			{
+				m_lifeObjects[0]->CreateShoot(this, m_manageCirlce.GetDirection(), m_shoots);
+			}
 			break;
 		case ManageCircle::Action::Move:
-			lifeObjects[0].Move(manageCirlce.GetDirection(), dt);		
+			//lifeObjects[0]->Move(manageCirlce.GetDirection(), dt);
+			m_lifeObjects[0]->SetDirection(m_manageCirlce.GetDirection());
+
 			break;
 		default:
 			break;
 		}	
+
+
+		if (m_lifeObjects[0]->m_timerAttack < m_lifeObjects[0]->m_timeReload)
+		{
+			m_lifeObjects[0]->m_timerAttack += dt;// CWeapon
+		}
+		else
+		{
+			m_lifeObjects[0]->m_timerAttack = 0.f;// CWeapon
+		}
 	}
 }
 
@@ -31,21 +47,26 @@ void GameScreen::UpdateManageCircle()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	manageCirlce.SetPositionX(visibleSize.width / 2 + origin.x);
-	manageCirlce.SetPositionY(origin.y + manageCirlce.GetRadius());
+	m_manageCirlce.SetPositionX(visibleSize.width / 2 + origin.x);
+	m_manageCirlce.SetPositionY(origin.y + m_manageCirlce.GetRadius());
 }
 
 void GameScreen::UpdateShoots(float dt)
 {
 	size_t index = 0;
-	while (index < shoots.size())
+	while (index < m_shoots.size())
 	{
-		shoots[index].Update(dt);
+		m_shoots[index]->update(dt);
 
-		if (shoots[index].GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
+		if (m_shoots[index]->GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
 		{
-			removeChild(shoots[index].GetSprite());
-			shoots.erase(shoots.begin() + index);
+			m_shoots[index]->getParent()->removeChild(m_shoots[index]);
+			//shoots[index]->cleanup();
+			//shoots[index]->removeAllChildrenWithCleanup(true);
+			//shoots[index]->removeFromParentAndCleanup(true);
+
+			//delete shoots[index];
+			m_shoots.erase(m_shoots.begin() + index);
 		}
 		else
 		{
@@ -54,7 +75,33 @@ void GameScreen::UpdateShoots(float dt)
 	}
 }
 
-void GameScreen::AddShoot(const CShoot & addShoot)
+void GameScreen::UpdateLifeObjects(float dt)
 {
-	shoots.push_back(addShoot);
+	size_t index = 0;
+	while (index < m_lifeObjects.size())
+	{
+		m_lifeObjects[index]->update(dt);
+
+		if (m_lifeObjects[index]->GetHealth() < 1)
+		{
+			//lifeObjects[index]->cleanup();
+
+			m_lifeObjects[index]->getParent()->removeChild(m_lifeObjects[index]);
+			//lifeObjects[index]->removeAllChildrenWithCleanup(true);
+			//lifeObjects[index]->removeFromParentAndCleanup(true);
+			//removeChild(lifeObjects[index]);
+
+			//delete lifeObjects[index];
+			m_lifeObjects.erase(m_lifeObjects.begin() + index);
+		}
+		else
+		{
+			index++;
+		}
+	}
+}
+
+void GameScreen::AddShoot(CShoot &addShoot)
+{
+	m_shoots.push_back(&addShoot);
 }

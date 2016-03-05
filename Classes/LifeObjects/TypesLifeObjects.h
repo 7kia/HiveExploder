@@ -1,6 +1,7 @@
 #pragma once
-#include "../Visual/Visual.h"
-#include "FeaturesLifeObject.h"
+#include "Entity.h"
+#include "Collision.h"
+#include "Features.h"
 
 /*
 

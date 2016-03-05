@@ -2,10 +2,11 @@
 
 using namespace cocos2d;
 
-void CLifeObject::Update(float dt)
+void CLifeObject::update(float dt)
 {
 	UpdatePosition(dt);
 }
+
 
 void CLifeObject::UpdatePosition(float dt)
 {
@@ -14,5 +15,5 @@ void CLifeObject::UpdatePosition(float dt)
 	resultVector *= velocity;
 	resultVector *= dt;
 
-	visual.Move(resultVector);
+	CVisual::Move(resultVector);
 }

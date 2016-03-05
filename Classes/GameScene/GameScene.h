@@ -6,6 +6,8 @@
 #include "../LifeObjects/LifeObjects.h"
 #include "../Shoots/shoot.h"
 
+ 
+
 namespace GameSceneTexture// TODO : redesign
 {
 	static const std::string PATH_TEXTURE = "GameScene\\";
@@ -57,32 +59,30 @@ public:
     
     void					update(float dt);
     
-	bool					onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event);
-	void					onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event);
-	void					onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event);
-	void					onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event);
+	bool					onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event) override;
+	void					onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event) override;
+	void					onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event) override;
+	void					onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event) override;
 
-	void					AddShoot(const CShoot & addShoot);
+
+	void					AddShoot(CShoot & addShoot);
 
 	/////// XXXXXXXXXXXx
-	void					SetPhysicsWorld(cocos2d::PhysicsWorld* world)
-	{
-		m_World = world; m_World->setGravity(cocos2d::Vect(0, 0)); 
-	}
+	void					SetPhysicsWorld(cocos2d::PhysicsWorld* world);
 	bool					onContactBegin(cocos2d::PhysicsContact& contact);
 	////// XXXXXXXXXXXX
 	// \/
 	// TODO : see need there private
 	//
 public:
-	std::vector<CLifeObject>	lifeObjects;
-	std::vector<CShoot>			shoots;
+	std::vector<CLifeObject*>		m_lifeObjects;
+	std::vector<CShoot*>				m_shoots;
 
-	TypeLifeObject			typesLifeObjects[TypeLifeObject::AmountIDs];
-	TypeShoot				typesShoots[TypeShoot::AmountIDs];
+	TypeLifeObject						m_typesLifeObjects[TypeLifeObject::AmountIDs];
+	ShootType							m_typesShoots[ShootType::AmountIDs];
 
 
-	ManageCircle			manageCirlce;
+	ManageCircle						m_manageCirlce;
 	// /\ 
 private:
 	// CreateGameScene.cpp
@@ -100,6 +100,7 @@ private:
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
+	void					UpdateLifeObjects(float dt);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 

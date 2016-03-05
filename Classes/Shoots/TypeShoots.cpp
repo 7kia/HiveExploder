@@ -2,42 +2,42 @@
 
 using namespace cocos2d;
 
-void TypeShoot::SetTexture(Texture2D* setTexture)
+void ShootType::SetTexture(Texture2D* setTexture)
 {
 	texture = setTexture;
 }
 
-cocos2d::Texture2D * TypeShoot::GetTexture() const
+cocos2d::Texture2D * ShootType::GetTexture() const
 {
 	return texture;
 }
 
-void TypeShoot::SetRect(cocos2d::Rect setRectangle)
+void ShootType::SetRect(cocos2d::Rect setRectangle)
 {
 	rectangle = setRectangle;
 }
 
-cocos2d::Rect TypeShoot::GetRectangle() const
+cocos2d::Rect ShootType::GetRectangle() const
 {
 	return rectangle;
 }
 
-void TypeShoot::SetVelocity(float setVelocity)
+void ShootType::SetVelocity(float setVelocity)
 {
 	velocity = setVelocity;
 }
 
-float TypeShoot::GetVelocity() const
+float ShootType::GetVelocity() const
 {
 	return velocity;
 }
 
-void TypeShoot::SetDamage(int value)
+void ShootType::SetDamage(int value)
 {
 	damage.SetValue(value);
 }
 
-int TypeShoot::GetDamage()
+int ShootType::GetDamage()
 {
 	return damage.GetValue();
 }

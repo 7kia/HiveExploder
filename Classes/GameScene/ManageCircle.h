@@ -13,23 +13,21 @@ public:
 		Attack,
 		Move
 	};
-
-	const float RADIUS_MOVE_CIRCLE = 30.f;
-	const float RADIUS_ATTACK_CIRCLE = 20.f;
-	const float RADIUS_CIRCLE = RADIUS_MOVE_CIRCLE + RADIUS_ATTACK_CIRCLE;
-
+	const float							RADIUS_MOVE_CIRCLE = 30.f;
+	const float							RADIUS_ATTACK_CIRCLE = 20.f;
+	const float							RADIUS_CIRCLE = RADIUS_MOVE_CIRCLE + RADIUS_ATTACK_CIRCLE;
 public:
-	Action GetAction(cocos2d::Vec2 position);
+	Action								GetAction(cocos2d::Vec2 position);
 
-	void SetSprite(cocos2d::Sprite *setSprite);
-	cocos2d::Sprite* GetSprite();
+	void								SetSprite(cocos2d::Sprite*  setSprite);
+	cocos2d::Sprite*					GetSprite();
 
-	void SetPositionX(float x);
-	void SetPositionY(float y);
-	void SetPosition(cocos2d::Vec2 pos);
-	float GetRadius();
-	cocos2d::Vec2 GetDirection();
+	void								SetPositionX(float x);
+	void								SetPositionY(float y);
+	void								SetPosition(cocos2d::Vec2 pos);
+	float								GetRadius();
+	cocos2d::Vec2						GetDirection();
 private:
-	cocos2d::Sprite *sprite;
-	cocos2d::Vec2 direction = { 0.f, 0.f };
+	cocos2d::RefPtr<cocos2d::Sprite>	m_sprite;
+	cocos2d::Vec2						m_direction = cocos2d::Vec2::ZERO;
 };

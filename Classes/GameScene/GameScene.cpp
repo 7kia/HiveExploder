@@ -56,9 +56,21 @@ bool GameScreen::init()
     return true;
 }
 
+void GameScreen::SetPhysicsWorld(cocos2d::PhysicsWorld * world)
+{
+	m_World = world;
+	m_World->setGravity(cocos2d::Vect(0, 0));	
+}
+
 bool GameScreen::onContactBegin(PhysicsContact& contact)
 {
-	//GoToGameOverScene(this);
+	GoToGameOverScene(this);
+
+
+	//cocos2d::PhysicsShape *firstBody = contact.getShapeA();
+	//cocos2d::PhysicsShape *secondBody = contact.getShapeB();
+
+	//firstBody->get
 
 	return true;
 }

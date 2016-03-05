@@ -4,6 +4,7 @@ using namespace cocos2d;
 
 CLifeObject::CLifeObject()
 {
+	SetIdClass(idClass::LifeObject);
 }
 
 CLifeObject::~CLifeObject()
@@ -14,37 +15,49 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 {
 	type = &setType;
 
-	visual.SetTexture(type->GetTexture());
-	visual.SetTextureRect(type->GetRectangle());
+	setTexture(type->GetTexture());
+	setTextureRect(type->GetRectangle());
 
-	// TODO : redesign
-	auto body = PhysicsBody::createCircle
-		(visual.GetSprite()->getContentSize().width / 2);
-	body->setCollisionBitmask(1);
-	body->setContactTestBitmask(true);
-	//body->setDynamic(false);
-	//body->setMass(INFINITY);
-	visual.GetSprite()->setPhysicsBody(body);
-
+	SetCollision();
 
 	SetVelocity(type->GetVelocity());
 
 	health.SetValue(type->GetHealth());
 }
 
-cocos2d::Sprite* CLifeObject::GetSprite()
+void CLifeObject::SetCollision()
 {
-	return visual.GetSprite();
-}
+	CCollision* body = CCollision::create(type->GetRectangle().size.width / 2);// PhysicsBody::createCircle(getContentSize().width / 2);
+	body->setCollisionBitmask(1);
+	body->setContactTestBitmask(Collision::BITMASK_LIFEOBJECT);
+	body->SetMaster(this);
 
-void CLifeObject::SetSprite(cocos2d::Sprite * setSprite)
-{
-	visual.SetSprite(setSprite);
+	setPhysicsBody(body);
 }
 
 bool CLifeObject::GetStateDeath() const
 {
 	return isDeath;
+}
+
+void CLifeObject::SetHealth(int value)
+{
+	health.SetValue(value);
+}
+
+void CLifeObject::AddHealth(int value)
+{
+	health.AddToValue(value);
+}
+
+int CLifeObject::GetHealth() 
+{
+	return health.GetValue();
+}
+
+int CLifeObject::GetDamage() 
+{
+	return m_damage.GetValue();
 }
 
 void CLifeObject::Attack()

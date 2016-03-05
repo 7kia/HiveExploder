@@ -2,22 +2,42 @@
 
 using namespace cocos2d;
 
-void CShoot::SetType(TypeShoot &defineType)
+
+CShoot::CShoot() : CEntity()
 {
-	type = &defineType;
-
-	visual.SetTexture(type->GetTexture());
-	visual.SetTextureRect(type->GetRectangle());
-
-	velocity = type->GetVelocity();
+	this->SetIdClass(idClass::Shoot);
+	CEntity::init();
 }
 
-const TypeShoot& CShoot::GetType()
+CShoot::~CShoot()
 {
-	return *type;
 }
 
-void CShoot::Update(float dt)
+void CShoot::cleanup()
+{
+}
+
+void CShoot::SetType(ShootType &defineType)
+
+{
+	m_type.reset(&defineType);// = &;
+
+	setTexture(m_type->GetTexture());
+	setTextureRect(m_type->GetRectangle());
+
+	CreateCollision();
+
+	m_damage.SetValue(m_type->GetDamage());
+	velocity = m_type->GetVelocity();
+
+}
+
+const ShootType& CShoot::GetType()
+{
+	return *m_type;
+}
+
+void CShoot::update(float dt)
 {
 	Move(direction, dt);
 
@@ -27,23 +47,18 @@ void CShoot::Update(float dt)
 int CShoot::GetDamage(int id)
 {
 	//assert(g_Functions::checkDiaposon(id , RESET_VALUE , amountTypeDamage));
-	return damage.GetValue();
+	return m_damage.GetValue();
 }
 
-void CShoot::SetRotation(Vec2 directionShooter)
+int CShoot::GetDamage()
+{
+	return m_damage.GetValue();
+}
+
+void CShoot::SetDirection(cocos2d::Vec2 directionShooter)
 {
 	float rotate = CC_RADIANS_TO_DEGREES(directionShooter.getAngle(VECTOR_VERTICAL_UP));
-	visual.SetRotation(rotate);
-}
-
-cocos2d::Sprite* CShoot::GetSprite()
-{
-	return visual.GetSprite();
-}
-
-void CShoot::SetSprite(Sprite * setSprite)
-{
-	visual.SetSprite(setSprite);
+	setRotation(rotate);
 }
 
 void CShoot::SetStartPlace(Vec2 pos, Vec2 directionShooter,
@@ -53,6 +68,18 @@ void CShoot::SetStartPlace(Vec2 pos, Vec2 directionShooter,
 	Vec2 shiftBullet = direction;
 	shiftBullet.x *= sizeShooter.width * COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER;
 	shiftBullet.y *= sizeShooter.height * COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER;
-	SetPosition(pos + shiftBullet);
-	SetRotation(directionShooter);
+
+	setPosition(pos + shiftBullet);
+	SetDirection(directionShooter);
+}
+
+
+void CShoot::CreateCollision()
+{
+	CCollision* body = CCollision::create(m_type->GetRectangle().size.width / 2);//CCollision::createCircle(getContentSize().width / 2);
+	body->setCollisionBitmask(1);
+	body->setContactTestBitmask(Collision::BITMASK_SHOOT);
+	body->SetMaster(this);
+
+	setPhysicsBody(body);
 }
