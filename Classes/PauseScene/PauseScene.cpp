@@ -46,7 +46,7 @@ bool PauseMenu::init()
 											CC_CALLBACK_1(PauseMenu::GoToMainMenuScene, this));
 
 	auto menu = Menu::create(resumeItem, retryItem, mainMenuItem, NULL);
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
 	this->addChild(menu);
 	/////
 	auto backgroundSprite = Sprite::create(PauseSceneTexture::BACKGROUND);

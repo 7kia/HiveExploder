@@ -45,7 +45,7 @@ bool MainMenu::init()
 										CC_CALLBACK_1(MainMenu::GoToGameScene, this));
 
 	auto menu = Menu::create(menuTitle, playItem, NULL);
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
 	this->addChild(menu);
 	/////
 	auto backgroundSprite = Sprite::create(MainMenuTexture::BACKGROUND);

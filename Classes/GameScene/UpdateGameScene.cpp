@@ -44,6 +44,7 @@ void GameScreen::UpdateShoots(float dt)
 
 		if (shoots[index].GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
 		{
+			removeChild(shoots[index].GetSprite());
 			shoots.erase(shoots.begin() + index);
 		}
 		else
