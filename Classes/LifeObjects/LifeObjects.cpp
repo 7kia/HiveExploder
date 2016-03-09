@@ -44,9 +44,10 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 
 void CLifeObject::SetCollision()
 {
-	auto body = PhysicsBody::createCircle(getContentSize().width / 2);
+	auto body = CCollision::create(type->GetRectangle().size.width / 2);// PhysicsBody::createCircle(getContentSize().width / 2);
 	body->setCollisionBitmask(1);
 	body->setContactTestBitmask(Collision::BITMASK_LIFEOBJECT);
+	body->SetMaster(this);
 	setPhysicsBody(body);
 
 }

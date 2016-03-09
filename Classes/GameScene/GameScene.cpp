@@ -59,8 +59,16 @@ bool GameScreen::init()
 bool GameScreen::onContactBegin(PhysicsContact& contact)
 {
 	//GoToGameOverScene(this);
+	auto bodyA = contact.getShapeA()->getBody();
+	auto bodyB = contact.getShapeB()->getBody();
+	CCollision* collisionA = static_cast<CCollision*>(bodyA);
+	CCollision* collisionB = static_cast<CCollision*>(bodyB);
 
-	contact.getShapeA();
+	auto entityA = collisionA->GetMaster();
+	auto entityB = collisionB->GetMaster();
+
+	CEntity::idClass idA = entityA->GetIdClass();
+	CEntity::idClass idB = entityB->GetIdClass();
 
 	return true;
 }

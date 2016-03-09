@@ -78,8 +78,11 @@ void CShoot::SetStartPlace(Vec2 pos, Vec2 directionShooter,
 
 void CShoot::SetCollision()
 {
-	auto body = PhysicsBody::createCircle(getContentSize().width / 2);
+	auto body = CCollision::create(type->GetRectangle().size.width / 2);//CCollision::createCircle(getContentSize().width / 2);
 	body->setCollisionBitmask(1);
 	body->setContactTestBitmask(Collision::BITMASK_SHOOT);
+	body->SetMaster(this);
+
 	setPhysicsBody(body);
+
 }
