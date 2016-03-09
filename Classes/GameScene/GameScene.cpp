@@ -59,44 +59,7 @@ bool GameScreen::init()
 bool GameScreen::onContactBegin(PhysicsContact& contact)
 {
 	//GoToGameOverScene(this);
-<<<<<<< dev
-=======
 
-	/*
-		cocos2d::PhysicsShape *firstBody = contact.getShapeA();
-	cocos2d::PhysicsShape *secondBody = contact.getShapeB();
-
-	if ((firstBody->getCollisionBitmask() == Collision::BITMASK_LIFEOBJECT)
-		&&
-		(secondBody->getCollisionBitmask() == Collision::BITMASK_SHOOT)
-		)
-	{
-		//removeChild(firstBody);
-		for (auto &object : lifeObjects)
-		{
-			for (auto &shoot : shoots)
-			{
-				if ((object.GetSprite()->getPhysicsBody()->getShape(0) == secondBody)
-					&&
-					(shoot.GetSprite()->getPhysicsBody()->getShape(0) == firstBody)
-					)
-				{
-					removeChild(object.GetSprite());
-					removeChild(shoot.GetSprite());
-
-					GoToVictoryScene(this);
-					//lifeObjects.erase(object);
-				}
-			}
-		}
-
-
-	}
-
-	*/
-
-
->>>>>>> local
 
 	return true;
 }

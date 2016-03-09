@@ -23,14 +23,6 @@ public:
 	void Move(cocos2d::Vec2 shiftVector, float dt);
 
 	void GetCoordinateForView(cocos2d::GLView & view) const;
-<<<<<<< dev
-	/////////////////
-
-	std::shared_ptr<cocos2d::Sprite>  GetSprite();
-	void SetSprite(std::shared_ptr<cocos2d::Sprite>  setSprite);
-	
-=======
->>>>>>> local
 
 	/////////////////
 	// UpdateLifeObject.cpp
@@ -46,25 +38,21 @@ public:
 	/////////////////
 	// -.cpp
 	// \/ class CWeapon
-<<<<<<< dev
-	void			CreateShoot(GameScreen *scene, std::vector<CShoot> &shoots);// TODO : transfer to CWeapon
-=======
+
 	void			CreateShoot(GameScreen *scene, cocos2d::Vec2 directionShoot,
 								std::vector<CShoot*> &shoots);// TODO : transfer to CWeapon
->>>>>>> local
+
 	/////////////////
 	void			Attack();
 	/////////////////
 public:
-<<<<<<< dev
-	CVisual						visual;
-=======
+
 	////////
 	// TODO : transfer to CWeapon
 	float timerAttack = 0.f;
 	float timeReload = 0.05f;
 	///////
->>>>>>> local
+
 private:
 	TypeLifeObject				*type;
 

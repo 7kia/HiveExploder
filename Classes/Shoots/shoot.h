@@ -7,11 +7,9 @@ static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 2.f;
 static const float COEFFECIENT_SLOW_BULLET = 0.01f;
 
 
-<<<<<<< dev
-class CShoot : public CMovement
-=======
+
 struct CShoot : public CMovement, public CVisual
->>>>>>> local
+
 {
 public:
 	CShoot();
@@ -25,25 +23,10 @@ public:
 	void					Update(float dt);
 	void					Move(cocos2d::Vec2 shiftVector, float dt);
 
-<<<<<<< dev
-	void					SetVelocity(float setVelocity);
-	float					GetVelocity() const;
 
-	void					SetPosition(cocos2d::Vec2 pos);
-	void					SetPosition(float x, float y);
-
-	float					GetPositionX() const;
-	float					GetPositionY() const;
-	cocos2d::Vec2			GetPosition() const;
-	// /\
-	/////////////////
-
-	void					SetSprite(std::shared_ptr<cocos2d::Sprite>  setSprite);
-	std::shared_ptr<cocos2d::Sprite> 		GetSprite();
-
-=======
 	void					SetCollision();
->>>>>>> local
+
+	void SetRotation(cocos2d::Vec2 directionShooter);
 
 	void					SetStartPlace(cocos2d::Vec2 pos, cocos2d::Vec2 directionShooter,
 											cocos2d::Size sizeShooter);

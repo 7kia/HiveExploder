@@ -21,8 +21,8 @@ public:
 public:
 	Action GetAction(cocos2d::Vec2 position);
 
-	void SetSprite(std::shared_ptr<cocos2d::Sprite> setSprite);
-	std::shared_ptr<cocos2d::Sprite>  GetSprite();
+	void SetSprite(cocos2d::Sprite*  setSprite);
+	cocos2d::Sprite*   GetSprite();
 
 	void SetPositionX(float x);
 	void SetPositionY(float y);
@@ -30,6 +30,6 @@ public:
 	float GetRadius();
 	cocos2d::Vec2 GetDirection();
 private:
-	std::shared_ptr<cocos2d::Sprite> sprite;
+	cocos2d::Sprite*  sprite;
 	cocos2d::Vec2 direction = { 0.f, 0.f };
 };

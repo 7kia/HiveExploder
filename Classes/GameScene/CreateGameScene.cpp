@@ -37,7 +37,7 @@ void GameScreen::CreateTypesShoots()
 																					+ GameSceneTexture::MARINE_SHOOT);
 
 	typesShoots[TypeShoot::PlayerShoot].SetTexture(textureMarineShoot);
-	typesShoots[TypeShoot::PlayerShoot].SetRect(GameSceneTexture::ZERGLING_RECT);
+	typesShoots[TypeShoot::PlayerShoot].SetRect(GameSceneTexture::MARINE_SHOOT_RECT);
 	typesShoots[TypeShoot::PlayerShoot].SetVelocity(150.f);
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,11 +64,11 @@ void GameScreen::CreateMenu()
 
 void GameScreen::CreateMoveCircle()
 {
-	manageCirlce.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create(GameSceneTexture::MANAGE_CIRCLE)));
+	manageCirlce.SetSprite(Sprite::create(GameSceneTexture::MANAGE_CIRCLE));
 
 	UpdateManageCircle();
 
-	this->addChild(manageCirlce.GetSprite().get(), 1);
+	this->addChild(manageCirlce.GetSprite(), 1);
 }
 
 void GameScreen::CreateListener()
@@ -89,17 +89,6 @@ void GameScreen::CreatePlayer()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-<<<<<<< dev
-	CLifeObject player;
-	//auto sprite = ;
-	player.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create()));
-	player.SetType(typesLifeObjects[TypeLifeObject::Player]);
-	player.SetPosition(visibleSize.width / 2 + origin.x,
-								visibleSize.height / 2 + origin.y);
-
-	lifeObjects.push_back(player);
-	this->addChild(player.GetSprite().get(), -1);
-=======
 	//CLifeObject player;
 	auto player = CLifeObject::create();
 	player->SetType(typesLifeObjects[TypeLifeObject::Player]);
@@ -108,7 +97,6 @@ void GameScreen::CreatePlayer()
 
 	lifeObjects.push_back(player);
 	this->addChild(player, -1);
->>>>>>> local
 }
 
 void GameScreen::CreateEnemys()
@@ -116,17 +104,7 @@ void GameScreen::CreateEnemys()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-<<<<<<< dev
-	CLifeObject enemy;
-	//auto sprite = Sprite::create();
-	enemy.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create()));
-	enemy.SetType(typesLifeObjects[TypeLifeObject::Zergling]);
-	enemy.SetPosition(visibleSize.width / 2 + origin.x,
-								visibleSize.height / 2 + origin.y + visibleSize.height / 4);
 
-	lifeObjects.push_back(enemy);
-	this->addChild(enemy.GetSprite().get(), -1);
-=======
 	auto enemy = CLifeObject::create();
 	enemy->SetType(typesLifeObjects[TypeLifeObject::Zergling]);
 	enemy->setPosition(visibleSize.width / 2 + origin.x,
@@ -134,7 +112,7 @@ void GameScreen::CreateEnemys()
 
 	lifeObjects.push_back(enemy);
 	this->addChild(enemy, -1);
->>>>>>> local
+
 }
 
 void GameScreen::CreateContactListener()
@@ -146,38 +124,24 @@ void GameScreen::CreateContactListener()
 
 
 
-	///*
-<<<<<<< dev
-void CLifeObject::CreateShoot(GameScreen * scene, vector<CShoot> &shoots)
-=======
+
 void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CShoot*> &shoots)
->>>>>>> local
+
 {
 
-<<<<<<< dev
-	CShoot addShoot;
-	//auto sprite = Sprite::create();
-	addShoot.SetSprite(std::make_shared<cocos2d::Sprite>(Sprite::create()));
-=======
+
 	auto shoot = CShoot::create();
->>>>>>> local
+
 
 	shoot->SetType(scene->typesShoots[TypeShoot::PlayerShoot]);
 	shoot->SetStartPlace(scene->lifeObjects[0]->getPosition(), scene->manageCirlce.GetDirection(),
 							scene->lifeObjects[0]->getContentSize());
 	shoot->SetRotation(direction);
 
-<<<<<<< dev
-	addShoot.SetType(scene->typesShoots[TypeShoot::PlayerShoot]);
-	addShoot.SetStartPlace(scene->lifeObjects[0].GetPosition(), scene->manageCirlce.GetDirection(),
-							scene->lifeObjects[0].GetSprite()->getContentSize());
 
-	shoots.push_back(addShoot);
-	scene->addChild(addShoot.GetSprite().get());
-=======
 	shoots.push_back(shoot);
 	scene->addChild(shoot);
->>>>>>> local
+
 
 	
 

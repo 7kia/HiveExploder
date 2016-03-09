@@ -14,8 +14,9 @@ CLifeObject::~CLifeObject()
 
 CLifeObject * CLifeObject::create()
 {
-	CLifeObject * sprite = new CLifeObject;
+	CLifeObject * sprite = new(std::nothrow) CLifeObject;
 	if (sprite) {
+		sprite->init();
 		sprite->autorelease();
 		return sprite;
 	}
@@ -37,23 +38,14 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	health.SetValue(type->GetHealth());
 }
 
-<<<<<<< dev
-std::shared_ptr<cocos2d::Sprite>  CLifeObject::GetSprite()
-{
-	return visual.GetSprite();
-}
 
-void CLifeObject::SetSprite(std::shared_ptr<cocos2d::Sprite>  setSprite)
-{
-	visual.SetSprite(setSprite);
-=======
 void CLifeObject::SetCollision()
 {
 	auto body = PhysicsBody::createCircle(getContentSize().width / 2);
 	body->setCollisionBitmask(1);
 	body->setContactTestBitmask(Collision::BITMASK_LIFEOBJECT);
 	setPhysicsBody(body);
->>>>>>> local
+
 }
 
 bool CLifeObject::GetStateDeath() const
