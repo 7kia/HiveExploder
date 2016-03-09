@@ -1,5 +1,5 @@
 #pragma once
-#include "../LifeObjects/CMovement.h"
+//#include "../LifeObjects/CMovement.h"
 #include "TypeShoots.h"
 
 static const float ABOUT_ZERO_VALUE_SPEED_BULLET = 50.f;// if speed less the value shoot delete
@@ -8,7 +8,7 @@ static const float COEFFECIENT_SLOW_BULLET = 0.01f;
 
 
 
-struct CShoot : public CMovement, public CVisual
+struct CShoot : public CEntity
 
 {
 public:

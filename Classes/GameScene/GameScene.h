@@ -18,7 +18,7 @@ namespace GameSceneTexture// TODO : redesign
 	static const cocos2d::Rect MARINE_RECT(0, 0, 40, 40);
 	static const std::string MARINE = "Marine.png";
 
-	static const cocos2d::Rect MARINE_SHOOT_RECT(0, 0, 49, 10);
+	static const cocos2d::Rect MARINE_SHOOT_RECT(0, 0, 8, 49);
 	static const std::string MARINE_SHOOT = "Marine_gun_bullet.png";
 	//
 

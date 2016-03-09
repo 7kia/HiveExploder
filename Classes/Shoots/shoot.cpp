@@ -2,7 +2,7 @@
 
 using namespace cocos2d;
 
-CShoot::CShoot() : CVisual()
+CShoot::CShoot() : CEntity()
 {
 }
 
@@ -10,15 +10,20 @@ CShoot::~CShoot()
 {
 }
 
+
+
 CShoot * CShoot::create()
 {
-	CShoot * sprite = new(std::nothrow) CShoot();
-	if (sprite) {
-		sprite->init();
-		sprite->autorelease();
-		return sprite;
+	CShoot * shoot = new(std::nothrow) CShoot;
+	if (shoot) {
+
+		//!!!!!!!!!TODO
+		shoot->init();
+		shoot->SetIdClass(idClass::Shoot);
+
+		return shoot;
 	}
-	CC_SAFE_DELETE(sprite);
+	CC_SAFE_DELETE(shoot);
 	return NULL;
 }
 

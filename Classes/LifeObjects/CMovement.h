@@ -11,6 +11,9 @@ class CMovement
 public:
 	//virtual void			Move(cocos2d::Vec2 shiftVector, float dt)	= 0;
 
+	CMovement();
+	virtual ~CMovement();
+
 	void					SetVelocity(float setVelocity);
 	float					GetVelocity() const;
 

@@ -2,7 +2,7 @@
 
 using namespace cocos2d;
 
-CLifeObject::CLifeObject() : CVisual()
+CLifeObject::CLifeObject() : CEntity()
 {
 }
 
@@ -14,13 +14,16 @@ CLifeObject::~CLifeObject()
 
 CLifeObject * CLifeObject::create()
 {
-	CLifeObject * sprite = new(std::nothrow) CLifeObject;
-	if (sprite) {
-		sprite->init();
-		sprite->autorelease();
-		return sprite;
+	CLifeObject * lifeObject = new(std::nothrow) CLifeObject;
+	if (lifeObject) {
+		
+		//!!!!!!!!!TODO
+		lifeObject->init();
+		lifeObject->SetIdClass(idClass::LifeObject);		
+
+		return lifeObject;
 	}
-	CC_SAFE_DELETE(sprite);
+	CC_SAFE_DELETE(lifeObject);
 	return NULL;
 }
 

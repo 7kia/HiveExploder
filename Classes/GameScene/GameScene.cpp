@@ -60,6 +60,7 @@ bool GameScreen::onContactBegin(PhysicsContact& contact)
 {
 	//GoToGameOverScene(this);
 
+	contact.getShapeA();
 
 	return true;
 }

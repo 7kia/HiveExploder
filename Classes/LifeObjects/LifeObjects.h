@@ -6,7 +6,7 @@ class GameScreen;
 class CShoot;
 
 // TOOD : CMovement transfer to Behaveour
-class CLifeObject : public CMovement, public CVisual
+class CLifeObject : public CEntity// public CMovement, public CVisual
 {
 public:
 	// LifeObjects.cpp

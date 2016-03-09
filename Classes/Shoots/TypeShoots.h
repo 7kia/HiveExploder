@@ -1,6 +1,8 @@
 #pragma once
 #include "../LifeObjects/Collision.h"
-#include "../Visual/Visual.h"
+//#include "../Visual/Visual.h"
+
+#include "../LifeObjects/Entity.h"
 #include "../LifeObjects/FeaturesLifeObject.h"
 
 static const cocos2d::Vec2 accelerationBullet = { 0.01f, 0.01f };
