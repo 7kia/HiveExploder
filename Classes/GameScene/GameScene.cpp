@@ -70,6 +70,19 @@ bool GameScreen::onContactBegin(PhysicsContact& contact)
 	CEntity::idClass idA = entityA->GetIdClass();
 	CEntity::idClass idB = entityB->GetIdClass();
 
+	if ((idA == CEntity::idClass::LifeObject) && (idB == CEntity::idClass::Shoot))
+	{
+		dynamic_cast<CLifeObject*>(entityA)->AddHealth(-dynamic_cast<CShoot*>(entityB)->GetDamage());
+		dynamic_cast<CShoot*>(entityB)->SetVelocity(0.f);
+		
+	}
+	else if ((idB == CEntity::idClass::LifeObject) && (idA == CEntity::idClass::Shoot))
+	{
+		dynamic_cast<CLifeObject*>(entityB)->AddHealth(-dynamic_cast<CShoot*>(entityA)->GetDamage());
+		dynamic_cast<CShoot*>(entityA)->SetVelocity(0.f);
+
+	}
+
 	return true;
 }
 

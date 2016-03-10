@@ -1,16 +1,23 @@
-#include "FeaturesLifeObject.h"
+#include "LifeObjects.h"
 
-void CDynamicFeature::SetValue(int setValue)
+
+
+void CLifeObject::SetHealth(int value)
 {
-	value = setValue;
+	health.SetValue(value);
 }
 
-void CDynamicFeature::AddToValue(int summand)
+void CLifeObject::AddHealth(int value)
 {
-	value += summand;
+	health.SetValue(health.GetValue() + value);
 }
 
-int CDynamicFeature::GetValue()
+int CLifeObject::GetHealth() const
 {
-	return value;
+	return health.GetValue();
+}
+
+int CLifeObject::GetDamage() const
+{
+	return 0;
 }

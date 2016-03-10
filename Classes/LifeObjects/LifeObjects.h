@@ -11,7 +11,7 @@ class CLifeObject : public CEntity// public CMovement, public CVisual
 public:
 	// LifeObjects.cpp
 	CLifeObject();
-	~CLifeObject();
+	virtual ~CLifeObject();
 
 	static CLifeObject* create();
 	//CLifeObject* create(const std::string& filename) = delete;
@@ -33,6 +33,12 @@ public:
 	/////////////////
 	// FeaturesLifeObject.cpp
 	bool			GetStateDeath() const;
+
+	void			SetHealth(int value);
+	void			AddHealth(int value);
+	int				GetHealth() const;
+	int				GetDamage() const;
+
 	/////////////////
 
 	/////////////////

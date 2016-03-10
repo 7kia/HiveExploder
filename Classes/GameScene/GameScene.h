@@ -100,6 +100,7 @@ private:
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
+	void					UpdateLifeObjects(float dt);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 

@@ -36,6 +36,7 @@ void CShoot::SetType(TypeShoot &defineType)
 
 	SetCollision();
 
+	damage.SetValue(type->GetDamage());
 	velocity = type->GetVelocity();
 }
 
@@ -54,6 +55,11 @@ void CShoot::Update(float dt)
 int CShoot::GetDamage(int id)
 {
 	//assert(g_Functions::checkDiaposon(id , RESET_VALUE , amountTypeDamage));
+	return damage.GetValue();
+}
+
+int CShoot::GetDamage() const
+{
 	return damage.GetValue();
 }
 

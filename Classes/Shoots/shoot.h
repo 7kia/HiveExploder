@@ -3,7 +3,7 @@
 #include "TypeShoots.h"
 
 static const float ABOUT_ZERO_VALUE_SPEED_BULLET = 50.f;// if speed less the value shoot delete
-static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 2.f;
+static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 3.f;
 static const float COEFFECIENT_SLOW_BULLET = 0.01f;
 
 
@@ -31,6 +31,10 @@ public:
 	void					SetStartPlace(cocos2d::Vec2 pos, cocos2d::Vec2 directionShooter,
 											cocos2d::Size sizeShooter);
 	int						GetDamage(int id);
+
+
+	//int				GetHealth() const;
+	int				GetDamage() const;
 
 private:
 	TypeShoot				*type;

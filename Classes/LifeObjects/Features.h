@@ -1,6 +1,3 @@
-#ifndef FEATURESLIFEOBJECT_H
-#define FEATURESLIFEOBJECT_H
-
 #pragma once
 
 #include "CMovement.h"
@@ -11,8 +8,7 @@ public:
 	void SetValue(int setValue);
 	void AddToValue(int summand);
 
-	int GetValue();
+	int GetValue() const;
 private:
 	int value;
 };
-#endif

@@ -11,6 +11,8 @@ void CLifeObject::Move(cocos2d::Vec2 shiftVector, float dt)
 	resultVector *= dt;
 
 	setPosition(getPosition() + resultVector);
+
+	direction = Vec2::ZERO;
 }
 
 void CLifeObject::GetCoordinateForView(GLView &view) const

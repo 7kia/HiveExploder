@@ -3,7 +3,7 @@
 //#include "../Visual/Visual.h"
 
 #include "../LifeObjects/Entity.h"
-#include "../LifeObjects/FeaturesLifeObject.h"
+#include "../LifeObjects/Features.h"
 
 static const cocos2d::Vec2 accelerationBullet = { 0.01f, 0.01f };
 

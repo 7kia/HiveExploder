@@ -39,6 +39,8 @@ void GameScreen::CreateTypesShoots()
 	typesShoots[TypeShoot::PlayerShoot].SetTexture(textureMarineShoot);
 	typesShoots[TypeShoot::PlayerShoot].SetRect(GameSceneTexture::MARINE_SHOOT_RECT);
 	typesShoots[TypeShoot::PlayerShoot].SetVelocity(150.f);
+	typesShoots[TypeShoot::PlayerShoot].SetDamage(5);
+
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 

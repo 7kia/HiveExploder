@@ -48,6 +48,7 @@ void CLifeObject::SetCollision()
 	body->setCollisionBitmask(1);
 	body->setContactTestBitmask(Collision::BITMASK_LIFEOBJECT);
 	body->SetMaster(this);
+
 	setPhysicsBody(body);
 
 }
