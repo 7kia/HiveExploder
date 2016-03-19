@@ -2,7 +2,6 @@
 
 using namespace cocos2d;
 
-
 CShoot::CShoot() : CEntity()
 {
 	this->SetIdClass(idClass::Shoot);
@@ -28,8 +27,7 @@ void CShoot::SetType(ShootType &defineType)
 	CreateCollision();
 
 	m_damage.SetValue(m_type->GetDamage());
-	velocity = m_type->GetVelocity();
-
+	m_velocity = m_type->GetVelocity();
 }
 
 const ShootType& CShoot::GetType()
@@ -39,9 +37,9 @@ const ShootType& CShoot::GetType()
 
 void CShoot::update(float dt)
 {
-	Move(direction, dt);
+	Move(m_direction, dt);
 
-	velocity *= (1 - COEFFECIENT_SLOW_BULLET);
+	m_velocity *= (1 - COEFFECIENT_SLOW_BULLET);
 }
 
 int CShoot::GetDamage(int id)
@@ -64,8 +62,8 @@ void CShoot::SetDirection(cocos2d::Vec2 directionShooter)
 void CShoot::SetStartPlace(Vec2 pos, Vec2 directionShooter,
 							Size sizeShooter)
 {
-	direction = directionShooter;
-	Vec2 shiftBullet = direction;
+	m_direction = directionShooter;
+	Vec2 shiftBullet = m_direction;
 	shiftBullet.x *= sizeShooter.width * COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER;
 	shiftBullet.y *= sizeShooter.height * COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER;
 

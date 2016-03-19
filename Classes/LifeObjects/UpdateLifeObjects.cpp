@@ -10,10 +10,11 @@ void CLifeObject::update(float dt)
 
 void CLifeObject::UpdatePosition(float dt)
 {
-	Vec2 resultVector = direction;
+	Vec2 resultVector = m_direction;
 
-	resultVector *= velocity;
+	resultVector *= m_velocity;
 	resultVector *= dt;
 
 	CVisual::Move(resultVector);
+	m_direction = Vec2::ZERO;
 }

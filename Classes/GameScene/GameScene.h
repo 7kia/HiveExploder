@@ -104,7 +104,7 @@ private:
 private:
 	cocos2d::PhysicsWorld*	m_World;
 
-	size_t					ID_PLAYER = 0;
+	size_t					m_id_player = 0;
 
 	bool					isTouching = false;
 	cocos2d::Vec2			touchPosition = cocos2d::Vec2(0.f, 0.f);

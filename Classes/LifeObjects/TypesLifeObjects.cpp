@@ -4,41 +4,41 @@ using namespace cocos2d;
 
 void TypeLifeObject::SetTexture(Texture2D* setTexture)
 {
-	texture = setTexture;
+	m_texture = setTexture;
 }
 
 cocos2d::Texture2D * TypeLifeObject::GetTexture() const
 {
-	return texture;
+	return m_texture;
 }
 
 // TODO : rename SetTextureRect
 void TypeLifeObject::SetTextureRect(cocos2d::Rect setRectangle)
 {
-	rectangle = setRectangle;
+	m_rectangle = setRectangle;
 }
 
 cocos2d::Rect TypeLifeObject::GetRectangle() const
 {
-	return rectangle;
+	return m_rectangle;
 }
 
 void TypeLifeObject::SetVelocity(float setVelocity)
 {
-	velocity = setVelocity;
+	m_velocity = setVelocity;
 }
 
 float TypeLifeObject::GetVelocity() const
 {
-	return velocity;
+	return m_velocity;
 }
 
 void TypeLifeObject::SetHealth(int value)
 {
-	health.SetValue(value);
+	m_health.SetValue(value);
 }
 
 int TypeLifeObject::GetHealth()
 {
-	return health.GetValue();
+	return m_health.GetValue();
 }

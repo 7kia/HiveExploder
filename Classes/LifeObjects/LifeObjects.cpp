@@ -18,14 +18,14 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	setTexture(type->GetTexture());
 	setTextureRect(type->GetRectangle());
 
-	SetCollision();
+	CreateCollision();
 
 	SetVelocity(type->GetVelocity());
 
-	health.SetValue(type->GetHealth());
+	m_health.SetValue(type->GetHealth());
 }
 
-void CLifeObject::SetCollision()
+void CLifeObject::CreateCollision()
 {
 	CCollision* body = CCollision::create(type->GetRectangle().size.width / 2);// PhysicsBody::createCircle(getContentSize().width / 2);
 	body->setCollisionBitmask(1);
@@ -33,31 +33,6 @@ void CLifeObject::SetCollision()
 	body->SetMaster(this);
 
 	setPhysicsBody(body);
-}
-
-bool CLifeObject::GetStateDeath() const
-{
-	return isDeath;
-}
-
-void CLifeObject::SetHealth(int value)
-{
-	health.SetValue(value);
-}
-
-void CLifeObject::AddHealth(int value)
-{
-	health.AddToValue(value);
-}
-
-int CLifeObject::GetHealth() 
-{
-	return health.GetValue();
-}
-
-int CLifeObject::GetDamage() 
-{
-	return m_damage.GetValue();
 }
 
 void CLifeObject::Attack()

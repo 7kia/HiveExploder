@@ -26,5 +26,5 @@ public:
 	idClass			GetIdClass();
 	void			SetIdClass(idClass id);
 private:
-	idClass m_idClass = idClass::None;
+	idClass			m_idClass = idClass::None;
 };

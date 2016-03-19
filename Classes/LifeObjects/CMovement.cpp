@@ -10,20 +10,20 @@ CMovement::~CMovement()
 
 void CMovement::SetVelocity(float setVelocity)
 {
-	velocity = setVelocity;
+	m_velocity = setVelocity;
 }
 
 float CMovement::GetVelocity() const
 {
-	return velocity;
+	return m_velocity;
 }
 
 void CMovement::SetDirection(Direction setDirection)
 {
-	direction = setDirection;
+	m_direction = setDirection;
 }
 
 Direction CMovement::GetDirection()
 {
-	return direction;
+	return m_direction;
 }

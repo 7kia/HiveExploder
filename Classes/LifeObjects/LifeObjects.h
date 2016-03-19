@@ -20,7 +20,7 @@ public:
 
 	void SetType(TypeLifeObject &setType);
 
-	void SetCollision();
+	void CreateCollision();
 
 	void Move(cocos2d::Vec2 shiftVector, float dt);
 
@@ -34,8 +34,6 @@ public:
 
 	/////////////////
 	// FeaturesLifeObject.cpp
-	bool			GetStateDeath() const;
-
 	void			SetHealth(int value);
 	void			AddHealth(int value);
 	int				GetHealth() ;
@@ -64,9 +62,8 @@ public:
 private:
 	TypeLifeObject				*type;
 
-	CDynamicFeature				health;
+	CDynamicFeature				m_health;
 	CDynamicFeature				m_damage;
-	bool isDeath = false;
 	// TODO : delete
 };
 

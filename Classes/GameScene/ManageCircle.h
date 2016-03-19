@@ -2,8 +2,6 @@
 
 #include "cocos2d.h"
 
-
-
 class ManageCircle
 {
 public:
@@ -13,6 +11,7 @@ public:
 		Attack,
 		Move
 	};
+
 	const float							RADIUS_MOVE_CIRCLE = 30.f;
 	const float							RADIUS_ATTACK_CIRCLE = 20.f;
 	const float							RADIUS_CIRCLE = RADIUS_MOVE_CIRCLE + RADIUS_ATTACK_CIRCLE;

@@ -14,10 +14,10 @@ CEntity::~CEntity()
 
 void CEntity::Move(cocos2d::Vec2 shiftVector, float dt)
 {
-	direction = shiftVector;
-	Vec2 resultVector = direction;
+	m_direction = shiftVector;
+	Vec2 resultVector = m_direction;
 
-	resultVector *= velocity;
+	resultVector *= m_velocity;
 	resultVector *= dt;
 
 	CVisual::Move(resultVector);

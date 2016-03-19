@@ -19,7 +19,7 @@ public:
 	Direction				GetDirection();
 	// TODO : might there not enough functional
 protected:
-	float				velocity;
-	Direction			direction;
+	float					m_velocity;
+	Direction				m_direction;
 
 };

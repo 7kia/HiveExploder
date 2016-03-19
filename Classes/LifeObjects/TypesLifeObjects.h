@@ -3,11 +3,6 @@
 #include "Collision.h"
 #include "Features.h"
 
-/*
-
-*/
-
-
 class TypeLifeObject
 {
 public:
@@ -33,8 +28,8 @@ public:
 	int						GetHealth();
 	// TODO : there not enough functional
 private:
-	cocos2d::Texture2D*		texture;
-	cocos2d::Rect			rectangle;
-	float					velocity;
-	CDynamicFeature			health;
+	cocos2d::Texture2D*		m_texture;
+	cocos2d::Rect			m_rectangle;
+	float					m_velocity;
+	CDynamicFeature			m_health;
 };

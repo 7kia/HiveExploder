@@ -4,40 +4,40 @@ using namespace cocos2d;
 
 void ShootType::SetTexture(Texture2D* setTexture)
 {
-	texture = setTexture;
+	m_texture = setTexture;
 }
 
 cocos2d::Texture2D * ShootType::GetTexture() const
 {
-	return texture;
+	return m_texture;
 }
 
 void ShootType::SetRect(cocos2d::Rect setRectangle)
 {
-	rectangle = setRectangle;
+	m_rectangle = setRectangle;
 }
 
 cocos2d::Rect ShootType::GetRectangle() const
 {
-	return rectangle;
+	return m_rectangle;
 }
 
 void ShootType::SetVelocity(float setVelocity)
 {
-	velocity = setVelocity;
+	m_velocity = setVelocity;
 }
 
 float ShootType::GetVelocity() const
 {
-	return velocity;
+	return m_velocity;
 }
 
 void ShootType::SetDamage(int value)
 {
-	damage.SetValue(value);
+	m_damage.SetValue(value);
 }
 
 int ShootType::GetDamage()
 {
-	return damage.GetValue();
+	return m_damage.GetValue();
 }

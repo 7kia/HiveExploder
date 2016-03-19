@@ -64,16 +64,34 @@ void GameScreen::SetPhysicsWorld(cocos2d::PhysicsWorld * world)
 
 bool GameScreen::onContactBegin(PhysicsContact& contact)
 {
-	GoToGameOverScene(this);
+	//GoToGameOverScene(this);
+	auto bodyA = contact.getShapeA()->getBody();
+	auto bodyB = contact.getShapeB()->getBody();
+	CCollision* collisionA = static_cast<CCollision*>(bodyA);
+	CCollision* collisionB = static_cast<CCollision*>(bodyB);
 
+	auto entityA = collisionA->GetMaster();
+	auto entityB = collisionB->GetMaster();
 
-	//cocos2d::PhysicsShape *firstBody = contact.getShapeA();
-	//cocos2d::PhysicsShape *secondBody = contact.getShapeB();
+	CEntity::idClass idA = entityA->GetIdClass();
+	CEntity::idClass idB = entityB->GetIdClass();
 
-	//firstBody->get
+	if ((idA == CEntity::idClass::LifeObject) && (idB == CEntity::idClass::Shoot))
+	{
+		dynamic_cast<CLifeObject*>(entityA)->AddHealth(-dynamic_cast<CShoot*>(entityB)->GetDamage());
+		dynamic_cast<CShoot*>(entityB)->SetVelocity(0.f);
+
+	}
+	else if ((idB == CEntity::idClass::LifeObject) && (idA == CEntity::idClass::Shoot))
+	{
+		dynamic_cast<CLifeObject*>(entityB)->AddHealth(-dynamic_cast<CShoot*>(entityA)->GetDamage());
+		dynamic_cast<CShoot*>(entityA)->SetVelocity(0.f);
+
+	}
 
 	return true;
 }
+
 
 bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
 {

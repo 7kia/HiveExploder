@@ -29,8 +29,8 @@ public:
 	int						GetDamage();
 	// TODO : there not enough functional
 private:
-	cocos2d::Texture2D*		texture;
-	cocos2d::Rect			rectangle;
-	float					velocity;
-	CDynamicFeature			damage;
+	cocos2d::Texture2D*		m_texture;
+	cocos2d::Rect			m_rectangle;
+	float					m_velocity;
+	CDynamicFeature			m_damage;
 };

@@ -8,6 +8,7 @@ void GameScreen::update(float dt)
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
 	UpdateShoots(dt);
+	UpdateLifeObjects(dt);
 	///////////////////////
 	// check if the screen is being touched
 	if (true == isTouching)
@@ -60,12 +61,8 @@ void GameScreen::UpdateShoots(float dt)
 
 		if (m_shoots[index]->GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
 		{
-			m_shoots[index]->getParent()->removeChild(m_shoots[index]);
-			//shoots[index]->cleanup();
-			//shoots[index]->removeAllChildrenWithCleanup(true);
-			//shoots[index]->removeFromParentAndCleanup(true);
+			m_shoots[index]->removeFromParent();
 
-			//delete shoots[index];
 			m_shoots.erase(m_shoots.begin() + index);
 		}
 		else
@@ -84,14 +81,7 @@ void GameScreen::UpdateLifeObjects(float dt)
 
 		if (m_lifeObjects[index]->GetHealth() < 1)
 		{
-			//lifeObjects[index]->cleanup();
-
-			m_lifeObjects[index]->getParent()->removeChild(m_lifeObjects[index]);
-			//lifeObjects[index]->removeAllChildrenWithCleanup(true);
-			//lifeObjects[index]->removeFromParentAndCleanup(true);
-			//removeChild(lifeObjects[index]);
-
-			//delete lifeObjects[index];
+			m_lifeObjects[index]->removeFromParent();
 			m_lifeObjects.erase(m_lifeObjects.begin() + index);
 		}
 		else
