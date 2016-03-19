@@ -8,7 +8,8 @@ class TypeLifeObject
 public:
 	enum ID
 	{
-		Player = 0		,
+		None = -1		,
+		Player			,
 		Zergling		,
 		Hydralisk		,
 		AmountIDs
@@ -26,10 +27,20 @@ public:
 
 	void					SetHealth(int value);
 	int						GetHealth();
+
+	void					SetDamage(int value);
+	int						GetDamage();
+
+	void					SetId(ID id);
+	ID						GetId();
 	// TODO : there not enough functional
 private:
 	cocos2d::Texture2D*		m_texture;
 	cocos2d::Rect			m_rectangle;
 	float					m_velocity;
+
 	CDynamicFeature			m_health;
+	CDynamicFeature			m_damage;
+
+	ID						m_id = ID::None;
 };

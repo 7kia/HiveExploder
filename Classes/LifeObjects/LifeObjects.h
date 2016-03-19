@@ -36,9 +36,9 @@ public:
 	// FeaturesLifeObject.cpp
 	void			SetHealth(int value);
 	void			AddHealth(int value);
-	int				GetHealth() ;
-	int				GetDamage() ;
-
+	int				GetHealth();
+	int				GetDamage();
+	TypeLifeObject::ID GetIdType();
 	/////////////////
 
 	/////////////////

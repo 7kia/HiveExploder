@@ -42,3 +42,23 @@ int TypeLifeObject::GetHealth()
 {
 	return m_health.GetValue();
 }
+
+void TypeLifeObject::SetDamage(int value)
+{
+	m_damage.SetValue(value);
+}
+
+int TypeLifeObject::GetDamage()
+{
+	return m_damage.GetValue();
+}
+
+void TypeLifeObject::SetId(ID id)
+{
+	m_id = id;
+}
+
+TypeLifeObject::ID TypeLifeObject::GetId()
+{
+	return m_id;
+}

@@ -12,20 +12,26 @@ void GameScreen::CreateTypesLifeObjects()
 {
 	Texture2D* textureMarine = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
 																			+ GameSceneTexture::MARINE);
+
+	m_typesLifeObjects[TypeLifeObject::Player].SetId(TypeLifeObject::ID::Player);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneTexture::MARINE_RECT);
 	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(150.f);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
+	m_typesLifeObjects[TypeLifeObject::Player].SetDamage(5);
+
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
 																			+ GameSceneTexture::ZERGLING);
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetId(TypeLifeObject::ID::Zergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTexture(textureZergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneTexture::ZERGLING_RECT);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetVelocity(150.f);
 
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetDamage(5);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -51,7 +57,8 @@ void GameScreen::CreateMenu()
 											CC_CALLBACK_1(GameScreen::GoToPauseScene, this));
 
 	pauseButton->setPositionX(pauseButton->getContentSize().width / 2 + origin.x);
-	pauseButton->setPositionY(visibleSize.height - pauseButton->getContentSize().height + origin.y);
+	//visibleSize.height - // TODO : replace Y position
+	pauseButton->setPositionY( pauseButton->getContentSize().height + origin.y);
 
 	Menu* menu = Menu::create(pauseButton, NULL);
 	menu->setPosition(Point::ZERO);
@@ -114,6 +121,7 @@ void GameScreen::CreateContactListener()
 {
 	EventListenerPhysicsContact* contactListener = EventListenerPhysicsContact::create();
 	contactListener->onContactBegin = CC_CALLBACK_1(GameScreen::onContactBegin, this);
+	contactListener->onContactPreSolve = CC_CALLBACK_1(GameScreen::onContactPreSolve, this);
 	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 }
 

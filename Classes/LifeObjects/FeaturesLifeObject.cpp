@@ -19,3 +19,8 @@ int CLifeObject::GetDamage()
 {
 	return m_damage.GetValue();
 }
+
+TypeLifeObject::ID CLifeObject::GetIdType()
+{
+	return type->GetId();
+}

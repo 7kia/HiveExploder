@@ -43,6 +43,92 @@ void GameScreen::update(float dt)
 	}
 }
 
+
+bool GameScreen::onContactBegin(PhysicsContact& contact)
+{
+	//GoToGameOverScene(this);
+	auto bodyA = contact.getShapeA()->getBody();
+	auto bodyB = contact.getShapeB()->getBody();
+	CCollision* collisionA = static_cast<CCollision*>(bodyA);
+	CCollision* collisionB = static_cast<CCollision*>(bodyB);
+
+	CEntity* entityA = collisionA->GetMaster();
+	CEntity* entityB = collisionB->GetMaster();
+
+	CEntity::idClass idA = entityA->GetIdClass();
+	CEntity::idClass idB = entityB->GetIdClass();
+
+	if ((idA == CEntity::idClass::LifeObject) && (idB == CEntity::idClass::Shoot))
+	{
+		dynamic_cast<CLifeObject*>(entityA)->AddHealth(-dynamic_cast<CShoot*>(entityB)->GetDamage());
+		dynamic_cast<CShoot*>(entityB)->SetVelocity(0.f);
+
+	}
+	else if ((idB == CEntity::idClass::LifeObject) && (idA == CEntity::idClass::Shoot))
+	{
+		dynamic_cast<CLifeObject*>(entityB)->AddHealth(-dynamic_cast<CShoot*>(entityA)->GetDamage());
+		dynamic_cast<CShoot*>(entityA)->SetVelocity(0.f);
+	}
+	//
+	
+
+	return true;
+}
+
+bool GameScreen::onContactPreSolve(cocos2d::PhysicsContact & contact)
+{
+	auto bodyA = contact.getShapeA()->getBody();
+	auto bodyB = contact.getShapeB()->getBody();
+	CCollision* collisionA = static_cast<CCollision*>(bodyA);
+	CCollision* collisionB = static_cast<CCollision*>(bodyB);
+
+	CEntity* entityA = collisionA->GetMaster();
+	CEntity* entityB = collisionB->GetMaster();
+
+	CEntity::idClass idA = entityA->GetIdClass();
+	CEntity::idClass idB = entityB->GetIdClass();
+
+	if ((idA == CEntity::idClass::LifeObject) && (idB == CEntity::idClass::LifeObject))
+	{
+		if ((dynamic_cast<CLifeObject*>(entityA)->GetIdType() == TypeLifeObject::ID::Player)
+			&& (dynamic_cast<CLifeObject*>(entityB)->GetIdType() == TypeLifeObject::ID::Zergling))
+		{
+			dynamic_cast<CLifeObject*>(entityA)->AddHealth(-dynamic_cast<CLifeObject*>(entityB)->GetDamage());
+		}
+		else if ((dynamic_cast<CLifeObject*>(entityA)->GetIdType() == TypeLifeObject::ID::Zergling)
+			&& (dynamic_cast<CLifeObject*>(entityB)->GetIdType() == TypeLifeObject::ID::Player))
+		{
+			dynamic_cast<CLifeObject*>(entityB)->AddHealth(-dynamic_cast<CLifeObject*>(entityA)->GetDamage());
+		}
+	}
+
+	return true;
+}
+
+
+bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	isTouching = true;
+	touchPosition = touch->getLocation();
+
+	return true;
+}
+
+void GameScreen::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	touchPosition = touch->getLocation();
+}
+
+void GameScreen::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	isTouching = false;
+}
+
+void GameScreen::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event)
+{
+	onTouchEnded(touch, event);
+}
+
 void GameScreen::UpdateManageCircle()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -52,46 +138,23 @@ void GameScreen::UpdateManageCircle()
 	m_manageCirlce.SetPositionY(origin.y + m_manageCirlce.GetRadius());
 }
 
-void GameScreen::UpdateShoots(float dt)
+bool GameScreen::CheckVictoryCondition()
 {
-	size_t index = 0;
-	while (index < m_shoots.size())
+	if (m_lifeObjects.size() == 1)
 	{
-		m_shoots[index]->update(dt);
-
-		if (m_shoots[index]->GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
+		if (m_lifeObjects[0]->GetIdType() == TypeLifeObject::ID::Player)
 		{
-			m_shoots[index]->removeFromParent();
-
-			m_shoots.erase(m_shoots.begin() + index);
-		}
-		else
-		{
-			index++;
+			return true;
 		}
 	}
+	return false;
 }
 
-void GameScreen::UpdateLifeObjects(float dt)
+bool GameScreen::CheckDefeatCondition()
 {
-	size_t index = 0;
-	while (index < m_lifeObjects.size())
+	if (m_lifeObjects[0]->GetIdType() == TypeLifeObject::ID::Player)
 	{
-		m_lifeObjects[index]->update(dt);
-
-		if (m_lifeObjects[index]->GetHealth() < 1)
-		{
-			m_lifeObjects[index]->removeFromParent();
-			m_lifeObjects.erase(m_lifeObjects.begin() + index);
-		}
-		else
-		{
-			index++;
-		}
+		return true;
 	}
-}
-
-void GameScreen::AddShoot(CShoot &addShoot)
-{
-	m_shoots.push_back(&addShoot);
+	return false;
 }

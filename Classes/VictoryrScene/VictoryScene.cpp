@@ -52,7 +52,7 @@ bool Victory::init()
 	this->addChild(menu);
 
 
-	auto backgroundSprite = Sprite::create(GameoverTexture::BACKGROUND);
+	auto backgroundSprite = Sprite::create(VictoryTexture::BACKGROUND);
 	backgroundSprite->setPosition(Point((visibleSize.width / 2) + origin.x, (visibleSize.height / 2) + origin.y));
 	this->addChild(backgroundSprite, -1);
 

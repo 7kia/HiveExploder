@@ -57,7 +57,7 @@ public:
     void					GoToGameOverScene(Ref *pSender);
 	void					GoToVictoryScene(cocos2d::Ref * pSender);
     
-    void					update(float dt);
+    void					update(float dt) override;
     
 	bool					onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event) override;
 	void					onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event) override;
@@ -70,12 +70,13 @@ public:
 	/////// XXXXXXXXXXXx
 	void					SetPhysicsWorld(cocos2d::PhysicsWorld* world);
 	bool					onContactBegin(cocos2d::PhysicsContact& contact);
+	bool					onContactPreSolve(cocos2d::PhysicsContact& contact);
 	////// XXXXXXXXXXXX
 	// \/
 	// TODO : see need there private
 	//
 public:
-	std::vector<CLifeObject*>		m_lifeObjects;
+	std::vector<CLifeObject*>			m_lifeObjects;
 	std::vector<CShoot*>				m_shoots;
 
 	TypeLifeObject						m_typesLifeObjects[TypeLifeObject::AmountIDs];
@@ -101,10 +102,15 @@ private:
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
 	void					UpdateLifeObjects(float dt);
+	void					CheckHealthLifeObjects();
+
+	bool					CheckVictoryCondition();
+	bool					CheckDefeatCondition();
 private:
 	cocos2d::PhysicsWorld*	m_World;
 
 	size_t					m_id_player = 0;
+	size_t					counterMonsters = 0;
 
 	bool					isTouching = false;
 	cocos2d::Vec2			touchPosition = cocos2d::Vec2(0.f, 0.f);
