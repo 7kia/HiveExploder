@@ -17,6 +17,7 @@ public:
     CREATE_FUNC(MainMenu);
 
 	void GoToGameScene(Ref *pSender);
+	void GoToExit(cocos2d::Ref * pSender);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

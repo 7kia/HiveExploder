@@ -44,12 +44,17 @@ bool MainMenu::init()
 										Buttons::PLAY_BUTTON_CLICK,
 										CC_CALLBACK_1(MainMenu::GoToGameScene, this));
 	playItem->setPosition(Vec2(origin.x + visibleSize.width - playItem->getContentSize().width / 2,
-		origin.y + playItem->getContentSize().height / 2));
+								origin.y + playItem->getContentSize().height / 2));
 
+	auto exitItem = MenuItemImage::create(Buttons::EXIT_BUTTON,
+		Buttons::EXIT_BUTTON_CLICK,
+		CC_CALLBACK_1(MainMenu::GoToExit, this));
+	exitItem->setPosition(Vec2(origin.x + visibleSize.width - exitItem->getContentSize().width / 2,
+								origin.y + exitItem->getContentSize().height / 2));
 
-	auto menu = Menu::create(menuTitle, playItem, NULL);
+	auto menu = Menu::create(menuTitle, playItem, exitItem, NULL);
 
-	menu->alignItemsVerticallyWithPadding(visibleSize.height / 4);
+	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
 	this->addChild(menu, 1);
 
 	/////
@@ -68,4 +73,12 @@ void MainMenu::GoToGameScene(cocos2d::Ref *pSender)
 	auto scene = GameScreen::createScene();
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+}
+
+void MainMenu::GoToExit(cocos2d::Ref *pSender)
+{
+	//auto scene = GameScreen::createScene();
+
+	//Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+	exit(0);
 }

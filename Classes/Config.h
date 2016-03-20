@@ -27,6 +27,9 @@ namespace Buttons
 	static const std::string PLAY_BUTTON = PATH_TEXTURE + "Play_Button.png";
 	static const std::string PLAY_BUTTON_CLICK = PATH_TEXTURE + "Play_Button_Click.png";
 
+	static const std::string EXIT_BUTTON = PATH_TEXTURE + "Exit_Button.png";
+	static const std::string EXIT_BUTTON_CLICK = PATH_TEXTURE + "Exit_Button_Click.png";
+
 }
 
 namespace GameoverTexture
