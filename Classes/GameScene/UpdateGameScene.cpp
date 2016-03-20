@@ -11,9 +11,9 @@ void GameScreen::update(float dt)
 	UpdateLifeObjects(dt);
 	///////////////////////
 	// check if the screen is being touched
-	if (true == isTouching)
+	if (true == m_isTouching)
 	{
-		switch (m_manageCirlce.GetAction(touchPosition))
+		switch (m_manageCirlce.GetAction(m_touchPosition))
 		{
 		case ManageCircle::Action::Attack:	
 
@@ -108,20 +108,20 @@ bool GameScreen::onContactPreSolve(cocos2d::PhysicsContact & contact)
 
 bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
 {
-	isTouching = true;
-	touchPosition = touch->getLocation();
+	m_isTouching = true;
+	m_touchPosition = touch->getLocation();
 
 	return true;
 }
 
 void GameScreen::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event)
 {
-	touchPosition = touch->getLocation();
+	m_touchPosition = touch->getLocation();
 }
 
 void GameScreen::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event)
 {
-	isTouching = false;
+	m_isTouching = false;
 }
 
 void GameScreen::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event)
@@ -150,9 +150,9 @@ bool GameScreen::CheckVictoryCondition()
 	return false;
 }
 
-bool GameScreen::CheckDefeatCondition()
+bool GameScreen::CheckDefeatCondition(size_t index)
 {
-	if (m_lifeObjects[0]->GetIdType() == TypeLifeObject::ID::Player)
+	if (m_lifeObjects[index]->GetIdType() == TypeLifeObject::ID::Player)
 	{
 		return true;
 	}

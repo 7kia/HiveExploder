@@ -10,6 +10,7 @@ void GameScreen::UpdateLifeObjects(float dt)
 	}
 
 	CheckHealthLifeObjects();
+	SearchEnemy();// TODO : redefine
 
 	if (CheckVictoryCondition())
 	{
@@ -24,7 +25,7 @@ void GameScreen::CheckHealthLifeObjects()
 	{
 		if (m_lifeObjects[index]->GetHealth() < 1)
 		{
-			if (CheckDefeatCondition())
+			if (CheckDefeatCondition(index))
 			{
 				GoToGameOverScene(this);
 			}
@@ -37,4 +38,19 @@ void GameScreen::CheckHealthLifeObjects()
 			index++;
 		}
 	}
+}
+
+void GameScreen::SearchEnemy()// TODO : redefine
+{
+	Vec2 positionPlayer = m_lifeObjects[m_id_player]->getPosition();
+	for (auto &object : m_lifeObjects)
+	{
+		if (object->GetIdType() != TypeLifeObject::ID::Player)
+		{
+			Vec2 direction = positionPlayer - object->getPosition();
+			direction.normalize();
+			object->SetDirection(direction);
+		}
+	}
+
 }

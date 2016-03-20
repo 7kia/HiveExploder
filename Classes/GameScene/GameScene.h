@@ -103,17 +103,18 @@ private:
 	void					UpdateShoots(float dt);
 	void					UpdateLifeObjects(float dt);
 	void					CheckHealthLifeObjects();
+	void					SearchEnemy();// TODO : redefine later
 
 	bool					CheckVictoryCondition();
-	bool					CheckDefeatCondition();
+	bool					CheckDefeatCondition(size_t index);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 
 	size_t					m_id_player = 0;
-	size_t					counterMonsters = 0;
+	size_t					m_amountMonsters = 10;
 
-	bool					isTouching = false;
-	cocos2d::Vec2			touchPosition = cocos2d::Vec2(0.f, 0.f);
+	bool					m_isTouching = false;
+	cocos2d::Vec2			m_touchPosition = cocos2d::Vec2(0.f, 0.f);
 
 };
 

@@ -16,7 +16,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Player].SetId(TypeLifeObject::ID::Player);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneTexture::MARINE_RECT);
-	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(150.f);
+	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(250.f);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
 	m_typesLifeObjects[TypeLifeObject::Player].SetDamage(5);
@@ -28,7 +28,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetId(TypeLifeObject::ID::Zergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTexture(textureZergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneTexture::ZERGLING_RECT);
-	m_typesLifeObjects[TypeLifeObject::Zergling].SetVelocity(150.f);
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetVelocity(80.f);
 
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetDamage(5);
@@ -42,7 +42,7 @@ void GameScreen::CreateTypesShoots()
 																					+ GameSceneTexture::MARINE_SHOOT);
 	m_typesShoots[ShootType::PlayerShoot].SetTexture(textureMarineShoot);
 	m_typesShoots[ShootType::PlayerShoot].SetRect(GameSceneTexture::MARINE_SHOOT_RECT);
-	m_typesShoots[ShootType::PlayerShoot].SetVelocity(150.f);
+	m_typesShoots[ShootType::PlayerShoot].SetVelocity(750.f);
 	m_typesShoots[ShootType::PlayerShoot].SetDamage(5);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
@@ -108,13 +108,21 @@ void GameScreen::CreateEnemys()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	CLifeObject* enemy = new CLifeObject();
-	enemy->SetType(m_typesLifeObjects[TypeLifeObject::Zergling]);
-	enemy->setPosition(visibleSize.width / 2 + origin.x,
-								visibleSize.height / 2 + origin.y + visibleSize.height / 4);
+	for (size_t index = 0; index < m_amountMonsters; index++)
+	{
+		CLifeObject* enemy = new CLifeObject();
+		enemy->SetType(m_typesLifeObjects[TypeLifeObject::Zergling]);
 
-	m_lifeObjects.push_back(enemy);
-	addChild(enemy, -1);
+		float randomShiftX = CCRANDOM_0_1() *  visibleSize.width / 2;
+		enemy->setPositionX(visibleSize.width / 2  + origin.x
+							+ randomShiftX);
+
+		enemy->setPositionY(visibleSize.height  + origin.y );
+
+		m_lifeObjects.push_back(enemy);
+		addChild(enemy, -1);
+	}
+
 }
 
 void GameScreen::CreateContactListener()
