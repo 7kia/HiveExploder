@@ -12,8 +12,8 @@ public:
 		Move
 	};
 
-	const float							RADIUS_MOVE_CIRCLE = 45.f;
-	const float							RADIUS_ATTACK_CIRCLE = 30.f;
+	const float							RADIUS_MOVE_CIRCLE = 67.f;
+	const float							RADIUS_ATTACK_CIRCLE = 45.f;
 	const float							RADIUS_CIRCLE = RADIUS_MOVE_CIRCLE + RADIUS_ATTACK_CIRCLE;
 public:
 	Action								GetAction(cocos2d::Vec2 position);

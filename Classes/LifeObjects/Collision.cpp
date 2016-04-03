@@ -9,7 +9,7 @@ CCollision::CCollision() : PhysicsBody()
 
 CCollision::CCollision(float radius) : PhysicsBody()// TODO : delete
 {
-	addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(), Vec2::ZERO));
+	addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial(), Vec2::ZERO));
 }
 
 CCollision* CCollision::create(float radius)
@@ -17,7 +17,7 @@ CCollision* CCollision::create(float radius)
 	CCollision * body = new(std::nothrow) CCollision();
 
 	if (body && body->PhysicsBody::init()) {
-		body->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial::PhysicsMaterial(), Vec2::ZERO));
+		body->addShape(PhysicsShapeCircle::create(radius, PhysicsMaterial(), Vec2::ZERO));
 		body->autorelease();
 		body->setDynamic(true);
 		return body;

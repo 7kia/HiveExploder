@@ -10,14 +10,14 @@
 
 namespace GameSceneTexture// TODO : redesign
 {
-	static const std::string PATH_TEXTURE = "GameScene\\";
+	static const std::string PATH_TEXTURE = "GameScene/";
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 
 	static const std::string MANAGE_CIRCLE = PATH_TEXTURE + "MoveCircle.png";
 
 	//namespace TypePlayer// TODO : redesign
 	//{
-	static const cocos2d::Rect MARINE_RECT(0, 0, 40, 40);
+	static const cocos2d::Rect MARINE_RECT(0, 0, 60, 60);
 	static const std::string MARINE = "Marine.png";
 
 	static const cocos2d::Rect MARINE_SHOOT_RECT(0, 0, 8, 49);
@@ -29,13 +29,13 @@ namespace GameSceneTexture// TODO : redesign
 
 	//namespace TypeZergling// TODO : redesign
 	//{
-		static const cocos2d::Rect ZERGLING_RECT(0, 0, 40, 40);
+		static const cocos2d::Rect ZERGLING_RECT(0, 0, 60, 60);
 		static const std::string ZERGLING = "Zergling.png";
 	//}
 
 	//namespace TypeHydralisk// TODO : redesign
 	//{
-		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 40, 40);
+		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 60, 60);
 		static const std::string HYDRALISK = "Hydralisk.png";
 	//}
 
@@ -72,7 +72,7 @@ public:
 	bool					onContactBegin(cocos2d::PhysicsContact& contact);
 	bool					onContactPreSolve(cocos2d::PhysicsContact& contact);
 	////// XXXXXXXXXXXX
-	// \/
+	// /
 	// TODO : see need there private
 	//
 public:

@@ -10,7 +10,7 @@ static const size_t HEIGHT_WINDOW = 640;
 
 namespace Buttons
 {
-	static const std::string PATH_TEXTURE = "Buttons\\";
+	static const std::string PATH_TEXTURE = "Buttons/";
 
 	static const std::string RETRY_BUTTON = PATH_TEXTURE + "Retry_Button.png";
 	static const std::string RETRY_BUTTON_CLICK = PATH_TEXTURE + "Retry_Button_Click.png";
@@ -34,7 +34,7 @@ namespace Buttons
 
 namespace GameoverTexture
 {
-	static const std::string PATH_TEXTURE = "GameOverScreen\\";
+	static const std::string PATH_TEXTURE = "GameOverScreen/";
 
 	static const std::string MENU_TITLE = PATH_TEXTURE + "Game_Over.png";
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
@@ -42,7 +42,7 @@ namespace GameoverTexture
 
 namespace MainMenuTexture
 {
-	static const std::string PATH_TEXTURE = "MainMenuScreen\\";
+	static const std::string PATH_TEXTURE = "MainMenuScreen/";
 
 static const std::string GAME_TITLE = PATH_TEXTURE + "Game_Title.png";
 static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
@@ -50,7 +50,7 @@ static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 
 namespace PauseSceneTexture
 {
-	static const std::string PATH_TEXTURE = "PauseScreen\\";
+	static const std::string PATH_TEXTURE = "PauseScreen/";
 
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 }

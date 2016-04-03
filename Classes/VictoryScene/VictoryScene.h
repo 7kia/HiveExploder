@@ -5,7 +5,7 @@
 
 namespace VictoryTexture
 {
-	static const std::string PATH_TEXTURE = "VictoryScreen\/";
+	static const std::string PATH_TEXTURE = "VictoryScreen/";
 
 	static const std::string MENU_TITLE = PATH_TEXTURE + "Game_Victory.png";
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
