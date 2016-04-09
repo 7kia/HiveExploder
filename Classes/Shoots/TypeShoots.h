@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../LifeObjects/Entity.h"
 #include "../LifeObjects/Collision.h"
 #include "../LifeObjects/Features.h"

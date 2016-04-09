@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Entity.h"
 #include "Collision.h"
 #include "Features.h"
@@ -15,7 +16,6 @@ public:
 		AmountIDs
 	};
 
-	// Texture in TextureHolder
 	void					SetTexture(cocos2d::Texture2D* setTexture);
 	cocos2d::Texture2D*		GetTexture() const;
 

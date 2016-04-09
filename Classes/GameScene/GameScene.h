@@ -1,5 +1,4 @@
-#ifndef __GAME_SCENE_H__
-#define __GAME_SCENE_H__
+#pragma once
 
 #include "Config.h"
 #include "ManageCircle.h"
@@ -8,12 +7,15 @@
 
  
 
-namespace GameSceneTexture// TODO : redesign
+namespace GameSceneRecourses// TODO : redesign
 {
-	static const std::string PATH_TEXTURE = "GameScene/";
-	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
+	static const std::string PATH = "GameScene/";
+	static const std::string BACKGROUND = PATH + "Background.png";
 
-	static const std::string MANAGE_CIRCLE = PATH_TEXTURE + "MoveCircle.png";
+	static const std::string MAP = PATH + "tmx/map.tmx";
+	static const int kTagTileMap = 10;
+
+	static const std::string MANAGE_CIRCLE = PATH + "MoveCircle.png";
 
 	//namespace TypePlayer// TODO : redesign
 	//{
@@ -75,6 +77,10 @@ public:
 	// /
 	// TODO : see need there private
 	//
+	CC_SYNTHESIZE(cocos2d::CCTMXTiledMap*, m_tileMap, TileMap);
+	CC_SYNTHESIZE(cocos2d::CCTMXLayer*, m_wallTiles, Wall);
+	CC_SYNTHESIZE(cocos2d::CCTMXLayer*, m_floorTiles, Floor);
+
 public:
 	std::vector<CLifeObject*>			m_lifeObjects;
 	std::vector<CShoot*>				m_shoots;
@@ -95,9 +101,10 @@ private:
 	void					CreateMoveCircle();
 	void					CreateListener();
 
+	void					CreateMap();
 	void					CreatePlayer();
 	void					CreateEnemys();
-	void					CreateContactListener();// XXXXXX
+	void					CreateContactListener();
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
@@ -115,7 +122,4 @@ private:
 
 	bool					m_isTouching = false;
 	cocos2d::Vec2			m_touchPosition = cocos2d::Vec2(0.f, 0.f);
-
 };
-
-#endif // __GAME_SCENE_H__

@@ -1,6 +1,3 @@
-#ifndef CONFIG_H
-#define CONFIG_H
-
 #pragma once
 
 #include <string>
@@ -36,7 +33,6 @@ namespace GameoverTexture
 {
 	static const std::string PATH_TEXTURE = "GameOverScreen/";
 
-	static const std::string MENU_TITLE = PATH_TEXTURE + "Game_Over.png";
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 }
 
@@ -54,5 +50,3 @@ namespace PauseSceneTexture
 
 	static const std::string BACKGROUND = PATH_TEXTURE + "Background.png";
 }
-
-#endif

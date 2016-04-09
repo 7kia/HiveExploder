@@ -8,14 +8,16 @@ void GameScreen::CreateCashes()
 
 }
 
+
+
 void GameScreen::CreateTypesLifeObjects()
 {
-	Texture2D* textureMarine = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
-																			+ GameSceneTexture::MARINE);
+	Texture2D* textureMarine = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
+																			+ GameSceneRecourses::MARINE);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetId(TypeLifeObject::ID::Player);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
-	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneTexture::MARINE_RECT);
+	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneRecourses::MARINE_RECT);
 	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(250.f);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
@@ -23,11 +25,11 @@ void GameScreen::CreateTypesLifeObjects()
 
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
-																			+ GameSceneTexture::ZERGLING);
+	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
+																			+ GameSceneRecourses::ZERGLING);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetId(TypeLifeObject::ID::Zergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTexture(textureZergling);
-	m_typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneTexture::ZERGLING_RECT);
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneRecourses::ZERGLING_RECT);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetVelocity(80.f);
 
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
@@ -38,10 +40,10 @@ void GameScreen::CreateTypesLifeObjects()
 void GameScreen::CreateTypesShoots()
 {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneTexture::PATH_TEXTURE
-																					+ GameSceneTexture::MARINE_SHOOT);
+	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
+																					+ GameSceneRecourses::MARINE_SHOOT);
 	m_typesShoots[ShootType::PlayerShoot].SetTexture(textureMarineShoot);
-	m_typesShoots[ShootType::PlayerShoot].SetRect(GameSceneTexture::MARINE_SHOOT_RECT);
+	m_typesShoots[ShootType::PlayerShoot].SetRect(GameSceneRecourses::MARINE_SHOOT_RECT);
 	m_typesShoots[ShootType::PlayerShoot].SetVelocity(750.f);
 	m_typesShoots[ShootType::PlayerShoot].SetDamage(5);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,7 +70,7 @@ void GameScreen::CreateMenu()
 
 void GameScreen::CreateMoveCircle()
 {
-	m_manageCirlce.SetSprite(Sprite::create(GameSceneTexture::MANAGE_CIRCLE));
+	m_manageCirlce.SetSprite(Sprite::create(GameSceneRecourses::MANAGE_CIRCLE));
 
 	UpdateManageCircle();
 
@@ -88,16 +90,29 @@ void GameScreen::CreateListener()
 	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
+void GameScreen::CreateMap()
+{
+	m_tileMap = CCTMXTiledMap::create(GameSceneRecourses::MAP);
+
+
+	this->addChild(m_tileMap, -2);
+}
+
 void GameScreen::CreatePlayer()
 {
+	ValueMap objects = m_tileMap->getObjectGroup("LifeObjects")->getObject("Player");
+
+	objects["x"].asFloat();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
 	//CLifeObject player;
 	CLifeObject* player = new CLifeObject();
 	player->SetType(m_typesLifeObjects[TypeLifeObject::Player]);
-	player->setPosition(visibleSize.width / 2 + origin.x,
-								visibleSize.height / 2 + origin.y);
+	//player->setPosition(visibleSize.width / 2 + origin.x,
+	//							visibleSize.height / 2 + origin.y);
+	player->setPosition(objects["x"].asFloat(),
+						objects["y"].asFloat());
 
 	m_lifeObjects.push_back(player);
 	addChild(player, -1);

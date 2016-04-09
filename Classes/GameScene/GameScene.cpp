@@ -40,6 +40,7 @@ bool GameScreen::init()
 	CreateMenu();
 	CreateMoveCircle();
 
+	CreateMap();
 	CreatePlayer();
 	CreateEnemys();
 

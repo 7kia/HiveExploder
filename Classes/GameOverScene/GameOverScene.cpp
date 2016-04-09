@@ -28,41 +28,42 @@ bool GameOver::init()
     {
         return false;
     }
-    
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
-    
-	/////////////////////
-	// TODO : design
-	auto menuTitle = MenuItemImage::create(GameoverTexture::MENU_TITLE,
-											GameoverTexture::MENU_TITLE);
+        
+	CreateMenu();
+	CreateBackground();	
+
+    return true;
+}
+
+void GameOver::CreateMenu()
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point origin = Director::getInstance()->getVisibleOrigin();
+
 
 	auto retryItem = MenuItemImage::create(Buttons::RETRY_BUTTON,
-											Buttons::RETRY_BUTTON_CLICK,
-											CC_CALLBACK_1(GameOver::GoToGameScene, this));
+		Buttons::RETRY_BUTTON_CLICK,
+		CC_CALLBACK_1(GameOver::GoToGameScene, this));
 
 	auto mainMenuItem = MenuItemImage::create(Buttons::MENU_BUTTON,
-												Buttons::MENU_BUTTON_CLICK,
-												CC_CALLBACK_1(GameOver::GoToMainMenuScene, this));
+		Buttons::MENU_BUTTON_CLICK,
+		CC_CALLBACK_1(GameOver::GoToMainMenuScene, this));
 
 	auto menu = Menu::create(retryItem, mainMenuItem, NULL);
 
-	menuTitle->setPosition(visibleSize.width / 2, visibleSize.height * (1.4f));// TODO : set position
 	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
-	//menu->setPosition(
 
-
-	this->addChild(menuTitle);
 	this->addChild(menu);
+}
 
+void GameOver::CreateBackground()
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point origin = Director::getInstance()->getVisibleOrigin();
 
 	auto backgroundSprite = Sprite::create(GameoverTexture::BACKGROUND);
 	backgroundSprite->setPosition(Point((visibleSize.width / 2) + origin.x, (visibleSize.height / 2) + origin.y));
 	this->addChild(backgroundSprite, -1);
-
-	///////////////////////
-
-    return true;
 }
 
 void GameOver::GoToGameScene(cocos2d::Ref *pSender)

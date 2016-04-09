@@ -16,7 +16,6 @@ class CCollision : public cocos2d::PhysicsBody
 {
 public:
 	CCollision();
-	CCollision(float radiuse);
 	virtual ~CCollision() override;
 
 	static CCollision* create(float radius);

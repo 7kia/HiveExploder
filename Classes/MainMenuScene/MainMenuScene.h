@@ -1,5 +1,4 @@
-#ifndef __MAINMENU_SCENE_H__
-#define __MAINMENU_SCENE_H__
+#pragma once
 
 #include "cocos2d.h"
 #include "../Config.h"
@@ -19,5 +18,3 @@ public:
 	void GoToGameScene(Ref *pSender);
 	void GoToExit(cocos2d::Ref * pSender);
 };
-
-#endif // __HELLOWORLD_SCENE_H__

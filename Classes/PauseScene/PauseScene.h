@@ -1,5 +1,4 @@
-#ifndef __PAUSEMENU_SCENE_H__
-#define __PAUSEMENU_SCENE_H__
+#pragma once
 
 #include "cocos2d.h"
 
@@ -20,5 +19,3 @@ public:
     void Retry(Ref *pSender);
     
 };
-
-#endif // __PAUSEMENU_SCENE_H__
