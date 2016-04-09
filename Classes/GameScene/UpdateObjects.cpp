@@ -4,6 +4,8 @@ using namespace cocos2d;
 
 void GameScreen::UpdateLifeObjects(float dt)
 {
+	UpdateCamera(dt);
+
 	for (auto &object : m_lifeObjects)
 	{
 		object->update(dt);
@@ -16,6 +18,18 @@ void GameScreen::UpdateLifeObjects(float dt)
 	{
 		GoToVictoryScene(this);
 	}
+
+}
+
+void GameScreen::UpdateCamera(float dt)
+{
+	Vec2 positionPlayer = m_lifeObjects[m_id_player]->getPosition();
+	Direction directtionPlayer = m_lifeObjects[m_id_player]->GetDirection();
+	Vec2 shift = directtionPlayer * dt;
+
+	m_camera->setPosition(positionPlayer + shift);
+
+	getChildByName("menu")->setPosition(getChildByName("menu")->getPosition() + shift);
 }
 
 void GameScreen::CheckHealthLifeObjects()

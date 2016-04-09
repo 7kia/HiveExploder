@@ -40,6 +40,7 @@ bool GameScreen::init()
 	CreateMenu();
 	CreateMoveCircle();
 
+	CreateCamera();
 	CreateMap();
 	CreatePlayer();
 	CreateEnemys();
@@ -83,4 +84,21 @@ void GameScreen::GoToVictoryScene(cocos2d::Ref *pSender)
 	auto scene = Victory::createScene();
 
 	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
+}
+
+
+cocos2d::Vec2 ConvertToMapCoordinate(float x, float y)
+{
+	Vec2 xPosition = xVec * x;
+	Vec2 yPosition = yVec * y;
+
+	return xPosition + yPosition;
+}
+
+cocos2d::Vec2 ConvertToMapCoordinate(cocos2d::Vec2 position)
+{
+	Vec2 xPosition = xVec * position.x;
+	Vec2 yPosition = yVec * position.y;
+
+	return xPosition + yPosition;
 }

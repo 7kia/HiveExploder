@@ -22,6 +22,7 @@ void GameScreen::UpdateShoots(float dt)
 	}
 }
 
+
 void GameScreen::AddShoot(CShoot &addShoot)
 {
 	m_shoots.push_back(&addShoot);

@@ -12,7 +12,7 @@ namespace GameSceneRecourses// TODO : redesign
 	static const std::string PATH = "GameScene/";
 	static const std::string BACKGROUND = PATH + "Background.png";
 
-	static const std::string MAP = PATH + "tmx/map.tmx";
+	static const std::string MAP = PATH + "tmx/map2.tmx";
 	static const int kTagTileMap = 10;
 
 	static const std::string MANAGE_CIRCLE = PATH + "MoveCircle.png";
@@ -41,7 +41,15 @@ namespace GameSceneRecourses// TODO : redesign
 		static const std::string HYDRALISK = "Hydralisk.png";
 	//}
 
+		static const int levelInterface = -1;
+		static const int levelObjects = -2;
+		static const int levelMap = -3;
 }
+
+static const cocos2d::Vec2 xVec = { 0.7f, -0.7f };
+static const cocos2d::Vec2 yVec = { -0.7f, -0.7f };
+cocos2d::Vec2 ConvertToMapCoordinate(float x, float y);
+cocos2d::Vec2 ConvertToMapCoordinate(cocos2d::Vec2 position);
 
 class GameScreen : public cocos2d::Layer
 {
@@ -101,6 +109,7 @@ private:
 	void					CreateMoveCircle();
 	void					CreateListener();
 
+	void					CreateCamera();
 	void					CreateMap();
 	void					CreatePlayer();
 	void					CreateEnemys();
@@ -108,6 +117,7 @@ private:
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
+	void					UpdateCamera(float dt);
 	void					UpdateLifeObjects(float dt);
 	void					CheckHealthLifeObjects();
 	void					SearchEnemy();// TODO : redefine later
@@ -119,6 +129,8 @@ private:
 
 	size_t					m_id_player = 0;
 	size_t					m_amountMonsters = 10;
+
+	cocos2d::Camera*		m_camera;
 
 	bool					m_isTouching = false;
 	cocos2d::Vec2			m_touchPosition = cocos2d::Vec2(0.f, 0.f);

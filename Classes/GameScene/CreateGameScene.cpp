@@ -65,7 +65,8 @@ void GameScreen::CreateMenu()
 	Menu* menu = Menu::create(pauseButton, NULL);
 	menu->setPosition(Point::ZERO);
 
-	this->addChild(menu);
+	menu->setName("menu");
+	this->addChild(menu, GameSceneRecourses::levelInterface);
 }
 
 void GameScreen::CreateMoveCircle()
@@ -74,7 +75,7 @@ void GameScreen::CreateMoveCircle()
 
 	UpdateManageCircle();
 
-	this->addChild(m_manageCirlce.GetSprite(), 1);
+	this->addChild(m_manageCirlce.GetSprite(), GameSceneRecourses::levelInterface);
 }
 
 void GameScreen::CreateListener()
@@ -90,19 +91,28 @@ void GameScreen::CreateListener()
 	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
+void GameScreen::CreateCamera()
+{
+
+	m_camera = Camera::create();
+
+	setCameraMask(static_cast<int>(CameraFlag::DEFAULT), false);
+	m_camera->setCameraFlag(CameraFlag::DEFAULT);
+
+	addChild(m_camera);
+}
+
 void GameScreen::CreateMap()
 {
 	m_tileMap = CCTMXTiledMap::create(GameSceneRecourses::MAP);
 
-
-	this->addChild(m_tileMap, -2);
+	this->addChild(m_tileMap, GameSceneRecourses::levelMap);
 }
 
 void GameScreen::CreatePlayer()
 {
 	ValueMap objects = m_tileMap->getObjectGroup("LifeObjects")->getObject("Player");
 
-	objects["x"].asFloat();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
@@ -111,11 +121,12 @@ void GameScreen::CreatePlayer()
 	player->SetType(m_typesLifeObjects[TypeLifeObject::Player]);
 	//player->setPosition(visibleSize.width / 2 + origin.x,
 	//							visibleSize.height / 2 + origin.y);
+	//player->setPosition(ConvertToMapCoordinate(objects["x"].asFloat(),
+	//					objects["y"].asFloat()));
 	player->setPosition(objects["x"].asFloat(),
-						objects["y"].asFloat());
-
+							objects["y"].asFloat());
 	m_lifeObjects.push_back(player);
-	addChild(player, -1);
+	addChild(player, GameSceneRecourses::levelObjects);
 }
 
 void GameScreen::CreateEnemys()
@@ -135,7 +146,7 @@ void GameScreen::CreateEnemys()
 		enemy->setPositionY(visibleSize.height  + origin.y );
 
 		m_lifeObjects.push_back(enemy);
-		addChild(enemy, -1);
+		addChild(enemy, GameSceneRecourses::levelObjects);
 	}
 
 }
@@ -161,6 +172,6 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	shoot->SetDirection(directionShoot);
 
 	shoots.push_back(shoot);
-	scene->addChild(shoot, -1);
+	scene->addChild(shoot, GameSceneRecourses::levelObjects);
 
 }//*/
