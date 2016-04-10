@@ -46,11 +46,6 @@ namespace GameSceneRecourses// TODO : redesign
 		static const int levelMap = -3;
 }
 
-static const cocos2d::Vec2 xVec = { 0.7f, -0.7f };
-static const cocos2d::Vec2 yVec = { -0.7f, -0.7f };
-cocos2d::Vec2 ConvertToMapCoordinate(float x, float y);
-cocos2d::Vec2 ConvertToMapCoordinate(cocos2d::Vec2 position);
-
 class GameScreen : public cocos2d::Layer
 {
 public:
@@ -111,8 +106,7 @@ private:
 
 	void					CreateCamera();
 	void					CreateMap();
-	void					CreatePlayer();
-	void					CreateEnemys();
+	void					CreateLifeObjects();
 	void					CreateContactListener();
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
@@ -124,6 +118,8 @@ private:
 
 	bool					CheckVictoryCondition();
 	bool					CheckDefeatCondition(size_t index);
+
+	TypeLifeObject::ID		GetIdTypeLifeObject(const std::string & name);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 

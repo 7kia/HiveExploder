@@ -5,7 +5,7 @@ using namespace std;
 
 void GameScreen::CreateCashes()
 {
-
+	// TODO : delete if not need
 }
 
 
@@ -35,6 +35,15 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetDamage(5);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
+		+ GameSceneRecourses::HYDRALISK);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetId(TypeLifeObject::ID::Hydralisk);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetTexture(textureHydralisk);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetTextureRect(GameSceneRecourses::HYDRALISK_RECT);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetVelocity(80.f);
+
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetHealth(80);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetDamage(12);
 }
 
 void GameScreen::CreateTypesShoots()
@@ -59,8 +68,7 @@ void GameScreen::CreateMenu()
 											CC_CALLBACK_1(GameScreen::GoToPauseScene, this));
 
 	pauseButton->setPositionX(pauseButton->getContentSize().width / 2 + origin.x);
-	//visibleSize.height - // TODO : replace Y position
-	pauseButton->setPositionY( pauseButton->getContentSize().height + origin.y);
+	pauseButton->setPositionY(pauseButton->getContentSize().height + origin.y);
 
 	Menu* menu = Menu::create(pauseButton, NULL);
 	menu->setPosition(Point::ZERO);
@@ -93,13 +101,23 @@ void GameScreen::CreateListener()
 
 void GameScreen::CreateCamera()
 {
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	m_camera = Camera::create();
+	Vec3 spritePos = Vec3(visibleSize.width / 2 + origin.x,
+		visibleSize.height / 2 + origin.y,
+		1);
 
-	setCameraMask(static_cast<int>(CameraFlag::DEFAULT), false);
+	setCameraMask((unsigned short)CameraFlag::DEFAULT, true);
+
+	// TOOD : CAMERA
+	m_camera = Camera::Camera::createPerspective(60, (float)visibleSize.width / visibleSize.height, 1.0, 1000);
 	m_camera->setCameraFlag(CameraFlag::DEFAULT);
+	//the calling order matters, we should first call setPosition3D, then call lookAt.
+	m_camera->setPosition3D(spritePos + Vec3(0, 0, 800));
+	m_camera->lookAt(spritePos, Vec3(0.0, 1.0, 0.0));
 
-	addChild(m_camera);
+	this->addChild(m_camera);
 }
 
 void GameScreen::CreateMap()
@@ -109,44 +127,23 @@ void GameScreen::CreateMap()
 	this->addChild(m_tileMap, GameSceneRecourses::levelMap);
 }
 
-void GameScreen::CreatePlayer()
+void GameScreen::CreateLifeObjects()
 {
-	ValueMap objects = m_tileMap->getObjectGroup("LifeObjects")->getObject("Player");
+	ValueVector objects = m_tileMap->getObjectGroup("LifeObjects")->getObjects();
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Point origin = Director::getInstance()->getVisibleOrigin();
-
-	//CLifeObject player;
-	CLifeObject* player = new CLifeObject();
-	player->SetType(m_typesLifeObjects[TypeLifeObject::Player]);
-	//player->setPosition(visibleSize.width / 2 + origin.x,
-	//							visibleSize.height / 2 + origin.y);
-	//player->setPosition(ConvertToMapCoordinate(objects["x"].asFloat(),
-	//					objects["y"].asFloat()));
-	player->setPosition(objects["x"].asFloat(),
-							objects["y"].asFloat());
-	m_lifeObjects.push_back(player);
-	addChild(player, GameSceneRecourses::levelObjects);
-}
-
-void GameScreen::CreateEnemys()
-{
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Point origin = Director::getInstance()->getVisibleOrigin();
-
-	for (size_t index = 0; index < m_amountMonsters; index++)
+	ValueMap value;
+	for (const auto& object : objects)
 	{
-		CLifeObject* enemy = new CLifeObject();
-		enemy->SetType(m_typesLifeObjects[TypeLifeObject::Zergling]);
+		value = object.asValueMap();
+		
+		CLifeObject* lifeObjects = new CLifeObject();
+		lifeObjects->SetType(m_typesLifeObjects[GetIdTypeLifeObject(value["name"].asString())]);
 
-		float randomShiftX = CCRANDOM_0_1() *  visibleSize.width / 2;
-		enemy->setPositionX(visibleSize.width / 2  + origin.x
-							+ randomShiftX);
+		lifeObjects->setPosition(value["x"].asFloat(),
+								value["y"].asFloat());
 
-		enemy->setPositionY(visibleSize.height  + origin.y );
-
-		m_lifeObjects.push_back(enemy);
-		addChild(enemy, GameSceneRecourses::levelObjects);
+		m_lifeObjects.push_back(lifeObjects);
+		addChild(lifeObjects, GameSceneRecourses::levelObjects);
 	}
 
 }
@@ -159,9 +156,6 @@ void GameScreen::CreateContactListener()
 	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 }
 
-
-
-	///*
 void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CShoot*> &shoots)
 {
 	CShoot* shoot = new CShoot();
@@ -174,4 +168,4 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	shoots.push_back(shoot);
 	scene->addChild(shoot, GameSceneRecourses::levelObjects);
 
-}//*/
+}

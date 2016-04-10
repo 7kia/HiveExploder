@@ -30,9 +30,7 @@ bool GameScreen::init()
     {
         return false;
     }
-    
-    //Size visibleSize = Director::getInstance()->getVisibleSize();
-    //Point origin = Director::getInstance()->getVisibleOrigin();
+
 	CreateCashes();
 	CreateTypesLifeObjects();
 	CreateTypesShoots();
@@ -42,8 +40,7 @@ bool GameScreen::init()
 
 	CreateCamera();
 	CreateMap();
-	CreatePlayer();
-	CreateEnemys();
+	CreateLifeObjects();
 
 	CreateContactListener();
 
@@ -84,21 +81,4 @@ void GameScreen::GoToVictoryScene(cocos2d::Ref *pSender)
 	auto scene = Victory::createScene();
 
 	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
-}
-
-
-cocos2d::Vec2 ConvertToMapCoordinate(float x, float y)
-{
-	Vec2 xPosition = xVec * x;
-	Vec2 yPosition = yVec * y;
-
-	return xPosition + yPosition;
-}
-
-cocos2d::Vec2 ConvertToMapCoordinate(cocos2d::Vec2 position)
-{
-	Vec2 xPosition = xVec * position.x;
-	Vec2 yPosition = yVec * position.y;
-
-	return xPosition + yPosition;
 }

@@ -27,6 +27,7 @@ void GameScreen::UpdateCamera(float dt)
 	Direction directtionPlayer = m_lifeObjects[m_id_player]->GetDirection();
 	Vec2 shift = directtionPlayer * dt;
 
+	// TODO : redesign
 	m_camera->setPosition(positionPlayer + shift);
 
 	getChildByName("menu")->setPosition(getChildByName("menu")->getPosition() + shift);
