@@ -56,3 +56,8 @@ CWeapon::IdState CWeapon::GetState() const
 {
 	return m_state;
 }
+
+float CWeapon::GetDistance() const
+{
+	return m_type->GetDistance();
+}

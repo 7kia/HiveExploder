@@ -4,7 +4,11 @@ using namespace cocos2d;
 
 void CLifeObject::update(float dt)
 {
-	UpdatePosition(dt);
+	if (GetWeaponState() == CWeapon::IdState::NotActive)
+	{
+		UpdatePosition(dt);
+	}
+
 	m_weapon.Update(dt);
 }
 

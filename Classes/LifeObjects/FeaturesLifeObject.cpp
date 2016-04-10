@@ -34,3 +34,8 @@ TypeLifeObject::ID CLifeObject::GetIdType()
 {
 	return type->GetId();
 }
+
+float CLifeObject::GetDistanceWeapon() const
+{
+	return m_weapon.GetDistance();
+}

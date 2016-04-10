@@ -28,11 +28,15 @@ public:
 
 	void					SetId(ID id);
 	ID						GetId() const;
+
+	void					SetDistanse(float distance);
+	float					GetDistance() const;
 private:
 	ID						m_id = ID::NONE;
 
 	float					m_time;
 	float					m_velocity;
+	float					m_distance;
 	CDynamicFeature			m_damage;
 	const CShootType*		m_type_shoot;
 };

@@ -60,21 +60,25 @@ void GameScreen::CreateTypesWeapons()
 {
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetId(CTypeWeapon::PlayerWeapon);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDamage(3);
-	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTime(0.2f);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTime(0.25f);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTypeShoot(m_typesShoots[CShootType::PlayerShoot]);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetVelocity(750.f);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDistanse(750.f);
 
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetId(CTypeWeapon::ZerglingWeapon);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDamage(5);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetTime(1.f);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetTypeShoot(m_typesShoots[CShootType::MeleeShoot]);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetVelocity(750.f);
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDistanse(70.f);
 
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetId(CTypeWeapon::HydraliskWeapon);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDamage(13);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetTime(1.f);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetTypeShoot(m_typesShoots[CShootType::PlayerShoot]);// TODO : replace
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetVelocity(750.f);
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDistanse(350.f);
+
 }
 
 void GameScreen::CreateMenu()
@@ -181,8 +185,8 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 
 	shoot->SetWeapon(GetWeapon());
 	shoot->SetType(scene->m_typesShoots[CShootType::PlayerShoot]);
-	shoot->SetStartPlace(scene->m_lifeObjects[0]->getPosition(), scene->m_manageCirlce.GetDirection(),
-							scene->m_lifeObjects[0]->getContentSize());
+	shoot->SetStartPlace(getPosition(), this->GetDirection(),
+							getContentSize());
 	shoot->SetDirection(directionShoot);
 
 	shoots.push_back(shoot);

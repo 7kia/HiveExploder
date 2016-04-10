@@ -43,6 +43,8 @@ public:
 	void				SetTypeWeapon(const CTypeWeapon& weapon);
 	const CWeapon&		GetWeapon() const;
 
+	float				GetDistanceWeapon() const;
+
 	TypeLifeObject::ID GetIdType();
 	/////////////////
 

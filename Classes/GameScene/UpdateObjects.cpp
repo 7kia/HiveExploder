@@ -58,13 +58,25 @@ void GameScreen::CheckHealthLifeObjects()
 void GameScreen::SearchEnemy()// TODO : redefine
 {
 	Vec2 positionPlayer = m_lifeObjects[m_id_player]->getPosition();
+	Vec2 ownPosition;
 	for (auto &object : m_lifeObjects)
 	{
 		if (object->GetIdType() != TypeLifeObject::ID::Player)
 		{
-			Vec2 direction = positionPlayer - object->getPosition();
+			ownPosition = object->getPosition();
+			Vec2 direction = positionPlayer - ownPosition;
+			float distanse = positionPlayer.getDistance(ownPosition);
+
+
+			float distanceAttack = object->GetDistanceWeapon();
 			direction.normalize();
 			object->SetDirection(direction);
+
+			if (distanse < distanceAttack)
+			{
+				object->Attack();
+			}
+		
 		}
 	}
 

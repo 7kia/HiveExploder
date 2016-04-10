@@ -7,8 +7,8 @@ class CWeapon
 public:
 	enum class IdState
 	{
-		NotActive = 0,
-		NotShoot,
+		NotActive = 0	,
+		NotShoot		,
 		Shoot
 	};
 
@@ -22,10 +22,12 @@ public:
 	void					SetState(IdState state);
 	IdState					GetState() const;
 
-private:
-	IdState				m_state = IdState::NotActive;
-	float				m_time = 0.f;
+	float					GetDistance() const;
 
-	CDynamicFeature		m_damage;
-	const CTypeWeapon*	m_type;
+private:
+	IdState					m_state = IdState::NotActive;
+	float					m_time = 0.f;
+
+	CDynamicFeature			m_damage;
+	const CTypeWeapon*		m_type;
 };

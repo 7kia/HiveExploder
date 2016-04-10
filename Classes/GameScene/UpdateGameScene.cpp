@@ -19,6 +19,7 @@ void GameScreen::update(float dt)
 		{
 		case ManageCircle::Action::Attack:	
 			m_lifeObjects[m_id_player]->Attack();
+			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
 			break;
 		case ManageCircle::Action::Move:
 			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
@@ -38,7 +39,7 @@ void GameScreen::ActivateActiveWeapons()
 	{
 		if (lifeObject->GetWeaponState() == CWeapon::IdState::Shoot)
 		{
-			lifeObject->CreateShoot(this, m_manageCirlce.GetDirection(), m_shoots);
+			lifeObject->CreateShoot(this, lifeObject->GetDirection(), m_shoots);
 		}
 	}
 }
@@ -76,30 +77,7 @@ bool GameScreen::onContactBegin(PhysicsContact& contact)
 
 bool GameScreen::onContactPreSolve(cocos2d::PhysicsContact & contact)
 {
-	auto bodyA = contact.getShapeA()->getBody();
-	auto bodyB = contact.getShapeB()->getBody();
-	CCollision* collisionA = static_cast<CCollision*>(bodyA);
-	CCollision* collisionB = static_cast<CCollision*>(bodyB);
 
-	CEntity* entityA = collisionA->GetMaster();
-	CEntity* entityB = collisionB->GetMaster();
-
-	CEntity::idClass idA = entityA->GetIdClass();
-	CEntity::idClass idB = entityB->GetIdClass();
-
-	if ((idA == CEntity::idClass::LifeObject) && (idB == CEntity::idClass::LifeObject))
-	{
-		if ((dynamic_cast<CLifeObject*>(entityA)->GetIdType() == TypeLifeObject::ID::Player)
-			&& (dynamic_cast<CLifeObject*>(entityB)->GetIdType() == TypeLifeObject::ID::Zergling))
-		{
-			dynamic_cast<CLifeObject*>(entityA)->AddHealth(-dynamic_cast<CLifeObject*>(entityB)->GetDamage());
-		}
-		else if ((dynamic_cast<CLifeObject*>(entityA)->GetIdType() == TypeLifeObject::ID::Zergling)
-			&& (dynamic_cast<CLifeObject*>(entityB)->GetIdType() == TypeLifeObject::ID::Player))
-		{
-			dynamic_cast<CLifeObject*>(entityB)->AddHealth(-dynamic_cast<CLifeObject*>(entityA)->GetDamage());
-		}
-	}
 
 	return true;
 }
