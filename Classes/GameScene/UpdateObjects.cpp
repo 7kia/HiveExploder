@@ -6,13 +6,15 @@ void GameScreen::UpdateLifeObjects(float dt)
 {
 	UpdateCamera(dt);
 
+	CheckHealthLifeObjects();
+	SearchEnemy();// TODO : redefine
+
+
 	for (auto &object : m_lifeObjects)
 	{
 		object->update(dt);
 	}
 
-	CheckHealthLifeObjects();
-	SearchEnemy();// TODO : redefine
 
 	if (CheckVictoryCondition())
 	{
@@ -75,6 +77,10 @@ void GameScreen::SearchEnemy()// TODO : redefine
 			if (distanse < distanceAttack)
 			{
 				object->Attack();
+			}
+			else
+			{
+				object->SetWeaponState(CWeapon::IdState::NotActive);
 			}
 		
 		}

@@ -18,7 +18,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneRecourses::MARINE_RECT);
 	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(250.f);
-	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
+	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(400);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetWeapon(m_typesWeapons[CTypeWeapon::PlayerWeapon]);
 
@@ -50,6 +50,10 @@ void GameScreen::CreateTypesShoots()
 	m_typesShoots[CShootType::PlayerShoot].SetTexture(textureMarineShoot);
 	m_typesShoots[CShootType::PlayerShoot].SetRect(GameSceneRecourses::MARINE_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* textureHydraliskShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HYDRALISK_SHOOT);
+	m_typesShoots[CShootType::HydraliskShoot].SetTexture(textureHydraliskShoot);
+	m_typesShoots[CShootType::HydraliskShoot].SetRect(GameSceneRecourses::HYDRALISK_SHOOT_RECT);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureMeleeShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MELEE_SHOOT);
 	m_typesShoots[CShootType::MeleeShoot].SetTexture(textureMeleeShoot);
 	m_typesShoots[CShootType::MeleeShoot].SetRect(GameSceneRecourses::MELEE_SHOOT_RECT);
@@ -60,7 +64,7 @@ void GameScreen::CreateTypesWeapons()
 {
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetId(CTypeWeapon::PlayerWeapon);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDamage(3);
-	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTime(0.25f);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTime(0.15f);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTypeShoot(m_typesShoots[CShootType::PlayerShoot]);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDistanse(750.f);
@@ -73,11 +77,11 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDistanse(70.f);
 
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetId(CTypeWeapon::HydraliskWeapon);
-	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDamage(13);
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDamage(3);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetTime(1.f);
-	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetTypeShoot(m_typesShoots[CShootType::PlayerShoot]);// TODO : replace
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetTypeShoot(m_typesShoots[CShootType::HydraliskShoot]);// TODO : replace
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetVelocity(750.f);
-	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDistanse(350.f);
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDistanse(550.f);
 
 }
 
@@ -150,6 +154,27 @@ void GameScreen::CreateMap()
 	this->addChild(m_tileMap, GameSceneRecourses::levelMap);
 }
 
+void GameScreen::CreateWalls()
+{
+	ValueVector walls = m_tileMap->getObjectGroup("Walls")->getObjects();
+
+	ValueMap value;
+	for (const auto& wall : walls)
+	{
+		value = wall.asValueMap();
+
+		PhysicsBody* bodyWall = PhysicsBody::createBox(Size(value["width"].asFloat(), value["height"].asFloat()),
+														PhysicsMaterial(0.f, 0.f, 0.f),
+													Vec2(value["x"].asFloat(), value["y"].asFloat()));
+		bodyWall->setDynamic(true);
+		Sprite* spriteWall = Sprite::create();
+		spriteWall->setPhysicsBody(bodyWall);
+
+		addChild(spriteWall, GameSceneRecourses::levelObjects);
+	}
+
+}
+
 void GameScreen::CreateLifeObjects()
 {
 	ValueVector objects = m_tileMap->getObjectGroup("LifeObjects")->getObjects();
@@ -184,7 +209,7 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	CShoot* shoot = new CShoot();
 
 	shoot->SetWeapon(GetWeapon());
-	shoot->SetType(scene->m_typesShoots[CShootType::PlayerShoot]);
+	shoot->SetType(GetWeapon().GetTypeShoot());
 	shoot->SetStartPlace(getPosition(), this->GetDirection(),
 							getContentSize());
 	shoot->SetDirection(directionShoot);

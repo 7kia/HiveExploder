@@ -38,7 +38,7 @@ void CWeapon::Update(float dt)
 		}
 		break;
 	case IdState::Shoot:
-		m_state = IdState::NotActive;
+		m_state = IdState::NotShoot;
 		m_time = 0.f;
 		break;
 	default:
@@ -60,4 +60,9 @@ CWeapon::IdState CWeapon::GetState() const
 float CWeapon::GetDistance() const
 {
 	return m_type->GetDistance();
+}
+
+const CShootType & CWeapon::GetTypeShoot() const
+{
+	return m_type->GetTypeShoot();
 }

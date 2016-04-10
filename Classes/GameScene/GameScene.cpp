@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include "PauseScene/PauseScene.h"
 #include "GameOverScene/GameOverScene.h"
-#include "VictoryrScene/VictoryScene.h"
+#include "VictoryScene/VictoryScene.h"
 
 USING_NS_CC;
 
@@ -41,6 +41,7 @@ bool GameScreen::init()
 
 	CreateCamera();
 	CreateMap();
+	CreateWalls();
 	CreateLifeObjects();
 
 	CreateContactListener();

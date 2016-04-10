@@ -26,6 +26,7 @@ void GameScreen::update(float dt)
 			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
 			break;
 		default:
+			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
 			break;
 		}	
 		

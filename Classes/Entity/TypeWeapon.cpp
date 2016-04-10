@@ -36,9 +36,9 @@ void CTypeWeapon::SetTypeShoot(const CShootType & type)
 	m_type_shoot = &type;
 }
 
-const CShootType* CTypeWeapon::GetTypeShoot() const
+const CShootType& CTypeWeapon::GetTypeShoot() const
 {
-	return m_type_shoot;
+	return *m_type_shoot;
 }
 
 void CTypeWeapon::SetId(ID id)

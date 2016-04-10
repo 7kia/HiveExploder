@@ -24,6 +24,8 @@ public:
 
 	float					GetDistance() const;
 
+	const CShootType&		GetTypeShoot() const;
+
 private:
 	IdState					m_state = IdState::NotActive;
 	float					m_time = 0.f;

@@ -24,7 +24,7 @@ public:
 	int						GetDamage() const;
 
 	void					SetTypeShoot(const CShootType &type);
-	const CShootType*		GetTypeShoot() const;
+	const CShootType&		GetTypeShoot() const;
 
 	void					SetId(ID id);
 	ID						GetId() const;

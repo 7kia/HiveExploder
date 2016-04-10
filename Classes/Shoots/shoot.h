@@ -21,7 +21,7 @@ public:
 	//bool init() override;
 	virtual void cleanup() override;
 
-	void								SetType(CShootType &defineType);
+	void								SetType(const CShootType &defineType);
 	const CShootType&					GetType();
 
 	void								update(float dt) override;
@@ -38,7 +38,7 @@ public:
 	void								SetWeapon(const CWeapon & weapon);
 	const CWeapon*						GetWeapon() const;
 private:
-	std::shared_ptr<CShootType>			m_type;
+	std::shared_ptr<const CShootType>	m_type;
 
 	CDynamicFeature						m_damage;
 	const CWeapon*						m_weapon;

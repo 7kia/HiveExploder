@@ -17,7 +17,7 @@ void CShoot::cleanup()
 {
 }
 
-void CShoot::SetType(CShootType &defineType)
+void CShoot::SetType(const CShootType &defineType)
 
 {
 	m_type.reset(&defineType);// = &;

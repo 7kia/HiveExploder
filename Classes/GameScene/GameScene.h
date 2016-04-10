@@ -45,6 +45,9 @@ namespace GameSceneRecourses// TODO : redesign
 		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 80, 80);
 		static const std::string HYDRALISK = PATH + "Hydralisk.png";
 	//}
+		static const cocos2d::Rect HYDRALISK_SHOOT_RECT(0, 0, 8, 32);
+		static const std::string HYDRALISK_SHOOT = PATH + "Hydralisk_shoot.png";
+
 
 		static const int levelInterface = -1;
 		static const int levelObjects = -2;
@@ -86,9 +89,7 @@ public:
 	// /
 	// TODO : see need there private
 	//
-	CC_SYNTHESIZE(cocos2d::CCTMXTiledMap*, m_tileMap, TileMap);
-	CC_SYNTHESIZE(cocos2d::CCTMXLayer*, m_wallTiles, Wall);
-	CC_SYNTHESIZE(cocos2d::CCTMXLayer*, m_floorTiles, Floor);
+	//CC_SYNTHESIZE(cocos2d::CCTMXTiledMap*, m_tileMap, TileMap);
 
 public:
 	std::vector<CLifeObject*>			m_lifeObjects;
@@ -114,6 +115,7 @@ private:
 
 	void					CreateCamera();
 	void					CreateMap();
+	void					CreateWalls();
 	void					CreateLifeObjects();
 	void					CreateContactListener();
 	// UpdateGameScene.cpp
@@ -130,7 +132,7 @@ private:
 	TypeLifeObject::ID		GetIdTypeLifeObject(const std::string & name);
 private:
 	cocos2d::PhysicsWorld*	m_World;
-
+	cocos2d::CCTMXTiledMap* m_tileMap;
 	size_t					m_id_player = 0;
 	size_t					m_amountMonsters = 10;
 
