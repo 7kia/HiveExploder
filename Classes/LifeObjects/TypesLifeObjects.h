@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.h"
-#include "Collision.h"
-#include "Features.h"
+#include "../Entity/Entity.h"
+#include "../Entity/Collision.h"
+#include "../Entity/Features.h"
 
 class TypeLifeObject
 {

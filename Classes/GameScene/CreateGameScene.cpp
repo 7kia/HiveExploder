@@ -42,7 +42,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetTextureRect(GameSceneRecourses::HYDRALISK_RECT);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetVelocity(80.f);
 
-	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetHealth(80);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetHealth(180);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetDamage(12);
 }
 
@@ -168,4 +168,20 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	shoots.push_back(shoot);
 	scene->addChild(shoot, GameSceneRecourses::levelObjects);
 
+}
+
+TypeLifeObject::ID GameScreen::GetIdTypeLifeObject(const std::string & name)
+{
+	if (name == "Player")
+	{
+		return TypeLifeObject::Player;
+	}
+	else if (name == "Zergling")
+	{
+		return TypeLifeObject::Zergling;
+	}
+	else if (name == "Hydralisk")
+	{
+		return TypeLifeObject::Hydralisk;
+	}
 }

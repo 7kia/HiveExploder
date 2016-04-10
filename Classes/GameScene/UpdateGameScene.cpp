@@ -159,18 +159,3 @@ bool GameScreen::CheckDefeatCondition(size_t index)
 	return false;
 }
 
-TypeLifeObject::ID GameScreen::GetIdTypeLifeObject(const std::string & name)
-{
-	if (name == "Player")
-	{
-		return TypeLifeObject::Player;
-	}
-	else if (name == "Zergling")
-	{
-		return TypeLifeObject::Zergling;
-	}
-	else if (name == "Hydralisk")
-	{
-		return TypeLifeObject::Hydralisk;
-	}
-}

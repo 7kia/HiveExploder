@@ -37,7 +37,7 @@ namespace GameSceneRecourses// TODO : redesign
 
 	//namespace TypeHydralisk// TODO : redesign
 	//{
-		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 60, 60);
+		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 80, 80);
 		static const std::string HYDRALISK = "Hydralisk.png";
 	//}
 
