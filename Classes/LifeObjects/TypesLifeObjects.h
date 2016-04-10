@@ -3,6 +3,7 @@
 #include "../Entity/Entity.h"
 #include "../Entity/Collision.h"
 #include "../Entity/Features.h"
+#include "../Entity/Weapon.h"
 
 class TypeLifeObject
 {
@@ -28,8 +29,11 @@ public:
 	void					SetHealth(int value);
 	int						GetHealth();
 
-	void					SetDamage(int value);
 	int						GetDamage();
+
+	void					SetWeapon(const CTypeWeapon& weapon);
+	const CTypeWeapon&		GetWeapon() const;
+
 
 	void					SetId(ID id);
 	ID						GetId();
@@ -40,7 +44,7 @@ private:
 	float					m_velocity;
 
 	CDynamicFeature			m_health;
-	CDynamicFeature			m_damage;
+	const CTypeWeapon*		m_weapon;
 
 	ID						m_id = ID::None;
 };

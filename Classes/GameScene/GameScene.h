@@ -4,7 +4,7 @@
 #include "ManageCircle.h"
 #include "../LifeObjects/LifeObjects.h"
 #include "../Shoots/shoot.h"
-
+#include "../Entity/Weapon.h"
  
 
 namespace GameSceneRecourses// TODO : redesign
@@ -20,10 +20,15 @@ namespace GameSceneRecourses// TODO : redesign
 	//namespace TypePlayer// TODO : redesign
 	//{
 	static const cocos2d::Rect MARINE_RECT(0, 0, 60, 60);
-	static const std::string MARINE = "Marine.png";
+	static const std::string MARINE = PATH + "Marine.png";
 
 	static const cocos2d::Rect MARINE_SHOOT_RECT(0, 0, 8, 49);
-	static const std::string MARINE_SHOOT = "Marine_gun_bullet.png";
+	static const std::string MARINE_SHOOT = PATH + "Marine_gun_bullet.png";
+
+	static const cocos2d::Rect MELEE_SHOOT_RECT(0, 0, 10, 10);
+	static const std::string MELEE_SHOOT = PATH + "Melee.png";
+
+
 	//
 
 
@@ -32,13 +37,13 @@ namespace GameSceneRecourses// TODO : redesign
 	//namespace TypeZergling// TODO : redesign
 	//{
 		static const cocos2d::Rect ZERGLING_RECT(0, 0, 60, 60);
-		static const std::string ZERGLING = "Zergling.png";
+		static const std::string ZERGLING = PATH + "Zergling.png";
 	//}
 
 	//namespace TypeHydralisk// TODO : redesign
 	//{
 		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 80, 80);
-		static const std::string HYDRALISK = "Hydralisk.png";
+		static const std::string HYDRALISK = PATH + "Hydralisk.png";
 	//}
 
 		static const int levelInterface = -1;
@@ -63,6 +68,7 @@ public:
 	void					GoToVictoryScene(cocos2d::Ref * pSender);
     
     void					update(float dt) override;
+	void					ActivateActiveWeapons();
     
 	bool					onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event) override;
 	void					onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event) override;
@@ -89,7 +95,8 @@ public:
 	std::vector<CShoot*>				m_shoots;
 
 	TypeLifeObject						m_typesLifeObjects[TypeLifeObject::AmountIDs];
-	ShootType							m_typesShoots[ShootType::AmountIDs];
+	CTypeWeapon							m_typesWeapons[CTypeWeapon::AmountIDs];
+	CShootType							m_typesShoots[CShootType::AmountIDs];
 
 
 	ManageCircle						m_manageCirlce;
@@ -99,6 +106,7 @@ private:
 	void					CreateCashes();
 	void					CreateTypesLifeObjects();
 	void					CreateTypesShoots();
+	void					CreateTypesWeapons();
 
 	void					CreateMenu();
 	void					CreateMoveCircle();

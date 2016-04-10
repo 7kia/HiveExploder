@@ -23,7 +23,6 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	SetVelocity(type->GetVelocity());
 
 	m_health.SetValue(type->GetHealth());
-	m_damage.SetValue(type->GetDamage());
 }
 
 void CLifeObject::CreateCollision()
@@ -38,4 +37,18 @@ void CLifeObject::CreateCollision()
 
 void CLifeObject::Attack()
 {
+	if (m_weapon.GetState() == CWeapon::IdState::NotActive)
+	{
+		m_weapon.SetState(CWeapon::IdState::NotShoot);
+	}
+}
+
+void CLifeObject::SetWeaponState(CWeapon::IdState state)
+{
+	m_weapon.SetState(state);
+}
+
+CWeapon::IdState CLifeObject::GetWeaponState() const
+{
+	return m_weapon.GetState();
 }

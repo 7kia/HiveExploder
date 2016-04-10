@@ -43,14 +43,19 @@ int TypeLifeObject::GetHealth()
 	return m_health.GetValue();
 }
 
-void TypeLifeObject::SetDamage(int value)
-{
-	m_damage.SetValue(value);
-}
-
 int TypeLifeObject::GetDamage()
 {
-	return m_damage.GetValue();
+	return m_weapon->GetDamage();
+}
+
+void TypeLifeObject::SetWeapon(const CTypeWeapon & weapon)
+{
+	m_weapon = &weapon;
+}
+
+const CTypeWeapon & TypeLifeObject::GetWeapon() const
+{
+	return *m_weapon;
 }
 
 void TypeLifeObject::SetId(ID id)

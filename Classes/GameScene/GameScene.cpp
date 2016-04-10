@@ -32,8 +32,9 @@ bool GameScreen::init()
     }
 
 	CreateCashes();
-	CreateTypesLifeObjects();
 	CreateTypesShoots();
+	CreateTypesWeapons();
+	CreateTypesLifeObjects();
 
 	CreateMenu();
 	CreateMoveCircle();

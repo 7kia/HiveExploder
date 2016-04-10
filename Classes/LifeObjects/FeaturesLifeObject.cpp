@@ -17,7 +17,17 @@ int CLifeObject::GetHealth()
 
 int CLifeObject::GetDamage()
 {
-	return m_damage.GetValue();
+	return m_weapon.GetDamage();
+}
+
+void CLifeObject::SetWeapon(const CTypeWeapon & weapon)
+{
+	m_weapon.SetType(weapon);
+}
+
+const CTypeWeapon & CLifeObject::GetWeapon() const
+{
+	return m_weapon.GetType();
 }
 
 TypeLifeObject::ID CLifeObject::GetIdType()

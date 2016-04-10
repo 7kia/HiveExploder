@@ -12,50 +12,69 @@ void GameScreen::CreateCashes()
 
 void GameScreen::CreateTypesLifeObjects()
 {
-	Texture2D* textureMarine = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
-																			+ GameSceneRecourses::MARINE);
+	Texture2D* textureMarine = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MARINE);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetId(TypeLifeObject::ID::Player);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneRecourses::MARINE_RECT);
 	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(250.f);
-
 	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
-	m_typesLifeObjects[TypeLifeObject::Player].SetDamage(5);
+
+	m_typesLifeObjects[TypeLifeObject::Player].SetWeapon(m_typesWeapons[CTypeWeapon::PlayerWeapon]);
 
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
-																			+ GameSceneRecourses::ZERGLING);
+	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::ZERGLING);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetId(TypeLifeObject::ID::Zergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTexture(textureZergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneRecourses::ZERGLING_RECT);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetVelocity(80.f);
-
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
-	m_typesLifeObjects[TypeLifeObject::Zergling].SetDamage(5);
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetWeapon(m_typesWeapons[CTypeWeapon::ZerglingWeapon]);
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
-		+ GameSceneRecourses::HYDRALISK);
+	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HYDRALISK);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetId(TypeLifeObject::ID::Hydralisk);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetTexture(textureHydralisk);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetTextureRect(GameSceneRecourses::HYDRALISK_RECT);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetVelocity(80.f);
-
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetHealth(180);
-	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetDamage(12);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetWeapon(m_typesWeapons[CTypeWeapon::HydraliskWeapon]);
+
 }
 
 void GameScreen::CreateTypesShoots()
 {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PATH
-																					+ GameSceneRecourses::MARINE_SHOOT);
-	m_typesShoots[ShootType::PlayerShoot].SetTexture(textureMarineShoot);
-	m_typesShoots[ShootType::PlayerShoot].SetRect(GameSceneRecourses::MARINE_SHOOT_RECT);
-	m_typesShoots[ShootType::PlayerShoot].SetVelocity(750.f);
-	m_typesShoots[ShootType::PlayerShoot].SetDamage(5);
+	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MARINE_SHOOT);
+	m_typesShoots[CShootType::PlayerShoot].SetTexture(textureMarineShoot);
+	m_typesShoots[CShootType::PlayerShoot].SetRect(GameSceneRecourses::MARINE_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* textureMeleeShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MELEE_SHOOT);
+	m_typesShoots[CShootType::MeleeShoot].SetTexture(textureMeleeShoot);
+	m_typesShoots[CShootType::MeleeShoot].SetRect(GameSceneRecourses::MELEE_SHOOT_RECT);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+
+void GameScreen::CreateTypesWeapons()
+{
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetId(CTypeWeapon::PlayerWeapon);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDamage(3);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTime(1.f);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTypeShoot(m_typesShoots[CShootType::PlayerShoot]);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetVelocity(750.f);
+
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetId(CTypeWeapon::ZerglingWeapon);
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDamage(5);
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetTime(1.f);
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetTypeShoot(m_typesShoots[CShootType::MeleeShoot]);
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetVelocity(750.f);
+
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetId(CTypeWeapon::HydraliskWeapon);
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDamage(13);
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetTime(1.f);
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetTypeShoot(m_typesShoots[CShootType::PlayerShoot]);// TODO : replace
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetVelocity(750.f);
 }
 
 void GameScreen::CreateMenu()
@@ -160,7 +179,7 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 {
 	CShoot* shoot = new CShoot();
 
-	shoot->SetType(scene->m_typesShoots[ShootType::PlayerShoot]);
+	shoot->SetType(scene->m_typesShoots[CShootType::PlayerShoot]);
 	shoot->SetStartPlace(scene->m_lifeObjects[0]->getPosition(), scene->m_manageCirlce.GetDirection(),
 							scene->m_lifeObjects[0]->getContentSize());
 	shoot->SetDirection(directionShoot);

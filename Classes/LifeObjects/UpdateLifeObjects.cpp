@@ -5,6 +5,7 @@ using namespace cocos2d;
 void CLifeObject::update(float dt)
 {
 	UpdatePosition(dt);
+	m_weapon.Update(dt);
 }
 
 

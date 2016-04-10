@@ -6,8 +6,9 @@ static const float ABOUT_ZERO_VALUE_SPEED_BULLET = 50.f;// if speed less the val
 static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 1.1f;
 static const float COEFFECIENT_SLOW_BULLET = 0.01f;
 
-struct CShoot : public CEntity
+class CWeapon;
 
+class CShoot : public CEntity
 {
 public:
 	CShoot();
@@ -20,8 +21,8 @@ public:
 	//bool init() override;
 	virtual void cleanup() override;
 
-	void								SetType(ShootType &defineType);
-	const ShootType&					GetType();
+	void								SetType(CShootType &defineType);
+	const CShootType&					GetType();
 
 	void								update(float dt) override;
 
@@ -32,11 +33,13 @@ public:
 													cocos2d::Size sizeShooter);
 	int									GetDamage(int id);
 
-	//int								GetHealth() const;
-	int									GetDamage() ;
+	int									GetDamage();
 
+	void								SetWeapon(const CWeapon & weapon);
+	const CWeapon*						GetWeapon() const;
 private:
-	std::shared_ptr<ShootType>			m_type;
+	std::shared_ptr<CShootType>			m_type;
 
 	CDynamicFeature						m_damage;
+	const CWeapon*						m_weapon;
 };

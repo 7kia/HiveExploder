@@ -1,4 +1,5 @@
 #include "shoot.h"
+#include "../Entity/Weapon.h"
 
 using namespace cocos2d;
 
@@ -16,7 +17,7 @@ void CShoot::cleanup()
 {
 }
 
-void CShoot::SetType(ShootType &defineType)
+void CShoot::SetType(CShootType &defineType)
 
 {
 	m_type.reset(&defineType);// = &;
@@ -26,11 +27,11 @@ void CShoot::SetType(ShootType &defineType)
 
 	CreateCollision();
 
-	m_damage.SetValue(m_type->GetDamage());
-	m_velocity = m_type->GetVelocity();
+	m_damage.SetValue(m_weapon->GetDamage());
+	m_velocity = m_weapon->GetVelocity();
 }
 
-const ShootType& CShoot::GetType()
+const CShootType& CShoot::GetType()
 {
 	return *m_type;
 }
@@ -51,6 +52,16 @@ int CShoot::GetDamage(int id)
 int CShoot::GetDamage()
 {
 	return m_damage.GetValue();
+}
+
+void CShoot::SetWeapon(const CWeapon & weapon)
+{
+	m_weapon = &weapon;
+}
+
+const CWeapon* CShoot::GetWeapon() const
+{
+	return m_weapon;
 }
 
 void CShoot::SetDirection(cocos2d::Vec2 directionShooter)

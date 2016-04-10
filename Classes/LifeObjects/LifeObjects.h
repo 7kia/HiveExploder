@@ -34,10 +34,15 @@ public:
 
 	/////////////////
 	// FeaturesLifeObject.cpp
-	void			SetHealth(int value);
-	void			AddHealth(int value);
-	int				GetHealth();
-	int				GetDamage();
+	void				SetHealth(int value);
+	void				AddHealth(int value);
+
+	int					GetHealth();
+	int					GetDamage();
+
+	void				SetWeapon(const CTypeWeapon& weapon);
+	const CTypeWeapon&	GetWeapon() const;
+
 	TypeLifeObject::ID GetIdType();
 	/////////////////
 
@@ -49,7 +54,10 @@ public:
 								std::vector<CShoot*> &shoots);// TODO : transfer to CWeapon
 
 	/////////////////
-	void			Attack();
+	void					Attack();
+	void					SetWeaponState(CWeapon::IdState state);
+	CWeapon::IdState		GetWeaponState() const;
+
 	/////////////////
 public:
 
@@ -60,10 +68,10 @@ public:
 	///////
 
 private:
-	TypeLifeObject				*type;
+	TypeLifeObject*					type;
 
-	CDynamicFeature				m_health;
-	CDynamicFeature				m_damage;
+	CDynamicFeature					m_health;
+	CWeapon							m_weapon;
 	// TODO : delete
 };
 
