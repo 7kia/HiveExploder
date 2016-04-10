@@ -23,6 +23,9 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	SetVelocity(type->GetVelocity());
 
 	m_health.SetValue(type->GetHealth());
+
+	m_weapon.SetType(type->GetTypeWeapon());
+
 }
 
 void CLifeObject::CreateCollision()

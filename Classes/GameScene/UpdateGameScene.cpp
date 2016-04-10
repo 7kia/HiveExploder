@@ -9,6 +9,8 @@ void GameScreen::update(float dt)
 
 	UpdateShoots(dt);
 	UpdateLifeObjects(dt);
+	ActivateActiveWeapons();
+
 	///////////////////////
 	// check if the screen is being touched
 	if (true == m_isTouching)
@@ -17,42 +19,17 @@ void GameScreen::update(float dt)
 		{
 		case ManageCircle::Action::Attack:	
 			m_lifeObjects[m_id_player]->Attack();
-
-			if (m_lifeObjects[m_id_player]->GetWeaponState() == CWeapon::IdState::Shoot)
-			{
-				m_lifeObjects[0]->CreateShoot(this, m_manageCirlce.GetDirection(), m_shoots);
-			}
-			/*
-						if (m_lifeObjects[0]->m_timerAttack == 0.f)
-			{
-				m_lifeObjects[0]->CreateShoot(this, m_manageCirlce.GetDirection(), m_shoots);
-			}
-			*/
-
 			break;
 		case ManageCircle::Action::Move:
-			//lifeObjects[0]->Move(manageCirlce.GetDirection(), dt);
 			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
 			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
 			break;
 		default:
 			break;
 		}	
-
-		/*
-		if (m_lifeObjects[0]->m_timerAttack < m_lifeObjects[0]->m_timeReload)
-		{
-			m_lifeObjects[0]->m_timerAttack += dt;// CWeapon
-		}
-		else
-		{
-			m_lifeObjects[0]->m_timerAttack = 0.f;// CWeapon
-		}
-		*/
 		
 	}
 
-	ActivateActiveWeapons();
 }
 
 void GameScreen::ActivateActiveWeapons()

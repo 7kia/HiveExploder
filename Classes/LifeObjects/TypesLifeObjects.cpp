@@ -53,7 +53,7 @@ void TypeLifeObject::SetWeapon(const CTypeWeapon & weapon)
 	m_weapon = &weapon;
 }
 
-const CTypeWeapon & TypeLifeObject::GetWeapon() const
+const CTypeWeapon & TypeLifeObject::GetTypeWeapon() const
 {
 	return *m_weapon;
 }

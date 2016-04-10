@@ -40,8 +40,8 @@ public:
 	int					GetHealth();
 	int					GetDamage();
 
-	void				SetWeapon(const CTypeWeapon& weapon);
-	const CTypeWeapon&	GetWeapon() const;
+	void				SetTypeWeapon(const CTypeWeapon& weapon);
+	const CWeapon&		GetWeapon() const;
 
 	TypeLifeObject::ID GetIdType();
 	/////////////////

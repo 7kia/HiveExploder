@@ -20,14 +20,14 @@ int CLifeObject::GetDamage()
 	return m_weapon.GetDamage();
 }
 
-void CLifeObject::SetWeapon(const CTypeWeapon & weapon)
+void CLifeObject::SetTypeWeapon(const CTypeWeapon & weapon)
 {
 	m_weapon.SetType(weapon);
 }
 
-const CTypeWeapon & CLifeObject::GetWeapon() const
+const CWeapon & CLifeObject::GetWeapon() const
 {
-	return m_weapon.GetType();
+	return m_weapon;
 }
 
 TypeLifeObject::ID CLifeObject::GetIdType()

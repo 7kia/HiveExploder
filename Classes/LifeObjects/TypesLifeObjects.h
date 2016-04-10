@@ -32,7 +32,7 @@ public:
 	int						GetDamage();
 
 	void					SetWeapon(const CTypeWeapon& weapon);
-	const CTypeWeapon&		GetWeapon() const;
+	const CTypeWeapon&		GetTypeWeapon() const;
 
 
 	void					SetId(ID id);
