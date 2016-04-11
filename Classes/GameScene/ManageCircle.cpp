@@ -52,6 +52,11 @@ void ManageCircle::SetPosition(cocos2d::Vec2 pos)
 	m_sprite->setPosition(pos);
 }
 
+cocos2d::Vec2 ManageCircle::GetPosition() const
+{
+	return m_sprite->getPosition();
+}
+
 float ManageCircle::GetRadius()
 {
 	return RADIUS_CIRCLE;

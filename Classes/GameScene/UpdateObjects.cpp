@@ -29,15 +29,21 @@ void GameScreen::UpdateCamera(float dt)
 	Direction directtionPlayer = m_lifeObjects[m_id_player]->GetDirection();
 	Vec2 shift = directtionPlayer * dt;
 
-	// TODO : redesign
-	m_camera->setPosition(positionPlayer + shift);
+	// TODO : redesign // m_camera
+	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer + shift);
 
-	getChildByName("menu")->setPosition(getChildByName("menu")->getPosition() + shift);
+	UpdateManageCircle();
+
+
+	cocos2d::Node* menu = getChildByName("menu");
+	shift -= GetMiddleWindow();
+
+	menu->setPosition(positionPlayer + shift);
 }
 
 void GameScreen::CheckHealthLifeObjects()
 {
-	size_t index = 0;
+	size_t index = 0;// TODO : remove_if
 	while (index < m_lifeObjects.size())
 	{
 		if (m_lifeObjects[index]->GetHealth() < 1)

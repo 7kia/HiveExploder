@@ -3,6 +3,29 @@
 using namespace cocos2d;
 using namespace std;
 
+cocos2d::Vec2 GameScreen::GetMiddleWindow() const
+{
+	Size size = Director::getInstance()->getVisibleSize();
+	Vec2 result = Vec2(size.width, size.height);
+	result.x /= 2.f;
+	result.y /= 2.f;
+	return result;
+}
+
+CLifeObject & GameScreen::GetPlayer() const
+{
+	return *m_lifeObjects[m_id_player];
+}
+
+void GameScreen::UpdateTouchPosition(cocos2d::Touch *touch)
+{
+	Point origin = Director::getInstance()->getRunningScene()->getDefaultCamera()->getPosition();
+	origin -= GetMiddleWindow();
+
+	m_touchPosition = touch->getLocation();
+	m_touchPosition += origin;
+}
+
 void GameScreen::CreateCashes()
 {
 	// TODO : delete if not need
@@ -135,16 +158,17 @@ void GameScreen::CreateCamera()
 		visibleSize.height / 2 + origin.y,
 		1);
 
-	setCameraMask((unsigned short)CameraFlag::DEFAULT, true);
+	//setCameraMask((unsigned short)CameraFlag::DEFAULT, true);
 
+	m_camera = Director::getInstance()->getRunningScene()->getDefaultCamera();
 	// TOOD : CAMERA
-	m_camera = Camera::Camera::createPerspective(60, (float)visibleSize.width / visibleSize.height, 1.0, 1000);
-	m_camera->setCameraFlag(CameraFlag::DEFAULT);
+	//m_camera = Camera::Camera::createPerspective(60, (float)visibleSize.width / visibleSize.height, 1.0, 1000);
+	//m_camera->setCameraFlag(CameraFlag::DEFAULT);
 	//the calling order matters, we should first call setPosition3D, then call lookAt.
-	m_camera->setPosition3D(spritePos + Vec3(0, 0, 800));
-	m_camera->lookAt(spritePos, Vec3(0.0, 1.0, 0.0));
+	//m_camera->setPosition3D(spritePos + Vec3(0, 0, 800));
+	//m_camera->lookAt(spritePos, Vec3(0.0, 1.0, 0.0));
 
-	this->addChild(m_camera);
+	//this->addChild(m_camera);
 }
 
 void GameScreen::CreateMap()

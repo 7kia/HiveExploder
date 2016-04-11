@@ -103,8 +103,11 @@ public:
 	ManageCircle						m_manageCirlce;
 	// /\ 
 private:
+	cocos2d::Vec2			GetMiddleWindow() const;
+	CLifeObject&			GetPlayer() const;
+	void					UpdateTouchPosition(cocos2d::Touch *touch);
 	// CreateGameScene.cpp
-	void					CreateCashes();
+	void					CreateCashes();// TODO : delete if not need
 	void					CreateTypesLifeObjects();
 	void					CreateTypesShoots();
 	void					CreateTypesWeapons();

@@ -87,14 +87,14 @@ bool GameScreen::onContactPreSolve(cocos2d::PhysicsContact & contact)
 bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
 {
 	m_isTouching = true;
-	m_touchPosition = touch->getLocation();
 
+	UpdateTouchPosition(touch);
 	return true;
 }
 
 void GameScreen::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event)
 {
-	m_touchPosition = touch->getLocation();
+	UpdateTouchPosition(touch);
 }
 
 void GameScreen::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event)
@@ -110,10 +110,10 @@ void GameScreen::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event * event)
 void GameScreen::UpdateManageCircle()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Point origin = Director::getInstance()->getVisibleOrigin();
+	Point origin = m_lifeObjects[m_id_player]->getPosition();
 
-	m_manageCirlce.SetPositionX(visibleSize.width / 2 + origin.x);
-	m_manageCirlce.SetPositionY(origin.y + m_manageCirlce.GetRadius());
+	m_manageCirlce.SetPositionX(origin.x);
+	m_manageCirlce.SetPositionY(origin.y - visibleSize.height / 2.f + m_manageCirlce.GetRadius());
 }
 
 bool GameScreen::CheckVictoryCondition()

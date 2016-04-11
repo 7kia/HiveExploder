@@ -24,6 +24,8 @@ public:
 	void								SetPositionX(float x);
 	void								SetPositionY(float y);
 	void								SetPosition(cocos2d::Vec2 pos);
+
+	cocos2d::Vec2						GetPosition() const;
 	float								GetRadius();
 	cocos2d::Vec2						GetDirection();
 private:

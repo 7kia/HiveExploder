@@ -36,13 +36,14 @@ bool GameScreen::init()
 	CreateTypesWeapons();
 	CreateTypesLifeObjects();
 
-	CreateMenu();
-	CreateMoveCircle();
-
 	CreateCamera();
 	CreateMap();
 	CreateWalls();
 	CreateLifeObjects();
+
+	CreateMenu();
+	CreateMoveCircle();
+
 
 	CreateContactListener();
 
