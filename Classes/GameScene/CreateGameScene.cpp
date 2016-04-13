@@ -181,21 +181,33 @@ void GameScreen::CreateMap()
 void GameScreen::CreateWalls()
 {
 	ValueVector walls = m_tileMap->getObjectGroup("Walls")->getObjects();
+	/*
 
+	*/
 	ValueMap value;
 	for (const auto& wall : walls)
 	{
 		value = wall.asValueMap();
 
-		PhysicsBody* bodyWall = PhysicsBody::createBox(Size(value["width"].asFloat(), value["height"].asFloat()),
-														PhysicsMaterial(0.f, 0.f, 0.f),
-													Vec2(value["x"].asFloat(), value["y"].asFloat()));
-		bodyWall->setDynamic(true);
-		Sprite* spriteWall = Sprite::create();
+		Size size = Size(value["width"].asFloat(), value["height"].asFloat());
+		PhysicsBody* bodyWall = PhysicsBody::createBox(size,
+			PhysicsMaterial(0.1f, 1.0f, 0.0f));
+		bodyWall->setDynamic(false);
+
+		CEntity* spriteWall = new CEntity();
+		spriteWall->setContentSize(size);
 		spriteWall->setPhysicsBody(bodyWall);
+
+		Vec2 pos = Vec2(value["x"].asFloat(), value["y"].asFloat());
+		spriteWall->setPosition(pos);
+		spriteWall->setTextureRect(m_typesShoots[CShootType::MeleeShoot].GetRectangle());
+		spriteWall->setTexture(m_typesShoots[CShootType::MeleeShoot].GetTexture());
+
+
 
 		addChild(spriteWall, GameSceneRecourses::levelObjects);
 	}
+
 
 }
 
