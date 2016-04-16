@@ -18,13 +18,13 @@ public:
 	CREATE_FUNC(CLifeObject);
 	//CLifeObject* create(const std::string& filename) = delete;
 
-	void SetType(TypeLifeObject &setType);
+	void				SetType(TypeLifeObject &setType);
 
-	void CreateCollision();
+	void				CreateCollision();
 
-	void Move(cocos2d::Vec2 shiftVector, float dt);
+	void				Move(cocos2d::Vec2 shiftVector, float dt);
 
-	void GetCoordinateForView(cocos2d::GLView & view) const;
+	void				GetCoordinateForView(cocos2d::GLView & view) const;// TODO : camera
 
 	/////////////////
 	// UpdateLifeObject.cpp
@@ -45,7 +45,7 @@ public:
 
 	float				GetDistanceWeapon() const;
 
-	TypeLifeObject::ID GetIdType();
+	TypeLifeObject::ID	GetIdType() const;
 	/////////////////
 
 	/////////////////
@@ -70,7 +70,7 @@ public:
 	///////
 
 private:
-	TypeLifeObject*					type;
+	std::shared_ptr<const TypeLifeObject>					m_type;//TypeLifeObject
 
 	CDynamicFeature					m_health;
 	CWeapon							m_weapon;

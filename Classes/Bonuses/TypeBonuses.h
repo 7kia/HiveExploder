@@ -10,7 +10,7 @@ public:
 	{
 		MedicineChest = 0,
 		GrenadeGun,
-		PlasmaGaun,
+		PlasmaGun,
 		AmountIDs
 	};
 public:

@@ -17,7 +17,7 @@ void TypeLifeObject::SetHealth(int value)
 	m_health.SetValue(value);
 }
 
-int TypeLifeObject::GetHealth()
+int TypeLifeObject::GetHealth() const
 {
 	return m_health.GetValue();
 }
@@ -42,7 +42,7 @@ void TypeLifeObject::SetId(ID id)
 	m_id = id;
 }
 
-TypeLifeObject::ID TypeLifeObject::GetId()
+TypeLifeObject::ID TypeLifeObject::GetId() const
 {
 	return m_id;
 }

@@ -5,6 +5,7 @@
 #include "../LifeObjects/LifeObjects.h"
 #include "../Shoots/shoot.h"
 #include "../Entity/Weapon.h"
+#include "../Bonuses/Bonuses.h"
  
 
 namespace GameSceneRecourses// TODO : redesign
@@ -14,6 +15,13 @@ namespace GameSceneRecourses// TODO : redesign
 
 	static const std::string MAP = PATH + "tmx/map.tmx";
 	static const int kTagTileMap = 10;
+
+	static const cocos2d::Rect BONUS_RECT(0, 0, 100, 100);
+	static const std::string BONUS_MED_PACK = PATH + "MedPack.png";
+	static const std::string BONUS_GRENADE_GUN = PATH + "GrenadeGun.png";
+	static const std::string BONUS_PLASMA_GUN = PATH + "PlasmaGun.png";
+
+
 
 	static const std::string MANAGE_CIRCLE = PATH + "MoveCircle.png";
 
@@ -94,11 +102,12 @@ public:
 public:
 	std::vector<CLifeObject*>			m_lifeObjects;
 	std::vector<CShoot*>				m_shoots;
+	std::vector<CBonus*>				m_bonuses;
 
 	TypeLifeObject						m_typesLifeObjects[TypeLifeObject::AmountIDs];
 	CTypeWeapon							m_typesWeapons[CTypeWeapon::AmountIDs];
 	CShootType							m_typesShoots[CShootType::AmountIDs];
-
+	CBonusesType						m_typeBonuses[CBonusesType::AmountIDs];
 
 	ManageCircle						m_manageCirlce;
 	// /\ 
@@ -111,6 +120,7 @@ private:
 	void					CreateTypesLifeObjects();
 	void					CreateTypesShoots();
 	void					CreateTypesWeapons();
+	void					CreateTypesBonuses();
 
 	void					CreateMenu();
 	void					CreateMoveCircle();
@@ -120,6 +130,8 @@ private:
 	void					CreateMap();
 	void					CreateWalls();
 	void					CreateLifeObjects();
+	void					CreateBonuses();
+
 	void					CreateContactListener();
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
@@ -144,6 +156,7 @@ private:
 	bool					CheckDefeatCondition(size_t index);
 
 	TypeLifeObject::ID		GetIdTypeLifeObject(const std::string & name);
+	CBonusesType::ID		GetIdTypeBonuses(const std::string & name);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 	cocos2d::CCTMXTiledMap* m_tileMap;

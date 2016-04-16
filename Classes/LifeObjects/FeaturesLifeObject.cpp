@@ -30,9 +30,9 @@ const CWeapon & CLifeObject::GetWeapon() const
 	return m_weapon;
 }
 
-TypeLifeObject::ID CLifeObject::GetIdType()
+TypeLifeObject::ID CLifeObject::GetIdType() const
 {
-	return type->GetId();
+	return m_type->GetId();
 }
 
 float CLifeObject::GetDistanceWeapon() const

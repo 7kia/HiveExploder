@@ -23,7 +23,7 @@ public:
 	float					GetVelocity() const;
 
 	void					SetHealth(int value);
-	int						GetHealth();
+	int						GetHealth() const;
 
 	int						GetDamage();
 
@@ -32,7 +32,7 @@ public:
 
 
 	void					SetId(ID id);
-	ID						GetId();
+	ID						GetId() const;
 	// TODO : there not enough functional
 private:
 	float					m_velocity;

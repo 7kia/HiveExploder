@@ -39,7 +39,6 @@ public:
 	const CWeapon*						GetWeapon() const;
 private:
 	std::shared_ptr<const CShootType>	m_type;
-
 	CDynamicFeature						m_damage;
 	const CWeapon*						m_weapon;
 };

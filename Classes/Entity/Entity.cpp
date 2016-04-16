@@ -32,4 +32,3 @@ void CEntity::SetIdClass(idClass id)
 {
 	m_idClass = id;
 }
-

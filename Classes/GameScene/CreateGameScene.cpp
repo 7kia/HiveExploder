@@ -99,6 +99,27 @@ void GameScreen::CreateTypesWeapons()
 
 }
 
+void GameScreen::CreateTypesBonuses()
+{
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* textureMedPack = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_MED_PACK);
+
+	m_typeBonuses[CBonusesType::MedicineChest].SetTexture(textureMedPack);
+	m_typeBonuses[CBonusesType::MedicineChest].SetTextureRect(GameSceneRecourses::BONUS_RECT);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* textureGrenadeGun = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_GRENADE_GUN);
+
+	m_typeBonuses[CBonusesType::GrenadeGun].SetTexture(textureGrenadeGun);
+	m_typeBonuses[CBonusesType::GrenadeGun].SetTextureRect(GameSceneRecourses::BONUS_RECT);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* texturePlasmaGun = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_PLASMA_GUN);
+
+	m_typeBonuses[CBonusesType::PlasmaGun].SetTexture(texturePlasmaGun);
+	m_typeBonuses[CBonusesType::PlasmaGun].SetTextureRect(GameSceneRecourses::BONUS_RECT);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}
+
 void GameScreen::CreateMenu()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -138,6 +159,7 @@ void GameScreen::CreateListener()
 	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
+// TODO ; redesign
 void GameScreen::CreateCamera()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -221,6 +243,26 @@ void GameScreen::CreateLifeObjects()
 
 }
 
+void GameScreen::CreateBonuses()
+{
+	ValueVector objects = m_tileMap->getObjectGroup("Bonuses")->getObjects();
+
+	ValueMap value;
+	for (const auto& object : objects)
+	{
+		value = object.asValueMap();
+
+		CBonus* bonus = new CBonus();
+		bonus->SetType(m_typeBonuses[GetIdTypeBonuses(value["name"].asString())]);
+
+		bonus->setPosition(value["x"].asFloat(),
+			value["y"].asFloat());
+
+		m_bonuses.push_back(bonus);
+		addChild(bonus, GameSceneRecourses::levelObjects);
+	}
+}
+
 void GameScreen::CreateContactListener()
 {
 	EventListenerPhysicsContact* contactListener = EventListenerPhysicsContact::create();
@@ -259,5 +301,21 @@ TypeLifeObject::ID GameScreen::GetIdTypeLifeObject(const std::string & name)
 	else if (name == "Hydralisk")
 	{
 		return TypeLifeObject::Hydralisk;
+	}
+}
+
+CBonusesType::ID GameScreen::GetIdTypeBonuses(const std::string & name)
+{
+	if (name == "MedPack")
+	{
+		return CBonusesType::MedicineChest;
+	}
+	else if (name == "GrenadeGun")
+	{
+		return CBonusesType::GrenadeGun;
+	}
+	else if (name == "PlasmaGun")
+	{
+		return CBonusesType::PlasmaGun;
 	}
 }
