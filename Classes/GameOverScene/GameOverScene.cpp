@@ -53,7 +53,7 @@ void GameOver::CreateMenu()
 
 	menu->alignItemsVerticallyWithPadding(visibleSize.height / 8);
 
-	this->addChild(menu);
+	this->addChild(menu, 0);
 }
 
 void GameOver::CreateBackground()

@@ -68,7 +68,7 @@ void PauseMenu::GoToMainMenuScene(cocos2d::Ref *pSender)
     auto scene = MainMenu::createScene();
     
     Director::getInstance()->popScene();
-	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+	Director::getInstance()->replaceScene(scene);
 }
 
 void PauseMenu::Retry(cocos2d::Ref *pSender)
@@ -76,5 +76,5 @@ void PauseMenu::Retry(cocos2d::Ref *pSender)
     auto scene = GameScreen::createScene();
     
     Director::getInstance()->popScene();
-	Director::getInstance()->replaceScene(TransitionFade::create(1.0, scene));
+	Director::getInstance()->replaceScene(scene);
 }

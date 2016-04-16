@@ -32,7 +32,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneRecourses::MARINE_RECT);
 	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(250.f);
-	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(400);
+	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetWeapon(m_typesWeapons[CTypeWeapon::PlayerWeapon]);
 

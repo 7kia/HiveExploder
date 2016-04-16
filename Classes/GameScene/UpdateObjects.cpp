@@ -25,20 +25,25 @@ void GameScreen::UpdateLifeObjects(float dt)
 
 void GameScreen::UpdateCamera(float dt)
 {
-	Vec2 positionPlayer = m_lifeObjects[m_id_player]->getPosition();
-	Direction directtionPlayer = m_lifeObjects[m_id_player]->GetDirection();
-	Vec2 shift = directtionPlayer * dt;
+	Vec2 positionPlayer = GetPlayer().getPosition();
+	Direction directtionPlayer = GetPlayer().GetDirection();
 
-	// TODO : redesign // m_camera
-	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer + shift);
+	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer);
 
 	UpdateManageCircle();
 
-
 	cocos2d::Node* menu = getChildByName("menu");
-	shift -= GetMiddleWindow();
+	menu->setPosition(positionPlayer - GetMiddleWindow());
+}
 
-	menu->setPosition(positionPlayer + shift);
+Camera & GameScreen::GetCamera()
+{
+	return *Director::getInstance()->getRunningScene()->getDefaultCamera();
+}
+
+void GameScreen::ResetCamera()
+{
+	GetCamera().setPosition(Vec2::ZERO);
 }
 
 void GameScreen::CheckHealthLifeObjects()
@@ -50,6 +55,7 @@ void GameScreen::CheckHealthLifeObjects()
 		{
 			if (CheckDefeatCondition(index))
 			{
+				ResetCamera();// TODO : remove_if
 				GoToGameOverScene(this);
 			}
 
@@ -65,31 +71,37 @@ void GameScreen::CheckHealthLifeObjects()
 
 void GameScreen::SearchEnemy()// TODO : redefine
 {
-	Vec2 positionPlayer = m_lifeObjects[m_id_player]->getPosition();
-	Vec2 ownPosition;
+	Vec2 positionPlayer = GetPlayer().getPosition();
 	for (auto &object : m_lifeObjects)
 	{
 		if (object->GetIdType() != TypeLifeObject::ID::Player)
 		{
-			ownPosition = object->getPosition();
-			Vec2 direction = positionPlayer - ownPosition;
-			float distanse = positionPlayer.getDistance(ownPosition);
-
-
-			float distanceAttack = object->GetDistanceWeapon();
-			direction.normalize();
-			object->SetDirection(direction);
-
-			if (distanse < distanceAttack)
-			{
-				object->Attack();
-			}
-			else
-			{
-				object->SetWeaponState(CWeapon::IdState::NotActive);
-			}
-		
+			DefineDirectionToEnemyForObject(object, positionPlayer);
+			DefineNeedAttackEnemy(object, positionPlayer);	
 		}
 	}
 
+}
+
+void GameScreen::DefineDirectionToEnemyForObject(CLifeObject * object, const Vec2 & positionEnemy)
+{
+	Vec2 direction = positionEnemy - object->getPosition();
+
+	direction.normalize();
+	object->SetDirection(direction);
+}
+
+void GameScreen::DefineNeedAttackEnemy(CLifeObject * object, const Vec2 & positionEnemy)
+{
+	float distanse = positionEnemy.getDistance(object->getPosition());
+	float distanceAttack = object->GetDistanceWeapon();
+
+	if (distanse < distanceAttack)
+	{
+		object->Attack();
+	}
+	else
+	{
+		object->SetWeaponState(CWeapon::IdState::NotActive);
+	}
 }

@@ -11,8 +11,6 @@ void GameScreen::update(float dt)
 	UpdateLifeObjects(dt);
 	ActivateActiveWeapons();
 
-	///////////////////////
-	// check if the screen is being touched
 	if (true == m_isTouching)
 	{
 		switch (m_manageCirlce.GetAction(m_touchPosition))
@@ -23,7 +21,7 @@ void GameScreen::update(float dt)
 			break;
 		case ManageCircle::Action::Move:
 			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
-			//m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
+			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
 			break;
 		default:
 			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);

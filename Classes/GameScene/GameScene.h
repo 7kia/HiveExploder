@@ -124,10 +124,21 @@ private:
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
+
 	void					UpdateCamera(float dt);
+	cocos2d::Camera &		GetCamera();
+	void					ResetCamera();
+
 	void					UpdateLifeObjects(float dt);
 	void					CheckHealthLifeObjects();
+
+	// UpdateObjects.cpp
 	void					SearchEnemy();// TODO : redefine later
+	void					DefineDirectionToEnemyForObject(CLifeObject * object,
+															const cocos2d::Vec2 & positionEnemy);
+	void					DefineNeedAttackEnemy(CLifeObject * object,
+															const cocos2d::Vec2 & positionEnemy);
+
 
 	bool					CheckVictoryCondition();
 	bool					CheckDefeatCondition(size_t index);
