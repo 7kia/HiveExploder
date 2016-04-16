@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="166">
+ <tileset firstgid="1" name="Tiles" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="342" columns="18">
+  <image source="../Tiles.png" width="626" height="659"/>
+ </tileset>
+ <tileset firstgid="343" name="Buildings" tilewidth="32" tileheight="32" tilecount="156" columns="13">
+  <image source="Buildings.png" width="416" height="384"/>
+ </tileset>
+ <layer name="tiles" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt3M9r1EAUB/BZrYIi6NYflSpeFA8ePKoHFRfRq4qo/4b1IhYtRRBBsH+AepcFD14EvYj4CwsiWFSoF0FP/Qu8iHUem9cds0l2Jnlv8nbzhC/buts2O599M8lkku3GmD0aEZm22WmzQpS7No+Zc49we6VlJ7HHgs1D5iwIaDf1aLbHdpu9SaYDnlMPHo9dNjdt5pKvfZ9TDz6PqzYzOR55zzXV45dQjzs2D5hzX0D755lUdaH2aNs8Yk5bQNtzhdqD2wJTd7uFxrd21ENWtL+SFWoPnS+R5TGK+7vu8W3eca4bOPa6xZA59Vh7Pz7/h4H3fo0hM+qhHuqhHuoh2gP/4fdTZnA836cetdVHaNRDPdRj9D1+qwerx6zNfI5H3nNN8ID3fpsh8wUe7j5Hel+j6LkmeHBG15fICqVHU8YPn4TOUXJ4rKjHWkKP+Yd56PorWR4x11+Ny/oSbo9Yx4PwM0cEtKF6xPP4kWRLy5gdBVnfovl7oXOU0jw6kTy22vZeso8HW4NZhvdDaFImTfKAz//uAg8JJk3x2Gbbt2sfv9l8L/Co26RJHkV1EWIy7utLJHpAFu3rN2R4jMp8u1SPLR7jRp7HhHqQp4yFesjpp9SD1+NzBQ8dP+g9OjbvTLiL1gd9/tq0bZu+ML3jjxCXPI86zteOiwfGtHppB9RLngdnmuKRrpdOUjPqUa8HmmCtdE2vViBfzKBH1niuHnzBfqyTsR8GHlAfP4V4xFp/VacHBPuwrunXCgS+/2NkeJRdf1XmfgD3k995MiOHbc4m4W4LrBU3sT8b1OtLqLM/ooeEqIesSPc4YHPI5oKAbZHq4XM+Zo5g26qe96HYhro8plrF6y7c9Rc+8zczBNtWdZ7IdxtC7mFwj+Bz4nN+8KVnJgI8YA3PiVRO21yxOWNzOfk+/RrI8Qge6BCyj75AsF0+84nY3l3TO+efTreER5VjimOMHmUcMFgjsTyWTP5czlPTmz+I4XGU0aPqGmMukxAPyIeIHh3BHlwmrscnM3xtEnjE6q8k1weXievhc44GPWY92qoJHtQmrkdRP+V6wBgy5WHSFA9KE9dj2BpKyHLi4Zrgucbrqcd5kz9H6LZN1r4u5NQIeaAJRdDD9xx/2gSOD2+Y7JStDcwoeVAl1CNtMlHgUdWE4rgra95k3DxwHOH0uEnkkVUnTfWQYNEEj3R/5b7Xqn0UtUUMD8p7oYd4fLSve5vklc2mVu/8ctVxm9OC2wPPN1NtZ4iH209tJragGr99PPAcvySLsh6wLgY8NrZoLWJ6UJhQW1StD451YjE9qvRbHBZlPHAchxrhWEcZ26NsjSwwbmfo/hXWyDh4lKkRrtpQj3I1Eut8bYjHuPRXZWpEose4jOfj4IFj+rD7F5wv4VWXR8iaYxg7YlwfFTp/BX0Wrtmiuq9EXR6SUsWjyrHIpYyfUY++x9sAExxD0AT6rnUENaIefY+s64N8jtPRZANBv6Ue/3sseXq48+1pE/WI75Floh70Hm/s43vTP8fxdYiPa4L7W0V/69yQ59Xjf4903gSYYJ9V5bhdPfoe6b4H2veZ8evDlh1P9aDxcK8pbTvHFm4fVlQrFPNa6pF9vRpcj71qM9nq1wrkdaDHxUAb9Si+fhBcsE6em+J9sEWj40cMj1Unk84+WNa9PtSD1yMdvLcXjPNZ9/rQ8SOuB97nA+qgawbv9aEecT0g2xKPJxlRj/o8uurB5rEj4PVbHY90dDyn8bhU0iN9fbp6xPfA/mrJjM7+7jUB7aweo1sfk0I8ONdt1N3OIR5wHeyewGR5hP4OzWDg/of/ABepxqM=
+  </data>
+ </layer>
+ <layer name="Builds" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztnVVz20AURq1faScpN1RuqNxQmZmZmZmZ8aEMD2V4KP2Cnk7TmTqzciRbVnal78ycibzKyr5ZXWm9a28yGSFE0sh6mUwOK7ASq7y/5WP4ORbHecG2i2UOdefiPJyPC3AJLsVluBxX+JSZ6rpONTHUYC3WYX1XTFP4ORWnecG2i2UldVfhalyDa3EjbsLNuAW3+pSZ6rpOAzE0YhM2Y0vM+bGNuttxB+7EXbgP9+MBPIiHfMpMdV2nlRjasB07sDPm/DhM3SN4FI/hcTyNZ/AsnsPzPmWmukIIEZasrh2Jxq8fsRAX4WK1f9EUkzt+/Yh1uB43qD1ipZx9blvoQwx9sZ+Xv20j5exz28IQYhiKw7z8bdE7RJkTNzjGTbyFt/GO2jU0UebEI47xGJ/gU3ym9ghNlPnxhmO8xXf4Hj+oPUITZX584xjf8Qf+xF9qj9D49a9s72slFb/+lfpaQgghhBDp5AL9v4t4CS/jlZT0B22d87nL67mH9/EBPrTs9ZWL3prz6WmM8jmPX+BLfIWvE9geu4lpD+61ILaexig/8vgTfsYv+NWC1xw1J4jpJJ6yILakjFGWMhZ1ld+7htctiD0pY5RpG4uy6RprIm1jtTZdY02kLT9susaaSFt+2E7a8sN2lB92ESY/kvpZP5sIkx9J/ayfTSg/7EL5YRfKD7tQfthF2Pcf/dk3AAfiIBzsSHu4Mj8Y9v3HcPaNwJE4CkdbGld3XJkfDJsf49k3ASfiJJxsaVzdSer84HTimIEzcRbOdiSuNMwPinQS5PuZpjV9RHkI8v1M05o+JmyfH3SBIPlhWtPHhO3zgy4QJD9Ma/qYsH1+UAghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQIglku8wZ9uV8FOXj3984W2Cf2iM+Cq1boPXV4qfQugVafzB+dN7bhc57IUSc/Pk/8zmswEqs8sxlIjoKrelXTVkN1mId1nvmslKeQ+RTaE2/BsoasQmbscUzl5XyHCKfQuduK2Vt2I4d2OmZy0p5jv9xdZ3BKCl07kZ1/wiaH66uMxglcdw/guLqOoNREsf9IyiurjMYF1HdP0Ty+A3pUHwx
+  </data>
+ </layer>
+ <objectgroup name="LifeObjects">
+  <object id="1" name="Player" x="77" y="3051" width="61" height="67"/>
+  <object id="2" name="Zergling" x="808" y="2031" width="59" height="61"/>
+  <object id="3" name="Zergling" x="544" y="1586" width="59" height="61"/>
+  <object id="4" name="Zergling" x="898" y="1885" width="59" height="61"/>
+  <object id="5" name="Zergling" x="919" y="2038" width="59" height="61"/>
+  <object id="36" name="Hydralisk" x="308" y="817" width="59" height="61"/>
+  <object id="37" name="Zergling" x="776" y="2883" width="59" height="61"/>
+  <object id="38" name="Zergling" x="1007" y="2887" width="59" height="61"/>
+  <object id="39" name="Zergling" x="887" y="2890" width="59" height="61"/>
+  <object id="53" name="Zergling" x="360" y="1595" width="59" height="61"/>
+  <object id="54" name="Zergling" x="176" y="1602" width="59" height="61"/>
+  <object id="55" name="Zergling" x="528" y="1413" width="59" height="61"/>
+  <object id="56" name="Zergling" x="57" y="1235" width="59" height="61"/>
+  <object id="57" name="Zergling" x="325" y="1051" width="59" height="61"/>
+  <object id="58" name="Zergling" x="534" y="1016" width="59" height="61"/>
+  <object id="59" name="Zergling" x="532" y="546" width="59" height="61"/>
+  <object id="60" name="Zergling" x="531" y="460" width="59" height="61"/>
+  <object id="61" name="Zergling" x="293" y="377" width="59" height="61"/>
+  <object id="62" name="Zergling" x="82" y="330" width="59" height="61"/>
+  <object id="63" name="Zergling" x="302" y="53" width="59" height="61"/>
+  <object id="64" name="Zergling" x="949" y="291" width="59" height="61"/>
+  <object id="65" name="Zergling" x="1110" y="296" width="59" height="61"/>
+  <object id="66" name="Zergling" x="1254" y="280" width="59" height="61"/>
+  <object id="67" name="Hydralisk" x="1658.97" y="211.788" width="59" height="61"/>
+  <object id="68" name="Hydralisk" x="1679.94" y="326.667" width="59" height="61"/>
+  <object id="69" name="Hydralisk" x="1681.42" y="265.576" width="59" height="61"/>
+  <object id="70" name="Zergling" x="1700.91" y="662.667" width="59" height="61"/>
+  <object id="71" name="Zergling" x="1844.91" y="646.667" width="59" height="61"/>
+  <object id="72" name="Zergling" x="1539.91" y="657.667" width="59" height="61"/>
+  <object id="87" name="Hydralisk" x="1938.94" y="706.667" width="59" height="61"/>
+  <object id="88" name="Hydralisk" x="1917.97" y="591.788" width="59" height="61"/>
+  <object id="89" name="Hydralisk" x="1940.42" y="645.576" width="59" height="61"/>
+  <object id="90" name="Hydralisk" x="2848.97" y="2819.79" width="59" height="61"/>
+  <object id="91" name="Hydralisk" x="2541.94" y="3067.67" width="59" height="61"/>
+  <object id="92" name="Zergling" x="2227.91" y="2587.67" width="59" height="61"/>
+  <object id="93" name="Hydralisk" x="2833.42" y="3015.58" width="59" height="61"/>
+  <object id="94" name="Hydralisk" x="2712.94" y="2798.67" width="59" height="61"/>
+  <object id="95" name="Hydralisk" x="2430.94" y="2685.67" width="59" height="61"/>
+  <object id="96" name="Hydralisk" x="2572.94" y="2535.67" width="59" height="61"/>
+  <object id="97" name="Hydralisk" x="2965.94" y="2548.67" width="59" height="61"/>
+  <object id="98" name="Hydralisk" x="2709.94" y="2612.67" width="59" height="61"/>
+  <object id="99" name="Zergling" x="2300.91" y="2589.67" width="59" height="61"/>
+  <object id="100" name="Zergling" x="2373.91" y="2592.67" width="59" height="61"/>
+  <object id="101" name="Zergling" x="2229.91" y="2508.67" width="59" height="61"/>
+  <object id="102" name="Zergling" x="2375.91" y="2513.67" width="59" height="61"/>
+  <object id="103" name="Zergling" x="2302.91" y="2510.67" width="59" height="61"/>
+  <object id="104" name="Zergling" x="1985.91" y="2751.67" width="59" height="61"/>
+  <object id="105" name="Zergling" x="1912.91" y="2749.67" width="59" height="61"/>
+  <object id="106" name="Zergling" x="2058.91" y="2754.67" width="59" height="61"/>
+  <object id="107" name="Zergling" x="1902.91" y="2845.67" width="59" height="61"/>
+  <object id="108" name="Zergling" x="1988.91" y="2944.67" width="59" height="61"/>
+  <object id="109" name="Zergling" x="2112.91" y="2829.67" width="59" height="61"/>
+  <object id="138" name="Hydralisk" x="2805.94" y="1423.67" width="59" height="61"/>
+  <object id="139" name="Hydralisk" x="2651.27" y="1426.34" width="59" height="61"/>
+  <object id="140" name="Hydralisk" x="2511.27" y="1423.67" width="59" height="61"/>
+  <object id="141" name="Hydralisk" x="2923.27" y="1042.34" width="59" height="61"/>
+  <object id="142" name="Hydralisk" x="2547.27" y="1050.34" width="59" height="61"/>
+  <object id="143" name="Hydralisk" x="2789.94" y="759.67" width="59" height="61"/>
+  <object id="144" name="Hydralisk" x="2759.27" y="1061" width="59" height="61"/>
+  <object id="145" name="Hydralisk" x="2572.61" y="794.337" width="59" height="61"/>
+  <object id="146" name="Hydralisk" x="2557.94" y="909.003" width="59" height="61"/>
+  <object id="147" name="Hydralisk" x="2644.61" y="222.337" width="59" height="61"/>
+  <object id="148" name="Hydralisk" x="2725.94" y="325.003" width="59" height="61"/>
+  <object id="149" name="Hydralisk" x="2608.61" y="331.67" width="59" height="61"/>
+  <object id="150" name="Zergling" x="2471.58" y="318.667" width="59" height="61"/>
+  <object id="151" name="Zergling" x="2476.91" y="214.667" width="59" height="61"/>
+  <object id="152" name="Zergling" x="2319.58" y="181.334" width="59" height="61"/>
+ </objectgroup>
+ <objectgroup name="Bonuses">
+  <object id="154" name="MedPack" x="461.091" y="2322.24" width="100" height="100"/>
+  <object id="157" name="GrenadeGun" x="808.879" y="261.455" width="100" height="100"/>
+  <object id="158" name="PlasmaGun" x="2908.67" y="1553.79" width="100" height="100"/>
+  <object id="159" name="MedPack" x="55.0303" y="1594.97" width="100" height="100"/>
+  <object id="160" name="MedPack" x="39.8788" y="52.5455" width="100" height="100"/>
+  <object id="161" name="MedPack" x="2088.36" y="61.6364" width="100" height="100"/>
+  <object id="162" name="MedPack" x="3018.67" y="182.848" width="100" height="100"/>
+  <object id="163" name="MedPack" x="1330.79" y="979.818" width="100" height="100"/>
+  <object id="164" name="MedPack" x="1982.3" y="3049.52" width="100" height="100"/>
+  <object id="165" name="MedPack" x="3048.97" y="2485.88" width="100" height="100"/>
+ </objectgroup>
+ <objectgroup name="Walls">
+  <object id="7" name="Wall" x="994" y="1952" width="225" height="28"/>
+  <object id="11" name="Wall" x="5" y="3170" width="416" height="28"/>
+  <object id="15" name="Wall" x="-11" y="2" width="46" height="3196"/>
+  <object id="16" name="Wall" x="6.70537" y="-50.5235" width="3195.29" height="80.5235"/>
+  <object id="17" name="Wall" x="3170" y="-50.5235" width="32" height="3252.52"/>
+  <object id="18" name="Wall" x="561" y="3166" width="2619" height="28"/>
+  <object id="19" name="Wall" x="434" y="3062" width="120" height="141"/>
+  <object id="23" name="Wall" x="411" y="2721" width="152" height="200"/>
+  <object id="24" name="Wall" x="360" y="2676" width="137" height="186"/>
+  <object id="26" name="Wall" x="70" y="2452" width="346" height="229"/>
+  <object id="27" name="Wall" x="231" y="2676" width="266" height="99"/>
+  <object id="28" name="Wall" x="44" y="1728" width="346" height="833"/>
+  <object id="29" name="Wall" x="397" y="1674" width="300" height="302"/>
+  <object id="30" name="Wall" x="701" y="1954" width="203" height="28"/>
+  <object id="31" name="Wall" x="701" y="1727" width="31" height="255"/>
+  <object id="32" name="Wall" x="701" y="1727" width="190" height="33"/>
+  <object id="33" name="Wall" x="994" y="1728" width="190" height="33"/>
+  <object id="34" name="Wall" x="1186" y="1729" width="31" height="255"/>
+  <object id="35" name="Wall" x="1221" y="1671" width="532" height="348"/>
+  <object id="40" name="Wall" x="1221" y="2015" width="593" height="1145"/>
+  <object id="41" name="Wall" x="1178" y="2077" width="50" height="122"/>
+  <object id="42" name="Wall" x="1140" y="2118" width="50" height="122"/>
+  <object id="43" name="Wall" x="1098" y="2165" width="123" height="992"/>
+  <object id="44" name="Wall" x="1059" y="1531" width="190" height="33"/>
+  <object id="45" name="Wall" x="1248" y="1531" width="98" height="129"/>
+  <object id="46" name="Wall" x="606" y="834" width="480.667" height="732"/>
+  <object id="47" name="Wall" x="380" y="900" width="133" height="667"/>
+  <object id="48" name="Wall" x="156" y="896" width="133" height="667"/>
+  <object id="49" name="Wall" x="159" y="129" width="133" height="667"/>
+  <object id="50" name="Wall" x="382" y="133" width="133" height="667"/>
+  <object id="51" name="Wall" x="609" y="21" width="830" height="233"/>
+  <object id="52" name="Wall" x="604" y="384.5" width="830" height="573.5"/>
+  <object id="76" name="Wall" x="1475" y="63" width="156" height="127"/>
+  <object id="77" name="Wall" x="1660" y="63" width="388" height="128"/>
+  <object id="78" name="Wall" x="1529" y="381" width="96" height="65"/>
+  <object id="79" name="Wall" x="1442" y="381" width="91" height="258"/>
+  <object id="80" name="Wall" x="1532" y="574" width="191" height="65"/>
+  <object id="81" name="Wall" x="1118" y="960" width="191" height="511"/>
+  <object id="82" name="Wall" x="1476" y="1187" width="186" height="191"/>
+  <object id="83" name="Wall" x="1505" y="1381" width="157" height="121"/>
+  <object id="84" name="Wall" x="2975" y="3014" width="157" height="121"/>
+  <object id="85" name="Wall" x="2082" y="2910" width="318" height="252"/>
+  <object id="86" name="Wall" x="1860" y="2941" width="92" height="193"/>
+  <object id="111" name="Wall" x="2657" y="2944" width="92" height="134"/>
+  <object id="112" name="Wall" x="2557" y="2721" width="92" height="124"/>
+  <object id="113" name="Wall" x="2785" y="2720" width="188" height="64"/>
+  <object id="114" name="Wall" x="2498" y="64" width="637" height="128"/>
+  <object id="115" name="Wall" x="2817" y="288" width="287" height="128"/>
+  <object id="116" name="Wall" x="2430" y="414" width="735" height="350"/>
+  <object id="117" name="Wall" x="2431" y="1122" width="735" height="243"/>
+  <object id="118" name="Wall" x="2977" y="1373" width="160" height="131"/>
+  <object id="119" name="Wall" x="3042" y="1569" width="91" height="94"/>
+  <object id="120" name="Wall" x="2429" y="1532" width="449" height="135"/>
+  <object id="121" name="Wall" x="2718" y="831" width="196" height="193"/>
+  <object id="122" name="Wall" x="3042" y="994" width="97" height="96"/>
+  <object id="123" name="Wall" x="2976" y="796" width="157" height="132"/>
+  <object id="124" name="Wall" x="2005.33" y="1726.67" width="48" height="636"/>
+  <object id="125" name="Wall" x="1932" y="1761.33" width="92" height="445.333"/>
+  <object id="126" name="Wall" x="2049.33" y="1694.67" width="1121.33" height="758.667"/>
+  <object id="127" name="Wall" x="1808" y="1209.33" width="484" height="128"/>
+  <object id="128" name="Wall" x="1865.33" y="1056" width="380" height="252"/>
+  <object id="129" name="Wall" x="1930.67" y="1030.67" width="252" height="244"/>
+  <object id="133" name="Wall" x="1930.67" y="1030.67" width="252" height="244"/>
+  <object id="134" name="Wall" x="2122.67" y="1266.67" width="136" height="252"/>
+  <object id="135" name="Wall" x="1965.33" y="1308" width="166.667" height="134.667"/>
+  <object id="136" name="Wall" x="1596" y="893.667" width="98.6667" height="98.3333"/>
+  <object id="137" name="Wall" x="1760" y="836.333" width="98.6667" height="63.6667"/>
+  <object id="153" name="Wall" x="2053.33" y="418.667" width="177.333" height="182.667"/>
+ </objectgroup>
+</map>
