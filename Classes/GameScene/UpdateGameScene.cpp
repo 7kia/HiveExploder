@@ -7,6 +7,7 @@ void GameScreen::update(float dt)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
+	UpdateBonuses();
 	UpdateShoots(dt);
 	UpdateLifeObjects(dt);
 	ActivateActiveWeapons();
@@ -70,11 +71,19 @@ bool GameScreen::onContactBegin(PhysicsContact& contact)
 	}/////////////////////////////////////////////////////////////////////////////////////////
 	else if ((idA == CEntity::idClass::LifeObject) && (idB == CEntity::idClass::Bonus))
 	{
-		dynamic_cast<CBonus*>(entityB)->ApplyAction(*dynamic_cast<CLifeObject*>(entityA));
+		if (dynamic_cast<CLifeObject*>(entityA)->GetIdType() == TypeLifeObject::Player)
+		{
+			dynamic_cast<CBonus*>(entityB)->ApplyAction(*dynamic_cast<CLifeObject*>(entityA));
+			dynamic_cast<CBonus*>(entityB)->SetStateDestroy();
+		}
 	}
 	else if ((idB == CEntity::idClass::LifeObject) && (idA == CEntity::idClass::Bonus))
 	{
-		dynamic_cast<CBonus*>(entityA)->ApplyAction(*dynamic_cast<CLifeObject*>(entityB));
+		if (dynamic_cast<CLifeObject*>(entityB)->GetIdType() == TypeLifeObject::Player)
+		{
+			dynamic_cast<CBonus*>(entityA)->ApplyAction(*dynamic_cast<CLifeObject*>(entityB));
+			dynamic_cast<CBonus*>(entityA)->SetStateDestroy();
+		}
 	}
 	//
 	

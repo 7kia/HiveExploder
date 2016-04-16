@@ -45,3 +45,13 @@ void CBonus::ApplyAction(CLifeObject & object)
 {
 	m_type->GetAction()(object);
 }
+
+void CBonus::SetStateDestroy()
+{
+	m_is_destoroy = true;
+}
+
+bool CBonus::GetState()
+{
+	return m_is_destoroy;
+}

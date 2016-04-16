@@ -22,6 +22,24 @@ void GameScreen::UpdateShoots(float dt)
 	}
 }
 
+void GameScreen::UpdateBonuses()
+{
+	size_t index = 0;
+	while (index < m_bonuses.size())
+	{
+		if (m_bonuses[index]->GetState())
+		{
+			m_bonuses[index]->removeFromParent();
+
+			m_bonuses.erase(m_bonuses.begin() + index);
+		}
+		else
+		{
+			index++;
+		}
+	}
+}
+
 
 void GameScreen::AddShoot(CShoot &addShoot)
 {

@@ -151,6 +151,7 @@ private:
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
+	void					UpdateBonuses();
 
 	void					UpdateCamera(float dt);
 	cocos2d::Camera &		GetCamera();
