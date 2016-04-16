@@ -12,7 +12,7 @@ namespace GameSceneRecourses// TODO : redesign
 	static const std::string PATH = "GameScene/";
 	static const std::string BACKGROUND = PATH + "Background.png";
 
-	static const std::string MAP = PATH + "tmx/map2.tmx";
+	static const std::string MAP = PATH + "tmx/map.tmx";
 	static const int kTagTileMap = 10;
 
 	static const std::string MANAGE_CIRCLE = PATH + "MoveCircle.png";

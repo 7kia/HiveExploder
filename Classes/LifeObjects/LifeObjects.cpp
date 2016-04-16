@@ -16,7 +16,7 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 	type = &setType;
 
 	setTexture(type->GetTexture());
-	setTextureRect(type->GetRectangle());
+	setTextureRect(type->GetTextureRectangle());
 
 	CreateCollision();
 
@@ -30,7 +30,7 @@ void CLifeObject::SetType(TypeLifeObject & setType)
 
 void CLifeObject::CreateCollision()
 {
-	CCollision* body = CCollision::create(type->GetRectangle().size.width / 2);// PhysicsBody::createCircle(getContentSize().width / 2);
+	CCollision* body = CCollision::create(type->GetTextureRectangle().size.width / 2);// PhysicsBody::createCircle(getContentSize().width / 2);
 	body->setCollisionBitmask(1);
 	body->setContactTestBitmask(Collision::BITMASK_LIFEOBJECT);
 	body->SetMaster(this);

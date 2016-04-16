@@ -32,7 +32,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTextureRect(GameSceneRecourses::MARINE_RECT);
 	m_typesLifeObjects[TypeLifeObject::Player].SetVelocity(250.f);
-	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(40);
+	m_typesLifeObjects[TypeLifeObject::Player].SetHealth(400);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetWeapon(m_typesWeapons[CTypeWeapon::PlayerWeapon]);
 
@@ -62,15 +62,15 @@ void GameScreen::CreateTypesShoots()
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MARINE_SHOOT);
 	m_typesShoots[CShootType::PlayerShoot].SetTexture(textureMarineShoot);
-	m_typesShoots[CShootType::PlayerShoot].SetRect(GameSceneRecourses::MARINE_SHOOT_RECT);
+	m_typesShoots[CShootType::PlayerShoot].SetTextureRect(GameSceneRecourses::MARINE_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureHydraliskShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HYDRALISK_SHOOT);
 	m_typesShoots[CShootType::HydraliskShoot].SetTexture(textureHydraliskShoot);
-	m_typesShoots[CShootType::HydraliskShoot].SetRect(GameSceneRecourses::HYDRALISK_SHOOT_RECT);
+	m_typesShoots[CShootType::HydraliskShoot].SetTextureRect(GameSceneRecourses::HYDRALISK_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureMeleeShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MELEE_SHOOT);
 	m_typesShoots[CShootType::MeleeShoot].SetTexture(textureMeleeShoot);
-	m_typesShoots[CShootType::MeleeShoot].SetRect(GameSceneRecourses::MELEE_SHOOT_RECT);
+	m_typesShoots[CShootType::MeleeShoot].SetTextureRect(GameSceneRecourses::MELEE_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -189,7 +189,7 @@ void GameScreen::CreateWalls()
 
 		Vec2 pos = Vec2(value["x"].asFloat(), value["y"].asFloat());
 		spriteWall->setPosition(pos);
-		spriteWall->setTextureRect(m_typesShoots[CShootType::MeleeShoot].GetRectangle());
+		spriteWall->setTextureRect(m_typesShoots[CShootType::MeleeShoot].GetTextureRectangle());
 		spriteWall->setTexture(m_typesShoots[CShootType::MeleeShoot].GetTexture());
 
 

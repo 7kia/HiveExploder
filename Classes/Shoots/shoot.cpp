@@ -23,7 +23,7 @@ void CShoot::SetType(const CShootType &defineType)
 	m_type.reset(&defineType);// = &;
 
 	setTexture(m_type->GetTexture());
-	setTextureRect(m_type->GetRectangle());
+	setTextureRect(m_type->GetTextureRectangle());
 
 	CreateCollision();
 
@@ -85,7 +85,7 @@ void CShoot::SetStartPlace(Vec2 pos, Vec2 directionShooter,
 
 void CShoot::CreateCollision()
 {
-	CCollision* body = CCollision::create(m_type->GetRectangle().size.width / 2);//CCollision::createCircle(getContentSize().width / 2);
+	CCollision* body = CCollision::create(m_type->GetTextureRectangle().size.width / 2);//CCollision::createCircle(getContentSize().width / 2);
 	body->setCollisionBitmask(1);
 	body->setContactTestBitmask(Collision::BITMASK_SHOOT);
 	body->SetMaster(this);

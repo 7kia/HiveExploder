@@ -38,8 +38,9 @@ bool GameScreen::init()
 
 	CreateCamera();
 	CreateMap();
-	CreateWalls();
 	CreateLifeObjects();
+
+	CreateWalls();
 
 	CreateMenu();
 	CreateMoveCircle();
