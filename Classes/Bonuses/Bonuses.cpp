@@ -40,3 +40,8 @@ void CBonus::CreateCollision()
 
 	setPhysicsBody(body);
 }
+
+void CBonus::ApplyAction(CLifeObject & object)
+{
+	m_type->GetAction()(object);
+}

@@ -67,6 +67,14 @@ bool GameScreen::onContactBegin(PhysicsContact& contact)
 	{
 		dynamic_cast<CLifeObject*>(entityB)->AddHealth(-dynamic_cast<CShoot*>(entityA)->GetDamage());
 		dynamic_cast<CShoot*>(entityA)->SetVelocity(0.f);
+	}/////////////////////////////////////////////////////////////////////////////////////////
+	else if ((idA == CEntity::idClass::LifeObject) && (idB == CEntity::idClass::Bonus))
+	{
+		dynamic_cast<CBonus*>(entityB)->ApplyAction(*dynamic_cast<CLifeObject*>(entityA));
+	}
+	else if ((idB == CEntity::idClass::LifeObject) && (idA == CEntity::idClass::Bonus))
+	{
+		dynamic_cast<CBonus*>(entityA)->ApplyAction(*dynamic_cast<CLifeObject*>(entityB));
 	}
 	//
 	

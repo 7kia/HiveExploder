@@ -68,6 +68,14 @@ void GameScreen::CreateTypesShoots()
 	m_typesShoots[CShootType::HydraliskShoot].SetTexture(textureHydraliskShoot);
 	m_typesShoots[CShootType::HydraliskShoot].SetTextureRect(GameSceneRecourses::HYDRALISK_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* textureGrenade = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::GRENADE);
+	m_typesShoots[CShootType::Grenade].SetTexture(textureGrenade);
+	m_typesShoots[CShootType::Grenade].SetTextureRect(GameSceneRecourses::GRENADE_RECT);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Texture2D* texturePlasmaShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PLASMA_SHOOT);
+	m_typesShoots[CShootType::Plasma].SetTexture(texturePlasmaShoot);
+	m_typesShoots[CShootType::Plasma].SetTextureRect(GameSceneRecourses::PLASMA_SHOOT_RECT);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureMeleeShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MELEE_SHOOT);
 	m_typesShoots[CShootType::MeleeShoot].SetTexture(textureMeleeShoot);
 	m_typesShoots[CShootType::MeleeShoot].SetTextureRect(GameSceneRecourses::MELEE_SHOOT_RECT);
@@ -97,6 +105,20 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDistanse(550.f);
 
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetId(CTypeWeapon::GrenadeGun);
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetDamage(40);
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetTime(1.f);
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetTypeShoot(m_typesShoots[CShootType::Grenade]);// TODO : replace
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetVelocity(750.f);
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetDistanse(550.f);
+
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetId(CTypeWeapon::PlasmaGun);
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetDamage(50);
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetTime(0.5f);
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetTypeShoot(m_typesShoots[CShootType::Plasma]);// TODO : replace
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetVelocity(750.f);
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetDistanse(550.f);
+
 }
 
 void GameScreen::CreateTypesBonuses()
@@ -106,16 +128,20 @@ void GameScreen::CreateTypesBonuses()
 
 	m_typeBonuses[CBonusesType::MedicineChest].SetTexture(textureMedPack);
 	m_typeBonuses[CBonusesType::MedicineChest].SetTextureRect(GameSceneRecourses::BONUS_RECT);
+	m_typeBonuses[CBonusesType::MedicineChest].SetAction(m_functions_for_bonuses[CBonusesType::MedicineChest]);
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureGrenadeGun = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_GRENADE_GUN);
 
 	m_typeBonuses[CBonusesType::GrenadeGun].SetTexture(textureGrenadeGun);
 	m_typeBonuses[CBonusesType::GrenadeGun].SetTextureRect(GameSceneRecourses::BONUS_RECT);
+	m_typeBonuses[CBonusesType::GrenadeGun].SetAction(m_functions_for_bonuses[CBonusesType::GrenadeGun]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* texturePlasmaGun = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_PLASMA_GUN);
 
 	m_typeBonuses[CBonusesType::PlasmaGun].SetTexture(texturePlasmaGun);
 	m_typeBonuses[CBonusesType::PlasmaGun].SetTextureRect(GameSceneRecourses::BONUS_RECT);
+	m_typeBonuses[CBonusesType::PlasmaGun].SetAction(m_functions_for_bonuses[CBonusesType::PlasmaGun]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

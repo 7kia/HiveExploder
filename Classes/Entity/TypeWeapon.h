@@ -9,8 +9,10 @@ public:
 	{
 		NONE = -1,
 		PlayerWeapon = 0,
-		HydraliskWeapon,
-		ZerglingWeapon,
+		HydraliskWeapon	,
+		ZerglingWeapon	,
+		GrenadeGun		,
+		PlasmaGun		,
 		AmountIDs
 	};
 

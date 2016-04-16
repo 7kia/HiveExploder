@@ -35,6 +35,7 @@ bool GameScreen::init()
 	CreateTypesShoots();
 	CreateTypesWeapons();
 	CreateTypesLifeObjects();
+	CreateFunctionsForBonuses();
 	CreateTypesBonuses();
 
 	CreateCamera();

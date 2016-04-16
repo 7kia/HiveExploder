@@ -60,6 +60,7 @@ public:
 	void					SetWeaponState(CWeapon::IdState state);
 	CWeapon::IdState		GetWeaponState() const;
 
+	void					SetWeapon(const CTypeWeapon & typeWeapon);
 	/////////////////
 public:
 

@@ -14,6 +14,7 @@ public:
 
 	void									update(float dt) override;
 	void									CreateCollision();
+	void									ApplyAction(CLifeObject & object);
 private:
 	std::shared_ptr<const CBonusesType>		m_type;
 };

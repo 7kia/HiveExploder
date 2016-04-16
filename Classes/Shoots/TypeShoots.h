@@ -13,9 +13,11 @@ class CShootType :
 public:
 	enum ID
 	{
-		PlayerShoot = 0,
-		HydraliskShoot,
-		MeleeShoot,
+		PlayerShoot = 0	,
+		HydraliskShoot	,
+		MeleeShoot		,
+		Grenade			,
+		Plasma			,
 		AmountIDs
 	};
 };

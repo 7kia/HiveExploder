@@ -15,7 +15,8 @@ public:
 	};
 public:
 	void										SetAction(std::function<void(CLifeObject & master)> action);
+	std::function<void(CLifeObject &)>	GetAction() const;
 	// TODO : there not enough functional
 private:
-	std::function<void(CLifeObject & master)>	m_action;
+	std::function<void(CLifeObject &)>	m_action;
 };

@@ -55,3 +55,8 @@ CWeapon::IdState CLifeObject::GetWeaponState() const
 {
 	return m_weapon.GetState();
 }
+
+void CLifeObject::SetWeapon(const CTypeWeapon & typeWeapon)
+{
+	m_weapon.SetType(typeWeapon);
+}

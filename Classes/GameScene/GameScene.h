@@ -18,9 +18,16 @@ namespace GameSceneRecourses// TODO : redesign
 
 	static const cocos2d::Rect BONUS_RECT(0, 0, 100, 100);
 	static const std::string BONUS_MED_PACK = PATH + "MedPack.png";
+	static const int MED_PACK_ADD_HEALTH = 100;
+
 	static const std::string BONUS_GRENADE_GUN = PATH + "GrenadeGun.png";
 	static const std::string BONUS_PLASMA_GUN = PATH + "PlasmaGun.png";
 
+	static const cocos2d::Rect GRENADE_RECT(0, 0, 30, 30);
+	static const std::string GRENADE = PATH + "Grenade.png";
+
+	static const cocos2d::Rect PLASMA_SHOOT_RECT(0, 0, 35, 45);
+	static const std::string PLASMA_SHOOT = PATH + "PlasmaShoot.png";
 
 
 	static const std::string MANAGE_CIRCLE = PATH + "MoveCircle.png";
@@ -109,6 +116,8 @@ public:
 	CShootType							m_typesShoots[CShootType::AmountIDs];
 	CBonusesType						m_typeBonuses[CBonusesType::AmountIDs];
 
+	std::function<void(CLifeObject &)>  m_functions_for_bonuses[CBonusesType::AmountIDs];
+
 	ManageCircle						m_manageCirlce;
 	// /\ 
 private:
@@ -133,6 +142,12 @@ private:
 	void					CreateBonuses();
 
 	void					CreateContactListener();
+	// ActionsBonuses.cpp
+	void					CreateFunctionsForBonuses();
+
+	void					ReplaceWeaponOnGrenadeGun(CLifeObject & object);
+	void					ReplaceWeaponOnPlasmaGun(CLifeObject & object);
+	void					GetMedPack(CLifeObject & object);
 	// UpdateGameScene.cpp
 	void					UpdateManageCircle();
 	void					UpdateShoots(float dt);
