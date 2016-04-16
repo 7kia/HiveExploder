@@ -3,7 +3,7 @@
 #include "TypeShoots.h"
 
 static const float ABOUT_ZERO_VALUE_SPEED_BULLET = 50.f;// if speed less the value shoot delete
-static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 1.1f;
+static const float COEFFICIENT_SHIFT_BULLET_FROM_SHOOTER = 1.3f;
 static const float COEFFECIENT_SLOW_BULLET = 0.01f;
 
 class CWeapon;

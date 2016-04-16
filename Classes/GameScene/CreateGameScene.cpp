@@ -17,15 +17,6 @@ CLifeObject & GameScreen::GetPlayer() const
 	return *m_lifeObjects[m_id_player];
 }
 
-void GameScreen::UpdateTouchPosition(cocos2d::Touch *touch)
-{
-	Point origin = Director::getInstance()->getRunningScene()->getDefaultCamera()->getPosition();
-	origin -= GetMiddleWindow();
-
-	m_touchPosition = touch->getLocation();
-	m_touchPosition += origin;
-}
-
 void GameScreen::CreateCashes()
 {
 	// TODO : delete if not need
@@ -124,14 +115,12 @@ void GameScreen::CreateMenu()
 	menu->setPosition(Point::ZERO);
 
 	menu->setName("menu");
-	this->addChild(menu, GameSceneRecourses::levelInterface);
+	this->addChild(menu);
 }
 
 void GameScreen::CreateMoveCircle()
 {
 	m_manageCirlce.SetSprite(Sprite::create(GameSceneRecourses::MANAGE_CIRCLE));
-
-	UpdateManageCircle();
 
 	this->addChild(m_manageCirlce.GetSprite(), GameSceneRecourses::levelInterface);
 }
@@ -253,6 +242,8 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	shoots.push_back(shoot);
 	scene->addChild(shoot, GameSceneRecourses::levelObjects);
 
+	SetWeaponState(CWeapon::IdState::NotActive);
+	SetDirection(Vec2::ZERO);
 }
 
 TypeLifeObject::ID GameScreen::GetIdTypeLifeObject(const std::string & name)

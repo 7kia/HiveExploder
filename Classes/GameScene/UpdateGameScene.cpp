@@ -23,7 +23,7 @@ void GameScreen::update(float dt)
 			break;
 		case ManageCircle::Action::Move:
 			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
-			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
+			//m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
 			break;
 		default:
 			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
@@ -97,8 +97,22 @@ void GameScreen::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event)
 	UpdateTouchPosition(touch);
 }
 
+
+void GameScreen::UpdateTouchPosition(cocos2d::Touch *touch)
+{
+	Point origin = GetPlayer().getPosition();
+	origin -= GetMiddleWindow();
+
+	m_touchPosition = touch->getLocation();
+	m_touchPosition += origin;
+
+	touch->setTouchInfo(0, m_touchPosition.x, m_touchPosition.y);
+}
+
 void GameScreen::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event)
 {
+	UpdateTouchPosition(touch);
+
 	m_isTouching = false;
 }
 

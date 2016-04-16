@@ -38,7 +38,7 @@ void CWeapon::Update(float dt)
 		}
 		break;
 	case IdState::Shoot:
-		m_state = IdState::NotShoot;
+		m_state = IdState::NotActive;
 		m_time = 0.f;
 		break;
 	default:
