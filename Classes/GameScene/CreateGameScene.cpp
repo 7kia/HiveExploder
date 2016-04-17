@@ -250,6 +250,12 @@ void GameScreen::CreateWalls()
 
 void GameScreen::CreateLifeObjects()
 {
+	// TODO : redesign
+	Texture2D* textureHealthBar = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HEALTH_BAR);
+
+	CBar healthBar(textureHealthBar, GameSceneRecourses::HEALTH_BAR_RECT);
+	/////////////////
+
 	ValueVector objects = m_tileMap->getObjectGroup("LifeObjects")->getObjects();
 
 	ValueMap value;
@@ -263,8 +269,14 @@ void GameScreen::CreateLifeObjects()
 		lifeObjects->setPosition(value["x"].asFloat(),
 								value["y"].asFloat());
 
+		healthBar.SetMaster(*lifeObjects);
+		lifeObjects->SetHealthBar(healthBar);
+
 		m_lifeObjects.push_back(lifeObjects);
+
 		addChild(lifeObjects, GameSceneRecourses::levelObjects);
+		addChild(&lifeObjects->GetHealthBar(), GameSceneRecourses::levelObjects);
+
 	}
 
 }

@@ -59,6 +59,10 @@ void GameScreen::CheckHealthLifeObjects()
 				GoToGameOverScene(this);
 			}
 
+			m_lifeObjects[index]->GetHealthBar().removeFromParent();
+			// TODO : incorrect delete &lifeObjects->GetHealthBar().GetSpriteValue()
+			
+
 			m_lifeObjects[index]->removeFromParent();
 			m_lifeObjects.erase(m_lifeObjects.begin() + index);
 		}

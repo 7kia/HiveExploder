@@ -6,6 +6,7 @@
 #include "../Shoots/shoot.h"
 #include "../Entity/Weapon.h"
 #include "../Bonuses/Bonuses.h"
+#include "../HealthBar/HealthBar.h"
  
 
 namespace GameSceneRecourses// TODO : redesign
@@ -13,8 +14,8 @@ namespace GameSceneRecourses// TODO : redesign
 	static const std::string PATH = "GameScene/";
 	static const std::string BACKGROUND = PATH + "Background.png";
 
-	static const std::string MAP = PATH + "tmx/map.tmx";
-	static const int kTagTileMap = 10;
+	static const std::string MAP = PATH + "Map/map.tmx";
+	static const int kTagTileMap = 2;
 
 	static const cocos2d::Rect BONUS_RECT(0, 0, 100, 100);
 	static const std::string BONUS_MED_PACK = PATH + "MedPack.png";
@@ -28,6 +29,10 @@ namespace GameSceneRecourses// TODO : redesign
 
 	static const cocos2d::Rect PLASMA_SHOOT_RECT(0, 0, 35, 45);
 	static const std::string PLASMA_SHOOT = PATH + "PlasmaShoot.png";
+
+
+	static const cocos2d::Rect HEALTH_BAR_RECT(0, 0, 50, 5);
+	static const std::string HEALTH_BAR = PATH + "HealthBar.png";
 
 
 	static const std::string MANAGE_CIRCLE = PATH + "MoveCircle.png";

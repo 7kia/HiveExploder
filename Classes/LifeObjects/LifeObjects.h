@@ -4,9 +4,11 @@
 
 class GameScreen;
 class CShoot;
+class CBar;
 
 // TOOD : CMovement transfer to Behaveour
-class CLifeObject : public CEntity// public CMovement, public CVisual
+class CLifeObject : 
+	public CEntity// public CMovement, public CVisual
 {
 public:
 	// LifeObjects.cpp
@@ -38,10 +40,15 @@ public:
 	void				AddHealth(int value);
 
 	int					GetHealth();
+	int					GetMaxHealth();
+
 	int					GetDamage();
 
 	void				SetTypeWeapon(const CTypeWeapon& weapon);
 	const CWeapon&		GetWeapon() const;
+
+	void				SetHealthBar(const CBar &bar);
+	CBar &				GetHealthBar();
 
 	float				GetDistanceWeapon() const;
 
@@ -75,6 +82,7 @@ private:
 
 	CDynamicFeature					m_health;
 	CWeapon							m_weapon;
+	CBar							m_healthBar;
 	// TODO : delete
 };
 

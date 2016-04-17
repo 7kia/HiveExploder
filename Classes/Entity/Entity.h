@@ -14,7 +14,8 @@ public:
 		None		,
 		LifeObject	,
 		Shoot		,
-		Bonus
+		Bonus		,
+		HealthBar
 	};
 public:
 	CEntity();

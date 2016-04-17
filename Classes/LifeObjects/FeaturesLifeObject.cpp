@@ -15,6 +15,11 @@ int CLifeObject::GetHealth()
 	return m_health.GetValue();
 }
 
+int CLifeObject::GetMaxHealth()
+{
+	return m_type->GetHealth();
+}
+
 int CLifeObject::GetDamage()
 {
 	return m_weapon.GetDamage();
@@ -28,6 +33,16 @@ void CLifeObject::SetTypeWeapon(const CTypeWeapon & weapon)
 const CWeapon & CLifeObject::GetWeapon() const
 {
 	return m_weapon;
+}
+
+void CLifeObject::SetHealthBar(const CBar & bar)
+{
+	m_healthBar = bar;
+}
+
+CBar & CLifeObject::GetHealthBar()
+{
+	return m_healthBar;
 }
 
 TypeLifeObject::ID CLifeObject::GetIdType() const

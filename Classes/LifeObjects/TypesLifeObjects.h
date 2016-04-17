@@ -5,6 +5,7 @@
 #include "../Entity/Collision.h"
 #include "../Entity/Features.h"
 #include "../Entity/Weapon.h"
+#include "../HealthBar/HealthBar.h"
 
 class TypeLifeObject :
 	public CVisualDataType

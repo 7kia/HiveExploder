@@ -10,6 +10,8 @@ void CLifeObject::update(float dt)
 	}
 
 	m_weapon.Update(dt);
+
+	m_healthBar.update(dt);
 }
 
 
