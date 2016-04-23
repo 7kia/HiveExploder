@@ -2,6 +2,10 @@
 
 using namespace cocos2d;
 
+TypeLifeObject::~TypeLifeObject()
+{
+}
+
 void TypeLifeObject::SetVelocity(float setVelocity)
 {
 	m_velocity = setVelocity;
@@ -37,6 +41,16 @@ const CTypeWeapon & TypeLifeObject::GetTypeWeapon() const
 	return *m_weapon;
 }
 
+void TypeLifeObject::SetAnimationsMove(const CollectionAnimations & animations)
+{
+	m_moveAnimations = animations;
+}
+
+const CollectionAnimations & TypeLifeObject::GetAnimationsMove() const
+{
+	return m_moveAnimations;
+}
+
 void TypeLifeObject::SetId(ID id)
 {
 	m_id = id;
@@ -45,4 +59,21 @@ void TypeLifeObject::SetId(ID id)
 TypeLifeObject::ID TypeLifeObject::GetId() const
 {
 	return m_id;
+}
+
+SRange::SRange()
+	: start(0.f)
+	, end(0.f)
+{
+}
+
+SRange::SRange(float start, float end)
+	: start(start)
+	, end(end)
+{
+}
+
+bool SRange::IsBetween(float value) const
+{
+	return (start >= value) || (end <= value);
 }

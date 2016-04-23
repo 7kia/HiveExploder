@@ -17,11 +17,37 @@ void CLifeObject::update(float dt)
 
 void CLifeObject::UpdatePosition(float dt)
 {
-	Vec2 resultVector = m_direction;
+	if (m_direction != Vec2::ZERO)
+	{
+		SetAnimationMove();
 
-	resultVector *= m_velocity;
-	resultVector *= dt;
+		Vec2 resultVector = m_direction;
 
-	CVisual::Move(resultVector);
-	m_direction = Vec2::ZERO;
+		resultVector *= m_velocity;
+		resultVector *= dt;
+
+		CVisual::Move(resultVector);
+		m_direction = Vec2::ZERO;
+
+	}
+}
+
+void CLifeObject::SetAnimationMove()
+{
+	runAction(m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)]);
+}
+
+int CLifeObject::GetIndexMoveAnimation(const Direction & direction)
+{
+	float rotate = CC_RADIANS_TO_DEGREES(direction.getAngle(VECTOR_VERTICAL_UP));
+
+	for (size_t index = 0; index < rangesDirections.size(); index++)
+	{
+		if (rangesDirections[index].IsBetween(rotate))
+		{
+			return index;
+		}
+	}
+
+	return 0;
 }

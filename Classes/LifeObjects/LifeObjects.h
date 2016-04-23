@@ -32,6 +32,9 @@ public:
 	// UpdateLifeObject.cpp
 	void			update(float dt) override;
 	void			UpdatePosition(float dt);
+
+	void			SetAnimationMove();
+	int				GetIndexMoveAnimation(const Direction & direction);
 	/////////////////
 
 	/////////////////

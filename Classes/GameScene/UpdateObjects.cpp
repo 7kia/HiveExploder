@@ -10,6 +10,8 @@ void GameScreen::UpdateLifeObjects(float dt)
 	SearchEnemy();// TODO : redefine
 
 
+
+	//CheckCollisionPlayer(GetPlayer().getPosition());
 	for (auto &object : m_lifeObjects)
 	{
 		object->update(dt);
@@ -108,4 +110,31 @@ void GameScreen::DefineNeedAttackEnemy(CLifeObject * object, const Vec2 & positi
 	{
 		object->SetWeaponState(CWeapon::IdState::NotActive);
 	}
+}
+
+Vec2 GameScreen::GetTileCoordinateForPosition(Vec2 position)
+{
+	int x = position.x / m_tileMap->getTileSize().width;
+	int y = m_tileMap->getMapSize().height * m_tileMap->getTileSize().height;
+	y -= position.y;
+	y /= m_tileMap->getTileSize().height;
+
+	return Vec2(x, y);
+}
+
+// TOOD : mot work
+void GameScreen::CheckCollisionPlayer(Vec2 position)
+{
+	Vec2 tileCoordinate = GetTileCoordinateForPosition(position);
+	int tileGid = m_collisionLayer->tileGIDAt(tileCoordinate);
+	if (tileGid) {
+		Value properties = m_tileMap->propertiesForGID(tileGid);
+		//if (properties.) {
+			//CCString *collision = new CCString();
+			if (properties.asValueMap()["Collision"].asBool()) {
+				GetPlayer().setPosition(position);
+			}
+		//}
+	}
+
 }

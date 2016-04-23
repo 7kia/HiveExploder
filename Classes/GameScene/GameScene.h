@@ -17,6 +17,11 @@ namespace GameSceneRecourses// TODO : redesign
 	static const std::string MAP = PATH + "Map/map.tmx";
 	static const int kTagTileMap = 2;
 
+	static const int AMOUNT_FRAMES_FOR_MOVE = 5;
+	static const int AMOUNT_MOVE_ANIMATIONS = 8;
+	static const float SHIFT_FROM_FRAME = 1.f;
+	static const float TIME_MOVE_ANIMATION_FRAME = 0.2f;
+
 	static const cocos2d::Rect BONUS_RECT(0, 0, 100, 100);
 	static const std::string BONUS_MED_PACK = PATH + "MedPack.png";
 	static const int MED_PACK_ADD_HEALTH = 100;
@@ -147,6 +152,12 @@ private:
 	void					CreateBonuses();
 
 	void					CreateContactListener();
+	// CreateAnimations.cpp
+	void					CreateAnimations();
+	CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
+	void					AddAnimationFrame(cocos2d::Vec2 & shift, const cocos2d::Size & size,
+												CollectionAnimations & collection, const std::string & nameFile);
+
 	// ActionsBonuses.cpp
 	void					CreateFunctionsForBonuses();
 
@@ -172,6 +183,9 @@ private:
 	void					DefineNeedAttackEnemy(CLifeObject * object,
 															const cocos2d::Vec2 & positionEnemy);
 
+	cocos2d::Vec2					GetTileCoordinateForPosition(cocos2d::Vec2 position);
+	void					CheckCollisionPlayer(cocos2d::Vec2 position);
+
 
 	bool					CheckVictoryCondition();
 	bool					CheckDefeatCondition(size_t index);
@@ -181,6 +195,10 @@ private:
 private:
 	cocos2d::PhysicsWorld*	m_World;
 	cocos2d::CCTMXTiledMap* m_tileMap;
+	cocos2d::CCTMXLayer*	m_collisionLayer;
+
+
+
 	size_t					m_id_player = 0;
 	size_t					m_amountMonsters = 10;
 

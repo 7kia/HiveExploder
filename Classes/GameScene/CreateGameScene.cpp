@@ -36,6 +36,8 @@ void GameScreen::CreateTypesLifeObjects()
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetWeapon(m_typesWeapons[CTypeWeapon::PlayerWeapon]);
 
+	m_typesLifeObjects[TypeLifeObject::Player].SetAnimationsMove(CreateMoveAnimations(GameSceneRecourses::MARINE,
+																						GameSceneRecourses::MARINE_RECT));
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::ZERGLING);
@@ -46,6 +48,9 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetWeapon(m_typesWeapons[CTypeWeapon::ZerglingWeapon]);
 
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetAnimationsMove(CreateMoveAnimations(GameSceneRecourses::ZERGLING,
+		GameSceneRecourses::ZERGLING_RECT));
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HYDRALISK);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetId(TypeLifeObject::ID::Hydralisk);
@@ -54,6 +59,9 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetVelocity(80.f);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetHealth(180);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetWeapon(m_typesWeapons[CTypeWeapon::HydraliskWeapon]);
+
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetAnimationsMove(CreateMoveAnimations(GameSceneRecourses::HYDRALISK,
+		GameSceneRecourses::HYDRALISK_RECT));
 
 }
 
@@ -211,6 +219,9 @@ void GameScreen::CreateCamera()
 void GameScreen::CreateMap()
 {
 	m_tileMap = CCTMXTiledMap::create(GameSceneRecourses::MAP);
+
+	CCTMXLayer *m_collisionLayer = m_tileMap->layerNamed("Collision");
+	m_collisionLayer->setVisible(false);
 
 	this->addChild(m_tileMap, GameSceneRecourses::levelMap);
 }
