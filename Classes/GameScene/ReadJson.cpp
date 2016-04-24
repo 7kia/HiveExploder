@@ -85,7 +85,7 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 		//*/
 
 		auto floats = constants.at(1);
-		auto floatConstants = integers.value_.get_array();
+		auto floatConstants = floats.value_.get_array();
 		for (size_t index = 0; index < floatConstants.size(); index++)
 		{
 			auto object = floatConstants.at(index).get_obj();
