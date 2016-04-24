@@ -2,7 +2,7 @@
 
 #include "cocos2d.h"
 
-typedef std::vector<cocos2d::Animate *> CollectionAnimations;
+typedef std::vector<cocos2d::Animation*> CollectionAnimations;
 
 class CVisualDataType
 {

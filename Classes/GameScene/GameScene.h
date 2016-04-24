@@ -8,10 +8,38 @@
 #include "../Bonuses/Bonuses.h"
 #include "../HealthBar/HealthBar.h"
  
+#include "SimpleAudioEngine.h"
+
+namespace Sounds// TODO : redesign
+{
+	static const std::string PATH = "GameScene/Sounds/";
+
+	static const int AMOUNT_VARIATIONS = 7;
+	static const std::string MARINE_SHOOT[AMOUNT_VARIATIONS] = { 
+		PATH + "Marine_AttackLaunch0.wav",
+		PATH + "Marine_AttackLaunch1.wav",
+		PATH + "Marine_AttackLaunch2.wav",
+		PATH + "Marine_AttackLaunch3.wav",
+		PATH + "Marine_AttackLaunch4.wav",
+		PATH + "Marine_AttackLaunch5.wav",
+		PATH + "Marine_AttackLaunch6.wav"
+	};
+	static const std::string MARINE_DEATH[AMOUNT_VARIATIONS] = {
+		PATH + "Marine_Death01.wav",
+		PATH + "Marine_Death02.wav",
+		PATH + "Marine_Death03.wav",
+		PATH + "Marine_Death04.wav",
+		PATH + "Marine_Death05.wav",
+		PATH + "Marine_Death06.wav",
+		PATH + "Marine_Death07.wav"
+	};
+
+}
 
 namespace GameSceneRecourses// TODO : redesign
 {
 	static const std::string PATH = "GameScene/";
+
 	static const std::string BACKGROUND = PATH + "Background.png";
 
 	static const std::string MAP = PATH + "Map/map.tmx";
@@ -155,7 +183,8 @@ private:
 	// CreateAnimations.cpp
 	void					CreateAnimations();
 	CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
-	void					AddAnimationFrame(cocos2d::Vec2 & shift, const cocos2d::Size & size,
+	cocos2d::Vector<cocos2d::SpriteFrame*>	GetAnimation(const std::vector<std::string>& names);
+	void					AddAnimationFrame(cocos2d::Vec2 & shift, const cocos2d::Size & size, const int index,
 												CollectionAnimations & collection, const std::string & nameFile);
 
 	// ActionsBonuses.cpp
@@ -192,11 +221,17 @@ private:
 
 	TypeLifeObject::ID		GetIdTypeLifeObject(const std::string & name);
 	CBonusesType::ID		GetIdTypeBonuses(const std::string & name);
+
+	// SoundsEngine.cpp
+	void					CreateSounds();
+	void					PlayRandomSound(const std::string * path);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 	cocos2d::CCTMXTiledMap* m_tileMap;
 	cocos2d::CCTMXLayer*	m_collisionLayer;
 
+	std::vector<std::shared_ptr<cocos2d::Sprite>> m_spriteCashe;
+	std::vector<cocos2d::Animate*> m_pAnimates;
 
 
 	size_t					m_id_player = 0;

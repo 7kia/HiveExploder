@@ -8,7 +8,7 @@ void GameScreen::CreateAnimations()
 
 }
 
-
+// TODO : NOT WORK!!!
 CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, const Rect & rectangle)
 {
 	CollectionAnimations moveAnimations;
@@ -19,7 +19,8 @@ CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, c
 
 	for (size_t indexAnimation = 0; indexAnimation < GameSceneRecourses::AMOUNT_MOVE_ANIMATIONS; indexAnimation++)
 	{
-		AddAnimationFrame(shift, size, moveAnimations, nameFile);
+		AddAnimationFrame(shift, size, indexAnimation,
+						moveAnimations, nameFile);
 
 		shift.x += size.width;
 		shift.y = 0.f;
@@ -28,20 +29,52 @@ CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, c
 	return moveAnimations;
 }
 
-void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size,
+Vector<SpriteFrame*>  GameScreen::GetAnimation(const std::vector<std::string> & names)
+{
+	auto spriteFrameCashe = SpriteFrameCache::getInstance();
+
+	Vector<SpriteFrame*> result;
+	for (const auto & name : names)
+	{
+		result.pushBack(spriteFrameCashe->getSpriteFrameByName(name));
+	}
+
+	return result;
+}
+
+void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int index,
 									CollectionAnimations & collection, const string & nameFile)
 {
+	auto animationCashe = AnimationCache::getInstance();
+	auto spriteFrameCashe = SpriteFrameCache::getInstance();
+
 	Vector<SpriteFrame*> frames(GameSceneRecourses::AMOUNT_FRAMES_FOR_MOVE);
 
-	for (int i = 0; i < GameSceneRecourses::AMOUNT_FRAMES_FOR_MOVE; i++)
+	std::vector<std::string> namesFrames;
+
+	for (size_t i = 0; i < GameSceneRecourses::AMOUNT_FRAMES_FOR_MOVE; i++)
 	{
 		auto frame = SpriteFrame::create(nameFile, Rect(shift, size));
+
+		namesFrames.push_back(nameFile 
+							+ "move" 
+							+ to_string(static_cast<int>(shift.x))
+							+ '_' 
+							+ to_string(static_cast<int>(shift.y)));
+
+		spriteFrameCashe->addSpriteFrame(frame, namesFrames[i]);
 		frames.pushBack(frame);
 
 		shift.y += size.height + GameSceneRecourses::SHIFT_FROM_FRAME;
 	}
 
-	Animation* animation = Animation::createWithSpriteFrames(frames, GameSceneRecourses::TIME_MOVE_ANIMATION_FRAME);
+	Animation* animation = Animation::createWithSpriteFrames(GetAnimation(namesFrames),
+																GameSceneRecourses::TIME_MOVE_ANIMATION_FRAME);
+
+	std::string nameAnimation = nameFile + "move" + to_string(index);
+	animationCashe->addAnimation(animation, nameAnimation);
 	//make_shared<Animate>()
-	collection.push_back(Animate::create(animation));
+	//m_animateCashe.push_back(make_shared<Animate>(Animate::create(animationCashe->getAnimation(nameAnimation))));
+
+	collection.push_back(animationCashe->getAnimation(nameAnimation));
 }

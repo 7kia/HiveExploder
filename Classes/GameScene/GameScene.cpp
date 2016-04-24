@@ -77,8 +77,9 @@ void GameScreen::GoToPauseScene(cocos2d::Ref *pSender)
 void GameScreen::GoToGameOverScene(cocos2d::Ref *pSender)
 {
     auto scene = GameOver::createScene();
-    
-	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
+
+	PlayRandomSound(Sounds::MARINE_DEATH);
+	Director::getInstance()->pushScene(TransitionFade::create(1.5, scene));
 }
 
 
@@ -86,5 +87,5 @@ void GameScreen::GoToVictoryScene(cocos2d::Ref *pSender)
 {
 	auto scene = Victory::createScene();
 
-	Director::getInstance()->pushScene(TransitionFade::create(1.0, scene));
+	Director::getInstance()->pushScene(TransitionFade::create(1.5, scene));
 }

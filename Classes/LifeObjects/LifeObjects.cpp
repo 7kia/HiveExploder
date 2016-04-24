@@ -43,6 +43,7 @@ void CLifeObject::Attack()
 	if (m_weapon.GetState() == CWeapon::IdState::NotActive)
 	{
 		m_weapon.SetState(CWeapon::IdState::NotShoot);
+		
 	}
 }
 

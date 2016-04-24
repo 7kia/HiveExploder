@@ -34,7 +34,13 @@ void CLifeObject::UpdatePosition(float dt)
 
 void CLifeObject::SetAnimationMove()
 {
-	runAction(m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)]);
+	auto animationCashe = AnimationCache::getInstance();
+	auto spriteFrameCashe = SpriteFrameCache::getInstance();
+
+	//Animate animate = *m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)];
+	//runAction(Animate(m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)]));
+	//setTextureRect(m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)])
+
 }
 
 int CLifeObject::GetIndexMoveAnimation(const Direction & direction)
