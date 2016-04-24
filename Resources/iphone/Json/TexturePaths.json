@@ -1,0 +1,18 @@
+{
+"PATH" : "GameScene/"	
+, "MAP" : "Map/map.tmx"
+, "BONUS_MED_PACK" : "MedPack.png"
+, "BONUS_GRENADE_GUN" : "GrenadeGun.png"
+, "BONUS_PLASMA_GUN" : "PlasmaGun.png"	
+, "GRENADE" : "Grenade.png"	
+, "PLASMA_SHOOT" : "PlasmaShoot.png"
+, "HEALTH_BAR" : "HealthBar.png"	
+, "MANAGE_CIRCLE" : "MoveCircle.png"
+, "MARINE" : "Marine.png"
+, "MARINE_SHOOT" : "Marine_gun_bullet.png"
+, "MELEE_SHOOT" : "Melee.png"
+, "ZERGLING" : "Zergling.png"
+, "HYDRALISK" : "Hydralisk.png"
+, "HYDRALISK_SHOOT" : "Hydralisk_shoot.png"
+}
+
