@@ -32,6 +32,7 @@ bool GameScreen::init()
     }
 
 	ReadTexturePaths("iphone/Json/TexturePaths.json");
+	ReadRectangles("iphone/Json/RectanglesPaths.json");
 
 	CreateCashes();
 	CreateTypesShoots();

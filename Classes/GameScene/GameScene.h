@@ -101,6 +101,8 @@ namespace GameSceneRecourses// TODO : redesign
 }
 
 typedef std::unordered_map<std::string, std::string> MapPath;
+typedef std::unordered_map<std::string, cocos2d::Rect> MapRect;
+
 typedef std::vector<std::string> Words;
 
 class GameScreen : public cocos2d::Layer
@@ -224,6 +226,7 @@ private:
 
 	// ReadJson.cpp
 	void					ReadTexturePaths(const std::string & jsonFileName);
+	void					ReadRectangles(const std::string & jsonFileName);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 	cocos2d::CCTMXTiledMap* m_tileMap;
@@ -235,6 +238,7 @@ private:
 
 	// Data from json
 	MapPath					m_texturePaths;
+	MapRect					m_rectanglePaths;
 	/////////////////
 
 	size_t					m_id_player = 0;
