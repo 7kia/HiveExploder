@@ -11,7 +11,9 @@
 #include "SimpleAudioEngine.h"
 #include <vector>
 #include <string>
-#include "spine/json.h"
+//#include "spine/json.h"
+#include "json_spirit/json_spirit.h"
+
 #include <fstream>
 #include <iostream>
 #include <set>
@@ -45,11 +47,8 @@ namespace Sounds// TODO : redesign
 
 namespace GameSceneRecourses// TODO : redesign
 {
-	static const std::string PATH = "GameScene/";
-
 	//static const std::string BACKGROUND = PATH + "Background.png";
 
-	static const std::string MAP = PATH + "Map/map.tmx";
 	static const int kTagTileMap = 2;
 
 	static const int AMOUNT_FRAMES_FOR_MOVE = 5;
@@ -58,35 +57,25 @@ namespace GameSceneRecourses// TODO : redesign
 	static const float TIME_MOVE_ANIMATION_FRAME = 0.2f;
 
 	static const cocos2d::Rect BONUS_RECT(0, 0, 100, 100);
-	static const std::string BONUS_MED_PACK = PATH + "MedPack.png";
 	static const int MED_PACK_ADD_HEALTH = 100;
 
-	static const std::string BONUS_GRENADE_GUN = PATH + "GrenadeGun.png";
-	static const std::string BONUS_PLASMA_GUN = PATH + "PlasmaGun.png";
 
 	static const cocos2d::Rect GRENADE_RECT(0, 0, 30, 30);
-	static const std::string GRENADE = PATH + "Grenade.png";
 
 	static const cocos2d::Rect PLASMA_SHOOT_RECT(0, 0, 35, 45);
-	static const std::string PLASMA_SHOOT = PATH + "PlasmaShoot.png";
 
 
 	static const cocos2d::Rect HEALTH_BAR_RECT(0, 0, 50, 5);
-	static const std::string HEALTH_BAR = PATH + "HealthBar.png";
 
 
-	static const std::string MANAGE_CIRCLE = PATH + "MoveCircle.png";
 
 	//namespace TypePlayer// TODO : redesign
 	//{
 	static const cocos2d::Rect MARINE_RECT(0, 0, 60, 60);
-	static const std::string MARINE = PATH + "Marine.png";
 
 	static const cocos2d::Rect MARINE_SHOOT_RECT(0, 0, 8, 49);
-	static const std::string MARINE_SHOOT = PATH + "Marine_gun_bullet.png";
 
 	static const cocos2d::Rect MELEE_SHOOT_RECT(0, 0, 10, 10);
-	static const std::string MELEE_SHOOT = PATH + "Melee.png";
 
 
 	//
@@ -97,16 +86,13 @@ namespace GameSceneRecourses// TODO : redesign
 	//namespace TypeZergling// TODO : redesign
 	//{
 		static const cocos2d::Rect ZERGLING_RECT(0, 0, 60, 60);
-		static const std::string ZERGLING = PATH + "Zergling.png";
 	//}
 
 	//namespace TypeHydralisk// TODO : redesign
 	//{
 		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 80, 80);
-		static const std::string HYDRALISK = PATH + "Hydralisk.png";
 	//}
 		static const cocos2d::Rect HYDRALISK_SHOOT_RECT(0, 0, 8, 32);
-		static const std::string HYDRALISK_SHOOT = PATH + "Hydralisk_shoot.png";
 
 
 		static const int levelInterface = -1;

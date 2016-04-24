@@ -26,7 +26,7 @@ void GameScreen::CreateCashes()
 
 void GameScreen::CreateTypesLifeObjects()
 {
-	Texture2D* textureMarine = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MARINE);
+	Texture2D* textureMarine = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["MARINE"]);
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetId(TypeLifeObject::ID::Player);
 	m_typesLifeObjects[TypeLifeObject::Player].SetTexture(textureMarine);
@@ -36,11 +36,11 @@ void GameScreen::CreateTypesLifeObjects()
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetWeapon(m_typesWeapons[CTypeWeapon::PlayerWeapon]);
 
-	m_typesLifeObjects[TypeLifeObject::Player].SetAnimationsMove(CreateMoveAnimations(GameSceneRecourses::MARINE,
+	m_typesLifeObjects[TypeLifeObject::Player].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["MARINE"],
 																						GameSceneRecourses::MARINE_RECT));
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::ZERGLING);
+	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["ZERGLING"]);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetId(TypeLifeObject::ID::Zergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTexture(textureZergling);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetTextureRect(GameSceneRecourses::ZERGLING_RECT);
@@ -48,11 +48,11 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetWeapon(m_typesWeapons[CTypeWeapon::ZerglingWeapon]);
 
-	m_typesLifeObjects[TypeLifeObject::Zergling].SetAnimationsMove(CreateMoveAnimations(GameSceneRecourses::ZERGLING,
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["ZERGLING"],
 		GameSceneRecourses::ZERGLING_RECT));
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HYDRALISK);
+	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HYDRALISK"]);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetId(TypeLifeObject::ID::Hydralisk);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetTexture(textureHydralisk);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetTextureRect(GameSceneRecourses::HYDRALISK_RECT);
@@ -60,7 +60,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetHealth(180);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetWeapon(m_typesWeapons[CTypeWeapon::HydraliskWeapon]);
 
-	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetAnimationsMove(CreateMoveAnimations(GameSceneRecourses::HYDRALISK,
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["HYDRALISK"],
 		GameSceneRecourses::HYDRALISK_RECT));
 
 }
@@ -68,23 +68,23 @@ void GameScreen::CreateTypesLifeObjects()
 void GameScreen::CreateTypesShoots()
 {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MARINE_SHOOT);
+	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["MARINE_SHOOT"]);
 	m_typesShoots[CShootType::PlayerShoot].SetTexture(textureMarineShoot);
 	m_typesShoots[CShootType::PlayerShoot].SetTextureRect(GameSceneRecourses::MARINE_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureHydraliskShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HYDRALISK_SHOOT);
+	Texture2D* textureHydraliskShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HYDRALISK_SHOOT"]);
 	m_typesShoots[CShootType::HydraliskShoot].SetTexture(textureHydraliskShoot);
 	m_typesShoots[CShootType::HydraliskShoot].SetTextureRect(GameSceneRecourses::HYDRALISK_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureGrenade = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::GRENADE);
+	Texture2D* textureGrenade = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["GRENADE"]);
 	m_typesShoots[CShootType::Grenade].SetTexture(textureGrenade);
 	m_typesShoots[CShootType::Grenade].SetTextureRect(GameSceneRecourses::GRENADE_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* texturePlasmaShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::PLASMA_SHOOT);
+	Texture2D* texturePlasmaShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["PLASMA_SHOOT"]);
 	m_typesShoots[CShootType::Plasma].SetTexture(texturePlasmaShoot);
 	m_typesShoots[CShootType::Plasma].SetTextureRect(GameSceneRecourses::PLASMA_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureMeleeShoot = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::MELEE_SHOOT);
+	Texture2D* textureMeleeShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["MELEE_SHOOT"]);
 	m_typesShoots[CShootType::MeleeShoot].SetTexture(textureMeleeShoot);
 	m_typesShoots[CShootType::MeleeShoot].SetTextureRect(GameSceneRecourses::MELEE_SHOOT_RECT);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,20 +132,20 @@ void GameScreen::CreateTypesWeapons()
 void GameScreen::CreateTypesBonuses()
 {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureMedPack = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_MED_PACK);
+	Texture2D* textureMedPack = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["BONUS_MED_PACK"]);
 
 	m_typeBonuses[CBonusesType::MedicineChest].SetTexture(textureMedPack);
 	m_typeBonuses[CBonusesType::MedicineChest].SetTextureRect(GameSceneRecourses::BONUS_RECT);
 	m_typeBonuses[CBonusesType::MedicineChest].SetAction(m_functions_for_bonuses[CBonusesType::MedicineChest]);
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureGrenadeGun = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_GRENADE_GUN);
+	Texture2D* textureGrenadeGun = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["BONUS_GRENADE_GUN"]);
 
 	m_typeBonuses[CBonusesType::GrenadeGun].SetTexture(textureGrenadeGun);
 	m_typeBonuses[CBonusesType::GrenadeGun].SetTextureRect(GameSceneRecourses::BONUS_RECT);
 	m_typeBonuses[CBonusesType::GrenadeGun].SetAction(m_functions_for_bonuses[CBonusesType::GrenadeGun]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* texturePlasmaGun = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::BONUS_PLASMA_GUN);
+	Texture2D* texturePlasmaGun = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["BONUS_PLASMA_GUN"]);
 
 	m_typeBonuses[CBonusesType::PlasmaGun].SetTexture(texturePlasmaGun);
 	m_typeBonuses[CBonusesType::PlasmaGun].SetTextureRect(GameSceneRecourses::BONUS_RECT);
@@ -175,7 +175,7 @@ void GameScreen::CreateMenu()
 
 void GameScreen::CreateMoveCircle()
 {
-	m_manageCirlce.SetSprite(Sprite::create(GameSceneRecourses::MANAGE_CIRCLE));
+	m_manageCirlce.SetSprite(Sprite::create(m_texturePaths["MANAGE_CIRCLE"]));
 
 	this->addChild(m_manageCirlce.GetSprite(), GameSceneRecourses::levelInterface);
 }
@@ -218,7 +218,7 @@ void GameScreen::CreateCamera()
 
 void GameScreen::CreateMap()
 {
-	m_tileMap = CCTMXTiledMap::create(GameSceneRecourses::MAP);
+	m_tileMap = CCTMXTiledMap::create(m_texturePaths["MAP"]);
 
 	CCTMXLayer *m_collisionLayer = m_tileMap->layerNamed("Collision");
 	m_collisionLayer->setVisible(false);
@@ -262,7 +262,7 @@ void GameScreen::CreateWalls()
 void GameScreen::CreateLifeObjects()
 {
 	// TODO : redesign
-	Texture2D* textureHealthBar = Director::getInstance()->getTextureCache()->addImage(GameSceneRecourses::HEALTH_BAR);
+	Texture2D* textureHealthBar = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HEALTH_BAR"]);
 
 	CBar healthBar(textureHealthBar, GameSceneRecourses::HEALTH_BAR_RECT);
 	/////////////////

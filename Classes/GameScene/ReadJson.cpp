@@ -2,6 +2,7 @@
 #include <boost/algorithm/string.hpp>
 
 using namespace std;
+using namespace json_spirit;
 
 Words SplitWords(string const& text)
 {
@@ -18,26 +19,17 @@ void GameScreen::ReadTexturePaths(const string & jsonFileName)
 
 	if (inputFile.is_open())
 	{
-	Words words;
-	string inputString;
+		Value value;
+		read(inputFile, value);
 
-	getline(inputFile, inputString);
-	words = SplitWords(inputString);
-	m_texturePaths.emplace(words[0], words[1]);
-	string path = m_texturePaths["PATH"];
+		auto dictionaryPaths = value.get_obj();
 
-	while (getline(inputFile, inputString))
-	{
-		words = SplitWords(inputString);
-		if (inputString != "")
+		string path = dictionaryPaths.at(0).value_.get_str();
+		for (size_t index = 1; index < dictionaryPaths.size(); index++)
 		{
-			m_texturePaths.emplace(words[0], path + words[1]);
+			m_texturePaths.emplace(dictionaryPaths.at(index).name_,
+									path + dictionaryPaths.at(index).value_.get_str());
 		}
-		else
-		{
-			break;
-		}
-	}
 
 	}
 
