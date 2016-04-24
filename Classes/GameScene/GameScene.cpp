@@ -31,6 +31,7 @@ bool GameScreen::init()
         return false;
     }
 
+	ReadGameConstants("iphone/Json/GameConstants.json");
 	ReadTexturePaths("iphone/Json/TexturePaths.json");
 	ReadRectangles("iphone/Json/RectanglesPaths.json");
 

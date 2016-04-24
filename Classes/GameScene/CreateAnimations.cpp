@@ -7,6 +7,7 @@ void GameScreen::CreateAnimations()
 {
 
 }
+///*
 
 // TODO : NOT WORK!!!
 CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, const Rect & rectangle)
@@ -17,7 +18,7 @@ CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, c
 	Vec2 shift = Vec2::ZERO;
 	Size size = frameAnimation.size;
 
-	for (size_t indexAnimation = 0; indexAnimation < GameSceneRecourses::AMOUNT_MOVE_ANIMATIONS; indexAnimation++)
+	for (size_t indexAnimation = 0; indexAnimation < m_gameIntConstats["AMOUNT_MOVE_ANIMATIONS"]; indexAnimation++)
 	{
 		AddAnimationFrame(shift, size, indexAnimation,
 						moveAnimations, nameFile);
@@ -48,11 +49,11 @@ void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int in
 	auto animationCashe = AnimationCache::getInstance();
 	auto spriteFrameCashe = SpriteFrameCache::getInstance();
 
-	Vector<SpriteFrame*> frames(GameSceneRecourses::AMOUNT_FRAMES_FOR_MOVE);
+	Vector<SpriteFrame*> frames(m_gameFloatConstats["AMOUNT_FRAMES_FOR_MOVE"]);
 
 	std::vector<std::string> namesFrames;
 
-	for (size_t i = 0; i < GameSceneRecourses::AMOUNT_FRAMES_FOR_MOVE; i++)
+	for (size_t i = 0; i < m_gameFloatConstats["AMOUNT_FRAMES_FOR_MOVE"]; i++)
 	{
 		auto frame = SpriteFrame::create(nameFile, Rect(shift, size));
 
@@ -78,3 +79,4 @@ void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int in
 
 	collection.push_back(animationCashe->getAnimation(nameAnimation));
 }
+//*/

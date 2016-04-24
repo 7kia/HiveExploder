@@ -47,61 +47,17 @@ namespace Sounds// TODO : redesign
 
 namespace GameSceneRecourses// TODO : redesign
 {
-	//static const std::string BACKGROUND = PATH + "Background.png";
-
-	static const int kTagTileMap = 2;
-
-	static const int AMOUNT_FRAMES_FOR_MOVE = 5;
-	static const int AMOUNT_MOVE_ANIMATIONS = 8;
 	static const float SHIFT_FROM_FRAME = 1.f;
 	static const float TIME_MOVE_ANIMATION_FRAME = 0.2f;
 
-	static const cocos2d::Rect BONUS_RECT(0, 0, 100, 100);
 	static const int MED_PACK_ADD_HEALTH = 100;
 
-
-	static const cocos2d::Rect GRENADE_RECT(0, 0, 30, 30);
-
-	static const cocos2d::Rect PLASMA_SHOOT_RECT(0, 0, 35, 45);
-
-
-	static const cocos2d::Rect HEALTH_BAR_RECT(0, 0, 50, 5);
-
-
-
-	//namespace TypePlayer// TODO : redesign
-	//{
-	static const cocos2d::Rect MARINE_RECT(0, 0, 60, 60);
-
-	static const cocos2d::Rect MARINE_SHOOT_RECT(0, 0, 8, 49);
-
-	static const cocos2d::Rect MELEE_SHOOT_RECT(0, 0, 10, 10);
-
-
-	//
-
-
-	//}
-
-	//namespace TypeZergling// TODO : redesign
-	//{
-		static const cocos2d::Rect ZERGLING_RECT(0, 0, 60, 60);
-	//}
-
-	//namespace TypeHydralisk// TODO : redesign
-	//{
-		static const cocos2d::Rect HYDRALISK_RECT(0, 0, 80, 80);
-	//}
-		static const cocos2d::Rect HYDRALISK_SHOOT_RECT(0, 0, 8, 32);
-
-
-		static const int levelInterface = -1;
-		static const int levelObjects = -2;
-		static const int levelMap = -3;
 }
 
 typedef std::unordered_map<std::string, std::string> MapPath;
 typedef std::unordered_map<std::string, cocos2d::Rect> MapRect;
+typedef std::unordered_map<std::string, int> MapInt;
+typedef std::unordered_map<std::string, float> MapFloat;
 
 typedef std::vector<std::string> Words;
 
@@ -180,10 +136,13 @@ private:
 	void					CreateContactListener();
 	// CreateAnimations.cpp
 	void					CreateAnimations();
-	CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
+	///*
+		CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
 	cocos2d::Vector<cocos2d::SpriteFrame*>	GetAnimation(const std::vector<std::string>& names);
 	void					AddAnimationFrame(cocos2d::Vec2 & shift, const cocos2d::Size & size, const int index,
 												CollectionAnimations & collection, const std::string & nameFile);
+
+	//*/
 
 	// ActionsBonuses.cpp
 	void					CreateFunctionsForBonuses();
@@ -227,6 +186,11 @@ private:
 	// ReadJson.cpp
 	void					ReadTexturePaths(const std::string & jsonFileName);
 	void					ReadRectangles(const std::string & jsonFileName);
+	void					ReadGameConstants(const std::string & jsonFileName);
+
+public:
+		MapInt					m_gameIntConstats;
+		MapFloat				m_gameFloatConstats;
 private:
 	cocos2d::PhysicsWorld*	m_World;
 	cocos2d::CCTMXTiledMap* m_tileMap;

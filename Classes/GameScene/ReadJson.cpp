@@ -61,3 +61,37 @@ void GameScreen::ReadRectangles(const string & jsonFileName)
 	}
 
 }
+
+void GameScreen::ReadGameConstants(const string & jsonFileName)
+{
+	ifstream inputFile(jsonFileName);
+
+	if (inputFile.is_open())
+	{
+		json_spirit::Value value;
+		read(inputFile, value);
+
+		auto constants = value.get_obj();
+		auto integers = constants.at(0);
+		auto intConstants = integers.value_.get_array();
+		///*
+		for (size_t index = 0; index < intConstants.size(); index++)
+		{
+			auto object = intConstants.at(index).get_obj();
+			m_gameIntConstats.insert({ object.at(0).name_,
+										object.at(0).value_.get_int() });
+		}
+
+		//*/
+
+		auto floats = constants.at(1);
+		auto floatConstants = integers.value_.get_array();
+		for (size_t index = 0; index < floatConstants.size(); index++)
+		{
+			auto object = floatConstants.at(index).get_obj();
+			m_gameFloatConstats.insert({ object.at(0).name_,
+										static_cast<float>(object.at(0).value_.get_real()) });
+		}
+	}
+
+}

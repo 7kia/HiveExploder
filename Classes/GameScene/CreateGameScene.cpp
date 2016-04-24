@@ -177,7 +177,7 @@ void GameScreen::CreateMoveCircle()
 {
 	m_manageCirlce.SetSprite(Sprite::create(m_texturePaths["MANAGE_CIRCLE"]));
 
-	this->addChild(m_manageCirlce.GetSprite(), GameSceneRecourses::levelInterface);
+	this->addChild(m_manageCirlce.GetSprite(), m_gameIntConstats["levelInterface"]);
 }
 
 void GameScreen::CreateListener()
@@ -223,7 +223,7 @@ void GameScreen::CreateMap()
 	CCTMXLayer *m_collisionLayer = m_tileMap->layerNamed("Collision");
 	m_collisionLayer->setVisible(false);
 
-	this->addChild(m_tileMap, GameSceneRecourses::levelMap);
+	this->addChild(m_tileMap, m_gameIntConstats["levelMap"]);
 }
 
 void GameScreen::CreateWalls()
@@ -253,7 +253,7 @@ void GameScreen::CreateWalls()
 
 
 
-		addChild(spriteWall, GameSceneRecourses::levelObjects);
+		addChild(spriteWall, m_gameIntConstats["levelObjects"]);
 	}
 
 
@@ -285,8 +285,8 @@ void GameScreen::CreateLifeObjects()
 
 		m_lifeObjects.push_back(lifeObjects);
 
-		addChild(lifeObjects, GameSceneRecourses::levelObjects);
-		addChild(&lifeObjects->GetHealthBar(), GameSceneRecourses::levelObjects);
+		addChild(lifeObjects, m_gameIntConstats["levelObjects"]);
+		addChild(&lifeObjects->GetHealthBar(), m_gameIntConstats["levelObjects"]);
 
 	}
 
@@ -308,7 +308,7 @@ void GameScreen::CreateBonuses()
 			value["y"].asFloat());
 
 		m_bonuses.push_back(bonus);
-		addChild(bonus, GameSceneRecourses::levelObjects);
+		addChild(bonus, m_gameIntConstats["levelObjects"]);
 	}
 }
 
@@ -331,7 +331,7 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	shoot->SetDirection(directionShoot);
 
 	shoots.push_back(shoot);
-	scene->addChild(shoot, GameSceneRecourses::levelObjects);
+	scene->addChild(shoot, scene->m_gameIntConstats["levelObjects"]);
 
 	SetWeaponState(CWeapon::IdState::NotActive);
 	SetDirection(Vec2::ZERO);
