@@ -31,6 +31,8 @@ bool GameScreen::init()
         return false;
     }
 
+	ReadTexturePaths("iphone/Json/TexturePaths.json");
+
 	CreateCashes();
 	CreateTypesShoots();
 	CreateTypesWeapons();

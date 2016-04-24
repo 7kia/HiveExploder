@@ -9,6 +9,13 @@
 #include "../HealthBar/HealthBar.h"
  
 #include "SimpleAudioEngine.h"
+#include <vector>
+#include <string>
+#include "spine/json.h"
+#include <fstream>
+#include <iostream>
+#include <set>
+#include <unordered_map>
 
 namespace Sounds// TODO : redesign
 {
@@ -40,7 +47,7 @@ namespace GameSceneRecourses// TODO : redesign
 {
 	static const std::string PATH = "GameScene/";
 
-	static const std::string BACKGROUND = PATH + "Background.png";
+	//static const std::string BACKGROUND = PATH + "Background.png";
 
 	static const std::string MAP = PATH + "Map/map.tmx";
 	static const int kTagTileMap = 2;
@@ -106,6 +113,9 @@ namespace GameSceneRecourses// TODO : redesign
 		static const int levelObjects = -2;
 		static const int levelMap = -3;
 }
+
+typedef std::unordered_map<std::string, std::string> MapPath;
+typedef std::vector<std::string> Words;
 
 class GameScreen : public cocos2d::Layer
 {
@@ -225,6 +235,9 @@ private:
 	// SoundsEngine.cpp
 	void					CreateSounds();
 	void					PlayRandomSound(const std::string * path);
+
+	// ReadJson.cpp
+	void					ReadTexturePaths(const std::string & jsonFileName);
 private:
 	cocos2d::PhysicsWorld*	m_World;
 	cocos2d::CCTMXTiledMap* m_tileMap;
@@ -233,6 +246,10 @@ private:
 	std::vector<std::shared_ptr<cocos2d::Sprite>> m_spriteCashe;
 	std::vector<cocos2d::Animate*> m_pAnimates;
 
+
+	// Data from json
+	MapPath					m_texturePaths;
+	/////////////////
 
 	size_t					m_id_player = 0;
 	size_t					m_amountMonsters = 10;
