@@ -1,0 +1,86 @@
+{
+"PATH" : "GameScene/Sounds/"
+, "Sounds" : [
+{ "MARINE_SHOOT" : 
+[
+"Marine_AttackLaunch0.wav"
+, "Marine_AttackLaunch1.wav"
+, "Marine_AttackLaunch2.wav"
+, "Marine_AttackLaunch3.wav"
+, "Marine_AttackLaunch4.wav"
+, "Marine_AttackLaunch5.wav"
+, "Marine_AttackLaunch6.wav"
+] }
+
+, { "MARINE_DEATH" :
+[
+"Marine_Death01.wav",
+"Marine_Death02.wav",
+"Marine_Death03.wav",
+"Marine_Death04.wav",
+"Marine_Death05.wav",
+"Marine_Death06.wav",
+"Marine_Death07.wav"
+] }
+
+, { "BONUS_ACTIVATE" :
+[
+"UI_ArcadeSelect_1.wav"
+, "UI_ArcadeSelect_2.wav"
+, "UI_ArcadeSelect_3.wav"
+, "UI_ArcadeSelect_4.wav"
+] }
+
+
+, { "ZERGLING_SHOOT" :
+[
+"Zergling_AttackLaunch7.wav"
+] }
+
+, { "ZERGLING_DEATH" :
+[
+"Zergling_Death0.wav"
+, "Zergling_Death1.wav"
+, "Zergling_Death2.wav"
+, "Zergling_Death3.wav"
+, "Zergling_Death4.wav"
+] }
+
+
+, { "HYDRALISK_SHOOT" :
+[
+"Hydralisk_AttackLaunchRanged0.wav"
+, "Hydralisk_AttackLaunchRanged1.wav"
+, "Hydralisk_AttackLaunchRanged2.wav"
+, "Hydralisk_AttackLaunchRanged3.wav"
+] }
+
+, { "HYDRALISK_DEATH" :
+[
+"Hydralisk_Death0.wav"
+, "Hydralisk_Death1.wav"
+, "Hydralisk_Death2.wav"
+, "Hydralisk_Death3.wav"
+, "Hydralisk_Death4.wav"
+, "Hydralisk_Death5.wav"
+
+] }
+
+, { "GRENADE_SHOOT" :
+[
+"Viking_FighterAttackLaunch0.wav"
+, "Viking_FighterAttackLaunch1.wav"
+, "Viking_FighterAttackLaunch2.wav"
+] }
+
+, { "PLASMA_SHOOT" :
+[
+"Battlecruiser_AttackLaunch0.wav"
+, "Battlecruiser_AttackLaunch1.wav"
+, "Battlecruiser_AttackLaunch2.wav"
+]}
+
+]
+
+}
+

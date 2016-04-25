@@ -1,7 +1,7 @@
 {
 "BONUS_RECT" : [ 0, 0, 100, 100 ]
 , "GRENADE_RECT" : [ 0, 0, 30, 30 ]
-, "PLASMA_SHOOT_RECT_RECT" : [ 0, 0, 35, 45 ]
+, "PLASMA_SHOOT_RECT" : [ 0, 0, 35, 45 ]
 , "HEALTH_BAR_RECT" : [ 0, 0, 50, 5 ]
 , "MARINE_RECT" : [ 0, 0, 60, 60 ]
 , "MARINE_SHOOT_RECT" : [ 0, 0, 8, 49 ]
