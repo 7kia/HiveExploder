@@ -5,6 +5,8 @@
 	, {"levelInterface ": -1}
 	, {"levelObjects ": -2}
 	, {"levelMap ": -3}
+	, { "AMOUNT_MOVE_ANIMATIONS" : 8 }
+	, { "AMOUNT_FRAMES_FOR_MOVE" : 5 }
 ]
 , "Float" :
 [
@@ -12,7 +14,7 @@
 ]
 , "SoundsFeatures" :
 [
-	{"LAUNCH" : [ 0.0, 0.0, 1.0]}
+	{"LAUNCH" : [ 1.0, 0.0, 1.0]}
 	, {"DEATH": [ 1.0, 0.0, 1.0 ]}
 	, {"ACTIVATE": [ 1.0, 0.0, 1.0 ]}
 ]

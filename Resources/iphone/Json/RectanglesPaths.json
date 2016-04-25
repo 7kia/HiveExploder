@@ -7,7 +7,7 @@
 , "MARINE_SHOOT_RECT" : [ 0, 0, 8, 49 ]
 , "MELEE_SHOOT_RECT" : [ 0, 0, 10, 10 ]
 , "ZERGLING_RECT" : [ 0, 0, 60, 60 ]
-, "HYDRALISK_RECT" : [ 0, 0, 80, 80 ]
+, "HYDRALISK_RECT" : [ 0, 0, 107, 100 ]
 , "HYDRALISK_SHOOT_RECT" : [ 0, 0, 8, 32 ]
 }
 
