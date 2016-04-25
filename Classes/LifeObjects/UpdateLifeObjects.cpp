@@ -37,15 +37,44 @@ void CLifeObject::SetAnimationMove()
 	auto animationCashe = AnimationCache::getInstance();
 	auto spriteFrameCashe = SpriteFrameCache::getInstance();
 
-	if (getActionByTag(0) == nullptr)
+	int idAnimation = GetIndexMoveAnimation(m_direction);
+	if (getActionByTag(idAnimation) == nullptr)
 	{
-		Animation *animation = m_type->GetAnimationsMove().at(GetIndexMoveAnimation(m_direction));
-		Animate *animate = Animate::create(animation);
-		animate->setTag(0);
-		runAction(animate);
-	}
-	//setTextureRect(m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)])
+		Animate *oldAnimate = GetOldAnimate();
 
+		Animation *animation = m_type->GetAnimationsMove().at(idAnimation);
+		Animate *newAnimate = Animate::create(animation);
+
+		newAnimate->setTag(idAnimation);
+
+		if (oldAnimate != nullptr)
+		{
+			if (oldAnimate->getTag() != newAnimate->getTag())
+			{
+				newAnimate->setDuration(oldAnimate->getDuration());
+			}
+		}
+
+		runAction(newAnimate);
+
+
+	}
+
+}
+
+Animate * CLifeObject::GetOldAnimate()
+{
+	Action *oldAnimate;
+	for (size_t index = 0; index < rangesDirections.size(); index++)
+	{
+		oldAnimate = getActionByTag(index);
+		if (oldAnimate != nullptr)
+		{
+			return dynamic_cast<Animate*>(oldAnimate);
+		}
+	}
+
+	return nullptr;
 }
 
 int CLifeObject::GetIndexMoveAnimation(const Direction & direction)

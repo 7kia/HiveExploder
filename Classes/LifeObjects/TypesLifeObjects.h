@@ -20,14 +20,14 @@ struct SRange
 	float	end = 0;
 };
 
-static const std::vector<SRange> rangesDirections = { SRange(67.6f, 112.5f),
+static const std::vector<SRange> rangesDirections = { SRange(-22.5f, 22.5f),
 													SRange(22.6f, 67.5f),
-													SRange(-22.5f, 22.5f),
-													SRange(-67.5f, -22.6f),
-													SRange(-112.5f, -67.6f),
+													SRange(67.6, 112.5f),
+													SRange(112.6f, 157.5f),
+													SRange(157.6f, 202.5f),
 													SRange(-157.5f, -112.6f),
-													SRange(-202.5f, -157.6f),
-													SRange(-247.5f, -202.5f) };
+													SRange(-112.5f, -67.6f),
+													SRange(-67.5f, -22.6f) };
 
 class TypeLifeObject :
 	public CVisualDataType

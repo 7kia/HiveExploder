@@ -33,8 +33,9 @@ public:
 	void			update(float dt) override;
 	void			UpdatePosition(float dt);
 
-	void			SetAnimationMove();
-	int				GetIndexMoveAnimation(const Direction & direction);
+	void					SetAnimationMove();
+	cocos2d::Animate *		GetOldAnimate();
+	int						GetIndexMoveAnimation(const Direction & direction);
 	/////////////////
 
 	/////////////////

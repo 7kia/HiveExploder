@@ -147,6 +147,9 @@ void GameScreen::UpdateManageCircle()
 
 bool GameScreen::CheckVictoryCondition()
 {
+	// TODO
+	return false;
+
 	if (m_lifeObjects.size() == 1)
 	{
 		if (m_lifeObjects[0]->GetIdType() == TypeLifeObject::ID::Player)
