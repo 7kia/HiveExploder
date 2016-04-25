@@ -77,6 +77,6 @@ void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int in
 	//make_shared<Animate>()
 	//m_animateCashe.push_back(make_shared<Animate>(Animate::create(animationCashe->getAnimation(nameAnimation))));
 
-	collection.push_back(animationCashe->getAnimation(nameAnimation));
+	collection.pushBack(animationCashe->getAnimation(nameAnimation));
 }
 //*/

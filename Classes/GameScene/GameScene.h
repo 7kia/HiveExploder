@@ -19,32 +19,6 @@
 #include <set>
 #include <unordered_map>
 
-namespace Sounds// TODO : redesign
-{
-	static const std::string PATH = "GameScene/Sounds/";
-
-	static const int AMOUNT_VARIATIONS = 7;
-	static const std::string MARINE_SHOOT[AMOUNT_VARIATIONS] = { 
-		PATH + "Marine_AttackLaunch0.wav",
-		PATH + "Marine_AttackLaunch1.wav",
-		PATH + "Marine_AttackLaunch2.wav",
-		PATH + "Marine_AttackLaunch3.wav",
-		PATH + "Marine_AttackLaunch4.wav",
-		PATH + "Marine_AttackLaunch5.wav",
-		PATH + "Marine_AttackLaunch6.wav"
-	};
-	static const std::string MARINE_DEATH[AMOUNT_VARIATIONS] = {
-		PATH + "Marine_Death01.wav",
-		PATH + "Marine_Death02.wav",
-		PATH + "Marine_Death03.wav",
-		PATH + "Marine_Death04.wav",
-		PATH + "Marine_Death05.wav",
-		PATH + "Marine_Death06.wav",
-		PATH + "Marine_Death07.wav"
-	};
-
-}
-
 namespace GameSceneRecourses// TODO : redesign
 {
 	static const float SHIFT_FROM_FRAME = 1.f;
@@ -55,6 +29,7 @@ namespace GameSceneRecourses// TODO : redesign
 }
 
 typedef std::unordered_map<std::string, std::string> MapPath;
+typedef std::unordered_map<std::string, std::vector<std::string>> MapPaths;
 typedef std::unordered_map<std::string, cocos2d::Rect> MapRect;
 typedef std::unordered_map<std::string, int> MapInt;
 typedef std::unordered_map<std::string, float> MapFloat;
@@ -181,16 +156,21 @@ private:
 
 	// SoundsEngine.cpp
 	void					CreateSounds();
-	void					PlayRandomSound(const std::string * path);
 
 	// ReadJson.cpp
 	void					ReadTexturePaths(const std::string & jsonFileName);
 	void					ReadRectangles(const std::string & jsonFileName);
 	void					ReadGameConstants(const std::string & jsonFileName);
+	void					ReadSoundsPath(const std::string & jsonFileName);
 
 public:
 		MapInt					m_gameIntConstats;
 		MapFloat				m_gameFloatConstats;
+public:
+		// SoundsEngine.cpp
+
+		void					PlayRandomSound(const std::vector<std::string> & path);
+
 private:
 	cocos2d::PhysicsWorld*	m_World;
 	cocos2d::CCTMXTiledMap* m_tileMap;
@@ -202,6 +182,7 @@ private:
 
 	// Data from json
 	MapPath					m_texturePaths;
+	MapPaths				m_soundsPaths;
 	MapRect					m_rectanglePaths;
 	/////////////////
 

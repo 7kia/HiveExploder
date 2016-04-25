@@ -19,9 +19,6 @@ void GameScreen::update(float dt)
 		case ManageCircle::Action::Attack:	
 			m_lifeObjects[m_id_player]->Attack();
 			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
-
-
-			PlayRandomSound(Sounds::MARINE_SHOOT);
 			break;
 		case ManageCircle::Action::Move:
 			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());

@@ -99,12 +99,17 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDistanse(750.f);
 
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetLaunchSounds(m_soundsPaths["MARINE_SHOOT"]);
+	/////////////////////////////////////////////////////////////////////////////////
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetId(CTypeWeapon::ZerglingWeapon);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDamage(5);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetTime(1.f);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetTypeShoot(m_typesShoots[CShootType::MeleeShoot]);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDistanse(70.f);
+
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetLaunchSounds(m_soundsPaths["ZERGLING_SHOOT"]);
+	/////////////////////////////////////////////////////////////////////////////////
 
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetId(CTypeWeapon::HydraliskWeapon);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDamage(3);
@@ -113,6 +118,10 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDistanse(550.f);
 
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetLaunchSounds(m_soundsPaths["HYDRALISK_SHOOT"]);
+	/////////////////////////////////////////////////////////////////////////////////
+
+
 	m_typesWeapons[CTypeWeapon::GrenadeGun].SetId(CTypeWeapon::GrenadeGun);
 	m_typesWeapons[CTypeWeapon::GrenadeGun].SetDamage(40);
 	m_typesWeapons[CTypeWeapon::GrenadeGun].SetTime(1.f);
@@ -120,12 +129,18 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::GrenadeGun].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::GrenadeGun].SetDistanse(550.f);
 
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetLaunchSounds(m_soundsPaths["GRENADE_SHOOT"]);
+	/////////////////////////////////////////////////////////////////////////////////
+
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetId(CTypeWeapon::PlasmaGun);
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetDamage(50);
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetTime(0.5f);
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetTypeShoot(m_typesShoots[CShootType::Plasma]);// TODO : replace
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetDistanse(550.f);
+
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetLaunchSounds(m_soundsPaths["PLASMA_SHOOT"]);
+	/////////////////////////////////////////////////////////////////////////////////
 
 }
 
@@ -332,6 +347,9 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 
 	shoots.push_back(shoot);
 	scene->addChild(shoot, scene->m_gameIntConstats["levelObjects"]);
+
+	// TODO
+	scene->PlayRandomSound(m_weapon.GetType().GetLaucnchSounds());
 
 	SetWeaponState(CWeapon::IdState::NotActive);
 	SetDirection(Vec2::ZERO);

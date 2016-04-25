@@ -95,3 +95,41 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 	}
 
 }
+
+void GameScreen::ReadSoundsPath(const string & jsonFileName)
+{
+	ifstream inputFile(jsonFileName);
+
+	if (inputFile.is_open())
+	{
+		json_spirit::Value value;
+		read(inputFile, value);
+
+		auto objects = value.get_obj();
+
+		auto pathObject = objects.at(0);
+		string path = pathObject.value_.get_str();
+
+		auto pathsSoundsObject = objects.at(1).value_.get_array();
+
+
+		vector<string> inputPaths;
+		for (size_t index = 0; index < pathsSoundsObject.size(); index++)
+		{
+			auto vectorPaths = pathsSoundsObject.at(index).get_obj();
+			auto jsonPaths = vectorPaths.at(0).value_.get_array();
+
+			for (size_t index2 = 0; index2 < jsonPaths.size(); index2++)
+			{
+				inputPaths.push_back(path + jsonPaths.at(index2).get_str());
+			}
+
+			m_soundsPaths.insert({ vectorPaths.at(0).name_,
+									inputPaths });
+			inputPaths.clear();
+
+		}
+
+	}
+
+}

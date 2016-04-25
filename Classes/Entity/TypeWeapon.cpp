@@ -1,5 +1,6 @@
 #include "TypeWeapon.h"
 
+using namespace std;
 
 void CTypeWeapon::SetTime(float time)
 {
@@ -59,6 +60,16 @@ void CTypeWeapon::SetDistanse(float distance)
 float CTypeWeapon::GetDistance() const
 {
 	return m_distance;
+}
+
+void CTypeWeapon::SetLaunchSounds(std::vector<std::string> & nameSound)
+{
+	m_nameLaunchSound = nameSound;
+}
+
+std::vector<std::string> CTypeWeapon::GetLaucnchSounds() const
+{
+	return m_nameLaunchSound;
 }
 
 

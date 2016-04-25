@@ -75,10 +75,11 @@ void CBar::SetTextureRect()
 		proportion = proportion;
 	}
 
-	const Size size = getContentSize();
-	float width = size.width * proportion;
-	setTextureRect(Rect(0.f, size.height / 2.f,
-						width, size.height));
+	//const Size size = getContentSize();
+	//float width = size.width * proportion;
+	setScaleX(proportion);
+	//setTextureRect(Rect(0.f, size.height / 2.f,
+	//					width, size.height));
 
 }
 

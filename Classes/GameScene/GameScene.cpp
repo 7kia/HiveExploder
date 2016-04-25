@@ -34,6 +34,7 @@ bool GameScreen::init()
 	ReadGameConstants("iphone/Json/GameConstants.json");
 	ReadTexturePaths("iphone/Json/TexturePaths.json");
 	ReadRectangles("iphone/Json/RectanglesPaths.json");
+	ReadSoundsPath("iphone/Json/SoundsPaths.json");
 
 	CreateCashes();
 	CreateTypesShoots();
@@ -82,7 +83,7 @@ void GameScreen::GoToGameOverScene(cocos2d::Ref *pSender)
 {
     auto scene = GameOver::createScene();
 
-	PlayRandomSound(Sounds::MARINE_DEATH);
+	PlayRandomSound(m_soundsPaths["MARINE_DEATH"]);
 	Director::getInstance()->pushScene(TransitionFade::create(1.5, scene));
 }
 

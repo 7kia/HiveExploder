@@ -33,6 +33,9 @@ public:
 
 	void					SetDistanse(float distance);
 	float					GetDistance() const;
+
+	void					SetLaunchSounds(std::vector<std::string> & nameSound);
+	std::vector<std::string>				GetLaucnchSounds() const;
 private:
 	ID						m_id = ID::NONE;
 
@@ -41,4 +44,6 @@ private:
 	float					m_distance;
 	CDynamicFeature			m_damage;
 	const CShootType*		m_type_shoot;
+
+	std::vector<std::string>				m_nameLaunchSound;
 };
