@@ -37,8 +37,13 @@ void CLifeObject::SetAnimationMove()
 	auto animationCashe = AnimationCache::getInstance();
 	auto spriteFrameCashe = SpriteFrameCache::getInstance();
 
-	//Animate animate = *m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)];
-	//runAction(Animate(m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)]));
+	if (getActionByTag(0) == nullptr)
+	{
+		Animation *animation = m_type->GetAnimationsMove().at(GetIndexMoveAnimation(m_direction));
+		Animate *animate = Animate::create(animation);
+		animate->setTag(0);
+		runAction(animate);
+	}
 	//setTextureRect(m_type->GetAnimationsMove()[GetIndexMoveAnimation(m_direction)])
 
 }

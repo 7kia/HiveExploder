@@ -75,5 +75,5 @@ SRange::SRange(float start, float end)
 
 bool SRange::IsBetween(float value) const
 {
-	return (start >= value) || (end <= value);
+	return (start <= value) && (end >= value);
 }

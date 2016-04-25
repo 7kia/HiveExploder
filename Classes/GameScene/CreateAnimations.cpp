@@ -49,11 +49,11 @@ void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int in
 	auto animationCashe = AnimationCache::getInstance();
 	auto spriteFrameCashe = SpriteFrameCache::getInstance();
 
-	Vector<SpriteFrame*> frames(m_gameFloatConstats["AMOUNT_FRAMES_FOR_MOVE"]);
+	Vector<SpriteFrame*> frames(m_gameIntConstats["AMOUNT_FRAMES_FOR_MOVE"]);
 
 	std::vector<std::string> namesFrames;
 
-	for (size_t i = 0; i < m_gameFloatConstats["AMOUNT_FRAMES_FOR_MOVE"]; i++)
+	for (size_t i = 0; i < m_gameIntConstats["AMOUNT_FRAMES_FOR_MOVE"]; i++)
 	{
 		auto frame = SpriteFrame::create(nameFile, Rect(shift, size));
 
