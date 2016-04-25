@@ -39,6 +39,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Player].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["MARINE"],
 																						m_rectanglePaths["MARINE_RECT"]));
 
+	m_typesLifeObjects[TypeLifeObject::Player].SetDeathSounds(m_soundsPaths["MARINE_DEATH"]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["ZERGLING"]);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetId(TypeLifeObject::ID::Zergling);
@@ -51,6 +52,7 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["ZERGLING"],
 																						m_rectanglePaths["ZERGLING_RECT"]));
 
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetDeathSounds(m_soundsPaths["ZERGLING_DEATH"]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HYDRALISK"]);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetId(TypeLifeObject::ID::Hydralisk);
@@ -62,6 +64,9 @@ void GameScreen::CreateTypesLifeObjects()
 
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["HYDRALISK"],
 																							m_rectanglePaths["HYDRALISK_RECT"]));
+
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetDeathSounds(m_soundsPaths["HYDRALISK_DEATH"]);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
 
@@ -99,7 +104,7 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDistanse(750.f);
 
-	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetLaunchSounds(m_soundsPaths["MARINE_SHOOT"]);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetLaunchSounds(m_soundsPaths.at("MARINE_SHOOT"));
 	/////////////////////////////////////////////////////////////////////////////////
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetId(CTypeWeapon::ZerglingWeapon);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDamage(5);
@@ -108,7 +113,7 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetDistanse(70.f);
 
-	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetLaunchSounds(m_soundsPaths["ZERGLING_SHOOT"]);
+	m_typesWeapons[CTypeWeapon::ZerglingWeapon].SetLaunchSounds(m_soundsPaths.at("ZERGLING_SHOOT"));
 	/////////////////////////////////////////////////////////////////////////////////
 
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetId(CTypeWeapon::HydraliskWeapon);
@@ -118,7 +123,7 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetDistanse(550.f);
 
-	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetLaunchSounds(m_soundsPaths["HYDRALISK_SHOOT"]);
+	m_typesWeapons[CTypeWeapon::HydraliskWeapon].SetLaunchSounds(m_soundsPaths.at("HYDRALISK_SHOOT"));
 	/////////////////////////////////////////////////////////////////////////////////
 
 
@@ -129,7 +134,7 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::GrenadeGun].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::GrenadeGun].SetDistanse(550.f);
 
-	m_typesWeapons[CTypeWeapon::GrenadeGun].SetLaunchSounds(m_soundsPaths["GRENADE_SHOOT"]);
+	m_typesWeapons[CTypeWeapon::GrenadeGun].SetLaunchSounds(m_soundsPaths.at("GRENADE_SHOOT"));
 	/////////////////////////////////////////////////////////////////////////////////
 
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetId(CTypeWeapon::PlasmaGun);
@@ -139,7 +144,7 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::PlasmaGun].SetDistanse(550.f);
 
-	m_typesWeapons[CTypeWeapon::PlasmaGun].SetLaunchSounds(m_soundsPaths["PLASMA_SHOOT"]);
+	m_typesWeapons[CTypeWeapon::PlasmaGun].SetLaunchSounds(m_soundsPaths.at("PLASMA_SHOOT"));
 	/////////////////////////////////////////////////////////////////////////////////
 
 }
@@ -153,18 +158,23 @@ void GameScreen::CreateTypesBonuses()
 	m_typeBonuses[CBonusesType::MedicineChest].SetTextureRect(m_rectanglePaths["BONUS_RECT"]);
 	m_typeBonuses[CBonusesType::MedicineChest].SetAction(m_functions_for_bonuses[CBonusesType::MedicineChest]);
 
+	m_typeBonuses[CBonusesType::MedicineChest].SetDeathSounds(m_soundsPaths["BONUS_ACTIVATE"]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureGrenadeGun = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["BONUS_GRENADE_GUN"]);
 
 	m_typeBonuses[CBonusesType::GrenadeGun].SetTexture(textureGrenadeGun);
 	m_typeBonuses[CBonusesType::GrenadeGun].SetTextureRect(m_rectanglePaths["BONUS_RECT"]);
 	m_typeBonuses[CBonusesType::GrenadeGun].SetAction(m_functions_for_bonuses[CBonusesType::GrenadeGun]);
+
+	m_typeBonuses[CBonusesType::GrenadeGun].SetDeathSounds(m_soundsPaths["BONUS_ACTIVATE"]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* texturePlasmaGun = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["BONUS_PLASMA_GUN"]);
 
 	m_typeBonuses[CBonusesType::PlasmaGun].SetTexture(texturePlasmaGun);
 	m_typeBonuses[CBonusesType::PlasmaGun].SetTextureRect(m_rectanglePaths["BONUS_RECT"]);
 	m_typeBonuses[CBonusesType::PlasmaGun].SetAction(m_functions_for_bonuses[CBonusesType::PlasmaGun]);
+
+	m_typeBonuses[CBonusesType::PlasmaGun].SetDeathSounds(m_soundsPaths["BONUS_ACTIVATE"]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

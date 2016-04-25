@@ -35,7 +35,7 @@ public:
 	float					GetDistance() const;
 
 	void					SetLaunchSounds(std::vector<std::string> & nameSound);
-	std::vector<std::string>				GetLaucnchSounds() const;
+	const std::vector<std::string>&				GetLaucnchSounds() const;
 private:
 	ID						m_id = ID::NONE;
 

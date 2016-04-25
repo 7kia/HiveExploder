@@ -59,6 +59,10 @@ public:
 
 	void					SetId(ID id);
 	ID						GetId() const;
+
+	void									SetDeathSounds(std::vector<std::string> & nameSound);
+	const std::vector<std::string>&				GetDeathSounds() const;
+
 	// TODO : there not enough functional
 private:
 	float					m_velocity;
@@ -68,4 +72,6 @@ private:
 	CollectionAnimations	m_moveAnimations;
 
 	ID						m_id = ID::None;
+
+	std::vector<std::string>				m_nameDeathSound;
 };

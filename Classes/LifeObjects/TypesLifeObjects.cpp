@@ -61,6 +61,16 @@ TypeLifeObject::ID TypeLifeObject::GetId() const
 	return m_id;
 }
 
+void TypeLifeObject::SetDeathSounds(std::vector<std::string> & nameSound)
+{
+	m_nameDeathSound = nameSound;
+}
+
+const std::vector<std::string>& TypeLifeObject::GetDeathSounds() const
+{
+	return m_nameDeathSound;
+}
+
 SRange::SRange()
 	: start(0.f)
 	, end(0.f)

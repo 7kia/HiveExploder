@@ -50,6 +50,11 @@ TypeLifeObject::ID CLifeObject::GetIdType() const
 	return m_type->GetId();
 }
 
+const TypeLifeObject & CLifeObject::GetType() const
+{
+	return *m_type;
+}
+
 float CLifeObject::GetDistanceWeapon() const
 {
 	return m_weapon.GetDistance();

@@ -55,7 +55,8 @@ public:
 
 	float				GetDistanceWeapon() const;
 
-	TypeLifeObject::ID	GetIdType() const;
+	TypeLifeObject::ID			GetIdType() const;
+	const TypeLifeObject&		GetType() const;
 	/////////////////
 
 	/////////////////

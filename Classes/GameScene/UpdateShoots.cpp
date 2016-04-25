@@ -29,6 +29,8 @@ void GameScreen::UpdateBonuses()
 	{
 		if (m_bonuses[index]->GetState())
 		{
+			PlayRandomSound(m_bonuses[index]->GetType().GetDeathSounds());
+
 			m_bonuses[index]->removeFromParent();
 
 			m_bonuses.erase(m_bonuses.begin() + index);
