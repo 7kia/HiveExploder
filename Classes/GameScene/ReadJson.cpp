@@ -74,7 +74,7 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 		auto constants = value.get_obj();
 		auto integers = constants.at(0);
 		auto intConstants = integers.value_.get_array();
-		///*
+
 		for (size_t index = 0; index < intConstants.size(); index++)
 		{
 			auto object = intConstants.at(index).get_obj();
@@ -82,7 +82,6 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 										object.at(0).value_.get_int() });
 		}
 
-		//*/
 
 		auto floats = constants.at(1);
 		auto floatConstants = floats.value_.get_array();
@@ -91,6 +90,20 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 			auto object = floatConstants.at(index).get_obj();
 			m_gameFloatConstats.insert({ object.at(0).name_,
 										static_cast<float>(object.at(0).value_.get_real()) });
+		}
+
+		auto soundsFeatures = constants.at(2);
+		auto soundsFeaturesArray = soundsFeatures.value_.get_array();
+		for (size_t index = 0; index < soundsFeaturesArray.size(); index++)
+		{
+			auto object = soundsFeaturesArray.at(index).get_obj();
+			auto arrayObject = object.at(0).value_.get_array();
+			SSoundFeatures features(static_cast<float>(arrayObject.at(0).get_real())
+									, static_cast<float>(arrayObject.at(1).get_real())
+									, static_cast<float>(arrayObject.at(2).get_real()));
+
+			m_soundsFeatures.insert({ object.at(0).name_,
+										features });
 		}
 	}
 

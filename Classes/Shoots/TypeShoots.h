@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../Entity/VisualDataType.h"
+#include "../Entity/SoundDataType.h"
+
 #include "../Entity/Entity.h"
 #include "../Entity/Collision.h"
 #include "../Entity/Features.h"

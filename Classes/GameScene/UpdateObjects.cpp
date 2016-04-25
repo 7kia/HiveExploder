@@ -65,7 +65,8 @@ void GameScreen::CheckHealthLifeObjects()
 			// TODO : incorrect delete &lifeObjects->GetHealthBar().GetSpriteValue()
 			
 			// TODO : transfer to destructor LifeObject
-			PlayRandomSound(m_lifeObjects[index]->GetType().GetDeathSounds());
+			const TypeLifeObject *type = &m_lifeObjects[index]->GetType();
+			PlayRandomSound(type->GetSounds("DEATH"), type->GetSoundsFeatures());
 			//
 
 			m_lifeObjects[index]->removeFromParent();

@@ -21,12 +21,12 @@ void GameScreen::CreateSounds()
 	}
 }
 
-void GameScreen::PlayRandomSound(const std::vector<std::string> & path)
+void GameScreen::PlayRandomSound(const std::vector<std::string> & path, const SSoundFeatures & features)
 {
 	auto audio = SimpleAudioEngine::getInstance()->getInstance();
 
 	int index = rand() % path.size();
 	
 	//if(audio->getInstance())
-	audio->playEffect(path[index].c_str(), false);
+	audio->playEffect(path[index].c_str(), false, features.pitch, features.pan, features.gain);
 }

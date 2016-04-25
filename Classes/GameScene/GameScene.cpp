@@ -83,7 +83,6 @@ void GameScreen::GoToGameOverScene(cocos2d::Ref *pSender)
 {
     auto scene = GameOver::createScene();
 
-	PlayRandomSound(m_soundsPaths["MARINE_DEATH"]);
 	Director::getInstance()->pushScene(TransitionFade::create(1.5, scene));
 }
 
@@ -93,4 +92,15 @@ void GameScreen::GoToVictoryScene(cocos2d::Ref *pSender)
 	auto scene = Victory::createScene();
 
 	Director::getInstance()->pushScene(TransitionFade::create(1.5, scene));
+}
+
+SSoundFeatures::SSoundFeatures()
+{
+}
+
+SSoundFeatures::SSoundFeatures(float pitch, float pan, float gain)
+	: pitch(pitch)
+	, pan(pan)
+	, gain(gain)
+{
 }

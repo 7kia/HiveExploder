@@ -29,7 +29,8 @@ void GameScreen::UpdateBonuses()
 	{
 		if (m_bonuses[index]->GetState())
 		{
-			PlayRandomSound(m_bonuses[index]->GetType().GetDeathSounds());
+			const CBonusesType *type = &m_bonuses[index]->GetType();
+			PlayRandomSound(type->GetSounds("DEATH"), type->GetSoundsFeatures());
 
 			m_bonuses[index]->removeFromParent();
 

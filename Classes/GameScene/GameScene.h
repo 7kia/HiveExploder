@@ -17,7 +17,7 @@
 #include <fstream>
 #include <iostream>
 #include <set>
-#include <unordered_map>
+//#include <unordered_map>
 
 namespace GameSceneRecourses// TODO : redesign
 {
@@ -29,7 +29,7 @@ namespace GameSceneRecourses// TODO : redesign
 }
 
 typedef std::unordered_map<std::string, std::string> MapPath;
-typedef std::unordered_map<std::string, std::vector<std::string>> MapPaths;
+//typedef std::unordered_map<std::string, std::vector<std::string>> MapPaths;
 typedef std::unordered_map<std::string, cocos2d::Rect> MapRect;
 typedef std::unordered_map<std::string, int> MapInt;
 typedef std::unordered_map<std::string, float> MapFloat;
@@ -166,10 +166,12 @@ private:
 public:
 		MapInt					m_gameIntConstats;
 		MapFloat				m_gameFloatConstats;
+		MapSoundsFeatures		m_soundsFeatures;
 public:
 		// SoundsEngine.cpp
 
-		void					PlayRandomSound(const std::vector<std::string> & path);
+		void					PlayRandomSound(const std::vector<std::string> & path
+												, const SSoundFeatures & features);
 
 private:
 	cocos2d::PhysicsWorld*	m_World;
