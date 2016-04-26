@@ -8,7 +8,10 @@ void CLifeObject::update(float dt)
 	{
 		UpdatePosition(dt);
 	}
-
+	else
+	{
+		SetAttackAnimation();
+	}
 	m_weapon.Update(dt);
 
 	m_healthBar.update(dt);
@@ -34,8 +37,10 @@ void CLifeObject::UpdatePosition(float dt)
 
 void CLifeObject::SetAnimationMove()
 {
+	// TODO : delete
 	auto animationCashe = AnimationCache::getInstance();
 	auto spriteFrameCashe = SpriteFrameCache::getInstance();
+	////
 
 	int idAnimation = GetIndexMoveAnimation(m_direction);
 	if (getActionByTag(idAnimation) == nullptr)
@@ -61,6 +66,39 @@ void CLifeObject::SetAnimationMove()
 	}
 
 }
+
+void CLifeObject::SetAttackAnimation()
+{
+	// TODO : delete
+	auto animationCashe = AnimationCache::getInstance();
+	auto spriteFrameCashe = SpriteFrameCache::getInstance();
+	////
+
+	int idAnimation = GetIndexMoveAnimation(m_direction);
+	if (getActionByTag(idAnimation) == nullptr)
+	{
+		Animate *oldAnimate = GetOldAnimate();
+
+		Animation *animation = m_type->GetAttackAnimations().at(idAnimation);
+		Animate *newAnimate = Animate::create(animation);
+
+		newAnimate->setTag(idAnimation);
+
+		if (oldAnimate != nullptr)
+		{
+			if (oldAnimate->getTag() != newAnimate->getTag())
+			{
+				newAnimate->setDuration(oldAnimate->getDuration());
+			}
+		}
+
+		runAction(newAnimate);
+
+
+	}
+
+}
+
 
 Animate * CLifeObject::GetOldAnimate()
 {

@@ -112,10 +112,13 @@ private:
 	// CreateAnimations.cpp
 	void					CreateAnimations();
 	///*
-		CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
+	CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
+	CollectionAnimations	CreateAttackAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
+
 	cocos2d::Vector<cocos2d::SpriteFrame*>	GetAnimation(const std::vector<std::string>& names);
 	void					AddAnimationFrame(cocos2d::Vec2 & shift, const cocos2d::Size & size, const int index,
-												CollectionAnimations & collection, const std::string & nameFile);
+												CollectionAnimations & collection, const int amountShoots,
+												const std::string & nameFile, const std::string & nameAnimation);
 
 	//*/
 

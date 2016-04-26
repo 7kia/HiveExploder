@@ -34,6 +34,8 @@ public:
 	void			UpdatePosition(float dt);
 
 	void					SetAnimationMove();
+	void					SetAttackAnimation();
+
 	cocos2d::Animate *		GetOldAnimate();
 	int						GetIndexMoveAnimation(const Direction & direction);
 	/////////////////

@@ -41,7 +41,7 @@ const CTypeWeapon & TypeLifeObject::GetTypeWeapon() const
 	return *m_weapon;
 }
 
-void TypeLifeObject::SetAnimationsMove(const CollectionAnimations & animations)
+void TypeLifeObject::SetMoveAnimations(const CollectionAnimations & animations)
 {
 	m_moveAnimations = animations;
 }
@@ -49,6 +49,16 @@ void TypeLifeObject::SetAnimationsMove(const CollectionAnimations & animations)
 const CollectionAnimations & TypeLifeObject::GetAnimationsMove() const
 {
 	return m_moveAnimations;
+}
+
+void TypeLifeObject::SetAttackAnimations(const CollectionAnimations & animations)
+{
+	m_attackAnimations = animations;
+}
+
+const CollectionAnimations & TypeLifeObject::GetAttackAnimations() const
+{
+	return m_attackAnimations;
 }
 
 void TypeLifeObject::SetId(ID id)

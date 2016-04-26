@@ -57,8 +57,12 @@ public:
 	void					SetWeapon(const CTypeWeapon& weapon);
 	const CTypeWeapon&		GetTypeWeapon() const;
 
-	void							SetAnimationsMove(const CollectionAnimations & animations);
+	void							SetMoveAnimations(const CollectionAnimations & animations);
 	const CollectionAnimations &	GetAnimationsMove() const;
+
+	void							SetAttackAnimations(const CollectionAnimations & animations);
+	const CollectionAnimations &	GetAttackAnimations() const;
+
 
 	void					SetId(ID id);
 	ID						GetId() const;
@@ -69,7 +73,9 @@ private:
 
 	CDynamicFeature			m_health;
 	const CTypeWeapon*		m_weapon;
+
 	CollectionAnimations	m_moveAnimations;
+	CollectionAnimations	m_attackAnimations;
 
 	ID						m_id = ID::None;
 };

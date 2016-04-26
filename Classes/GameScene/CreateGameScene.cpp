@@ -36,7 +36,9 @@ void GameScreen::CreateTypesLifeObjects()
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetWeapon(m_typesWeapons[CTypeWeapon::PlayerWeapon]);
 
-	m_typesLifeObjects[TypeLifeObject::Player].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["MARINE"],
+	m_typesLifeObjects[TypeLifeObject::Player].SetMoveAnimations(CreateMoveAnimations(m_texturePaths["MARINE"],
+																						m_rectanglePaths["MARINE_RECT"]));
+	m_typesLifeObjects[TypeLifeObject::Player].SetAttackAnimations(CreateAttackAnimations(m_texturePaths["MARINE"],
 																						m_rectanglePaths["MARINE_RECT"]));
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetSounds("DEATH", m_soundsPaths["MARINE_DEATH"]);
@@ -50,8 +52,10 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetHealth(35);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetWeapon(m_typesWeapons[CTypeWeapon::ZerglingWeapon]);
 
-	m_typesLifeObjects[TypeLifeObject::Zergling].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["ZERGLING"],
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetMoveAnimations(CreateMoveAnimations(m_texturePaths["ZERGLING"],
 																						m_rectanglePaths["ZERGLING_RECT"]));
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetAttackAnimations(CreateAttackAnimations(m_texturePaths["ZERGLING"],
+																								m_rectanglePaths["ZERGLING_RECT"]));
 
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetSounds("DEATH", m_soundsPaths["ZERGLING_DEATH"]);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetSoundsFeatures(m_soundsFeatures["DEATH"]);
@@ -64,8 +68,10 @@ void GameScreen::CreateTypesLifeObjects()
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetHealth(180);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetWeapon(m_typesWeapons[CTypeWeapon::HydraliskWeapon]);
 
-	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetAnimationsMove(CreateMoveAnimations(m_texturePaths["HYDRALISK"],
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetMoveAnimations(CreateMoveAnimations(m_texturePaths["HYDRALISK"],
 																							m_rectanglePaths["HYDRALISK_RECT"]));
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetAttackAnimations(CreateAttackAnimations(m_texturePaths["HYDRALISK"],
+																								m_rectanglePaths["HYDRALISK_RECT"]));
 
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetSounds("DEATH", m_soundsPaths["HYDRALISK_DEATH"]);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetSoundsFeatures(m_soundsFeatures["DEATH"]);
