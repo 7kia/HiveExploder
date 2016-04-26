@@ -7,6 +7,7 @@
 	, {"levelMap ": -3}
 	, { "AMOUNT_MOVE_ANIMATIONS" : 8 }
 	, { "AMOUNT_FRAMES_FOR_MOVE" : 5 }
+	, { "AMOUNT_FRAMES_FOR_ATTACK" : 4 }
 ]
 , "Float" :
 [
