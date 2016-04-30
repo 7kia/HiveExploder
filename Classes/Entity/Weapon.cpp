@@ -62,6 +62,11 @@ float CWeapon::GetDistance() const
 	return m_type->GetDistance();
 }
 
+void CWeapon::ResetTimer()
+{
+	m_time = 0.f;
+}
+
 const CShootType & CWeapon::GetTypeShoot() const
 {
 	return m_type->GetTypeShoot();

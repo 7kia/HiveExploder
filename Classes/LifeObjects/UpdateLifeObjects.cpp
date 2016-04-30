@@ -4,15 +4,25 @@ using namespace cocos2d;
 
 void CLifeObject::update(float dt)
 {
-	if (GetWeaponState() == CWeapon::IdState::NotActive)
+	switch (m_state)
 	{
+	case StateId::NotActive:
+		m_weapon.Update(dt);
+		break;
+	case StateId::Move:
 		UpdatePosition(dt);
-	}
-	else
-	{
+		break;
+	case StateId::Attack:
+		if (m_weapon.GetState() != CWeapon::IdState::NotShoot)
+		{
+			m_weapon.SetState(CWeapon::IdState::NotShoot);
+		}
+		m_weapon.Update(dt);
 		SetAttackAnimation();
+		break;
+	default:
+		break;
 	}
-	m_weapon.Update(dt);
 
 	m_healthBar.update(dt);
 }
@@ -97,6 +107,16 @@ void CLifeObject::SetAttackAnimation()
 
 	}
 
+}
+
+void CLifeObject::ResetWeapon()
+{
+	m_weapon.SetState(CWeapon::IdState::NotActive);
+}
+
+void CLifeObject::ResetAnimation()
+{
+	getActionManager()->removeAllActionsFromTarget(this);
 }
 
 

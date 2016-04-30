@@ -378,7 +378,8 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	// TODO
 	scene->PlayRandomSound(m_weapon.GetType().GetSounds("LAUNCH"), scene->m_soundsFeatures["LAUNCH"]);
 
-	SetWeaponState(CWeapon::IdState::NotActive);
+	m_weapon.SetState(CWeapon::IdState::NotActive);
+	m_weapon.ResetTimer();
 	SetDirection(Vec2::ZERO);
 }
 

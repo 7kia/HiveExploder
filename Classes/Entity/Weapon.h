@@ -23,6 +23,7 @@ public:
 	IdState					GetState() const;
 
 	float					GetDistance() const;
+	void					ResetTimer();
 
 	const CShootType&		GetTypeShoot() const;
 

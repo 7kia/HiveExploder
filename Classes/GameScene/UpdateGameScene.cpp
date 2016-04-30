@@ -17,27 +17,46 @@ void GameScreen::update(float dt)
 		switch (m_manageCirlce.GetAction(m_touchPosition))
 		{
 		case ManageCircle::Action::Attack:	
-			m_lifeObjects[m_id_player]->Attack();
-			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
+			GetPlayer().SetState(CLifeObject::StateId::Attack);
+			GetPlayer().SetDirection(m_manageCirlce.GetDirection());
 			break;
 		case ManageCircle::Action::Move:
-			m_lifeObjects[m_id_player]->SetDirection(m_manageCirlce.GetDirection());
-			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
+			GetPlayer().SetState(CLifeObject::StateId::Move);
+			GetPlayer().SetDirection(m_manageCirlce.GetDirection());
+			break;
+		case ManageCircle::Action::None:
+			GetPlayer().SetState(CLifeObject::StateId::NotActive);
 			break;
 		default:
-			m_lifeObjects[m_id_player]->SetWeaponState(CWeapon::IdState::NotActive);
+			GetPlayer().SetState(CLifeObject::StateId::NotActive);
 			break;
 		}	
 		
+	}
+	else
+	{
+		GetPlayer().SetState(CLifeObject::StateId::NotActive);
+
+		GetPlayer().ResetAnimation();
 	}
 
 }
 
 void GameScreen::ActivateActiveWeapons()
 {
+	CWeapon::IdState stateWeapon;
+	CLifeObject::StateId stateObject;
 	for (const auto& lifeObject : m_lifeObjects)
 	{
-		if (lifeObject->GetWeaponState() == CWeapon::IdState::Shoot)
+		stateWeapon = lifeObject->GetWeaponState();
+		stateObject = lifeObject->GetState();
+	
+		if(stateObject != CLifeObject::StateId::Attack)
+		{
+			lifeObject->ResetWeapon();
+		}
+		else if ((stateObject == CLifeObject::StateId::Attack)
+			&& (stateWeapon == CWeapon::IdState::Shoot))
 		{
 			lifeObject->CreateShoot(this, lifeObject->GetDirection(), m_shoots);
 		}

@@ -15,6 +15,19 @@ public:
 	CLifeObject();
 	virtual ~CLifeObject() override;
 
+public:
+	enum class StateId
+	{
+			NotActive = 0
+		,	Move
+		,	Attack
+	};
+
+	void				SetState(StateId state);
+	StateId				GetState() const;
+
+public:
+
 	//virtual void cleanup() override;
 
 	CREATE_FUNC(CLifeObject);
@@ -35,6 +48,9 @@ public:
 
 	void					SetAnimationMove();
 	void					SetAttackAnimation();
+
+	void					ResetWeapon();
+	void					ResetAnimation();
 
 	cocos2d::Animate *		GetOldAnimate();
 	int						GetIndexMoveAnimation(const Direction & direction);
@@ -90,6 +106,8 @@ private:
 	CDynamicFeature					m_health;
 	CWeapon							m_weapon;
 	CBar							m_healthBar;
+
+	StateId							m_state = StateId::NotActive;
 	// TODO : delete
 };
 

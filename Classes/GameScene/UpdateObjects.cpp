@@ -4,7 +4,6 @@ using namespace cocos2d;
 
 void GameScreen::UpdateLifeObjects(float dt)
 {
-	UpdateCamera(dt);
 
 	CheckHealthLifeObjects();
 	SearchEnemy();// TODO : redefine
@@ -16,6 +15,8 @@ void GameScreen::UpdateLifeObjects(float dt)
 	{
 		object->update(dt);
 	}
+
+	UpdateCamera(dt);
 
 
 	if (CheckVictoryCondition())
