@@ -7,16 +7,12 @@ void GameScreen::update(float dt)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	UpdateBonuses();
-	UpdateShoots(dt);
-	UpdateLifeObjects(dt);
-	ActivateActiveWeapons();
 
 	if (true == m_isTouching)
 	{
 		switch (m_manageCirlce.GetAction(m_touchPosition))
 		{
-		case ManageCircle::Action::Attack:	
+		case ManageCircle::Action::Attack:
 			GetPlayer().SetState(CLifeObject::StateId::Attack);
 			GetPlayer().SetDirection(m_manageCirlce.GetDirection());
 			break;
@@ -30,8 +26,8 @@ void GameScreen::update(float dt)
 		default:
 			GetPlayer().SetState(CLifeObject::StateId::NotActive);
 			break;
-		}	
-		
+		}
+
 	}
 	else
 	{
@@ -39,6 +35,11 @@ void GameScreen::update(float dt)
 
 		GetPlayer().ResetAnimation();
 	}
+
+	UpdateBonuses();
+	UpdateShoots(dt);
+	UpdateLifeObjects(dt);
+	ActivateActiveWeapons();
 
 }
 

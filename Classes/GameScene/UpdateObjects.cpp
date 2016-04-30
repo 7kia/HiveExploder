@@ -16,7 +16,14 @@ void GameScreen::UpdateLifeObjects(float dt)
 		object->update(dt);
 	}
 
-	UpdateCamera(dt);
+	if (GetPlayer().GetIdType() == TypeLifeObject::ID::Player)
+	{
+		UpdateCamera(dt);
+	}
+	else
+	{
+
+	}
 
 
 	if (CheckVictoryCondition())
@@ -109,11 +116,15 @@ void GameScreen::DefineNeedAttackEnemy(CLifeObject * object, const Vec2 & positi
 
 	if (distanse < distanceAttack)
 	{
-		object->Attack();
+		object->SetState(CLifeObject::StateId::Attack);
+		//object->SetDirection(m_manageCirlce.GetDirection());
+
 	}
 	else
 	{
-		object->SetWeaponState(CWeapon::IdState::NotActive);
+		object->SetState(CLifeObject::StateId::Move);
+
+		//object->ResetWeapon();
 	}
 }
 

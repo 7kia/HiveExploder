@@ -54,6 +54,7 @@ public:
 
 	cocos2d::Animate *		GetOldAnimate();
 	int						GetIndexMoveAnimation(const Direction & direction);
+	int						GetIndexAttackAnimation(const Direction & direction);
 	/////////////////
 
 	/////////////////

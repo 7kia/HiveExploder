@@ -84,12 +84,12 @@ void CLifeObject::SetAttackAnimation()
 	auto spriteFrameCashe = SpriteFrameCache::getInstance();
 	////
 
-	int idAnimation = GetIndexMoveAnimation(m_direction);
+	int idAnimation = GetIndexAttackAnimation(m_direction);
 	if (getActionByTag(idAnimation) == nullptr)
 	{
 		Animate *oldAnimate = GetOldAnimate();
 
-		Animation *animation = m_type->GetAttackAnimations().at(idAnimation);
+		Animation *animation = m_type->GetAttackAnimations().at(idAnimation - rangesDirections.size());
 		Animate *newAnimate = Animate::create(animation);
 
 		newAnimate->setTag(idAnimation);
@@ -148,4 +148,9 @@ int CLifeObject::GetIndexMoveAnimation(const Direction & direction)
 	}
 
 	return 0;
+}
+
+int CLifeObject::GetIndexAttackAnimation(const Direction & direction)
+{
+	return GetIndexMoveAnimation(direction) + rangesDirections.size();
 }

@@ -36,8 +36,9 @@ CollectionAnimations GameScreen::CreateAttackAnimations(const string & nameFile,
 
 	Rect frameAnimation = rectangle;
 	Size size = frameAnimation.size;
-	Vec2 shift = Vec2(0.f, static_cast<float>(m_gameIntConstats["AMOUNT_FRAMES_FOR_MOVE"] - 1) 
-							* size.height);
+	Vec2 startShift = Vec2(0.f, static_cast<float>(m_gameIntConstats["AMOUNT_FRAMES_FOR_MOVE"]) 
+							* (size.height + GameSceneRecourses::SHIFT_FROM_FRAME));
+	Vec2 shift = startShift;
 
 	for (size_t indexAnimation = 0; indexAnimation < m_gameIntConstats["AMOUNT_MOVE_ANIMATIONS"]; indexAnimation++)
 	{
@@ -46,7 +47,7 @@ CollectionAnimations GameScreen::CreateAttackAnimations(const string & nameFile,
 			nameFile, "attack");
 
 		shift.x += size.width;
-		shift.y = 0.f;
+		shift.y = startShift.y;
 	}
 
 	return attackAnimations;
