@@ -61,16 +61,6 @@ const CollectionAnimations & TypeLifeObject::GetAttackAnimations() const
 	return m_attackAnimations;
 }
 
-void TypeLifeObject::SetIdDeathEffect(CEffectType::ID id)
-{
-	m_idDeathEffect = id;
-}
-
-CEffectType::ID TypeLifeObject::GetIdDeathEffect() const
-{
-	return m_idDeathEffect;
-}
-
 void TypeLifeObject::SetId(ID id)
 {
 	m_id = id;

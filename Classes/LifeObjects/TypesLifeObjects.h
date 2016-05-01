@@ -2,6 +2,8 @@
 
 #include "../Entity/VisualDataType.h"
 #include "../Entity/SoundDataType.h"
+#include "../Entity/HaveDeathEffect.h"
+
 
 #include "../Entity/Entity.h"
 #include "../Entity/Collision.h"
@@ -20,18 +22,19 @@ struct SRange
 	float	end = 0;
 };
 
-static const std::vector<SRange> rangesDirections = { SRange(-22.5f, 22.5f),
-													SRange(22.6f, 67.5f),
-													SRange(67.6f, 112.5f),
-													SRange(112.6f, 157.5f),
-													SRange(157.6f, 202.5f),
-													SRange(-157.5f, -112.6f),
-													SRange(-112.5f, -67.6f),
-													SRange(-67.5f, -22.6f) };
+static const std::vector<SRange> rangesDirections = {	SRange(-22.5f, 22.5f)
+													,	SRange(22.6f, 67.5f)
+													,	SRange(67.6f, 112.5f)
+													,	SRange(112.6f, 157.5f)
+													,	SRange(157.6f, 202.5f)
+													,	SRange(-157.5f, -112.6f)
+													,	SRange(-112.5f, -67.6f)
+													,	SRange(-67.5f, -22.6f) };
 
 class TypeLifeObject :
 	public CVisualDataType
 	, public CSoundDataType
+	, public CHaveDeathEffect
 {
 public:
 	~TypeLifeObject();
@@ -63,22 +66,18 @@ public:
 	void							SetAttackAnimations(const CollectionAnimations & animations);
 	const CollectionAnimations &	GetAttackAnimations() const;
 
-	void							SetIdDeathEffect(CEffectType::ID id);
-	CEffectType::ID					GetIdDeathEffect() const;
-
-	void					SetId(ID id);
-	ID						GetId() const;
+	void							SetId(ID id);
+	ID								GetId() const;
 
 	// TODO : there not enough functional
 private:
-	float					m_velocity;
+	float							m_velocity;
 
-	CDynamicFeature			m_health;
-	const CTypeWeapon*		m_weapon;
+	CDynamicFeature					m_health;
+	const CTypeWeapon*				m_weapon;
 
-	CollectionAnimations	m_moveAnimations;
-	CollectionAnimations	m_attackAnimations;
+	CollectionAnimations			m_moveAnimations;
+	CollectionAnimations			m_attackAnimations;
 
-	CEffectType::ID			m_idDeathEffect = CEffectType::ID::None;
-	ID						m_id = ID::None;
+	ID								m_id = ID::None;
 };

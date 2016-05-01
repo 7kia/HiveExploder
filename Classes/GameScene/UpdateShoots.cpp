@@ -11,6 +11,9 @@ void GameScreen::UpdateShoots(float dt)
 
 		if (m_shoots[index]->GetVelocity() < ABOUT_ZERO_VALUE_SPEED_BULLET)
 		{
+
+			CreateEffect(m_shoots[index]->GetType().GetIdDeathEffect(), m_shoots[index]->getPosition());
+
 			m_shoots[index]->removeFromParent();
 
 			m_shoots.erase(m_shoots.begin() + index);

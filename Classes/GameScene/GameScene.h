@@ -98,9 +98,18 @@ private:
 	void					CreateCashes();// TODO : delete if not need
 	void					CreateTypesLifeObjects();
 	void					CreateTypesShoots();
+	void					CreateTypeShoot(CShootType::ID id
+											, const std::string & textureName
+											, const std::string & nameRectangle
+											, CEffectType::ID idEffectDeath);
+
 	void					CreateTypesWeapons();
 	void					CreateTypesBonuses();
 	void					CreateTypesEffects();
+	void					CreateTypeEffect(CEffectType::ID id
+											, const std::string & textureName
+											, const std::string & nameRectangle
+											, const std::string & timeLive);
 
 	void					CreateMenu();
 	void					CreateMoveCircle();

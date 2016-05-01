@@ -2,6 +2,7 @@
 
 #include "../Entity/VisualDataType.h"
 #include "../Entity/SoundDataType.h"
+#include "../Entity/HaveDeathEffect.h"
 
 #include "../Entity/Entity.h"
 #include "../Entity/Collision.h"
@@ -10,12 +11,13 @@
 static const cocos2d::Vec2 accelerationBullet = { 0.05f, 0.05f };
 
 class CShootType :
-	public CVisualDataType
+		public CVisualDataType
+	,	public CHaveDeathEffect
 {
 public:
 	enum ID
 	{
-			PlayerShoot = 0	
+			MarineShoot = 0	
 		,	HydraliskShoot
 		,	MeleeShoot
 		,	Grenade

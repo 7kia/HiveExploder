@@ -84,27 +84,44 @@ void GameScreen::CreateTypesLifeObjects()
 
 void GameScreen::CreateTypesShoots()
 {
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureMarineShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["MARINE_SHOOT"]);
-	m_typesShoots[CShootType::PlayerShoot].SetTexture(textureMarineShoot);
-	m_typesShoots[CShootType::PlayerShoot].SetTextureRect(m_rectanglePaths["MARINE_SHOOT_RECT"]);
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureHydraliskShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HYDRALISK_SHOOT"]);
-	m_typesShoots[CShootType::HydraliskShoot].SetTexture(textureHydraliskShoot);
-	m_typesShoots[CShootType::HydraliskShoot].SetTextureRect(m_rectanglePaths["HYDRALISK_SHOOT_RECT"]);
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureGrenade = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["GRENADE"]);
-	m_typesShoots[CShootType::Grenade].SetTexture(textureGrenade);
-	m_typesShoots[CShootType::Grenade].SetTextureRect(m_rectanglePaths["GRENADE_RECT"]);
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* texturePlasmaShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["PLASMA_SHOOT"]);
-	m_typesShoots[CShootType::Plasma].SetTexture(texturePlasmaShoot);
-	m_typesShoots[CShootType::Plasma].SetTextureRect(m_rectanglePaths["PLASMA_SHOOT_RECT"]);
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Texture2D* textureMeleeShoot = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["MELEE_SHOOT"]);
-	m_typesShoots[CShootType::MeleeShoot].SetTexture(textureMeleeShoot);
-	m_typesShoots[CShootType::MeleeShoot].SetTextureRect(m_rectanglePaths["MELEE_SHOOT_RECT"]);
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	CreateTypeShoot(CShootType::MarineShoot
+					, "MARINE_SHOOT"
+					, "MARINE_SHOOT_RECT"
+					, CEffectType::ID::None);
+
+	CreateTypeShoot(CShootType::HydraliskShoot
+					, "HYDRALISK_SHOOT"
+					, "HYDRALISK_SHOOT_RECT"
+					, CEffectType::ID::None);
+
+	CreateTypeShoot(CShootType::Grenade
+					, "GRENADE"
+					, "GRENADE_RECT"
+					, CEffectType::ID::GrenadeShootDeath);
+
+	CreateTypeShoot(CShootType::Plasma
+					, "PLASMA_SHOOT"
+					, "PLASMA_SHOOT_RECT"
+					, CEffectType::ID::PlasmaShootDeath);
+
+	CreateTypeShoot(CShootType::MeleeShoot
+					, "MELEE_SHOOT"
+					, "MELEE_SHOOT_RECT"
+					, CEffectType::ID::None);
+}
+
+
+void GameScreen::CreateTypeShoot(CShootType::ID id
+								, const std::string & textureName
+								, const std::string & nameRectangle
+								, CEffectType::ID idEffectDeath)
+{
+	Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths[textureName]);
+
+	m_typesShoots[id].SetTexture(texture);
+	m_typesShoots[id].SetTextureRect(m_rectanglePaths[nameRectangle]);
+
+	m_typesShoots[id].SetIdDeathEffect(idEffectDeath);
 }
 
 void GameScreen::CreateTypesWeapons()
@@ -112,7 +129,7 @@ void GameScreen::CreateTypesWeapons()
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetId(CTypeWeapon::PlayerWeapon);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDamage(3);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTime(0.15f);
-	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTypeShoot(m_typesShoots[CShootType::PlayerShoot]);
+	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetTypeShoot(m_typesShoots[CShootType::MarineShoot]);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetVelocity(750.f);
 	m_typesWeapons[CTypeWeapon::PlayerWeapon].SetDistanse(750.f);
 
@@ -195,34 +212,51 @@ void GameScreen::CreateTypesBonuses()
 
 	m_typeBonuses[CBonusesType::PlasmaGun].SetSounds("DEATH", m_soundsPaths["BONUS_ACTIVATE"]);
 	m_typeBonuses[CBonusesType::PlasmaGun].SetSoundsFeatures(m_soundsFeatures["ACTIVATE"]);
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
 
 void GameScreen::CreateTypesEffects()
 {
-	Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["MARINE_DEATH"]);
-	m_typeEffects[CEffectType::MarineShootDeath].SetTexture(texture);
-	m_typeEffects[CEffectType::MarineShootDeath].SetTextureRect(m_rectanglePaths["MARINE_DEATH_RECT"]);
-	m_typeEffects[CEffectType::MarineShootDeath].SetLifeTime(m_timeLiveEffects["MARINE_DEATH"]);
-	m_typeEffects[CEffectType::MarineShootDeath].SetAnimations(CreateEffectAnimations(m_texturePaths["MARINE_DEATH"],
-																						m_rectanglePaths["MARINE_DEATH_RECT"]));
+	CreateTypeEffect(CEffectType::MarineDeath,
+					"MARINE_DEATH",
+					"MARINE_DEATH_RECT",
+					"MARINE_DEATH_TIME");
 
+	CreateTypeEffect(CEffectType::ZerglingDeath,
+					"ZERGLING_DEATH",
+					"ZERGLING_DEATH_RECT",
+					"ZERGLING_DEATH_TIME");
 
-	texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["ZERGLING_DEATH"]);
-	m_typeEffects[CEffectType::ZerglingDeath].SetTexture(texture);
-	m_typeEffects[CEffectType::ZerglingDeath].SetTextureRect(m_rectanglePaths["ZERGLING_DEATH_RECT"]);
-	m_typeEffects[CEffectType::ZerglingDeath].SetLifeTime(m_timeLiveEffects["ZERGLING_DEATH"]);
-	m_typeEffects[CEffectType::ZerglingDeath].SetAnimations(CreateEffectAnimations(m_texturePaths["ZERGLING_DEATH"],
-		m_rectanglePaths["ZERGLING_DEATH_RECT"]));
+	CreateTypeEffect(CEffectType::HydraliskDeath,
+					"HYDRALISK_DEATH",
+					"HYDRALISK_DEATH_RECT",
+					"HYDRALISK_DEATH_TIME");
 
+	CreateTypeEffect(CEffectType::GrenadeShootDeath, 
+					"GRENADE_SHOOT_DEATH",
+					"GRENADE_SHOOT_DEATH_RECT",
+					"GRENADE_SHOOT_DEATH_TIME");
 
-	texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HYDRALISK_DEATH"]);
-	m_typeEffects[CEffectType::HydraliskDeath].SetTexture(texture);
-	m_typeEffects[CEffectType::HydraliskDeath].SetTextureRect(m_rectanglePaths["HYDRALISK_DEATH_RECT"]);
-	m_typeEffects[CEffectType::HydraliskDeath].SetLifeTime(m_timeLiveEffects["HYDRALISK_DEATH"]);
-	m_typeEffects[CEffectType::HydraliskDeath].SetAnimations(CreateEffectAnimations(m_texturePaths["HYDRALISK_DEATH"],
-		m_rectanglePaths["HYDRALISK_DEATH_RECT"]));
+	CreateTypeEffect(CEffectType::PlasmaShootDeath,
+					"PLASMA_SHOOT_DEATH",
+					"PLASMA_SHOOT_DEATH_RECT",
+					"PLASMA_SHOOT_DEATH_TIME");
+
+}
+
+void GameScreen::CreateTypeEffect(CEffectType::ID id
+								, const std::string & textureName
+								, const std::string & nameRectangle
+								, const std::string & timeLive)
+{
+	Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths[textureName]);
+	m_typeEffects[id].SetTexture(texture);
+	m_typeEffects[id].SetTextureRect(m_rectanglePaths[nameRectangle]);
+	m_typeEffects[id].SetLifeTime(m_timeLiveEffects[timeLive]);
+	m_typeEffects[id].SetAnimations(CreateEffectAnimations(m_texturePaths[textureName],
+															m_rectanglePaths[nameRectangle]));
 
 }
 
@@ -415,14 +449,17 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 
 void GameScreen::CreateEffect(CEffectType::ID id, Vec2 position)
 {
-	CEffect* newEffect = new CEffect();
+	if (id != CEffectType::ID::None)
+	{
+		CEffect* newEffect = new CEffect();
 
-	newEffect->SetType(m_typeEffects[id]);
-	newEffect->setPosition(position);
+		newEffect->SetType(m_typeEffects[id]);
+		newEffect->setPosition(position);
 
-	m_effects.push_back(newEffect);
+		m_effects.push_back(newEffect);
 
-	addChild(newEffect, m_gameIntConstats["levelObjects"]);
+		addChild(newEffect, m_gameIntConstats["levelObjects"]);
+	}
 }
 
 TypeLifeObject::ID GameScreen::GetIdTypeLifeObject(const std::string & name)
