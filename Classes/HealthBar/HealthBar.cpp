@@ -86,7 +86,9 @@ void CBar::SetTextureRect()
 void CBar::UpdatePosition()
 {
 	const Vec2 positionMaster = GetMaster().getPosition();
-	Vec2 shift = GetMaster().getAnchorPoint();
+	Vec2 shift = GetMaster().getContentSize();
+	shift.x = 0;
+	shift.y /= 2.f;
 
-	setPosition(positionMaster);
+	setPosition(positionMaster + shift);
 }

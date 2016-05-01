@@ -20,7 +20,7 @@ void GameScreen::UpdateLifeObjects(float dt)
 	}
 	else
 	{
-		GoToVictoryScene(this);
+		GoToGameOverScene(this);
 	}
 
 
@@ -64,7 +64,7 @@ void GameScreen::CheckHealthLifeObjects()
 		{
 			if (CheckDefeatCondition(index))
 			{
-				ResetCamera();// TODO : remove_if
+				//ResetCamera();// TODO : remove_if
 				GoToGameOverScene(this);
 			}
 
