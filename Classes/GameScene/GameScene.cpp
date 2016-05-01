@@ -33,6 +33,7 @@ bool GameScreen::init()
 
 	ReadGameConstants("iphone/Json/GameConstants.json");
 	ReadTimeLiveEffects("iphone/Json/TimeLiveEffects.json");
+	ReadTimeAnimations("iphone/Json/TimeAnimations.json");
 	ReadTexturePaths("iphone/Json/TexturePaths.json");
 	ReadRectangles("iphone/Json/RectanglesPaths.json");
 	ReadSoundsPath("iphone/Json/SoundsPaths.json");

@@ -10,7 +10,7 @@ public:
 	enum ID
 	{
 		NONE = -1,
-		PlayerWeapon = 0,
+		MarineWeapon = 0,
 		HydraliskWeapon	,
 		ZerglingWeapon	,
 		GrenadeGun		,

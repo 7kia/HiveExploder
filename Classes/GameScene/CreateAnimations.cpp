@@ -9,7 +9,9 @@ void GameScreen::CreateAnimations()
 }
 ///*
 
-CollectionAnimations GameScreen::CreateEffectAnimations(const string & nameFile, const Rect & rectangle)
+CollectionAnimations GameScreen::CreateEffectAnimations(const string & nameFile
+														, const Rect & rectangle
+														, const float timeAnimation)
 {
 	CollectionAnimations effectAnimations;
 
@@ -19,7 +21,7 @@ CollectionAnimations GameScreen::CreateEffectAnimations(const string & nameFile,
 
 	for (size_t indexAnimation = 0; indexAnimation < m_gameIntConstats["AMOUNT_EFFECT_ANIMATIONS"]; indexAnimation++)
 	{
-		AddAnimationFrame(shift, size, indexAnimation,
+		AddAnimationFrame(shift, size, indexAnimation, timeAnimation,
 			effectAnimations, m_gameIntConstats["AMOUNT_FRAMES_FOR_EFFECT"],
 			nameFile, "Effect");
 
@@ -30,7 +32,9 @@ CollectionAnimations GameScreen::CreateEffectAnimations(const string & nameFile,
 	return effectAnimations;
 }
 
-CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, const Rect & rectangle)
+CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile
+													, const Rect & rectangle
+													, const float timeAnimation)
 {
 	CollectionAnimations moveAnimations;
 
@@ -40,7 +44,7 @@ CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, c
 
 	for (size_t indexAnimation = 0; indexAnimation < m_gameIntConstats["AMOUNT_MOVE_ANIMATIONS"]; indexAnimation++)
 	{
-		AddAnimationFrame(shift, size, indexAnimation,
+		AddAnimationFrame(shift, size, indexAnimation, timeAnimation,
 						moveAnimations, m_gameIntConstats["AMOUNT_FRAMES_FOR_MOVE"],
 						nameFile, "move");
 
@@ -51,7 +55,9 @@ CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, c
 	return moveAnimations;
 }
 
-CollectionAnimations GameScreen::CreateAttackAnimations(const string & nameFile, const Rect & rectangle)
+CollectionAnimations GameScreen::CreateAttackAnimations(const string & nameFile
+														, const Rect & rectangle
+														, const float timeAnimation)
 {
 	CollectionAnimations attackAnimations;
 
@@ -63,7 +69,7 @@ CollectionAnimations GameScreen::CreateAttackAnimations(const string & nameFile,
 
 	for (size_t indexAnimation = 0; indexAnimation < m_gameIntConstats["AMOUNT_MOVE_ANIMATIONS"]; indexAnimation++)
 	{
-		AddAnimationFrame(shift, size, indexAnimation,
+		AddAnimationFrame(shift, size, indexAnimation, timeAnimation,
 			attackAnimations, m_gameIntConstats["AMOUNT_FRAMES_FOR_ATTACK"],
 			nameFile, "attack");
 
@@ -87,7 +93,7 @@ Vector<SpriteFrame*>  GameScreen::GetAnimation(const std::vector<std::string> & 
 	return result;
 }
 
-void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int index,
+void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int index, const float timeAnimation,
 									CollectionAnimations & collection, const int amountShoots,
 									const string & nameFile, const string & nameAnimation)
 {
@@ -115,7 +121,7 @@ void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int in
 	}
 
 	Animation* animation = Animation::createWithSpriteFrames(GetAnimation(namesFrames),
-																GameSceneRecourses::TIME_MOVE_ANIMATION_FRAME);
+																timeAnimation / namesFrames.size());
 
 	std::string nameAnimationInCashe = nameFile + nameAnimation + to_string(index);
 	animationCashe->addAnimation(animation, nameAnimationInCashe);

@@ -97,6 +97,18 @@ private:
 	// CreateGameScene.cpp
 	void					CreateCashes();// TODO : delete if not need
 	void					CreateTypesLifeObjects();
+	void					CreateTypeLifeObject(TypeLifeObject::ID id
+												, const std::string & textureName
+												, const std::string & nameRectangle
+												, const std::string & timeMoveAnimation
+												, const std::string & timeAttackAnimation
+												, const float velocity
+												, const int health
+												, CTypeWeapon::ID idWeapon
+												, const std::string & nameDeathSounds
+												, const std::string & nameDeathSoundFeatures
+												, CEffectType::ID idEffectDeath);
+
 	void					CreateTypesShoots();
 	void					CreateTypeShoot(CShootType::ID id
 											, const std::string & textureName
@@ -104,12 +116,28 @@ private:
 											, CEffectType::ID idEffectDeath);
 
 	void					CreateTypesWeapons();
+	void					CreateTypeWeapon(CTypeWeapon::ID id
+											, const int damage
+											, const float timeReload
+											, CShootType::ID idShooteType
+											, const float velocity
+											, const float distanse
+											, const std::string & nameSounds
+											, const std::string & nameSoundFeatures);
+
 	void					CreateTypesBonuses();
+	void					CreateTypeBonus(CBonusesType::ID id
+											, const std::string & textureName
+											, const std::string & nameRectangle
+											, const std::string & nameSounds
+											, const std::string & nameSoundFeatures);
+	
 	void					CreateTypesEffects();
 	void					CreateTypeEffect(CEffectType::ID id
 											, const std::string & textureName
 											, const std::string & nameRectangle
-											, const std::string & timeLive);
+											, const std::string & timeLive
+											, const std::string & timeAnimation);
 
 	void					CreateMenu();
 	void					CreateMoveCircle();
@@ -127,12 +155,18 @@ private:
 	// CreateAnimations.cpp
 	void					CreateAnimations();
 
-	CollectionAnimations	CreateEffectAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
-	CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
-	CollectionAnimations	CreateAttackAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
+	CollectionAnimations	CreateEffectAnimations(const std::string & nameFile
+													, const cocos2d::Rect & rectangle
+													, const float timeAnimation);
+	CollectionAnimations	CreateMoveAnimations(const std::string & nameFile
+												, const cocos2d::Rect & rectangle
+												, const float timeAnimation);
+	CollectionAnimations	CreateAttackAnimations(const std::string & nameFile
+													, const cocos2d::Rect & rectangle
+													, const float timeAnimation);
 
 	cocos2d::Vector<cocos2d::SpriteFrame*>	GetAnimation(const std::vector<std::string>& names);
-	void					AddAnimationFrame(cocos2d::Vec2 & shift, const cocos2d::Size & size, const int index,
+	void					AddAnimationFrame(cocos2d::Vec2 & shift, const cocos2d::Size & size, const int index, const float timeAnimation,
 												CollectionAnimations & collection, const int amountShoots,
 												const std::string & nameFile, const std::string & nameAnimation);
 
@@ -185,12 +219,14 @@ private:
 	void					ReadRectangles(const std::string & jsonFileName);
 	void					ReadGameConstants(const std::string & jsonFileName);
 	void					ReadTimeLiveEffects(const std::string & jsonFileName);
+	void					ReadTimeAnimations(const std::string & jsonFileName);
 	void					ReadSoundsPath(const std::string & jsonFileName);
 
 public:
 		MapInt					m_gameIntConstats;
 		MapFloat				m_gameFloatConstats;
 		MapFloat				m_timeLiveEffects;
+		MapFloat				m_timeAnimations;
 		MapSoundsFeatures		m_soundsFeatures;
 public:
 		// SoundsEngine.cpp

@@ -168,8 +168,6 @@ void GameScreen::UpdateManageCircle()
 
 bool GameScreen::CheckVictoryCondition()
 {
-	// TODO
-	return false;
 
 	if (m_lifeObjects.size() == 1)
 	{
