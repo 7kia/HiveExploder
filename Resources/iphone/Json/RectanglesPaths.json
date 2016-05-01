@@ -5,9 +5,12 @@
 , "HEALTH_BAR_RECT" : [ 0, 0, 50, 5 ]
 , "MARINE_RECT" : [ 0, 0, 60, 60 ]
 , "MARINE_SHOOT_RECT" : [ 0, 0, 8, 49 ]
+, "MARINE_DEATH_RECT" : [ 0, 0, 60, 60 ]
 , "MELEE_SHOOT_RECT" : [ 0, 0, 10, 10 ]
 , "ZERGLING_RECT" : [ 0, 0, 60, 60 ]
+, "ZERGLING_DEATH_RECT" : [ 0, 0, 60, 60 ]
 , "HYDRALISK_RECT" : [ 0, 0, 107, 100 ]
+, "HYDRALISK_DEATH_RECT" : [ 0, 0, 107, 100 ]
 , "HYDRALISK_SHOOT_RECT" : [ 0, 0, 8, 32 ]
 }
 

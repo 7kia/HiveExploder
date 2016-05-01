@@ -8,6 +8,9 @@
 	, { "AMOUNT_MOVE_ANIMATIONS" : 8 }
 	, { "AMOUNT_FRAMES_FOR_MOVE" : 5 }
 	, { "AMOUNT_FRAMES_FOR_ATTACK" : 4 }
+	, { "AMOUNT_EFFECT_ANIMATIONS" : 1 }
+	, { "AMOUNT_FRAMES_FOR_EFFECT" : 5 }
+
 ]
 , "Float" :
 [

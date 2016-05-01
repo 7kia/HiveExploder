@@ -9,10 +9,13 @@
 , "HEALTH_BAR" : "HealthBar.png"	
 , "MANAGE_CIRCLE" : "MoveCircle.png"
 , "MARINE" : "Marine.png"
+, "MARINE_DEATH" : "marine_death.png"
 , "MARINE_SHOOT" : "Marine_gun_bullet.png"
 , "MELEE_SHOOT" : "Melee.png"
 , "ZERGLING" : "Zergling.png"
+, "ZERGLING_DEATH" : "Zergling_Death.png"
 , "HYDRALISK" : "Hydralisk.png"
+, "HYDRALISK_DEATH" : "Hydralisk_death.png"
 , "HYDRALISK_SHOOT" : "Hydralisk_shoot.png"
 }
 
