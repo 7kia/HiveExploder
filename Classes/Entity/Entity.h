@@ -15,6 +15,7 @@ public:
 		LifeObject	,
 		Shoot		,
 		Bonus		,
+		Effect		,
 		HealthBar
 	};
 public:

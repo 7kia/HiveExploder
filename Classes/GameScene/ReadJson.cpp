@@ -109,6 +109,28 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 
 }
 
+void GameScreen::ReadTimeLiveEffects(const std::string & jsonFileName)
+{
+	ifstream inputFile(jsonFileName);
+
+	if (inputFile.is_open())
+	{
+		json_spirit::Value value;
+		read(inputFile, value);
+
+		auto constants = value.get_obj();
+
+		auto floats = constants.at(0);
+		auto floatConstants = floats.value_.get_array();
+		for (size_t index = 0; index < floatConstants.size(); index++)
+		{
+			auto object = floatConstants.at(index).get_obj();
+			m_timeLiveEffects.insert({ object.at(0).name_,
+				static_cast<float>(object.at(0).value_.get_real()) });
+		}
+	}
+}
+
 void GameScreen::ReadSoundsPath(const string & jsonFileName)
 {
 	ifstream inputFile(jsonFileName);

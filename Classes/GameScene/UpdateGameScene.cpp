@@ -39,6 +39,7 @@ void GameScreen::update(float dt)
 	UpdateBonuses();
 	UpdateShoots(dt);
 	UpdateLifeObjects(dt);
+	UpdateEffects(dt);
 	ActivateActiveWeapons();
 
 }

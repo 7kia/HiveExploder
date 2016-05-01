@@ -9,6 +9,27 @@ void GameScreen::CreateAnimations()
 }
 ///*
 
+CollectionAnimations GameScreen::CreateEffectAnimations(const string & nameFile, const Rect & rectangle)
+{
+	CollectionAnimations effectAnimations;
+
+	Rect frameAnimation = rectangle;
+	Vec2 shift = Vec2::ZERO;
+	Size size = frameAnimation.size;
+
+	for (size_t indexAnimation = 0; indexAnimation < m_gameIntConstats["AMOUNT_EFFECT_ANIMATIONS"]; indexAnimation++)
+	{
+		AddAnimationFrame(shift, size, indexAnimation,
+			effectAnimations, m_gameIntConstats["AMOUNT_FRAMES_FOR_EFFECT"],
+			nameFile, "Effect");
+
+		shift.x += size.width;
+		shift.y = 0.f;
+	}
+
+	return effectAnimations;
+}
+
 CollectionAnimations GameScreen::CreateMoveAnimations(const string & nameFile, const Rect & rectangle)
 {
 	CollectionAnimations moveAnimations;

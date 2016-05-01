@@ -8,7 +8,7 @@
 #include "../Entity/Features.h"
 #include "../Entity/Weapon.h"
 #include "../HealthBar/HealthBar.h"
-
+#include "../Effect/Effect.h"
 
 struct SRange
 {
@@ -63,6 +63,8 @@ public:
 	void							SetAttackAnimations(const CollectionAnimations & animations);
 	const CollectionAnimations &	GetAttackAnimations() const;
 
+	void							SetIdDeathEffect(CEffectType::ID id);
+	CEffectType::ID					GetIdDeathEffect() const;
 
 	void					SetId(ID id);
 	ID						GetId() const;
@@ -77,5 +79,6 @@ private:
 	CollectionAnimations	m_moveAnimations;
 	CollectionAnimations	m_attackAnimations;
 
+	CEffectType::ID			m_idDeathEffect = CEffectType::ID::None;
 	ID						m_id = ID::None;
 };

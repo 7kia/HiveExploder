@@ -8,8 +8,6 @@ void GameScreen::UpdateLifeObjects(float dt)
 	CheckHealthLifeObjects();
 	SearchEnemy();// TODO : redefine
 
-
-
 	//CheckCollisionPlayer(GetPlayer().getPosition());
 	for (auto &object : m_lifeObjects)
 	{
@@ -22,7 +20,7 @@ void GameScreen::UpdateLifeObjects(float dt)
 	}
 	else
 	{
-
+		GoToVictoryScene(this);
 	}
 
 
@@ -38,9 +36,10 @@ void GameScreen::UpdateCamera(float dt)
 	Vec2 positionPlayer = GetPlayer().getPosition();
 	Direction directtionPlayer = GetPlayer().GetDirection();
 
-	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer);
 
 	UpdateManageCircle();
+
+	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer);
 
 	cocos2d::Node* menu = getChildByName("menu");
 	menu->setPosition(positionPlayer - GetMiddleWindow());
@@ -75,6 +74,8 @@ void GameScreen::CheckHealthLifeObjects()
 			// TODO : transfer to destructor LifeObject
 			const TypeLifeObject *type = &m_lifeObjects[index]->GetType();
 			PlayRandomSound(type->GetSounds("DEATH"), type->GetSoundsFeatures());
+			//
+			CreateEffect(type->GetIdDeathEffect(), m_lifeObjects[index]->getPosition());
 			//
 
 			m_lifeObjects[index]->removeFromParent();

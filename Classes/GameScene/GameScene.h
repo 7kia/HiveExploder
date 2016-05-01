@@ -7,6 +7,7 @@
 #include "../Entity/Weapon.h"
 #include "../Bonuses/Bonuses.h"
 #include "../HealthBar/HealthBar.h"
+#include "../Effect/Effect.h"
  
 #include "SimpleAudioEngine.h"
 #include <vector>
@@ -77,11 +78,13 @@ public:
 	std::vector<CLifeObject*>			m_lifeObjects;
 	std::vector<CShoot*>				m_shoots;
 	std::vector<CBonus*>				m_bonuses;
+	std::vector<CEffect*>				m_effects;
 
 	TypeLifeObject						m_typesLifeObjects[TypeLifeObject::AmountIDs];
 	CTypeWeapon							m_typesWeapons[CTypeWeapon::AmountIDs];
 	CShootType							m_typesShoots[CShootType::AmountIDs];
 	CBonusesType						m_typeBonuses[CBonusesType::AmountIDs];
+	CEffectType							m_typeEffects[CEffectType::AmountIDs];
 
 	std::function<void(CLifeObject &)>  m_functions_for_bonuses[CBonusesType::AmountIDs];
 
@@ -97,6 +100,7 @@ private:
 	void					CreateTypesShoots();
 	void					CreateTypesWeapons();
 	void					CreateTypesBonuses();
+	void					CreateTypesEffects();
 
 	void					CreateMenu();
 	void					CreateMoveCircle();
@@ -109,9 +113,12 @@ private:
 	void					CreateBonuses();
 
 	void					CreateContactListener();
+
+	void					CreateEffect(CEffectType::ID id, cocos2d::Vec2 position);
 	// CreateAnimations.cpp
 	void					CreateAnimations();
-	///*
+
+	CollectionAnimations	CreateEffectAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
 	CollectionAnimations	CreateMoveAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
 	CollectionAnimations	CreateAttackAnimations(const std::string & nameFile, const cocos2d::Rect & rectangle);
 
@@ -140,6 +147,10 @@ private:
 	void					UpdateLifeObjects(float dt);
 	void					CheckHealthLifeObjects();
 
+	// UpdateEffects.cpp
+	void					UpdateEffects(float dt);
+	void					CheckStateEffects();
+
 	// UpdateObjects.cpp
 	void					SearchEnemy();// TODO : redefine later
 	void					DefineDirectionToEnemyForObject(CLifeObject * object,
@@ -164,11 +175,13 @@ private:
 	void					ReadTexturePaths(const std::string & jsonFileName);
 	void					ReadRectangles(const std::string & jsonFileName);
 	void					ReadGameConstants(const std::string & jsonFileName);
+	void					ReadTimeLiveEffects(const std::string & jsonFileName);
 	void					ReadSoundsPath(const std::string & jsonFileName);
 
 public:
 		MapInt					m_gameIntConstats;
 		MapFloat				m_gameFloatConstats;
+		MapFloat				m_timeLiveEffects;
 		MapSoundsFeatures		m_soundsFeatures;
 public:
 		// SoundsEngine.cpp

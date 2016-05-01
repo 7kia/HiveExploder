@@ -43,6 +43,7 @@ void GameScreen::CreateTypesLifeObjects()
 
 	m_typesLifeObjects[TypeLifeObject::Player].SetSounds("DEATH", m_soundsPaths["MARINE_DEATH"]);
 	m_typesLifeObjects[TypeLifeObject::Player].SetSoundsFeatures(m_soundsFeatures["DEATH"]);
+	m_typesLifeObjects[TypeLifeObject::Player].SetIdDeathEffect(CEffectType::ID::MarineDeath);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureZergling = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["ZERGLING"]);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetId(TypeLifeObject::ID::Zergling);
@@ -59,6 +60,7 @@ void GameScreen::CreateTypesLifeObjects()
 
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetSounds("DEATH", m_soundsPaths["ZERGLING_DEATH"]);
 	m_typesLifeObjects[TypeLifeObject::Zergling].SetSoundsFeatures(m_soundsFeatures["DEATH"]);
+	m_typesLifeObjects[TypeLifeObject::Zergling].SetIdDeathEffect(CEffectType::ID::ZerglingDeath);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Texture2D* textureHydralisk = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HYDRALISK"]);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetId(TypeLifeObject::ID::Hydralisk);
@@ -75,6 +77,7 @@ void GameScreen::CreateTypesLifeObjects()
 
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetSounds("DEATH", m_soundsPaths["HYDRALISK_DEATH"]);
 	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetSoundsFeatures(m_soundsFeatures["DEATH"]);
+	m_typesLifeObjects[TypeLifeObject::Hydralisk].SetIdDeathEffect(CEffectType::ID::HydraliskDeath);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
@@ -193,6 +196,33 @@ void GameScreen::CreateTypesBonuses()
 	m_typeBonuses[CBonusesType::PlasmaGun].SetSounds("DEATH", m_soundsPaths["BONUS_ACTIVATE"]);
 	m_typeBonuses[CBonusesType::PlasmaGun].SetSoundsFeatures(m_soundsFeatures["ACTIVATE"]);
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}
+
+void GameScreen::CreateTypesEffects()
+{
+	Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["MARINE_DEATH"]);
+	m_typeEffects[CEffectType::MarineShootDeath].SetTexture(texture);
+	m_typeEffects[CEffectType::MarineShootDeath].SetTextureRect(m_rectanglePaths["MARINE_DEATH_RECT"]);
+	m_typeEffects[CEffectType::MarineShootDeath].SetLifeTime(m_timeLiveEffects["MARINE_DEATH"]);
+	m_typeEffects[CEffectType::MarineShootDeath].SetAnimations(CreateEffectAnimations(m_texturePaths["MARINE_DEATH"],
+																						m_rectanglePaths["MARINE_DEATH_RECT"]));
+
+
+	texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["ZERGLING_DEATH"]);
+	m_typeEffects[CEffectType::ZerglingDeath].SetTexture(texture);
+	m_typeEffects[CEffectType::ZerglingDeath].SetTextureRect(m_rectanglePaths["ZERGLING_DEATH_RECT"]);
+	m_typeEffects[CEffectType::ZerglingDeath].SetLifeTime(m_timeLiveEffects["ZERGLING_DEATH"]);
+	m_typeEffects[CEffectType::ZerglingDeath].SetAnimations(CreateEffectAnimations(m_texturePaths["ZERGLING_DEATH"],
+		m_rectanglePaths["ZERGLING_DEATH_RECT"]));
+
+
+	texture = Director::getInstance()->getTextureCache()->addImage(m_texturePaths["HYDRALISK_DEATH"]);
+	m_typeEffects[CEffectType::HydraliskDeath].SetTexture(texture);
+	m_typeEffects[CEffectType::HydraliskDeath].SetTextureRect(m_rectanglePaths["HYDRALISK_DEATH_RECT"]);
+	m_typeEffects[CEffectType::HydraliskDeath].SetLifeTime(m_timeLiveEffects["HYDRALISK_DEATH"]);
+	m_typeEffects[CEffectType::HydraliskDeath].SetAnimations(CreateEffectAnimations(m_texturePaths["HYDRALISK_DEATH"],
+		m_rectanglePaths["HYDRALISK_DEATH_RECT"]));
 
 }
 
@@ -381,6 +411,18 @@ void CLifeObject::CreateShoot(GameScreen * scene, Vec2 directionShoot, vector<CS
 	m_weapon.SetState(CWeapon::IdState::NotActive);
 	m_weapon.ResetTimer();
 	SetDirection(Vec2::ZERO);
+}
+
+void GameScreen::CreateEffect(CEffectType::ID id, Vec2 position)
+{
+	CEffect* newEffect = new CEffect();
+
+	newEffect->SetType(m_typeEffects[id]);
+	newEffect->setPosition(position);
+
+	m_effects.push_back(newEffect);
+
+	addChild(newEffect, m_gameIntConstats["levelObjects"]);
 }
 
 TypeLifeObject::ID GameScreen::GetIdTypeLifeObject(const std::string & name)

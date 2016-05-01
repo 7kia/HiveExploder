@@ -32,6 +32,7 @@ bool GameScreen::init()
     }
 
 	ReadGameConstants("iphone/Json/GameConstants.json");
+	ReadTimeLiveEffects("iphone/Json/TimeLiveEffects.json");
 	ReadTexturePaths("iphone/Json/TexturePaths.json");
 	ReadRectangles("iphone/Json/RectanglesPaths.json");
 	ReadSoundsPath("iphone/Json/SoundsPaths.json");
@@ -42,6 +43,7 @@ bool GameScreen::init()
 	CreateTypesLifeObjects();
 	CreateFunctionsForBonuses();
 	CreateTypesBonuses();
+	CreateTypesEffects();
 
 	CreateCamera();
 	CreateMap();
