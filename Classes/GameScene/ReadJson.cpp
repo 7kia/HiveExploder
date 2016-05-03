@@ -4,6 +4,7 @@
 using namespace std;
 using namespace json_spirit;
 using namespace cocos2d;
+using namespace rapidjson;
 
 Words SplitWords(string const& text)
 {
@@ -18,18 +19,45 @@ void GameScreen::ReadTexturePaths(const string & jsonFileName)
 {
 	ifstream inputFile(jsonFileName);
 
+	//Document document;
+	//document.ParseStream<0, UTF8<>, FileReadStream>(is);
+	//string content;
+//	FileUtils::getInstance()->getDataFromFile(jsonFileName).copy(content.data, 65526);
+
 	if (inputFile.is_open())
 	{
-		json_spirit::Value value;
-		read(inputFile, value);
 
-		auto dictionaryPaths = value.get_obj();
+		string content;
+		string input;
 
-		string path = dictionaryPaths.at(0).value_.get_str();
-		for (size_t index = 1; index < dictionaryPaths.size(); index++)
+		while (getline(inputFile, input))
 		{
-			m_texturePaths.emplace(dictionaryPaths.at(index).name_,
-									path + dictionaryPaths.at(index).value_.get_str());
+			content += input;
+		}
+
+		//json_spirit::Value value;
+		//read(inputFile, value);
+		/*
+
+		static const char* kTypeNames[] =
+		{ "Null", "False", "True", "Object", "Array", "String", "Number" };
+		for (Value::ConstMemberIterator itr = document.MemberBegin();
+		itr != document.MemberEnd(); ++itr)
+		{
+		printf("Type of member %s is %s\n",
+		itr->name.GetString(), kTypeNames[itr->value.GetType()]);
+		}
+		*/
+		Document value;
+		value.Parse(content.c_str());
+
+		auto dictionaryPaths = value.MemberBegin();// .get_obj();
+
+		string path = dictionaryPaths->value.GetString();
+		for (auto itr = ++dictionaryPaths; itr != value.MemberEnd(); ++itr)
+		{
+			m_texturePaths.emplace(itr->name.GetString(),
+									path + itr->value.GetString());
 		}
 
 	}
@@ -42,22 +70,51 @@ void GameScreen::ReadRectangles(const string & jsonFileName)
 
 	if (inputFile.is_open())
 	{
-		json_spirit::Value value;
-		read(inputFile, value);
 
-		auto dictionaryPaths = value.get_obj();
-		Rect inputRectangles;
-		vector<json_spirit::Value> jsonRect;
-		for (size_t index = 0; index < dictionaryPaths.size(); index++)
+		string content;
+		string input;
+
+		while (getline(inputFile, input))
 		{
-			jsonRect = dictionaryPaths.at(index).value_.get_array();
-			inputRectangles = Rect(jsonRect.at(0).get_int(), jsonRect.at(1).get_int(),
-									jsonRect.at(2).get_int(), jsonRect.at(3).get_int());
+			content += input;
+		}
 
-			m_rectanglePaths.insert({ dictionaryPaths.at(index).name_,
+
+		//FileUtils::getInstance()->getDataFromFile(jsonFileName).copy(content, 65526);
+
+
+		//if (inputFile.is_open())
+		//{
+			//json_spirit::Value value;
+			//read(inputFile, value);
+
+			//auto dictionaryPaths = value.get_obj();
+
+		Document value;
+		value.Parse(content.c_str());
+
+		auto dictionaryPaths = value.MemberBegin();// .get_obj();
+
+		Rect inputRectangles;
+		//json_spirit::Value
+		//vector<UTF_8<>> jsonRect;
+		for (auto itr = dictionaryPaths; itr != value.MemberEnd(); ++itr)
+		{
+			auto jsonRect = itr->value.Begin();//get_array();
+
+			float originX = static_cast<float>(jsonRect->GetDouble());
+			float originY = static_cast<float>((++jsonRect)->GetDouble());
+			float width = static_cast<float>((++jsonRect)->GetDouble());
+			float height = static_cast<float>((++jsonRect)->GetDouble());
+
+			inputRectangles = Rect(originX, originY,
+									width, height);
+
+			m_rectanglePaths.insert({ itr->name.GetString(),
 										inputRectangles });
 		}
 
+		//}
 	}
 
 }
@@ -68,41 +125,59 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 
 	if (inputFile.is_open())
 	{
-		json_spirit::Value value;
-		read(inputFile, value);
 
-		auto constants = value.get_obj();
-		auto integers = constants.at(0);
-		auto intConstants = integers.value_.get_array();
+		string content;
+		string input;
 
-		for (size_t index = 0; index < intConstants.size(); index++)
+		while (getline(inputFile, input))
 		{
-			auto object = intConstants.at(index).get_obj();
-			m_gameIntConstats.insert({ object.at(0).name_,
-										object.at(0).value_.get_int() });
+			content += input;
+		}
+
+		//json_spirit::Value value;
+		//read(inputFile, value);
+
+		//string content;
+		//FileUtils::getInstance()->getDataFromFile(jsonFileName).copy(*content.data, 65526);
+
+		Document value;
+		value.Parse(content.c_str());
+
+		auto constants = value.MemberBegin();// .get_obj();
+		auto integers = constants->value.Begin();
+		//auto intConstants = integers->Begin();//.value_.get_array();
+
+		for (auto itr = integers; itr != constants->value.End(); ++itr)
+		{
+			auto object = itr->MemberBegin();//.get_obj();
+			m_gameIntConstats.insert({ object->name.GetString(),
+										object->value.GetInt() });
 		}
 
 
-		auto floats = constants.at(1);
-		auto floatConstants = floats.value_.get_array();
-		for (size_t index = 0; index < floatConstants.size(); index++)
+		auto floats = ++constants;
+		auto floatConstants = floats->value.Begin();//.value_.get_array();
+
+		for (auto itr = floatConstants; itr != floats->value.End(); ++itr)
 		{
-			auto object = floatConstants.at(index).get_obj();
-			m_gameFloatConstats.insert({ object.at(0).name_,
-										static_cast<float>(object.at(0).value_.get_real()) });
+			auto object = itr->MemberBegin();//.get_obj();
+			m_gameIntConstats.insert({ object->name.GetString(),
+										static_cast<float>(object->value.GetDouble()) });
 		}
 
-		auto soundsFeatures = constants.at(2);
-		auto soundsFeaturesArray = soundsFeatures.value_.get_array();
-		for (size_t index = 0; index < soundsFeaturesArray.size(); index++)
+		auto soundsFeatures = ++floats;
+		auto soundsFeaturesArray = soundsFeatures->value.Begin();
+		for (auto itr = soundsFeaturesArray; itr != soundsFeatures->value.End(); ++itr)
 		{
-			auto object = soundsFeaturesArray.at(index).get_obj();
-			auto arrayObject = object.at(0).value_.get_array();
-			SSoundFeatures features(static_cast<float>(arrayObject.at(0).get_real())
-									, static_cast<float>(arrayObject.at(1).get_real())
-									, static_cast<float>(arrayObject.at(2).get_real()));
+			
+			auto object = itr->MemberBegin();//.get_obj();
+			//auto object = soundsFeaturesArray.at(index).get_obj();
+			auto arrayObject = object->value.Begin();// object.at(0).value_.get_array();
+			SSoundFeatures features(static_cast<float>(arrayObject->GetDouble())
+				, static_cast<float>((++arrayObject)->GetDouble())
+				, static_cast<float>((++arrayObject)->GetDouble()));
 
-			m_soundsFeatures.insert({ object.at(0).name_,
+			m_soundsFeatures.insert({ object->name.GetString(),
 										features });
 		}
 	}
@@ -115,18 +190,33 @@ void GameScreen::ReadTimeLiveEffects(const std::string & jsonFileName)
 
 	if (inputFile.is_open())
 	{
-		json_spirit::Value value;
-		read(inputFile, value);
+		string content;
+		string input;
 
-		auto constants = value.get_obj();
-
-		auto floats = constants.at(0);
-		auto floatConstants = floats.value_.get_array();
-		for (size_t index = 0; index < floatConstants.size(); index++)
+		while (getline(inputFile, input))
 		{
-			auto object = floatConstants.at(index).get_obj();
-			m_timeLiveEffects.insert({ object.at(0).name_,
-				static_cast<float>(object.at(0).value_.get_real()) });
+			content += input;
+		}
+
+		//json_spirit::Value value;
+		//read(inputFile, value);
+
+		//string content;
+		//FileUtils::getInstance()->getDataFromFile(jsonFileName).copy(*content.data, 65526);
+
+		Document value;
+		value.Parse(content.c_str());
+
+
+		auto constants = value.MemberBegin();// .get_obj();
+
+		auto floats = constants->value.Begin();//constants.at(0);
+		//auto floatConstants = floats->Begin();//floats.value_.get_array();
+		for (auto itr = floats; itr != constants->value.End(); ++itr)
+		{
+			auto object = itr->MemberBegin();//get_obj();
+			m_timeLiveEffects.insert({ object->name.GetString(),
+				static_cast<float>(object->value.GetDouble()) });
 		}
 	}
 }
@@ -137,22 +227,47 @@ void GameScreen::ReadTimeAnimations(const std::string & jsonFileName)
 
 	if (inputFile.is_open())
 	{
-		json_spirit::Value value;
-		read(inputFile, value);
+		string content;
+		string input;
 
-		auto constants = value.get_obj();
-
-		for (size_t index = 0; index < 3; index++)
+		while (getline(inputFile, input))
 		{
-			auto animations = constants.at(index);
-			auto floatConstants = animations.value_.get_array();
-			for (size_t index = 0; index < floatConstants.size(); index++)
+			content += input;
+		}
+
+		//json_spirit::Value value;
+		//read(inputFile, value);
+
+		//string content;
+		//FileUtils::getInstance()->getDataFromFile(jsonFileName).copy(*content.data, 65526);
+
+		Document value;
+		value.Parse(content.c_str());
+
+		auto constants = value.MemberBegin();// .get_obj();
+
+			//for (size_t index = 0; index < 3; index++)
+			//{
+			
+			//auto pairNameTime = times->Begin();//.value_.get_array();
+
+			for (auto itr = constants; itr != value.MemberEnd(); ++itr)
 			{
-				auto object = floatConstants.at(index).get_obj();
-				m_timeAnimations.insert({ object.at(0).name_,
-					static_cast<float>(object.at(0).value_.get_real()) });
+				auto pairNameTime = itr->value.Begin();
+				//auto animations = itr;//.at(index);
+				//auto floatConstants = animations.value_.get_array();
+				for (auto itrAnim = pairNameTime; itrAnim != itr->value.End(); ++itrAnim)
+				{
+					auto object = itrAnim->MemberBegin();// .get_obj();
+					string name = object->name.GetString();
+					float floatValue = static_cast<float>(object->value.GetDouble());
+
+					m_timeAnimations.insert({ name,floatValue });
+				}
 			}
-		}		
+			//}		
+
+		
 
 	}
 }
@@ -163,29 +278,44 @@ void GameScreen::ReadSoundsPath(const string & jsonFileName)
 
 	if (inputFile.is_open())
 	{
-		json_spirit::Value value;
-		read(inputFile, value);
+		string content;
+		string input;
 
-		auto objects = value.get_obj();
+		while (getline(inputFile, input))
+		{
+			content += input;
+		}
 
-		auto pathObject = objects.at(0);
-		string path = pathObject.value_.get_str();
+		//json_spirit::Value value;
+		//read(inputFile, value);
 
-		auto pathsSoundsObject = objects.at(1).value_.get_array();
+		//auto objects = value.get_obj();
+		///string content;
+		//FileUtils::getInstance()->getDataFromFile(jsonFileName).copy(*content.data, 65526);
+
+		Document value;
+		value.Parse(content.c_str());
+
+		auto objects = value.MemberBegin();// .get_obj();
+
+			//auto pathObject = objects->value;
+		string path = objects->value.GetString();
+
+		auto pathsSoundsObject = (++objects)->value.Begin();//_.get_array();
 
 
 		vector<string> inputPaths;
-		for (size_t index = 0; index < pathsSoundsObject.size(); index++)
+		for (auto itr = pathsSoundsObject; itr != objects->value.End(); ++itr)
 		{
-			auto vectorPaths = pathsSoundsObject.at(index).get_obj();
-			auto jsonPaths = vectorPaths.at(0).value_.get_array();
+			//auto vectorPaths = pathsSoundsObject//.at(index).get_obj();
+			auto jsonPaths = itr->MemberBegin()->value.Begin();//vectorPaths.at(0).value_.get_array();
 
-			for (size_t index2 = 0; index2 < jsonPaths.size(); index2++)
+			for (auto itrPath = jsonPaths; itrPath != itr->MemberBegin()->value.End(); ++itrPath)
 			{
-				inputPaths.push_back(path + jsonPaths.at(index2).get_str());
+				inputPaths.push_back(path + itrPath->GetString());
 			}
 
-			m_soundsPaths.insert({ vectorPaths.at(0).name_,
+			m_soundsPaths.insert({ itr->MemberBegin()->name.GetString(),
 									inputPaths });
 			inputPaths.clear();
 

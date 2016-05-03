@@ -13,6 +13,12 @@
 #include <vector>
 #include <string>
 //#include "spine/json.h"
+#include "cocos2d/external/json/document.h"
+#include "cocos2d\external\json\writer.h"
+#include "cocos2d\external\json\stringbuffer.h"
+
+
+//
 #include "json_spirit/json_spirit.h"
 
 #include <fstream>
