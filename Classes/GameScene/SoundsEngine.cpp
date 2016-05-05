@@ -1,7 +1,4 @@
-#include "GameScene.h"
-
-#include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
+#include "SoundsEngine.h"
 
 using namespace cocos2d;
 using namespace std;

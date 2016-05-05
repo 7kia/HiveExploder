@@ -1,19 +1,8 @@
-#include "GameScene.h"
-#include <boost/algorithm/string.hpp>
+#include "ReadJson.h"
 
 using namespace std;
-using namespace json_spirit;
 using namespace cocos2d;
 using namespace rapidjson;
-
-Words SplitWords(string const& text)
-{
-	string trimmed = boost::trim_copy(text);
-
-	vector<string> words;
-	boost::split(words, trimmed, boost::is_space(), boost::token_compress_on);
-	return words;
-}
 
 void GameScreen::ReadTexturePaths(const string & jsonFileName)
 {

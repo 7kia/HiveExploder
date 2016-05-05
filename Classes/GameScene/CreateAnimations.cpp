@@ -1,4 +1,4 @@
-#include "GameScene.h"
+#include "CreateAnimations.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -110,9 +110,9 @@ void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int in
 
 		namesFrames.push_back(nameFile 
 							+ nameAnimation
-							+ to_string(static_cast<int>(shift.x))
+							+ static_cast<char>(static_cast<int>(shift.x + 5))
 							+ '_' 
-							+ to_string(static_cast<int>(shift.y)));
+							+ static_cast<char>(static_cast<int>(shift.y + 5)));
 
 		spriteFrameCashe->addSpriteFrame(frame, namesFrames[i]);
 		frames.pushBack(frame);
@@ -123,7 +123,7 @@ void GameScreen::AddAnimationFrame(Vec2 & shift, const Size & size, const int in
 	Animation* animation = Animation::createWithSpriteFrames(GetAnimation(namesFrames),
 																timeAnimation / namesFrames.size());
 
-	std::string nameAnimationInCashe = nameFile + nameAnimation + to_string(index);
+	std::string nameAnimationInCashe = nameFile + nameAnimation + static_cast<char>(index + 5);//std::to_string
 	animationCashe->addAnimation(animation, nameAnimationInCashe);
 	//make_shared<Animate>()
 	//m_animateCashe.push_back(make_shared<Animate>(Animate::create(animationCashe->getAnimation(nameAnimation))));

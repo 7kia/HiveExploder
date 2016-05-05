@@ -6,7 +6,7 @@
 #include "VisualDataType.h"
 
 // TOOD : CMovement transfer to Behaveour
-class CEntity : public CMovement, public CVisual
+class CEntity : public CVisual
 {
 public:
 	enum class idClass

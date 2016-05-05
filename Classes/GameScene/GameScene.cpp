@@ -96,14 +96,3 @@ void GameScreen::GoToVictoryScene(cocos2d::Ref *pSender)
 
 	Director::getInstance()->pushScene(TransitionFade::create(1.5, scene));
 }
-
-SSoundFeatures::SSoundFeatures()
-{
-}
-
-SSoundFeatures::SSoundFeatures(float pitch, float pan, float gain)
-	: pitch(pitch)
-	, pan(pan)
-	, gain(gain)
-{
-}

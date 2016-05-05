@@ -19,3 +19,15 @@ const SSoundFeatures & CSoundDataType::GetSoundsFeatures() const
 {
 	return m_soundFeatures;
 }
+
+
+SSoundFeatures::SSoundFeatures()
+{
+}
+
+SSoundFeatures::SSoundFeatures(float pitch, float pan, float gain)
+	: pitch(pitch)
+	, pan(pan)
+	, gain(gain)
+{
+}

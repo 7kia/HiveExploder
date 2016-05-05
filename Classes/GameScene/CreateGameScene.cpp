@@ -1,4 +1,4 @@
-#include "GameScene.h"
+#include "CreateGameScene.h"
 
 using namespace cocos2d;
 using namespace std;

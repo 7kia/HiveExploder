@@ -1,4 +1,4 @@
-#include "GameScene.h"
+#include "ActionsBonuses.h"
 
 void GameScreen::CreateFunctionsForBonuses()
 {

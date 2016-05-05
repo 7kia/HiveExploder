@@ -8,7 +8,8 @@ class CBar;
 
 // TOOD : CMovement transfer to Behaveour
 class CLifeObject : 
-	public CEntity// public CMovement, public CVisual
+		public CEntity
+	,	public CMovement// public CMovement, public CVisual
 {
 public:
 	// LifeObjects.cpp

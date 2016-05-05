@@ -8,7 +8,9 @@ static const float COEFFECIENT_SLOW_BULLET = 0.01f;
 
 class CWeapon;
 
-class CShoot : public CEntity
+class CShoot :
+		public CEntity 
+	,	public CMovement
 {
 public:
 	CShoot();
