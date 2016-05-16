@@ -10,7 +10,10 @@ void GameScreen::update(float dt)
 
 	if (true == m_isTouching)
 	{
-		switch (m_manageCirlce.GetAction(m_touchPosition))
+		Point origin = GetPlayer().getPosition();
+		origin -= GetMiddleWindow();
+
+		switch (m_manageCirlce.GetAction(m_touchPosition + origin))
 		{
 		case ManageCircle::Action::Attack:
 			GetPlayer().SetState(CLifeObject::StateId::Attack);
@@ -106,6 +109,26 @@ bool GameScreen::onContactBegin(PhysicsContact& contact)
 			dynamic_cast<CBonus*>(entityA)->SetStateDestroy();
 		}
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////
+	else if ((idA == CEntity::idClass::Shoot) && (idB == CEntity::idClass::Obstacle))
+	{
+		if (dynamic_cast<CObstacle*>(entityB)->GetType() == CObstacle::CObstacleType::Wall)
+		{
+			dynamic_cast<CShoot*>(entityA)->SetVelocity(0.f);
+		}
+	}
+	else if ((idB == CEntity::idClass::Shoot) && (idA == CEntity::idClass::Obstacle))
+	{
+		if (dynamic_cast<CObstacle*>(entityA)->GetType() == CObstacle::CObstacleType::Wall)
+		{
+			dynamic_cast<CShoot*>(entityB)->SetVelocity(0.f);
+		}
+	}
+	else if ((idB == CEntity::idClass::LifeObject) && (idA == CEntity::idClass::Obstacle))
+	{
+		//dynamic_cast<CShoot*>(entityB)->SetVelocity(0.f);
+		idB = idB;
+	}
 	//
 	
 
@@ -124,30 +147,18 @@ bool GameScreen::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event)
 {
 	m_isTouching = true;
 
-	UpdateTouchPosition(touch);
+	m_touchPosition = touch->getLocation();
 	return true;
 }
 
 void GameScreen::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event)
 {
-	UpdateTouchPosition(touch);
-}
-
-
-void GameScreen::UpdateTouchPosition(cocos2d::Touch *touch)
-{
-	Point origin = GetPlayer().getPosition();
-	origin -= GetMiddleWindow();
-
 	m_touchPosition = touch->getLocation();
-	m_touchPosition += origin;
-
-	touch->setTouchInfo(0, m_touchPosition.x, m_touchPosition.y);
 }
 
 void GameScreen::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event * event)
 {
-	UpdateTouchPosition(touch);
+	m_touchPosition = touch->getLocation();
 
 	m_isTouching = false;
 }

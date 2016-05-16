@@ -10,7 +10,6 @@ class CWeapon;
 
 class CShoot :
 		public CEntity 
-	,	public CMovement
 {
 public:
 	CShoot();

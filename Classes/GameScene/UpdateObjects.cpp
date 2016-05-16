@@ -36,10 +36,11 @@ void GameScreen::UpdateCamera(float dt)
 	Vec2 positionPlayer = GetPlayer().getPosition();
 	Direction directtionPlayer = GetPlayer().GetDirection();
 
+	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer);
+
 
 	UpdateManageCircle();
 
-	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer);
 
 	cocos2d::Node* menu = getChildByName("menu");
 	menu->setPosition(positionPlayer - GetMiddleWindow());

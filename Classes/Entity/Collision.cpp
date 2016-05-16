@@ -21,6 +21,20 @@ CCollision* CCollision::create(float radius)
 	return NULL;
 }
 
+CCollision* CCollision::createEdgePolygon(const Vec2* points, int count, const PhysicsMaterial& material, float border)
+{
+	CCollision * body = new(std::nothrow) CCollision();
+
+	if (body && body->PhysicsBody::init()) {
+		body->addShape(PhysicsShapeEdgePolygon::create(points, count, material, border));
+		body->autorelease();
+		body->setDynamic(true);
+		return body;
+	}
+	CC_SAFE_DELETE(body);
+	return NULL;
+}
+
 void CCollision::SetMaster(CEntity * master)
 {
 	m_master = master;

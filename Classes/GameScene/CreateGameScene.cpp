@@ -100,28 +100,43 @@ void GameScreen::CreateWalls()
 	/*
 
 	*/
-	ValueMap value;
 	for (const auto& wall : walls)
 	{
-		value = wall.asValueMap();
-
-		Size size = Size(value["width"].asFloat(), value["height"].asFloat());
-		PhysicsBody* bodyWall = PhysicsBody::createBox(size,
-			PhysicsMaterial(0.1f, 1.0f, 0.0f));
-		bodyWall->setDynamic(false);
-
-		CEntity* spriteWall = new CEntity();
-		spriteWall->setContentSize(size);
-		spriteWall->setPhysicsBody(bodyWall);
+		ValueMap value = wall.asValueMap();
+		/**/
+		vector<Vec2> vertexBody;
 
 		Vec2 pos = Vec2(value["x"].asFloat(), value["y"].asFloat());
-		spriteWall->setPosition(pos);
-		spriteWall->setTextureRect(m_typesShoots[CShootType::MeleeShoot].GetTextureRectangle());
-		spriteWall->setTexture(m_typesShoots[CShootType::MeleeShoot].GetTexture());
 
+		auto vertexFromMap = value["polylinePoints"].asValueVector();
+		for (const auto & vertex : vertexFromMap)
+		{
+			Vec2 valueVertex = pos + Vec2(vertex.asValueMap().at("x").asFloat(), vertex.asValueMap().at("y").asFloat());
+			vertexBody.push_back(valueVertex);
+		}
+		std::reverse(vertexBody.begin(), vertexBody.end());
+		Size size = Size(value["width"].asFloat(), value["height"].asFloat());
 
+		CObstacle* obstacle = new CObstacle();
+		obstacle->CreateCollision(vertexBody);
 
-		addChild(spriteWall, m_gameIntConstats["levelObjects"]);
+		obstacle->setContentSize(size);
+		///*
+		obstacle->setPosition(pos);
+		obstacle->setTextureRect(m_typesShoots[CShootType::MeleeShoot].GetTextureRectangle());
+		obstacle->setTexture(m_typesShoots[CShootType::MeleeShoot].GetTexture());
+		//*/
+	
+		if (value["name"].asString() == "Water")
+		{
+			obstacle->SetType(CObstacle::CObstacleType::Water);
+		}
+		else
+		{
+			obstacle->SetType(CObstacle::CObstacleType::Wall);
+		}
+
+		addChild(obstacle, m_gameIntConstats["levelObjects"]);
 	}
 
 

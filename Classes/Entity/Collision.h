@@ -18,7 +18,11 @@ public:
 	CCollision();
 	virtual ~CCollision() override;
 
-	static CCollision* create(float radius);
+	static	 CCollision* create(float radius);
+	static		CCollision * createEdgePolygon(const cocos2d::Vec2 * points
+												, int count
+												, const cocos2d::PhysicsMaterial & material
+												, float border);
 	//CREATE_FUNC(CCollision);
 
 	void			SetMaster(CEntity* master);

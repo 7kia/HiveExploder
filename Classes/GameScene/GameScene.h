@@ -8,6 +8,7 @@
 #include "../Bonuses/Bonuses.h"
 #include "../HealthBar/HealthBar.h"
 #include "../Effect/Effect.h"
+#include "../Obstacle/Obstacle.h"
  
 #include "SimpleAudioEngine.h"
 #include <vector>
@@ -99,7 +100,6 @@ public:
 private:
 	cocos2d::Vec2			GetMiddleWindow() const;
 	CLifeObject&			GetPlayer() const;
-	void					UpdateTouchPosition(cocos2d::Touch *touch);
 	// CreateGameScene.cpp
 	void					CreateCashes();// TODO : delete if not need
 	void					CreateTypesLifeObjects();
@@ -227,6 +227,8 @@ private:
 	void					ReadTimeLiveEffects(const std::string & jsonFileName);
 	void					ReadTimeAnimations(const std::string & jsonFileName);
 	void					ReadSoundsPath(const std::string & jsonFileName);
+
+	void					WriteContent(std::ifstream & inputFile, std::string & content);
 
 public:
 		MapInt					m_gameIntConstats;
