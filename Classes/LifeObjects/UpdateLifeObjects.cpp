@@ -4,10 +4,22 @@ using namespace cocos2d;
 
 void CLifeObject::update(float dt)
 {
+	int idAnimation;
 	switch (m_state)
 	{
 	case StateId::NotActive:
-		m_weapon.Update(dt);
+		//m_weapon.Update(dt);
+		if (GetOldAnimate() != nullptr)
+		{
+			idAnimation = GetIndexAttackAnimation(m_direction);
+			if (idAnimation == 0)
+			{
+				idAnimation = GetIndexMoveAnimation(m_direction);
+			}
+			getActionByTag(idAnimation)->stop();
+
+			
+		}
 		break;
 	case StateId::Move:
 		UpdatePosition(dt);

@@ -11,7 +11,8 @@ void GameScreen::CreateTypesLifeObjects()
 		, "MARINE_MOVE_TIME"
 		, "MARINE_ATTACK_TIME"
 		, 250.f
-		, 400
+		, 400.f
+		, 600
 		, CTypeWeapon::MarineWeapon
 		, "MARINE_DEATH"
 		, "DEATH"
@@ -24,6 +25,7 @@ void GameScreen::CreateTypesLifeObjects()
 		, "ZERGLING_MOVE_TIME"
 		, "ZERGLING_ATTACK_TIME"
 		, 80.f
+		, 600.f
 		, 35
 		, CTypeWeapon::ZerglingWeapon
 		, "ZERGLING_DEATH"
@@ -36,6 +38,7 @@ void GameScreen::CreateTypesLifeObjects()
 		, "HYDRALISK_MOVE_TIME"
 		, "HYDRALISK_ATTACK_TIME"
 		, 80.f
+		, 600.f
 		, 180
 		, CTypeWeapon::HydraliskWeapon
 		, "HYDRALISK_DEATH"
@@ -49,6 +52,7 @@ void GameScreen::CreateTypeLifeObject(TypeLifeObject::ID id
 	, const std::string & timeMoveAnimation
 	, const std::string & timeAttackAnimation
 	, const float velocity
+	, const float visionRange
 	, const int health
 	, CTypeWeapon::ID idWeapon
 	, const std::string & nameDeathSounds
@@ -62,6 +66,7 @@ void GameScreen::CreateTypeLifeObject(TypeLifeObject::ID id
 	m_typesLifeObjects[id].SetTextureRect(m_rectanglePaths[nameRectangle]);
 
 	m_typesLifeObjects[id].SetVelocity(velocity);
+	m_typesLifeObjects[id].SetVisionRange(visionRange);
 	m_typesLifeObjects[id].SetHealth(health);
 	m_typesLifeObjects[id].SetWeapon(m_typesWeapons[idWeapon]);
 
@@ -126,16 +131,16 @@ void GameScreen::CreateTypeShoot(CShootType::ID id
 void GameScreen::CreateTypesWeapons()
 {
 	CreateTypeWeapon(CTypeWeapon::MarineWeapon
-		, 3
-		, 0.15f
+		, 6
+		, 0.25f
 		, CShootType::MarineShoot
 		, 750.f
-		, 750.f
+		, 400.f
 		, "MARINE_SHOOT"
 		, "LAUNCH");
 
 	CreateTypeWeapon(CTypeWeapon::ZerglingWeapon
-		, 5
+		, 15
 		, 1.0f
 		, CShootType::MeleeShoot
 		, 750.f
@@ -144,11 +149,11 @@ void GameScreen::CreateTypesWeapons()
 		, "LAUNCH");
 
 	CreateTypeWeapon(CTypeWeapon::HydraliskWeapon
-		, 3
+		, 12
 		, 1.0f
 		, CShootType::HydraliskShoot
 		, 750.f
-		, 550.f
+		, 400.f
 		, "HYDRALISK_SHOOT"
 		, "LAUNCH");
 
@@ -157,7 +162,7 @@ void GameScreen::CreateTypesWeapons()
 		, 1.0f
 		, CShootType::Grenade
 		, 750.f
-		, 550.f
+		, 400.f
 		, "GRENADE_SHOOT"
 		, "LAUNCH");
 
@@ -166,7 +171,7 @@ void GameScreen::CreateTypesWeapons()
 		, 0.5f
 		, CShootType::Plasma
 		, 750.f
-		, 550.f
+		, 400.f
 		, "PLASMA_SHOOT"
 		, "LAUNCH");
 }

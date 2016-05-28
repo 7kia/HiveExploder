@@ -55,6 +55,9 @@ public:
 	void					SetHealth(int value);
 	int						GetHealth() const;
 
+	void					SetVisionRange(float range);
+	float					GetVisionRange() const;
+
 	int						GetDamage();
 
 	void					SetWeapon(const CTypeWeapon& weapon);
@@ -71,7 +74,8 @@ public:
 
 	// TODO : there not enough functional
 private:
-	float							m_velocity;
+	float							m_velocity = 0.f;
+	float							m_visionRange = 0.f;
 
 	CDynamicFeature					m_health;
 	const CTypeWeapon*				m_weapon;

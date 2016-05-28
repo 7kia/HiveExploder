@@ -35,6 +35,11 @@ int CLifeObject::GetMaxHealth()
 	return m_type->GetHealth();
 }
 
+float CLifeObject::GetVisionRange() const
+{
+	return m_type->GetVisionRange();
+}
+
 int CLifeObject::GetDamage()
 {
 	return m_weapon.GetDamage();

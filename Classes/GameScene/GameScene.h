@@ -109,6 +109,7 @@ private:
 												, const std::string & timeMoveAnimation
 												, const std::string & timeAttackAnimation
 												, const float velocity
+												, const float visionRange
 												, const int health
 												, CTypeWeapon::ID idWeapon
 												, const std::string & nameDeathSounds

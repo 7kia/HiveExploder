@@ -26,6 +26,16 @@ int TypeLifeObject::GetHealth() const
 	return m_health.GetValue();
 }
 
+void TypeLifeObject::SetVisionRange(float range)
+{
+	m_visionRange = range;
+}
+
+float TypeLifeObject::GetVisionRange() const
+{
+	return m_visionRange;
+}
+
 int TypeLifeObject::GetDamage()
 {
 	return m_weapon->GetDamage();

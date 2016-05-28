@@ -9,7 +9,7 @@ Scene* GameScreen::createScene()
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
-	//scene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
+	scene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
 
 	// 'layer' is an autorelease object
 	auto layer = GameScreen::create();
@@ -42,7 +42,6 @@ bool GameScreen::init()
 	CreateCashes();
 	CreateTypesShoots();
 	CreateTypesWeapons();
-	PlayRandomSound(m_typesWeapons[2].GetSounds("LAUNCH"), m_typesWeapons[0].GetSoundsFeatures());
 
 	CreateTypesLifeObjects();
 	CreateFunctionsForBonuses();
@@ -57,7 +56,6 @@ bool GameScreen::init()
 
 	CreateMenu();
 	CreateMoveCircle();
-	PlayRandomSound(m_typesWeapons[1].GetSounds("LAUNCH"), m_typesWeapons[1].GetSoundsFeatures());
 
 
 	CreateContactListener();
@@ -69,7 +67,6 @@ bool GameScreen::init()
 
 	CreateListener();
 	////////////////////////
-	PlayRandomSound(m_typesWeapons[0].GetSounds("LAUNCH"), m_typesWeapons[0].GetSoundsFeatures());
     return true;
 }
 

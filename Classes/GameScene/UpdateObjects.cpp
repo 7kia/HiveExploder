@@ -14,14 +14,8 @@ void GameScreen::UpdateLifeObjects(float dt)
 		object->update(dt);
 	}
 
-	if (GetPlayer().GetIdType() == TypeLifeObject::ID::Player)
-	{
-		UpdateCamera(dt);
-	}
-	else
-	{
-		GoToGameOverScene(this);
-	}
+	UpdateCamera(dt);
+
 
 
 	if (CheckVictoryCondition())
@@ -33,17 +27,24 @@ void GameScreen::UpdateLifeObjects(float dt)
 
 void GameScreen::UpdateCamera(float dt)
 {
-	Vec2 positionPlayer = GetPlayer().getPosition();
-	Direction directtionPlayer = GetPlayer().GetDirection();
+	if (GetPlayer().GetIdType() == TypeLifeObject::ID::Player)
+	{
+		Vec2 positionPlayer = GetPlayer().getPosition();
+		Direction directtionPlayer = GetPlayer().GetDirection();
 
-	Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer);
+		Director::getInstance()->getRunningScene()->getDefaultCamera()->setPosition(positionPlayer);
 
 
-	UpdateManageCircle();
+		UpdateManageCircle();
 
 
-	cocos2d::Node* menu = getChildByName("menu");
-	menu->setPosition(positionPlayer - GetMiddleWindow());
+		cocos2d::Node* menu = getChildByName("menu");
+		menu->setPosition(positionPlayer - GetMiddleWindow());
+	}
+	else
+	{
+		UpdateManageCircle();
+	}
 }
 
 Camera & GameScreen::GetCamera()
@@ -96,8 +97,12 @@ void GameScreen::SearchEnemy()// TODO : redefine
 	{
 		if (object->GetIdType() != TypeLifeObject::ID::Player)
 		{
-			DefineDirectionToEnemyForObject(object, positionPlayer);
-			DefineNeedAttackEnemy(object, positionPlayer);	
+			float distanse = positionPlayer.getDistance(object->getPosition());
+			if (distanse < object->GetVisionRange())
+			{
+				DefineDirectionToEnemyForObject(object, positionPlayer);
+				DefineNeedAttackEnemy(object, positionPlayer);
+			}
 		}
 	}
 
@@ -119,8 +124,6 @@ void GameScreen::DefineNeedAttackEnemy(CLifeObject * object, const Vec2 & positi
 	if (distanse < distanceAttack)
 	{
 		object->SetState(CLifeObject::StateId::Attack);
-		//object->SetDirection(m_manageCirlce.GetDirection());
-
 	}
 	else
 	{

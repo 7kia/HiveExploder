@@ -65,6 +65,8 @@ public:
 	int					GetHealth();
 	int					GetMaxHealth();
 
+	float				GetVisionRange() const;
+
 	int					GetDamage();
 
 	void				SetTypeWeapon(const CTypeWeapon& weapon);

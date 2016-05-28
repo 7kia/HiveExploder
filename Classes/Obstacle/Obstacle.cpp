@@ -33,12 +33,20 @@ void CObstacle::update(float dt)
 {
 }
 
-void CObstacle::CreateCollision(const std::vector<cocos2d::Vec2>& vertex)
+void CObstacle::CreateCollision(Size size, float angle)
 {
-	CCollision* body = CCollision::createEdgePolygon(vertex.data()
-													, vertex.size()
-													, PhysicsMaterial(0.1f, 1.f, 0.f)
-													, 2.f);//CCollision::createCircle(getContentSize().width / 2);
+	///*
+	CCollision* body;
+	if (angle == 0.f)
+	{
+		body = CCollision::createBox(size, PhysicsMaterial(0.1f, 1.f, 0.f), size / 2.f);//CCollision::createCircle(getContentSize().width / 2);
+	}
+	else
+	{
+		body = CCollision::createBox(size, PhysicsMaterial(0.1f, 1.f, 0.f), size / 2.f);//CCollision::createCircle(getContentSize().width / 2);
+
+	}
+	//*/
 	//delete arrayVertex;// TODO : DANGER !!!
 	//arrayVertex = nullptr;
 	
@@ -47,8 +55,13 @@ void CObstacle::CreateCollision(const std::vector<cocos2d::Vec2>& vertex)
 	body->SetMaster(this);
 	body->setDynamic(false);
 
+
 	setPhysicsBody(body);
 
-
+	if (angle != 0.f)
+	{
+		setRotation(angle);
+		//setAnchorPoint(Vec2(0, -size.height));
+	}
 
 }

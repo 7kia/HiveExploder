@@ -6,7 +6,7 @@ using namespace rapidjson;
 
 void GameScreen::ReadTexturePaths(const string & jsonFileName)
 {
-	/*
+	///*
 		ifstream inputFile(jsonFileName);
 
 	if (inputFile.is_open())
@@ -27,9 +27,9 @@ void GameScreen::ReadTexturePaths(const string & jsonFileName)
 		}
 
 	}
-	*/
+	//*/
 
-	//*
+	/*
 	string path = "iphone/GameScene/";
 
 	m_texturePaths["MAP"] = path + "Map/map.tmx";
@@ -56,7 +56,7 @@ void GameScreen::ReadTexturePaths(const string & jsonFileName)
 
 void GameScreen::ReadRectangles(const string & jsonFileName)
 {
-	/*
+	///*
 		ifstream inputFile(jsonFileName);
 
 	if (inputFile.is_open())
@@ -89,8 +89,9 @@ void GameScreen::ReadRectangles(const string & jsonFileName)
 
 	}
 
-	*/
+	//*/
 
+	/*
 	m_rectanglePaths["BONUS_RECT"] = { 0, 0, 100, 100 };
 	m_rectanglePaths["GRENADE_RECT"] =  {0, 0, 30, 30};
 	m_rectanglePaths["GRENADE_SHOOT_DEATH_RECT"] = {0, 0, 60, 60};
@@ -106,12 +107,14 @@ void GameScreen::ReadRectangles(const string & jsonFileName)
 	m_rectanglePaths["HYDRALISK_RECT"] = {0, 0, 107, 100};
 	m_rectanglePaths["HYDRALISK_DEATH_RECT"] = {0, 0, 107, 100};
 	m_rectanglePaths["HYDRALISK_SHOOT_RECT"] = {0, 0, 8, 32};
+	//*/
+	
 
 }
 
 void GameScreen::ReadGameConstants(const string & jsonFileName)
 {
-	/*
+	///*
 		ifstream inputFile(jsonFileName);
 
 	if (inputFile.is_open())
@@ -161,9 +164,10 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 	}
 
 
-	*/
+	//*/
 
-	m_gameIntConstats["kTagTileMap"] = 2;
+	/*
+		m_gameIntConstats["kTagTileMap"] = 2;
 	m_gameIntConstats["levelInterface"] = -1;
 	m_gameIntConstats["levelObjects"] = -2;
 	m_gameIntConstats["levelMap"] = -3;
@@ -180,11 +184,13 @@ void GameScreen::ReadGameConstants(const string & jsonFileName)
 	m_soundsFeatures["DEATH"] = { 1.0, 0.0, 1.0 };
 	m_soundsFeatures["ACTIVATE"] = { 1.0, 0.0, 0.05f };
 
+	*/
+
 }
 
 void GameScreen::ReadTimeLiveEffects(const std::string & jsonFileName)
 {
-	/*
+	///*
 		ifstream inputFile(jsonFileName);
 
 	if (inputFile.is_open())
@@ -208,20 +214,23 @@ void GameScreen::ReadTimeLiveEffects(const std::string & jsonFileName)
 		}
 	}
 
-	*/
+	//*/
 
-	m_timeLiveEffects["MARINE_DEATH_TIME"] = 1.0;
+	/*
+		m_timeLiveEffects["MARINE_DEATH_TIME"] = 1.0;
 	m_timeLiveEffects["ZERGLING_DEATH_TIME"] = 1.0;
 	m_timeLiveEffects["HYDRALISK_DEATH_TIME"] =  1.0;
 	m_timeLiveEffects["GRENADE_SHOOT_DEATH_TIME"] =  0.5;
 	m_timeLiveEffects["PLASMA_SHOOT_DEATH_TIME"] = 0.5;
+
+	//*/
 
 }
 
 void GameScreen::ReadTimeAnimations(const std::string & jsonFileName)
 {
 
-/*
+	///*
 	ifstream inputFile(jsonFileName);
 
 	if (inputFile.is_open())
@@ -252,8 +261,10 @@ void GameScreen::ReadTimeAnimations(const std::string & jsonFileName)
 
 	}
 
-*/
-	m_timeAnimations["MARINE_MOVE_TIME"] = 1.0;
+//*/
+
+	/*
+		m_timeAnimations["MARINE_MOVE_TIME"] = 1.0;
 	m_timeAnimations["ZERGLING_MOVE_TIME"] = 1.0;
 	m_timeAnimations["HYDRALISK_MOVE_TIME"] = 1.0;
 
@@ -267,12 +278,14 @@ void GameScreen::ReadTimeAnimations(const std::string & jsonFileName)
 	m_timeAnimations["ZERGLING_ATTACK_TIME"] = 1.0;
 	m_timeAnimations["HYDRALISK_ATTACK_TIME"] = 1.0;
 
+	*/
+
 
 }
 
 void GameScreen::ReadSoundsPath(const string & jsonFileName)
 {
-	/*
+	///*
 		ifstream inputFile(jsonFileName);
 
 	if (inputFile.is_open())
@@ -308,8 +321,9 @@ void GameScreen::ReadSoundsPath(const string & jsonFileName)
 
 	}
 
-	*/
+	//*/
 
+	/*
 	string path = "iphone/GameScene/Sounds/";
 	m_soundsPaths["MARINE_SHOOT"] =
 	{
@@ -386,6 +400,8 @@ void GameScreen::ReadSoundsPath(const string & jsonFileName)
 	, path + "Battlecruiser_AttackLaunch2.wav"
 	};
 
+	//*/
+	
 }
 
 void GameScreen::WriteContent(ifstream & inputFile, string & content)

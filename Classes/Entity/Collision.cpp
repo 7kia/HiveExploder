@@ -26,13 +26,29 @@ CCollision* CCollision::createEdgePolygon(const Vec2* points, int count, const P
 	CCollision * body = new(std::nothrow) CCollision();
 
 	if (body && body->PhysicsBody::init()) {
-		body->addShape(PhysicsShapeEdgePolygon::create(points, count, material, border));
+		body->addShape(PhysicsShapePolygon::create(points, count, material, Vec2::ZERO));
 		body->autorelease();
 		body->setDynamic(true);
 		return body;
 	}
 	CC_SAFE_DELETE(body);
 	return NULL;
+}
+
+CCollision * CCollision::createBox(const Size& size
+									, const PhysicsMaterial& material
+									, const Vec2& offset)
+{
+	CCollision* body = new (std::nothrow) CCollision();
+	if (body && body->PhysicsBody::init())
+	{
+		body->addShape(PhysicsShapeBox::create(size, material, offset));
+		body->autorelease();
+		return body;
+	}
+
+	CC_SAFE_DELETE(body);
+	return nullptr;
 }
 
 void CCollision::SetMaster(CEntity * master)
