@@ -28,7 +28,7 @@ public:
 
 	void								update(float dt) override;
 
-	void								CreateCollision(const std::vector<cocos2d::Vec2> & vertex);
+	void								CreateCollision(cocos2d::Size size, float angle);
 private:
 	CObstacleType						m_typeObstacle = CObstacleType::Wall;
 };

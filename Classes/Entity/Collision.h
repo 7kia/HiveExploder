@@ -23,6 +23,9 @@ public:
 												, int count
 												, const cocos2d::PhysicsMaterial & material
 												, float border);
+	static CCollision * createBox(const cocos2d::Size & size
+							, const cocos2d::PhysicsMaterial & material
+							, const cocos2d::Vec2 & offset);
 	//CREATE_FUNC(CCollision);
 
 	void			SetMaster(CEntity* master);

@@ -35,6 +35,22 @@ CCollision* CCollision::createEdgePolygon(const Vec2* points, int count, const P
 	return NULL;
 }
 
+CCollision * CCollision::createBox(const Size& size
+									, const PhysicsMaterial& material
+									, const Vec2& offset)
+{
+	CCollision* body = new (std::nothrow) CCollision();
+	if (body && body->PhysicsBody::init())
+	{
+		body->addShape(PhysicsShapeBox::create(size, material, offset));
+		body->autorelease();
+		return body;
+	}
+
+	CC_SAFE_DELETE(body);
+	return nullptr;
+}
+
 void CCollision::SetMaster(CEntity * master)
 {
 	m_master = master;

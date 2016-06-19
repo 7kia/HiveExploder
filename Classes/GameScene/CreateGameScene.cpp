@@ -88,8 +88,8 @@ void GameScreen::CreateMap()
 {
 	m_tileMap = CCTMXTiledMap::create(m_texturePaths["MAP"]);
 
-	CCTMXLayer *m_collisionLayer = m_tileMap->layerNamed("Collision");
-	m_collisionLayer->setVisible(false);
+	//CCTMXLayer *m_collisionLayer = m_tileMap->layerNamed("Collision");
+	//m_collisionLayer->setVisible(false);
 
 	this->addChild(m_tileMap, m_gameIntConstats["levelMap"]);
 }
@@ -104,29 +104,24 @@ void GameScreen::CreateWalls()
 	{
 		ValueMap value = wall.asValueMap();
 		/**/
-		vector<Vec2> vertexBody;
-
-		Vec2 pos = Vec2(value["x"].asFloat(), value["y"].asFloat());
-
-		auto vertexFromMap = value["polylinePoints"].asValueVector();
-		for (const auto & vertex : vertexFromMap)
-		{
-			Vec2 valueVertex = pos + Vec2(vertex.asValueMap().at("x").asFloat(), vertex.asValueMap().at("y").asFloat());
-			vertexBody.push_back(valueVertex);
-		}
-		std::reverse(vertexBody.begin(), vertexBody.end());
 		Size size = Size(value["width"].asFloat(), value["height"].asFloat());
 
 		CObstacle* obstacle = new CObstacle();
-		obstacle->CreateCollision(vertexBody);
-
-		obstacle->setContentSize(size);
+		obstacle->CreateCollision(size, value["Rotation"].asFloat());
 		///*
+		Vec2 pos = Vec2(value["x"].asFloat(), value["y"].asFloat());
+
 		obstacle->setPosition(pos);
+
+		if (obstacle->getRotation() != 0.f)
+		{
+			//obstacle->CVisual::Move(Vec2(size.width / 2.f, 0));
+		}
+
 		obstacle->setTextureRect(m_typesShoots[CShootType::MeleeShoot].GetTextureRectangle());
 		obstacle->setTexture(m_typesShoots[CShootType::MeleeShoot].GetTexture());
 		//*/
-	
+
 		if (value["name"].asString() == "Water")
 		{
 			obstacle->SetType(CObstacle::CObstacleType::Water);
